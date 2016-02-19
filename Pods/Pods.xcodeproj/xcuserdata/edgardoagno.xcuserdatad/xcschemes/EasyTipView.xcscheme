@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '41BC2CF4DA3D52C4D5D3EFAE'
+               BlueprintIdentifier = 'A702A03CA75E05EB3375B4BE'
                BlueprintName = 'EasyTipView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'EasyTipView.framework'>

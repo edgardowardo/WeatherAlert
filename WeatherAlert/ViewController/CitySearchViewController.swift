@@ -8,9 +8,9 @@
 
 import UIKit
 import RealmSwift
-import ABFRealmSearchViewController
+import RealmSearchViewController
 
-class CitySearchViewController: ABFRealmSearchViewController {
+class CitySearchViewController: RealmSearchViewController {
     
     let dateFormatter: NSDateFormatter = {
         let formatter = NSDateFormatter()
@@ -26,11 +26,22 @@ class CitySearchViewController: ABFRealmSearchViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    override func searchViewController(searchViewController: ABFRealmSearchViewController, cellForObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let rightButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: Selector("cancel"))
+        navigationItem.rightBarButtonItem = rightButton;
+    }
+    
+    func cancel() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func searchViewController(controller: RealmSearchViewController, cellForObject object: Object, atIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let cell = self.tableView.dequeueReusableCellWithIdentifier("CityCell")!
         
-        if let city = anObject as? CityObject {
+        if let city = object as? CityObject {
             
             cell.textLabel?.text = city.name
 
@@ -38,10 +49,10 @@ class CitySearchViewController: ABFRealmSearchViewController {
         
         return cell
     }
-    
-    override func searchViewController(searchViewController: ABFRealmSearchViewController, didSelectObject selectedObject: AnyObject, atIndexPath indexPath: NSIndexPath) {
 
-        searchViewController.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func searchViewController(controller: RealmSearchViewController, didSelectObject anObject: Object, atIndexPath indexPath: NSIndexPath) {
+
+        controller.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
 //        if let city = anObject as? CityObject {
 //            let webViewController = TOWebViewController(URLString: blog.urlString)

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '4F39BA33EA5283FC2412121D'
-               BlueprintName = 'ABFRealmSearchViewController'
+               BlueprintIdentifier = '5ED073976891E62A8AC0A538'
+               BlueprintName = 'RealmSearchViewController'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'ABFRealmSearchViewController.framework'>
+               BuildableName = 'RealmSearchViewController.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ABFRealmSearchViewController.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>EasyTipView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -34,12 +29,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RealmSearchViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>RealmSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>SlideMenuControllerSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftFetchedResultsController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -57,22 +62,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>37ABB09C96A146F57508E274678EE77C</key>
+		<key>19675688F74A93B69E65437DC78AD317</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5352F761C0F61B2527FCC5F351854DD9</key>
+		<key>2C217EE09D30982DC61225CB7E7E96D3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6785D510A646C9487B1164AE9C09DCFC</key>
+		<key>4F87FE1F05ADED91897CF22B29348D4D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6CB0ECB71625614FE1F32D5E71ADE139</key>
+		<key>55CB152DB7BC8DD2B696C7580BABF11E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5FBD1824F93BB8FD558FC95D9AC3538E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>76B2C62635016594E16635D98B1A9D1F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,27 +97,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C7B4771F7AF2F07597D823D8E4EDFB15</key>
+		<key>853C29BC5955CBF38AABE5A8CC71C893</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DCFC7B4D268F6B9B599CDEFC5BE81F73</key>
+		<key>9F4CB378BDF2FEA2D3A5F0B977DDA4C5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DE5DFD2CD56FE083E1EBCE65A886B082</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ED9F14FBD062828F296AC83BB8ACC176</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FF86F58DFACD77655235FC9163948F19</key>
 		<dict>
 			<key>primary</key>
 			<true/>

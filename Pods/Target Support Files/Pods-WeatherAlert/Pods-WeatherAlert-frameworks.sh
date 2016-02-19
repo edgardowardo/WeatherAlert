@@ -84,24 +84,26 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-WeatherAlert/ABFRealmSearchViewController.framework"
   install_framework "Pods-WeatherAlert/EasyTipView.framework"
   install_framework "Pods-WeatherAlert/MBProgressHUD.framework"
   install_framework "Pods-WeatherAlert/RBQFetchedResultsController.framework"
   install_framework "Pods-WeatherAlert/Realm.framework"
+  install_framework "Pods-WeatherAlert/RealmSearchViewController.framework"
   install_framework "Pods-WeatherAlert/RealmSwift.framework"
   install_framework "Pods-WeatherAlert/SlideMenuControllerSwift.framework"
+  install_framework "Pods-WeatherAlert/SwiftFetchedResultsController.framework"
   install_framework "Pods-WeatherAlert/UIColor_FlatColors.framework"
   install_framework "Pods-WeatherAlert/VTAcknowledgementsViewController.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-WeatherAlert/ABFRealmSearchViewController.framework"
   install_framework "Pods-WeatherAlert/EasyTipView.framework"
   install_framework "Pods-WeatherAlert/MBProgressHUD.framework"
   install_framework "Pods-WeatherAlert/RBQFetchedResultsController.framework"
   install_framework "Pods-WeatherAlert/Realm.framework"
+  install_framework "Pods-WeatherAlert/RealmSearchViewController.framework"
   install_framework "Pods-WeatherAlert/RealmSwift.framework"
   install_framework "Pods-WeatherAlert/SlideMenuControllerSwift.framework"
+  install_framework "Pods-WeatherAlert/SwiftFetchedResultsController.framework"
   install_framework "Pods-WeatherAlert/UIColor_FlatColors.framework"
   install_framework "Pods-WeatherAlert/VTAcknowledgementsViewController.framework"
 fi

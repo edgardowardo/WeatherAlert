@@ -1,7 +1,4 @@
 PODS:
-  - ABFRealmSearchViewController (1.5):
-    - RBQFetchedResultsController (>= 2.4)
-    - Realm (>= 0.96)
   - EasyTipView (0.1.4)
   - MBProgressHUD (0.9.2)
   - RBQFetchedResultsController (3.0):
@@ -9,29 +6,37 @@ PODS:
   - Realm (0.98.2):
     - Realm/Headers (= 0.98.2)
   - Realm/Headers (0.98.2)
+  - RealmSearchViewController (1.5):
+    - RBQFetchedResultsController (>= 2.4)
+    - RealmSwift (>= 0.96)
   - RealmSwift (0.98.2):
     - Realm (= 0.98.2)
   - SlideMenuControllerSwift (2.0.5)
+  - SwiftFetchedResultsController (3.0):
+    - RBQFetchedResultsController (>= 3.0)
+    - RealmSwift (>= 0.96)
   - UIColor+FlatColors (0.0.2)
   - VTAcknowledgementsViewController (0.17)
 
 DEPENDENCIES:
-  - ABFRealmSearchViewController
   - EasyTipView
   - MBProgressHUD
+  - RealmSearchViewController
   - RealmSwift
   - SlideMenuControllerSwift
+  - SwiftFetchedResultsController
   - UIColor+FlatColors
   - VTAcknowledgementsViewController
 
 SPEC CHECKSUMS:
-  ABFRealmSearchViewController: ae96a19bc9c44068d27781ab195cd150ca74caab
   EasyTipView: 8938007882416faf655d40bd7b0b83bf73783724
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   RBQFetchedResultsController: d94374941a05193fd7ab55624ee95272e4e5d315
   Realm: 88a147fe04b8f07191a676b15c779b2b448991de
+  RealmSearchViewController: 4cd4122611c1f0e864ba769f6cf7bf8437f0c701
   RealmSwift: 9907c7415b3e19ef2ab9f89878fc890f03f93aea
   SlideMenuControllerSwift: 9dcae36265e14c4f42e729f212463beb60d2cf96
+  SwiftFetchedResultsController: 204434885dbc16c9eabe653e326aac679f9b7bce
   UIColor+FlatColors: 6c699df7a575281794c688c64cee6c44fd1f93b4
   VTAcknowledgementsViewController: 6056f5f5e5ed995bbf0581bed6ddd29355ca9a80
 
