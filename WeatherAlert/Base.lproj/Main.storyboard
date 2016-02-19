@@ -70,9 +70,8 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="entityName" value="CityObject"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="searchPropertyKeyPath" value="name"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="useContainsSearch" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="sortAscending" value="YES"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="sortPropertyKey" value="name"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="useContainsSearch" value="NO"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="sortAscending" value="NO"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdp-ZX-vk3" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -43,7 +43,7 @@ class CitySearchViewController: RealmSearchViewController {
         
         if let city = object as? CityObject {
             
-            cell.textLabel?.text = city.name
+            cell.textLabel?.text = "\(city.name), \(city.country)"
 
         }
         

@@ -22,6 +22,7 @@ import RealmSwift
 class CityObject: Object {
  
     // MARK: - Properties -
+    
     dynamic var _id: Int = 0
     dynamic var name  = ""
     dynamic var country = ""
@@ -29,8 +30,13 @@ class CityObject: Object {
     dynamic var lat : Float = 0
     
     // MARK: - Property Attributes -
+    
     override static func primaryKey() -> String? {
         return "_id"
+    }
+    
+    override static func indexedProperties() -> [String] {
+        return ["name"]
     }
     
     // MARK: - Notifications -
@@ -43,6 +49,7 @@ class CityObject: Object {
     }
     
     // MARK: - Type Functions -
+    
     static func loadCityData() {
         
         dispatch_async(dispatch_queue_create("loadCityOnBackground", nil)) { autoreleasepool {
