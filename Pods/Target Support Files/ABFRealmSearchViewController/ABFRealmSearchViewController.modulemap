@@ -1,0 +1,6 @@
+framework module ABFRealmSearchViewController {
+  umbrella header "ABFRealmSearchViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}
