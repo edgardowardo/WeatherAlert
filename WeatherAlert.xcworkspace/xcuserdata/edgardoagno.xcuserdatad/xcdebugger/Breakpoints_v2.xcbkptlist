@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeatherAlert/Model/CityObject.swift"
-            timestampString = "477590657.721095"
+            filePath = "WeatherAlert/ViewController/MainViewController.swift"
+            timestampString = "477608355.752627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "loadCityData()"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "addCity()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

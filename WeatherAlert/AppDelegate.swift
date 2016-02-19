@@ -46,7 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if try! Realm().objects(CityObject).count == 0 {
             CityObject.loadCityData()
         }
-        print(Realm.Configuration.defaultConfiguration.path!)
         
         return true
     }

@@ -10,11 +10,16 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    // MARK: - View lifecycle -
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         self.title = "Weather Alert"
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_willLoadCityData:", name: CityObject.Notification.Identifier.willLoadCityData, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didLoadCityData:", name: CityObject.Notification.Identifier.didLoadCityData, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,8 +35,18 @@ class MainViewController: UIViewController {
         navigationItem.rightBarButtonItem = rightButton;
     }
     
+    // MARK: - Helpers -
+    
     func addCity() {
         
+    }
+    
+    @objc private func methodOfReceivedNotification_willLoadCityData(notification : NSNotification) {
+        navigationItem.rightBarButtonItem?.enabled = false
+    }
+    
+    @objc private func methodOfReceivedNotification_didLoadCityData(notification : NSNotification) {
+        navigationItem.rightBarButtonItem?.enabled = true
     }
     
 }
