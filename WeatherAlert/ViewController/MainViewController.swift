@@ -39,6 +39,10 @@ class MainViewController: UIViewController {
     
     func addCity() {
         
+        let citySearchViewController = UIStoryboard.citySearchViewController()
+        let nav = UINavigationController(rootViewController: citySearchViewController!)
+        presentViewController(nav, animated: true, completion: nil)
+        
     }
     
     @objc private func methodOfReceivedNotification_willLoadCityData(notification : NSNotification) {
