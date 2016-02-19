@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LeftMenuViewController.swift
 //  WeatherAlert
 //
 //  Created by EDGARDO AGNO on 19/02/2016.
@@ -8,18 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class LeftViewController: UIViewController {
+    
+    var mainViewController: UIViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
-

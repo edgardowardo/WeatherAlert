@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		231DBD9F85EC442927C50492 /* Pods_WeatherAlert.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A48BC8A65B50C0391F38EED2 /* Pods_WeatherAlert.framework */; };
+		776BDE821C7750BE0004D9A5 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776BDE811C7750BE0004D9A5 /* UIApplication.swift */; };
+		776BDF431C7751BB0004D9A5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776BDF421C7751BB0004D9A5 /* MainViewController.swift */; };
+		776BDF451C7752340004D9A5 /* ContainerMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776BDF441C7752340004D9A5 /* ContainerMenuViewController.swift */; };
+		776BDF471C77535A0004D9A5 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776BDF461C77535A0004D9A5 /* LeftViewController.swift */; };
 		77DAC62B1C7737E9004A1C72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAC62A1C7737E9004A1C72 /* AppDelegate.swift */; };
-		77DAC62D1C7737E9004A1C72 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAC62C1C7737E9004A1C72 /* ViewController.swift */; };
 		77DAC6301C7737E9004A1C72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DAC62E1C7737E9004A1C72 /* Main.storyboard */; };
 		77DAC6321C7737E9004A1C72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DAC6311C7737E9004A1C72 /* Assets.xcassets */; };
 		77DAC6351C7737E9004A1C72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DAC6331C7737E9004A1C72 /* LaunchScreen.storyboard */; };
@@ -35,9 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		776BDE811C7750BE0004D9A5 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		776BDF421C7751BB0004D9A5 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		776BDF441C7752340004D9A5 /* ContainerMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerMenuViewController.swift; sourceTree = "<group>"; };
+		776BDF461C77535A0004D9A5 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		77DAC6271C7737E9004A1C72 /* WeatherAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DAC62A1C7737E9004A1C72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		77DAC62C1C7737E9004A1C72 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		77DAC62F1C7737E9004A1C72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77DAC6311C7737E9004A1C72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77DAC6341C7737E9004A1C72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -87,6 +93,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		776BDE801C7750870004D9A5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				776BDE811C7750BE0004D9A5 /* UIApplication.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		776BDE831C77514A0004D9A5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				776BDF461C77535A0004D9A5 /* LeftViewController.swift */,
+				776BDF421C7751BB0004D9A5 /* MainViewController.swift */,
+				776BDF441C7752340004D9A5 /* ContainerMenuViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		77DAC61E1C7737E9004A1C72 = {
 			isa = PBXGroup;
 			children = (
@@ -112,8 +136,9 @@
 		77DAC6291C7737E9004A1C72 /* WeatherAlert */ = {
 			isa = PBXGroup;
 			children = (
+				776BDE831C77514A0004D9A5 /* ViewController */,
+				776BDE801C7750870004D9A5 /* Extension */,
 				77DAC62A1C7737E9004A1C72 /* AppDelegate.swift */,
-				77DAC62C1C7737E9004A1C72 /* ViewController.swift */,
 				77DAC62E1C7737E9004A1C72 /* Main.storyboard */,
 				77DAC6311C7737E9004A1C72 /* Assets.xcassets */,
 				77DAC6331C7737E9004A1C72 /* LaunchScreen.storyboard */,
@@ -331,8 +356,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77DAC62D1C7737E9004A1C72 /* ViewController.swift in Sources */,
+				776BDF431C7751BB0004D9A5 /* MainViewController.swift in Sources */,
+				776BDF451C7752340004D9A5 /* ContainerMenuViewController.swift in Sources */,
+				776BDE821C7750BE0004D9A5 /* UIApplication.swift in Sources */,
 				77DAC62B1C7737E9004A1C72 /* AppDelegate.swift in Sources */,
+				776BDF471C77535A0004D9A5 /* LeftViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
