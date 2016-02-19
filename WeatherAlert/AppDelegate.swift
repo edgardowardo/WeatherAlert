@@ -8,6 +8,7 @@
 
 import UIKit
 import UIColor_FlatColors
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
         
-        UINavigationBar.appearance().tintColor = UIColor.flatCloudsColor()
+        UINavigationBar.appearance().tintColor = UIColor.flatMidnightBlueColor()
         
         leftViewController.mainViewController = nvc
         
@@ -40,6 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.createMenuView()
+        
+        // Load Blog Data
+        if try! Realm().objects(CityObject).count == 0 {
+            CityObject.loadCityData()
+        }
+        print(Realm.Configuration.defaultConfiguration.path!)
         
         return true
     }

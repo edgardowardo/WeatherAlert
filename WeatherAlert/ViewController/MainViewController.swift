@@ -13,6 +13,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.title = "Weather Alert"
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +22,17 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setNavigationBarItem()
+        
+        let rightButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: Selector("addCity"))
+        navigationItem.rightBarButtonItem = rightButton;
+    }
+    
+    func addCity() {
+        
+    }
+    
 }
 
