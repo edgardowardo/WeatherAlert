@@ -82,7 +82,7 @@ class CurrentObject: Object {
 
                     try! realm.commitWrite()
                     
-                    print("\(NSDate()) savedXML")
+                    print("\(NSDate()) savedXML(\(current))")
                     print("Realm located at \(realm.path)")
                     
                     NSNotificationCenter.defaultCenter().postNotificationName(Notification.Identifier.didSaveCurrentObject, object: current)
