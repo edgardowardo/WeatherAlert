@@ -63,6 +63,11 @@ class CitySearchViewController: RealmSearchViewController {
                         CurrentObject.saveXML(xmlString)
                     }
                 })
+            
+            if let controller = UIStoryboard.currentDetailViewController() {
+                controller.title = "\(city.country), \(city.name)"
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
         }
     }
 }

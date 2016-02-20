@@ -74,18 +74,13 @@ class CityObject: Object {
                         for cityData in jsonArray {
                             let city = CityObject()
                             
-                            if let id = cityData["_id"] as? Int,
-                                name = cityData["name"] as? String,
-                                country = cityData["country"] as? String,
-                                coordData = cityData["coord"] as? [String : AnyObject],
-                                lon = coordData["lon"] as? Float,
-                                lat = coordData["lat"] as? Float {
+                            if let id = cityData["_id"] as? Int, name = cityData["name"] as? String, country = cityData["country"] as? String, coordData = cityData["coord"] as? [String : AnyObject], lon = coordData["lon"] as? Float, lat = coordData["lat"] as? Float {
                                     
-                                    city._id = id
-                                    city.name = name
-                                    city.country = country
-                                    city.lon = lon
-                                    city.lat = lat
+                                city._id = id
+                                city.name = name
+                                city.country = country
+                                city.lon = lon
+                                city.lat = lat
                             }
                             
                             realm.add(city, update: true)

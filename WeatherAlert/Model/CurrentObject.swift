@@ -25,6 +25,14 @@ class CurrentObject: Object {
     dynamic var directionvalue : Double = 0
     dynamic var lastupdate : NSDate? = nil
     
+    // MARK: - Notifications -
+    
+    struct Notification {
+        struct Identifier {
+            static let didSaveCurrentObject = "NotificationIdentifierOf_didSaveCurrentObject"
+        }
+    }
+    
     // MARK: - Property Attributes -
     
     override static func primaryKey() -> String? {
@@ -57,14 +65,7 @@ class CurrentObject: Object {
                         current.lat = NSString(string: lat).doubleValue
                     }
                     
-                    if let wind = root.firstChild(tag:"wind"),
-                        speed = wind.firstChild(tag: "speed"),
-                        speedvalue = speed["value"],
-                        speedname = speed["name"],
-                        dir = wind.firstChild(tag: "direction"),
-                        dircode = dir["code"],
-                        dirname = dir["name"],
-                        dirvalue = dir["value"] {
+                    if let wind = root.firstChild(tag:"wind"), speed = wind.firstChild(tag: "speed"), speedvalue = speed["value"], speedname = speed["name"], dir = wind.firstChild(tag: "direction"), dircode = dir["code"], dirname = dir["name"], dirvalue = dir["value"] {
                         
                         current.speedvalue = NSString(string: speedvalue).doubleValue
                         current.speedname = speedname
@@ -83,6 +84,8 @@ class CurrentObject: Object {
                     
                     print("\(NSDate()) savedXML")
                     print("Realm located at \(realm.path)")
+                    
+                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.Identifier.didSaveCurrentObject, object: current)
                 }
                 
             } catch let error {
