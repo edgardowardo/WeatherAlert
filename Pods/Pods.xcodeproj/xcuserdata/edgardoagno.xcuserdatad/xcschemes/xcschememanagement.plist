@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Charts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>EasyTipView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,17 +82,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0A00DF9619E5216B0CAC4270B3D60112</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0E9B9EABB8C6EA0D22E648A3A4007430</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>200110DC92FA59DBD8E26C2393E74DE2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>39C2779E1BE441CEA840B79B9172CB5F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3C1ECB1B74D15D896BCE2278959C35F0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3E19FB5CFCB8600C109A178F9D1E75A6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4AB5A2244C0E47BD1DF46858CD0EE342</key>
+		<key>4ADF667B36066C18F4D63A7BD72D9D59</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>51F039122F23CC5D67BA2D41BDFEE657</key>
+		<key>70CF23E39D67229E82DEF32EFF1257A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,27 +132,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>90668E6D7E852DE883BC70F5DEEF1248</key>
+		<key>847AE257B389A330F7BE53634FDBC6BE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B2371B1C1E1C7A01C38BEADDB594088E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B6A77BC516B1D889C5FC45D491A7FBD0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C9B5D567411CBA292697329EAA87F9A2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CFEBE9EEBBD53EB6E3503DB6F9957C14</key>
+		<key>D0C7EC24CB2633BB731824F355EDC22E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,17 +147,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E440B1A302E0B12361C12B1E0491C639</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EC8BB40CD01866543C3FBFA75CED1CB3</key>
+		<key>E6291DA3A2A240CA899CA98BF63CBCFC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

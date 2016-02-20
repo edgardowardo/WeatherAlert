@@ -3,6 +3,7 @@ use_frameworks!
 
 target 'WeatherAlert' do
 
+pod 'Charts'
 pod 'Alamofire'
 pod 'Ono'
 pod 'Fuzi'

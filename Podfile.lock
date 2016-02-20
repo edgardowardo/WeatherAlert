@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (3.2.0)
+  - Charts (2.2.2):
+    - Charts/Core (= 2.2.2)
+  - Charts/Core (2.2.2)
   - EasyTipView (0.1.4)
   - Fuzi (0.3.0)
   - MBProgressHUD (0.9.2)
@@ -23,6 +26,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Charts
   - EasyTipView
   - Fuzi
   - MBProgressHUD
@@ -36,6 +40,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  Charts: e32b718fa716bdb7693b9e419d6d4a39a3f7992e
   EasyTipView: 8938007882416faf655d40bd7b0b83bf73783724
   Fuzi: 4725b8743f0a92100108e013347bf32ca80d93a1
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
