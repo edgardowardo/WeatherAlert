@@ -10,7 +10,7 @@ import Alamofire
 import Ono
 
 /*
-    Note : I decided to use XML data since it provides more wind info such as wind name, direction code which simplifies plotting of cardinal direction. JSON data does not provide these descriptive data.
+    Note : I decided to use XML data since it provides more wind info such as speed name, direction code which simplifies plotting of cardinal direction. JSON data does not provide these descriptive data.
 */
 
 extension Request {
@@ -35,5 +35,22 @@ extension Request {
     
     public func responseXMLDocument(completionHandler: Response<ONOXMLDocument, NSError> -> Void) -> Self {
         return response(responseSerializer: Request.XMLResponseSerializer(), completionHandler: completionHandler)
+    }
+}
+
+extension NSDateFormatter {
+    static func openweatherFormat() -> String {
+        return "yyyy-MM-dd'T'HH:mm:ss"
+    }
+    static func nsdateFromString(string : String) -> NSDate? {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = NSDateFormatter.openweatherFormat()
+        
+        guard let date = formatter.dateFromString(string) else {
+            assert(false, "no date from string")
+            return nil
+        }
+        
+        return date
     }
 }

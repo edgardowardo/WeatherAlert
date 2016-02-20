@@ -17,6 +17,8 @@ import RealmSwift
 
  Sample json to parse {"_id":3333164,"name":"City and Borough of Leeds","country":"GB","coord":{"lon":-1.5477,"lat":53.79644}}
 
+ TODO: Re-write city search. This save to disk business is all wasted since performance along with RealmSearchViewController is unacceptable!
+
 */
 
 class CityObject: Object {
@@ -54,7 +56,7 @@ class CityObject: Object {
         
         dispatch_async(dispatch_queue_create("loadCityOnBackground", nil)) { autoreleasepool {
             
-            if let jsonFilePath = NSBundle.mainBundle().pathForResource("city.list", ofType: "json"), jsonData = NSData(contentsOfFile: jsonFilePath) {
+            if let jsonFilePath = NSBundle.mainBundle().pathForResource("city0", ofType: "json"), jsonData = NSData(contentsOfFile: jsonFilePath) {
                 
                 dispatch_sync(dispatch_get_main_queue(), {
                     NSNotificationCenter.defaultCenter().postNotificationName(Notification.Identifier.willLoadCityData, object: nil)
