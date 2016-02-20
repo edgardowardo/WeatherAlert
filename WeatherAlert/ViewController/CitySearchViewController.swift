@@ -56,13 +56,7 @@ class CitySearchViewController: RealmSearchViewController {
         controller.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         if let city = anObject as? CityObject {
-            
-            print("\(city._id)")
-            
-            let baseURLString = "http://api.openweathermap.org/data/2.5/weather?"
-            let appid = "86514c2ae159c18ed4c1908defe97b2d"
-            
-            Alamofire.request(.GET, baseURLString, parameters: ["id": "\(city._id)", "APPID" : appid, "mode" : "xml"])
+            Alamofire.request(Router.Search(id: city._id))
                 .responseXMLDocument({ response -> Void in
                     if let xml = response.result.value {
                         let xmlString = "\(xml)"
