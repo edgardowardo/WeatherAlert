@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import RealmSearchViewController
 import Alamofire
+import Fuzi
 
 class CitySearchViewController: RealmSearchViewController {
     
@@ -62,17 +63,41 @@ class CitySearchViewController: RealmSearchViewController {
             let baseURLString = "http://api.openweathermap.org/data/2.5/weather?"
             let appid = "86514c2ae159c18ed4c1908defe97b2d"
             
-            Alamofire.request(.GET, baseURLString, parameters: ["id": "\(city._id)", "APPID" : appid])
-                .responseJSON { response in
+            Alamofire.request(.GET, baseURLString, parameters: ["id": "\(city._id)", "APPID" : appid, "mode" : "xml"])
+                .responseXMLDocument({ response -> Void in autoreleasepool {
+                        
                     print("request == \(response.request!)")  // original URL request
                     print("response == \(response.response)" ) // URL response
                     print("data == \(response.data)")     // server data
                     print("result == \(response.result)")   // result of response serialization
-                    
-                    if let JSON = response.result.value {
-                        print("JSON: \(JSON)")
+                    if let xml = response.result.value {
+                        print("xml: \(xml)")
+                        let xmlString = "\(xml)"
+                        do {
+                            let document = try XMLDocument(string: xmlString)
+                            if let root = document.root {
+                                // Accessing all child nodes of root element
+                                for element in root.children {
+                                    print("0")
+                                    print("\(element.tag): \(element.attributes)")
+                                }
+                                
+                                // Getting child element by tag & accessing attributes
+                                if let city = root.firstChild(tag:"city") {
+                                    print("1")
+                                    print(city["name"])     // `unit` attribute
+                                    print(city.attributes)  // all attributes
+                                    city.children
+                                }
+                            }
+                            
+                        } catch let error {
+                            print(error)
+                        }
+                        
                     }
-            }
+                }})
         }
     }
 }
+

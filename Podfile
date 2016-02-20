@@ -5,6 +5,7 @@ target 'WeatherAlert' do
 
 pod 'Alamofire'
 pod 'Ono'
+pod 'Fuzi'
 pod 'SlideMenuControllerSwift'
 pod 'RealmSearchViewController'
 pod 'RealmSwift'

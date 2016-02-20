@@ -86,6 +86,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-WeatherAlert/Alamofire.framework"
   install_framework "Pods-WeatherAlert/EasyTipView.framework"
+  install_framework "Pods-WeatherAlert/Fuzi.framework"
   install_framework "Pods-WeatherAlert/MBProgressHUD.framework"
   install_framework "Pods-WeatherAlert/Ono.framework"
   install_framework "Pods-WeatherAlert/RBQFetchedResultsController.framework"
@@ -100,6 +101,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-WeatherAlert/Alamofire.framework"
   install_framework "Pods-WeatherAlert/EasyTipView.framework"
+  install_framework "Pods-WeatherAlert/Fuzi.framework"
   install_framework "Pods-WeatherAlert/MBProgressHUD.framework"
   install_framework "Pods-WeatherAlert/Ono.framework"
   install_framework "Pods-WeatherAlert/RBQFetchedResultsController.framework"

@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Fuzi.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,27 +77,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0835B4523B196BE58BC0B92AF9DCCF70</key>
+		<key>3E19FB5CFCB8600C109A178F9D1E75A6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>272CEA758DFD9AE63A8F227054225149</key>
+		<key>4AB5A2244C0E47BD1DF46858CD0EE342</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2B88BBE48ECDA74DF9D06395A8F789F6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3623A75DA662BB7DB64AC86CB92C664D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>68CE54B640737D0D1FE3C9B08B6E9A87</key>
+		<key>51F039122F23CC5D67BA2D41BDFEE657</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,17 +102,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>856D7E28A64698B33BFCBDAA1F610685</key>
+		<key>90668E6D7E852DE883BC70F5DEEF1248</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>928EC0312C3B03CA63631FCC9068C7DF</key>
+		<key>B2371B1C1E1C7A01C38BEADDB594088E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B7C9347D96DF56CCAFC99F32A7C710E2</key>
+		<key>B6A77BC516B1D889C5FC45D491A7FBD0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C9B5D567411CBA292697329EAA87F9A2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CFEBE9EEBBD53EB6E3503DB6F9957C14</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,12 +132,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>E440B1A302E0B12361C12B1E0491C639</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FFA82E024D815F72414F596E18CF1B71</key>
+		<key>EC8BB40CD01866543C3FBFA75CED1CB3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

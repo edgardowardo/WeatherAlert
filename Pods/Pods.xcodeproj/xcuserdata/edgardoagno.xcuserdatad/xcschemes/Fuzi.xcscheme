@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '442DFD9394BF18AF26673F12'
-               BlueprintName = 'SwiftFetchedResultsController'
+               BlueprintIdentifier = 'F4EEEF46175C2B0EB51E5A11'
+               BlueprintName = 'Fuzi'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SwiftFetchedResultsController.framework'>
+               BuildableName = 'Fuzi.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
