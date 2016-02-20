@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E7E305799A4F16A130E82970'
-               BlueprintName = 'RBQFetchedResultsController'
+               BlueprintIdentifier = '99A943FE5C31E2E547C4AF7C'
+               BlueprintName = 'Ono'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'RBQFetchedResultsController.framework'>
+               BuildableName = 'Ono.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

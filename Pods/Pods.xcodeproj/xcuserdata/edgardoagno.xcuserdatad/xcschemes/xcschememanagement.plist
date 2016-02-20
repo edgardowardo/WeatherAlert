@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Ono.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-WeatherAlert.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,17 +72,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>017262886F46A5800404C32A5FB1BE15</key>
+		<key>0835B4523B196BE58BC0B92AF9DCCF70</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>06453DF32DCC3037AE18DE5D35986761</key>
+		<key>272CEA758DFD9AE63A8F227054225149</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4D92C3BE9F1192F7F144E2CA2073BF6D</key>
+		<key>2B88BBE48ECDA74DF9D06395A8F789F6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3623A75DA662BB7DB64AC86CB92C664D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>68CE54B640737D0D1FE3C9B08B6E9A87</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,27 +107,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>869A9EA31982A93A5C42F6ECB0C5706B</key>
+		<key>856D7E28A64698B33BFCBDAA1F610685</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A99848DDE6140D7DCF5AB1BC1AF937F3</key>
+		<key>928EC0312C3B03CA63631FCC9068C7DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B196EE36757FA2DC4ACC5B5EADC0C111</key>
+		<key>B7C9347D96DF56CCAFC99F32A7C710E2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CA9A089F34DC3E95B28414C2D1491DEE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E4F6A63E54790B6410E9D962246EF4EB</key>
+		<key>E181BAB7DD5EA52AB518DFD835264D41</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,7 +132,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EAEAE9C2D8BD474557418A3229A87251</key>
+		<key>FFA82E024D815F72414F596E18CF1B71</key>
 		<dict>
 			<key>primary</key>
 			<true/>

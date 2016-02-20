@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import RealmSearchViewController
+import Alamofire
 
 class CitySearchViewController: RealmSearchViewController {
     
@@ -54,11 +55,24 @@ class CitySearchViewController: RealmSearchViewController {
 
         controller.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-//        if let city = anObject as? CityObject {
-//            let webViewController = TOWebViewController(URLString: blog.urlString)
-//            let navigationController = UINavigationController(rootViewController: webViewController)
-//            self.presentViewController(navigationController, animated: true, completion: nil)
-//        }
-        
+        if let city = anObject as? CityObject {
+            
+            print("\(city._id)")
+            
+            let baseURLString = "http://api.openweathermap.org/data/2.5/weather?"
+            let appid = "86514c2ae159c18ed4c1908defe97b2d"
+            
+            Alamofire.request(.GET, baseURLString, parameters: ["id": "\(city._id)", "APPID" : appid])
+                .responseJSON { response in
+                    print("request == \(response.request!)")  // original URL request
+                    print("response == \(response.response)" ) // URL response
+                    print("data == \(response.data)")     // server data
+                    print("result == \(response.result)")   // result of response serialization
+                    
+                    if let JSON = response.result.value {
+                        print("JSON: \(JSON)")
+                    }
+            }
+        }
     }
 }
