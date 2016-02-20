@@ -3,6 +3,7 @@ use_frameworks!
 
 target 'WeatherAlert' do
 
+pod 'Alamofire'
 pod 'SlideMenuControllerSwift'
 pod 'RealmSearchViewController'
 pod 'RealmSwift'

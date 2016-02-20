@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '5ED073976891E62A8AC0A538'
+               BlueprintIdentifier = 'F027DAD4349D4F8DEDEF0700'
                BlueprintName = 'RealmSearchViewController'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'RealmSearchViewController.framework'>

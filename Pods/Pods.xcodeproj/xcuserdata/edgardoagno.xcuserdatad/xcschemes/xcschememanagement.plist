@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>EasyTipView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,32 +67,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>19675688F74A93B69E65437DC78AD317</key>
+		<key>017262886F46A5800404C32A5FB1BE15</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2C217EE09D30982DC61225CB7E7E96D3</key>
+		<key>06453DF32DCC3037AE18DE5D35986761</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4F87FE1F05ADED91897CF22B29348D4D</key>
+		<key>4D92C3BE9F1192F7F144E2CA2073BF6D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>55CB152DB7BC8DD2B696C7580BABF11E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5FBD1824F93BB8FD558FC95D9AC3538E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>76B2C62635016594E16635D98B1A9D1F</key>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,22 +92,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>853C29BC5955CBF38AABE5A8CC71C893</key>
+		<key>869A9EA31982A93A5C42F6ECB0C5706B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9F4CB378BDF2FEA2D3A5F0B977DDA4C5</key>
+		<key>A99848DDE6140D7DCF5AB1BC1AF937F3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DE5DFD2CD56FE083E1EBCE65A886B082</key>
+		<key>B196EE36757FA2DC4ACC5B5EADC0C111</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CA9A089F34DC3E95B28414C2D1491DEE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E4F6A63E54790B6410E9D962246EF4EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EAEAE9C2D8BD474557418A3229A87251</key>
 		<dict>
 			<key>primary</key>
 			<true/>
