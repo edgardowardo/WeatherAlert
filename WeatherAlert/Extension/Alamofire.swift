@@ -10,7 +10,7 @@ import Alamofire
 import Ono
 
 /*
-    Note : I decided to use XML data since it provides more wind info such as speed name, direction code which simplifies plotting of cardinal direction. JSON data does not provide these descriptive data.
+    Note : I decided to use XML data since it provides more wind info such as speed name, direction code which simplifies plotting of cardinal direction. JSON data does not provide these descriptive data. Also, OpenWeatherMapAPI cocoa pod only provides JSON data without the direction codes and speed name!
 */
 
 extension Request {

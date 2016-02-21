@@ -27,11 +27,12 @@ class CurrentDetailViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didSaveCurrentObject:", name: CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)
         
         radarChart.noDataText = "Wind data is still up in the air..."
-        radarChart.descriptionText = "Wind data"
+        radarChart.descriptionText = ""
         radarChart.rotationEnabled = false
         radarChart.webLineWidth = 0.6
         radarChart.innerWebLineWidth = 0.0
         radarChart.webAlpha = 1.0
+        radarChart.yAxis.customAxisMax = 17.0
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,14 +65,28 @@ class CurrentDetailViewController: UIViewController {
         if let c = notification.object as? CurrentObject {
             self.current = c
             if let index = directions.indexOf(c.directioncode) {
+                
+                if index == 0 {
+                    speeds[directions.count-1] = c.speedvalue
+                } else {
+                    speeds[index-1] = c.speedvalue
+                }
+                
+                if index == directions.count-1 {
+                    speeds[0] = c.speedvalue
+                } else {
+                    speeds[index + 1] = c.speedvalue
+                }
+                
                 speeds[index] = c.speedvalue
             }
-            radarChart.descriptionText = "\(c.speedname) from \(c.directionname)"
             setChart(directions, values: speeds)
         }
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
+        guard let c = self.current else { return }
+        
         var dataEntries: [ChartDataEntry] = []
         
         for i in 0 ..< dataPoints.count {
@@ -79,10 +94,20 @@ class CurrentDetailViewController: UIViewController {
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = RadarChartDataSet(yVals: dataEntries, label: "Speed")
+        let chartDataSet = RadarChartDataSet(yVals: dataEntries, label: "\(c.speedname) from \(c.directionname.lowercaseString) at \(c.speedvalue) m/s")
+        chartDataSet.drawValuesEnabled = false
+        chartDataSet.lineWidth = 2.0
+        chartDataSet.drawFilledEnabled = true
+        if let c = self.current {
+            let speedColor = UIColor.getColorOfSpeed(c.speedvalue)
+            chartDataSet.fillColor = speedColor
+            chartDataSet.setColor(speedColor, alpha: 0.6)
+            
+        }
         let chartData = RadarChartData(xVals: directions, dataSets: [chartDataSet])
         
         radarChart.data = chartData
+        radarChart.animate(yAxisDuration: NSTimeInterval(1.4), easingOption: ChartEasingOption.EaseOutBack)
     }
     
 }
