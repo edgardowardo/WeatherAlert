@@ -1,0 +1,111 @@
+//
+//  ForecastObject.swift
+//  WeatherAlert
+//
+//  Created by EDGARDO AGNO on 21/02/2016.
+//  Copyright © 2016 EDGARDO AGNO. All rights reserved.
+//
+
+import RealmSwift
+import Fuzi
+
+class ForecastObject: Object {
+    
+    // MARK: - Properties -
+    
+    dynamic var cityid: Int = 0
+    dynamic var timefrom : NSDate? = nil
+    dynamic var speedvalue : Double = 0
+    dynamic var speedname = ""
+    dynamic var directioncode = ""
+    dynamic var directionname = ""
+    dynamic var directionvalue : Double = 0
+    dynamic var temperatureUnit = ""
+    dynamic var temperatureValue = 0.0
+    
+    // MARK: - Notifications -
+    
+    struct Notification {
+        struct Identifier {
+            static let didSaveForecastObjects = "NotificationIdentifierOf_didSaveForecastObjects"
+        }
+    }
+    
+    // MARK: - Property Attributes -
+    
+    override static func indexedProperties() -> [String] {
+        return ["cityid", "timefrom"]
+    }
+    
+    static func saveXML(xml : String) {
+        
+        autoreleasepool {
+            
+            do {
+                let document = try XMLDocument(string: xml)
+                if let root = document.root, realm = try? Realm() {
+                    
+                    realm.beginWrite()
+                    
+                    var cityid = 0
+                    
+                    if let location = root.firstChild(tag:"location"), sublocation = location.firstChild(tag: "location"), id = sublocation["geobaseid"] {
+                        cityid = Int(id)!
+                    }
+                    
+                    var allcount = realm.objects(ForecastObject).count
+                    print("\(NSDate()) saveXML() allForecasts(\(allcount))")
+
+                    // Delete any existing forecasts
+                    
+                    for existing in realm.objects(ForecastObject).filter("cityid == \(cityid)") {
+                        realm.delete(existing)
+                    }
+                    
+                    if let forecasts = root.firstChild(tag : "forecast") {
+                        for entry in forecasts.children {
+                            guard entry.tag == "time" else { continue }
+                            
+                            let forecast = ForecastObject()
+                            forecast.cityid = cityid
+                            
+                            if let timefrom = entry.attributes["from"] {
+                                forecast.timefrom = NSDateFormatter.nsdateFromString(timefrom)
+                            }
+                            if let windDirection = entry.firstChild(tag: "windDirection"), dircode = windDirection["code"], dirname = windDirection["name"], dirvalue = windDirection["deg"] {
+                                forecast.directioncode = dircode
+                                forecast.directionname = dirname
+                                forecast.directionvalue = NSString(string: dirvalue).doubleValue
+                            }
+                            if let windSpeed = entry.firstChild(tag: "windSpeed"), name = windSpeed["name"] {
+                                forecast.speedname = name
+                                if let val = windSpeed["mps"] {
+                                    forecast.speedvalue = NSString(string: val).doubleValue
+                                }
+                                // TODO: find out tag name for imperial and metric!
+                            }
+                            if let temperature = entry.firstChild(tag: "temperature"), unit = temperature["unit"], val = temperature["value"] {
+                                forecast.temperatureUnit = unit
+                                forecast.temperatureValue = NSString(string: val).doubleValue
+                            }
+                            
+                            realm.add(forecast, update: false)
+                        }
+                    }
+                    
+                    try! realm.commitWrite()
+                    
+                    allcount = realm.objects(ForecastObject).count
+                    let savedcount = realm.objects(ForecastObject).filter("cityid == \(cityid)").count
+                    print("\(NSDate()) savedXML(\(savedcount)) allForecasts(\(allcount))")
+                    print("Realm located at \(realm.path)")
+                    
+                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.Identifier.didSaveForecastObjects, object: savedcount)
+                }
+                
+            } catch let error {
+                print(error)
+            }
+        }
+    }
+}

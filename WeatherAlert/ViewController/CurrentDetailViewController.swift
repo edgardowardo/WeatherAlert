@@ -94,10 +94,14 @@ class CurrentDetailViewController: UIViewController {
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = RadarChartDataSet(yVals: dataEntries, label: "\(c.speedname) from \(c.directionname.lowercaseString) at \(c.speedvalue) m/s")
+        let speedname = ( c.speedname == "" ) ? "Windless" : c.speedname
+        let directionname = ( c.directionname == "" ) ? "nowhere" : c.directionname.lowercaseString
+        let chartDataSet = RadarChartDataSet(yVals: dataEntries, label: "\(speedname) towards \(directionname) at \(c.speedvalue) m/s")
         chartDataSet.drawValuesEnabled = false
         chartDataSet.lineWidth = 2.0
         chartDataSet.drawFilledEnabled = true
+        chartDataSet.drawHorizontalHighlightIndicatorEnabled = false
+        chartDataSet.drawVerticalHighlightIndicatorEnabled = false
         if let c = self.current {
             let speedColor = UIColor.getColorOfSpeed(c.speedvalue)
             chartDataSet.fillColor = speedColor

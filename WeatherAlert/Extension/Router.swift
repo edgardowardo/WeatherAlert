@@ -14,6 +14,8 @@ enum Router: URLRequestConvertible {
     static let mode = "xml"
     
     case Search(id : Int)
+    case SearchName(name : String)
+    case Forecast(id : Int)
     
     // MARK: URLRequestConvertible protocol
     
@@ -22,6 +24,10 @@ enum Router: URLRequestConvertible {
             switch self {
             case .Search(let id) :
                 return ("/weather?", ["APPID" : Router.appid, "mode" : Router.mode, "id" : id])
+            case .SearchName(let name) :
+                return ("/weather?", ["APPID" : Router.appid, "mode" : Router.mode, "q" : name])
+            case .Forecast(let id) :
+                return ("/forecast?", ["APPID" : Router.appid, "mode" : Router.mode, "id" : id])
             }
         }()
         

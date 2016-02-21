@@ -56,13 +56,20 @@ class CitySearchViewController: RealmSearchViewController {
         controller.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         if let city = anObject as? CityObject {
-            Alamofire.request(Router.Search(id: city._id))
-                .responseXMLDocument({ response -> Void in
-                    if let xml = response.result.value {
-                        let xmlString = "\(xml)"
-                        CurrentObject.saveXML(xmlString)
-                    }
-                })
+            
+            Alamofire.request(Router.Search(id: city._id)).responseXMLDocument({ response -> Void in
+                if let xml = response.result.value {
+                    let xmlString = "\(xml)"
+                    CurrentObject.saveXML(xmlString)
+                }
+            })
+            
+            Alamofire.request(Router.Forecast(id: city._id)).responseXMLDocument({ response -> Void in
+                if let xml = response.result.value {
+                    let xmlString = "\(xml)"
+                    ForecastObject.saveXML(xmlString)
+                }
+            })
             
             if let controller = UIStoryboard.currentDetailViewController() {
                 controller.title = "\(city.country), \(city.name)"

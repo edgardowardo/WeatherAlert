@@ -13,7 +13,7 @@ class CurrentObject: Object {
     
     // MARK: - Properties -
     
-    dynamic var _id: Int = 0
+    dynamic var cityid: Int = 0
     dynamic var name  = ""
     dynamic var country = ""
     dynamic var lon : Double = 0
@@ -36,11 +36,11 @@ class CurrentObject: Object {
     // MARK: - Property Attributes -
     
     override static func primaryKey() -> String? {
-        return "_id"
+        return "cityid"
     }
     
     override static func indexedProperties() -> [String] {
-        return ["_id"]
+        return ["cityid"]
     }
     
     static func saveXML(xml : String) {
@@ -59,7 +59,7 @@ class CurrentObject: Object {
                     if let city = root.firstChild(tag:"city"), name = city["name"], id = city["id"], country = city.firstChild(tag: "country"), coord = city.firstChild(tag: "coord"), lon = coord["lon"], lat = coord["lat"] {
                         
                         current.name = name
-                        current._id = Int(id)!
+                        current.cityid = Int(id)!
                         current.country = country.stringValue
                         current.lon = NSString(string: lon).doubleValue
                         current.lat = NSString(string: lat).doubleValue
