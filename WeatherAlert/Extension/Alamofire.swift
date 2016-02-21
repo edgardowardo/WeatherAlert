@@ -37,20 +37,3 @@ extension Request {
         return response(responseSerializer: Request.XMLResponseSerializer(), completionHandler: completionHandler)
     }
 }
-
-extension NSDateFormatter {
-    static func openweatherFormat() -> String {
-        return "yyyy-MM-dd'T'HH:mm:ss"
-    }
-    static func nsdateFromString(string : String) -> NSDate? {
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = NSDateFormatter.openweatherFormat()
-        
-        guard let date = formatter.dateFromString(string) else {
-            assert(false, "no date from string")
-            return nil
-        }
-        
-        return date
-    }
-}

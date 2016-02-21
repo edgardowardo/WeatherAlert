@@ -12,6 +12,7 @@
 		772CC7521C77BF57008ECCFC /* CitySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772CC7511C77BF57008ECCFC /* CitySearchViewController.swift */; };
 		772CC7561C77CE0A008ECCFC /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772CC7551C77CE0A008ECCFC /* UIStoryboard.swift */; };
 		7732B36F1C78E72B00B845F4 /* CurrentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732B36E1C78E72B00B845F4 /* CurrentDetailViewController.swift */; };
+		773E7CBB1C79FB3800047988 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E7CBA1C79FB3800047988 /* NSDate.swift */; };
 		773FAF881C78A17F00D9FE21 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773FAF871C78A17F00D9FE21 /* Alamofire.swift */; };
 		773FAF8A1C78BBAF00D9FE21 /* CurrentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773FAF891C78BBAF00D9FE21 /* CurrentObject.swift */; };
 		775C375B1C78DBB8007D0C80 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C375A1C78DBB8007D0C80 /* Router.swift */; };
@@ -54,6 +55,7 @@
 		772CC7511C77BF57008ECCFC /* CitySearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySearchViewController.swift; sourceTree = "<group>"; };
 		772CC7551C77CE0A008ECCFC /* UIStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
 		7732B36E1C78E72B00B845F4 /* CurrentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentDetailViewController.swift; sourceTree = "<group>"; };
+		773E7CBA1C79FB3800047988 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		773FAF871C78A17F00D9FE21 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		773FAF891C78BBAF00D9FE21 /* CurrentObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentObject.swift; sourceTree = "<group>"; };
 		775C375A1C78DBB8007D0C80 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				773FAF871C78A17F00D9FE21 /* Alamofire.swift */,
 				775C375A1C78DBB8007D0C80 /* Router.swift */,
 				77102DA21C793FEB00BDAEE7 /* UIColor.swift */,
+				773E7CBA1C79FB3800047988 /* NSDate.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				776BDF451C7752340004D9A5 /* ContainerMenuViewController.swift in Sources */,
 				776BDF491C77579E0004D9A5 /* UIViewController.swift in Sources */,
 				775C375B1C78DBB8007D0C80 /* Router.swift in Sources */,
+				773E7CBB1C79FB3800047988 /* NSDate.swift in Sources */,
 				779D3F121C79C00E00C89BBD /* ForecastObject.swift in Sources */,
 				776BDE821C7750BE0004D9A5 /* UIApplication.swift in Sources */,
 				77DAC62B1C7737E9004A1C72 /* AppDelegate.swift in Sources */,

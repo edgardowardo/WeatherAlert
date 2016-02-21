@@ -8,6 +8,40 @@
 
 import UIKit
 import Charts
+import RealmSwift
+
+class ForecastCell : UICollectionViewCell {
+    @IBOutlet weak var labelHH: UILabel!
+    @IBOutlet weak var imageDirection: UIImageView!
+    @IBOutlet weak var labelSpeed: UILabel!
+    @IBOutlet weak var labelTemp: UILabel!
+}
+
+extension CurrentDetailViewController : UICollectionViewDataSource {
+
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let f = self.forecasts else { return 0 }
+        return f.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ForecastCellIdentifier", forIndexPath: indexPath) as! ForecastCell
+        let f = self.forecasts![indexPath.row]
+        cell.labelHH.text = f.hour
+        cell.labelSpeed.text = "\(f.speedvalue)"
+        cell.labelTemp.text = "\(f.temperatureValue)"
+        return cell
+    }
+}
+
+extension CurrentDetailViewController : UICollectionViewDelegate {
+    
+
+}
 
 class CurrentDetailViewController: UIViewController {
     
@@ -16,7 +50,9 @@ class CurrentDetailViewController: UIViewController {
     let directions : [String] = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" ]
     var speeds : [Double] = { return Array<Double>.init(count: 16, repeatedValue: 0.0) }()
     var current : CurrentObject?
+    var forecasts : Results<ForecastObject>?
     @IBOutlet weak var radarChart: RadarChartView!
+    @IBOutlet weak var forecastsView: UICollectionView!
     
     // MARK: - View lifecycle -
     
@@ -25,6 +61,7 @@ class CurrentDetailViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didSaveCurrentObject:", name: CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didSaveForecastObjects:", name: ForecastObject.Notification.Identifier.didSaveForecastObjects, object: nil)
         
         radarChart.noDataText = "Wind data is still up in the air..."
         radarChart.descriptionText = ""
@@ -33,6 +70,9 @@ class CurrentDetailViewController: UIViewController {
         radarChart.innerWebLineWidth = 0.0
         radarChart.webAlpha = 1.0
         radarChart.yAxis.customAxisMax = 17.0
+        
+        forecastsView.delegate = self
+        forecastsView.dataSource = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,6 +99,13 @@ class CurrentDetailViewController: UIViewController {
     
     func back() {
         self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
+    @objc private func methodOfReceivedNotification_didSaveForecastObjects(notification : NSNotification) {
+        if let cityid = notification.object as? Int, realm = try? Realm() {
+            self.forecasts = realm.objects(ForecastObject).filter("cityid == \(cityid)").sorted("timefrom", ascending: true)
+            self.forecastsView.reloadData()
+        }
     }
     
     @objc private func methodOfReceivedNotification_didSaveCurrentObject(notification : NSNotification) {

@@ -37,6 +37,43 @@ class ForecastObject: Object {
         return ["cityid", "timefrom"]
     }
     
+    override static func ignoredProperties() -> [String] {
+        return ["hour", "day"]
+    }
+    
+    var hour : String {
+        get {
+            if let t = timefrom {
+                let f = NSDateFormatter()
+                f.dateFormat = "HH"
+                let s = f.stringFromDate(t)
+                return s
+            }
+            return "HH"
+        }
+    }
+
+    var day : String {
+        get {
+            if let t = timefrom {
+                
+                if t.isToday() {
+                    return "TODAY"
+                }
+                
+                let f = NSDateFormatter()
+                f.dateFormat = "EEE, dd MMM"
+                let s = f.stringFromDate(t)
+                return s.uppercaseString
+            }
+            return "TODAY"
+        }
+    }
+    
+    
+    // MARK: - Helpers -
+
+    
     static func saveXML(xml : String) {
         
         autoreleasepool {
@@ -53,8 +90,8 @@ class ForecastObject: Object {
                         cityid = Int(id)!
                     }
                     
-                    var allcount = realm.objects(ForecastObject).count
-                    print("\(NSDate()) saveXML() allForecasts(\(allcount))")
+                    //var allcount = realm.objects(ForecastObject).count
+                    //print("\(NSDate()) saveXML() allForecasts(\(allcount))")
 
                     // Delete any existing forecasts
                     
@@ -95,12 +132,12 @@ class ForecastObject: Object {
                     
                     try! realm.commitWrite()
                     
-                    allcount = realm.objects(ForecastObject).count
-                    let savedcount = realm.objects(ForecastObject).filter("cityid == \(cityid)").count
-                    print("\(NSDate()) savedXML(\(savedcount)) allForecasts(\(allcount))")
-                    print("Realm located at \(realm.path)")
+                    //allcount = realm.objects(ForecastObject).count
+                    //let savedlist = realm.objects(ForecastObject).filter("cityid == \(cityid)")
+                    //print("\(NSDate()) savedXML(\(savedlist.count)) allForecasts(\(allcount))")
+                    //print("Realm located at \(realm.path)")
                     
-                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.Identifier.didSaveForecastObjects, object: savedcount)
+                    NSNotificationCenter.defaultCenter().postNotificationName(Notification.Identifier.didSaveForecastObjects, object: cityid)
                 }
                 
             } catch let error {

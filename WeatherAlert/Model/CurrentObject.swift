@@ -52,7 +52,7 @@ class CurrentObject: Object {
                 if let root = document.root, realm = try? Realm() {
                     
                     realm.beginWrite()
-                    print("\(NSDate()) saveXML")
+                    //print("\(NSDate()) saveXML")
 
                     let current = CurrentObject()
                     
@@ -82,8 +82,8 @@ class CurrentObject: Object {
 
                     try! realm.commitWrite()
                     
-                    print("\(NSDate()) savedXML(\(current))")
-                    print("Realm located at \(realm.path)")
+                    //print("\(NSDate()) savedXML(\(current))")
+                    //print("Realm located at \(realm.path)")
                     
                     NSNotificationCenter.defaultCenter().postNotificationName(Notification.Identifier.didSaveCurrentObject, object: current)
                 }
