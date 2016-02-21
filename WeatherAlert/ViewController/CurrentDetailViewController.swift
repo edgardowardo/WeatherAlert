@@ -10,6 +10,11 @@ import UIKit
 import Charts
 import RealmSwift
 
+class TitlesCell : UICollectionReusableView {    
+    @IBOutlet weak var speedTitle: UILabel!
+    @IBOutlet weak var temperatureTitle: UILabel!
+}
+
 class ForecastCell : UICollectionViewCell {
     @IBOutlet weak var labelHH: UILabel!
     @IBOutlet weak var imageDirection: UIImageView!
@@ -31,15 +36,45 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ForecastCellIdentifier", forIndexPath: indexPath) as! ForecastCell
         let f = self.forecasts![indexPath.row]
+        let speed = String(format: "%.2f", f.speedvalue)
+        let temperature = String(format: "%.1f", f.temperatureValue)
         cell.labelHH.text = f.hour
-        cell.labelSpeed.text = "\(f.speedvalue)"
-        cell.labelTemp.text = "\(f.temperatureValue)"
+        cell.labelSpeed.text = "\(speed)"
+        cell.labelSpeed.backgroundColor = UIColor.getColorOfSpeed(f.speedvalue)
+        cell.labelTemp.text = "\(temperature)°"
+        if f.directioncode.characters.count > 0 {
+            cell.imageDirection.image = UIImage(named: f.directioncode)
+        } else {
+            cell.imageDirection.image = nil
+        }
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        var cell : UICollectionReusableView
+        switch kind {
+        case UICollectionElementKindSectionHeader :
+            cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "LeftTitlesCellIdentifier", forIndexPath: indexPath) as! TitlesCell
+        case UICollectionElementKindSectionFooter :
+            cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "RightTitlesCellIdentifier", forIndexPath: indexPath) as! TitlesCell
+        default :
+            cell = UICollectionReusableView()
+        }
         return cell
     }
 }
 
+extension CurrentDetailViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSizeMake(140, 50)
+    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSizeMake(140, 50)
+    }
+}
+
 extension CurrentDetailViewController : UICollectionViewDelegate {
-    
 
 }
 
@@ -73,6 +108,8 @@ class CurrentDetailViewController: UIViewController {
         
         forecastsView.delegate = self
         forecastsView.dataSource = self
+        forecastsView.registerNib(UINib(nibName: "LeftTitlesCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "LeftTitlesCellIdentifier")
+        forecastsView.registerNib(UINib(nibName: "RightTitlesCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "RightTitlesCellIdentifier")
     }
     
     override func didReceiveMemoryWarning() {
