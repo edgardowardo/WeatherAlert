@@ -38,7 +38,7 @@ class ForecastObject: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["hour", "day"]
+        return ["hour", "day", "date"]
     }
     
     var hour : String {
@@ -56,7 +56,6 @@ class ForecastObject: Object {
     var day : String {
         get {
             if let t = timefrom {
-                
                 if t.isToday() {
                     return "TODAY"
                 }
@@ -69,7 +68,19 @@ class ForecastObject: Object {
             return "TODAY"
         }
     }
-    
+
+    var date : NSDate? {
+        get {
+            if let t = timefrom {
+                let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+                let components = cal.components([.Day , .Month, .Year ], fromDate: t)
+                let newDate = cal.dateFromComponents(components)
+                return newDate
+            }
+            return nil
+        }
+    }
+
     
     // MARK: - Helpers -
 

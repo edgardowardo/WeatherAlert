@@ -17,6 +17,8 @@ class TextCell : UICollectionReusableView {
 }
 
 class TitlesCell : UICollectionReusableView {
+    static let kindTableHeader = "TableHeaderKind"
+    static let kindTableFooter = "TableFooterKind"
     static let size = CGSizeMake(140, 50)
     @IBOutlet weak var speedTitle: UILabel!
     @IBOutlet weak var temperatureTitle: UILabel!
@@ -29,7 +31,6 @@ class ForecastCell : UICollectionViewCell {
     @IBOutlet weak var labelSpeed: UILabel!
     @IBOutlet weak var labelTemp: UILabel!
 }
-
 
 class CurrentDetailLayout : UICollectionViewLayout {
     
@@ -47,17 +48,19 @@ class CurrentDetailLayout : UICollectionViewLayout {
 extension CurrentDetailViewController : UICollectionViewDataSource {
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        guard let f = self.forecastuples else { return 0 }
+        return f.count
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let f = self.forecasts else { return 0 }
-        return f.count
+        guard let f = self.forecastuples else { return 0 }
+        return f[section].2.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ForecastCellIdentifier", forIndexPath: indexPath) as! ForecastCell
-        let f = self.forecasts![indexPath.row]
+        let t = self.forecastuples![indexPath.section]
+        let f = t.2[indexPath.row]
         let speed = String(format: "%.2f", f.speedvalue)
         let temperature = String(format: "%.1f", f.temperatureValue)
         cell.labelHH.text = f.hour
@@ -108,9 +111,21 @@ class CurrentDetailViewController: UIViewController {
     let directions : [String] = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" ]
     var speeds : [Double] = { return Array<Double>.init(count: 16, repeatedValue: 0.0) }()
     var current : CurrentObject?
-    var forecasts : Results<ForecastObject>?
     @IBOutlet weak var radarChart: RadarChartView!
     @IBOutlet weak var forecastsView: UICollectionView!
+    var forecastuples : [(String, NSDate, [ForecastObject])]?
+    var realmForecasts : Results<ForecastObject>? {
+        didSet {
+            let sections = Set( realmForecasts!.valueForKey("day") as! [String])
+            forecastuples = []
+            for s in sections {
+                if let perdays = realmForecasts?.filter({ s == $0.day }).sort({ $0.timefrom!.compare($1.timefrom!) == .OrderedAscending }), f = perdays.first, date = f.date {
+                    forecastuples!.append( (s, date, perdays))
+                }
+            }
+            forecastuples?.sortInPlace({ $0.1.compare($1.1) == .OrderedAscending })
+        }
+    }
     
     // MARK: - View lifecycle -
     
@@ -165,7 +180,7 @@ class CurrentDetailViewController: UIViewController {
     
     @objc private func methodOfReceivedNotification_didSaveForecastObjects(notification : NSNotification) {
         if let cityid = notification.object as? Int, realm = try? Realm() {
-            self.forecasts = realm.objects(ForecastObject).filter("cityid == \(cityid)").sorted("timefrom", ascending: true)
+            self.realmForecasts = realm.objects(ForecastObject).filter("cityid == \(cityid)").sorted("timefrom", ascending: true)
             self.forecastsView.reloadData()
         }
     }
