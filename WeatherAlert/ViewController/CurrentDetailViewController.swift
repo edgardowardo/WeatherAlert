@@ -10,20 +10,42 @@ import UIKit
 import Charts
 import RealmSwift
 
-class TitlesCell : UICollectionReusableView {    
+class TextCell : UICollectionReusableView {
+    static let size = CGSizeMake(140, 38)
+    static let kind = "TextCellKind"
+    @IBOutlet weak var text: UILabel!
+}
+
+class TitlesCell : UICollectionReusableView {
+    static let size = CGSizeMake(140, 50)
     @IBOutlet weak var speedTitle: UILabel!
     @IBOutlet weak var temperatureTitle: UILabel!
 }
 
 class ForecastCell : UICollectionViewCell {
+    static let size = CGSizeMake(116, 35)
     @IBOutlet weak var labelHH: UILabel!
     @IBOutlet weak var imageDirection: UIImageView!
     @IBOutlet weak var labelSpeed: UILabel!
     @IBOutlet weak var labelTemp: UILabel!
 }
 
-extension CurrentDetailViewController : UICollectionViewDataSource {
 
+class CurrentDetailLayout : UICollectionViewLayout {
+    
+    var layoutInfo = [String : AnyObject]()
+    var suppsInfo = [String : UICollectionViewLayoutAttributes]()
+
+//    override func prepareLayout() { }
+//    override func collectionViewContentSize() -> CGSize { }
+//    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? { }
+//    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? { }
+//    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? { }
+    
+}
+
+extension CurrentDetailViewController : UICollectionViewDataSource {
+    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -51,13 +73,14 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        
         var cell : UICollectionReusableView
         switch kind {
         case UICollectionElementKindSectionHeader :
             cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "LeftTitlesCellIdentifier", forIndexPath: indexPath) as! TitlesCell
         case UICollectionElementKindSectionFooter :
             cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "RightTitlesCellIdentifier", forIndexPath: indexPath) as! TitlesCell
+        case TextCell.kind :
+            cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "TextCellIdentifier", forIndexPath: indexPath) as! TextCell
         default :
             cell = UICollectionReusableView()
         }
@@ -67,10 +90,10 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
 
 extension CurrentDetailViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSizeMake(140, 50)
+        return TitlesCell.size
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSizeMake(140, 50)
+        return TitlesCell.size
     }
 }
 
@@ -110,6 +133,8 @@ class CurrentDetailViewController: UIViewController {
         forecastsView.dataSource = self
         forecastsView.registerNib(UINib(nibName: "LeftTitlesCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "LeftTitlesCellIdentifier")
         forecastsView.registerNib(UINib(nibName: "RightTitlesCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "RightTitlesCellIdentifier")
+        forecastsView.registerNib(UINib(nibName: "TextCell", bundle: nil), forSupplementaryViewOfKind: TextCell.kind, withReuseIdentifier: "TextCellIdentifier")
+        forecastsView.contentInset = UIEdgeInsets(top: 0, left: -TitlesCell.size.width, bottom: 0, right: -TitlesCell.size.width)
     }
     
     override func didReceiveMemoryWarning() {

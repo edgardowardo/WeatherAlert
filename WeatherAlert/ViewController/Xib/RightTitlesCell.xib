@@ -2,42 +2,70 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RightTitlesCellIdentifier" id="Nbi-JZ-l5i" customClass="TitlesCell" customModule="WeatherAlert" customModuleProvider="target">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RightTitlesCellIdentifier" id="bg6-9P-eoT" customClass="TitlesCell" customModule="WeatherAlert" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="140" height="150"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUa-bN-ERj">
-                    <rect key="frame" x="8" y="34" width="124" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hv0-0I-oEV">
+                    <rect key="frame" x="8" y="33" width="124" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="W4g-Jx-GbI"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wind direction" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny4-Hr-0jQ">
-                    <rect key="frame" x="8" y="58" width="124" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind direction" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0g9-ad-df5">
+                    <rect key="frame" x="8" y="57" width="124" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="XaR-vq-NeJ"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wind speed, mph" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qu-a0-7Ok">
-                    <rect key="frame" x="8" y="81" width="124" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind speed, mph" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erk-ln-7DU">
+                    <rect key="frame" x="8" y="80" width="124" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Xb0-gz-bJX"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Air temperature, °C" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oA-CO-1UT">
-                    <rect key="frame" x="8" y="104" width="124" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Air temperature, °C" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQc-Eb-xtG">
+                    <rect key="frame" x="8" y="103" width="124" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="e3B-m3-pG4"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <constraints>
+                <constraint firstItem="0g9-ad-df5" firstAttribute="leading" secondItem="bg6-9P-eoT" secondAttribute="leadingMargin" id="1sI-Wf-8K6"/>
+                <constraint firstItem="HQc-Eb-xtG" firstAttribute="leading" secondItem="bg6-9P-eoT" secondAttribute="leadingMargin" id="AZq-Va-JXY"/>
+                <constraint firstItem="hv0-0I-oEV" firstAttribute="leading" secondItem="bg6-9P-eoT" secondAttribute="leadingMargin" id="DFC-n0-MtH"/>
+                <constraint firstItem="hv0-0I-oEV" firstAttribute="top" secondItem="bg6-9P-eoT" secondAttribute="topMargin" constant="25" id="IRp-AJ-5jm"/>
+                <constraint firstItem="hv0-0I-oEV" firstAttribute="trailing" secondItem="bg6-9P-eoT" secondAttribute="trailingMargin" id="Ikf-aN-OrX"/>
+                <constraint firstItem="HQc-Eb-xtG" firstAttribute="top" secondItem="erk-ln-7DU" secondAttribute="bottom" constant="2" id="Mp9-rG-MM0"/>
+                <constraint firstItem="0g9-ad-df5" firstAttribute="top" secondItem="hv0-0I-oEV" secondAttribute="bottom" constant="3" id="OHy-9h-tjh"/>
+                <constraint firstItem="erk-ln-7DU" firstAttribute="top" secondItem="0g9-ad-df5" secondAttribute="bottom" constant="2" id="ZtV-LM-cji"/>
+                <constraint firstItem="0g9-ad-df5" firstAttribute="trailing" secondItem="bg6-9P-eoT" secondAttribute="trailingMargin" id="aFk-BE-GB7"/>
+                <constraint firstItem="erk-ln-7DU" firstAttribute="trailing" secondItem="bg6-9P-eoT" secondAttribute="trailingMargin" id="aNi-hS-cjQ"/>
+                <constraint firstItem="erk-ln-7DU" firstAttribute="leading" secondItem="bg6-9P-eoT" secondAttribute="leadingMargin" id="cDq-1z-cQn"/>
+                <constraint firstAttribute="bottomMargin" secondItem="HQc-Eb-xtG" secondAttribute="bottom" constant="18" id="hlX-IY-bsG"/>
+                <constraint firstItem="HQc-Eb-xtG" firstAttribute="trailing" secondItem="bg6-9P-eoT" secondAttribute="trailingMargin" id="w92-iR-S8g"/>
+            </constraints>
             <connections>
-                <outlet property="speedTitle" destination="1Qu-a0-7Ok" id="c8w-qG-5f1"/>
-                <outlet property="temperatureTitle" destination="3oA-CO-1UT" id="i7i-hE-kaF"/>
+                <outlet property="speedTitle" destination="erk-ln-7DU" id="AaS-9U-UhT"/>
+                <outlet property="temperatureTitle" destination="HQc-Eb-xtG" id="0IL-SE-Ilj"/>
             </connections>
         </collectionReusableView>
     </objects>
