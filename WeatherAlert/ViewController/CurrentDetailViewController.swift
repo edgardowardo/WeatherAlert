@@ -18,30 +18,18 @@ class TextCell : UICollectionReusableView {
 class TitlesCell : UICollectionReusableView {
     static let kindTableHeader = "TableHeaderKind"
     static let kindTableFooter = "TableFooterKind"
-    static let size = CGSizeMake(140, 50)
+    static let size = CGSizeMake(140, 150)
     @IBOutlet weak var speedTitle: UILabel!
     @IBOutlet weak var temperatureTitle: UILabel!
 }
 
 class ForecastCell : UICollectionViewCell {
-    static let size = CGSizeMake(116, 35)
+    static let size = CGSizeMake(35, 150)
+    static let kind = "ForecastCellKind"
     @IBOutlet weak var labelHH: UILabel!
     @IBOutlet weak var imageDirection: UIImageView!
     @IBOutlet weak var labelSpeed: UILabel!
     @IBOutlet weak var labelTemp: UILabel!
-}
-
-class CurrentDetailLayout : UICollectionViewLayout {
-    
-    var layoutInfo = [String : AnyObject]()
-    var suppsInfo = [String : UICollectionViewLayoutAttributes]()
-
-//    override func prepareLayout() { }
-//    override func collectionViewContentSize() -> CGSize { }
-//    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? { }
-//    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? { }
-//    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? { }
-    
 }
 
 extension CurrentDetailViewController : UICollectionViewDataSource {
@@ -82,7 +70,10 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
         case TitlesCell.kindTableFooter :
             cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "RightTitlesCellIdentifier", forIndexPath: indexPath) as! TitlesCell
         case UICollectionElementKindSectionHeader :
-            cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "TextCellIdentifier", forIndexPath: indexPath) as! TextCell
+            cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "TextCellIdentifier", forIndexPath: indexPath)
+            if let c = cell as? TextCell, day = self.forecastuples?[indexPath.section].2[indexPath.row].day {
+                c.text.text = day
+            }
         default :
             cell = UICollectionReusableView()
         }
@@ -90,11 +81,6 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
     }
 }
 
-extension CurrentDetailViewController : UICollectionViewDelegateFlowLayout {
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return TextCell.size
-    }
-}
 
 extension CurrentDetailViewController : UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -146,6 +132,7 @@ class CurrentDetailViewController: UIViewController {
         
         forecastsView.delegate = self
         forecastsView.dataSource = self
+        forecastsView.registerNib(UINib(nibName: "ForecastCell", bundle: nil), forCellWithReuseIdentifier: "ForecastCellIdentifier")
         forecastsView.registerNib(UINib(nibName: "LeftTitlesCell", bundle: nil), forSupplementaryViewOfKind: TitlesCell.kindTableHeader, withReuseIdentifier: "LeftTitlesCellIdentifier")
         forecastsView.registerNib(UINib(nibName: "RightTitlesCell", bundle: nil), forSupplementaryViewOfKind: TitlesCell.kindTableFooter, withReuseIdentifier: "RightTitlesCellIdentifier")
         forecastsView.registerNib(UINib(nibName: "TextCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "TextCellIdentifier")

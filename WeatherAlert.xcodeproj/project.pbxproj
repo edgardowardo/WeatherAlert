@@ -27,6 +27,8 @@
 		778AB11D1C7A3F2400EE974B /* LeftTitlesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778AB11C1C7A3F2400EE974B /* LeftTitlesCell.xib */; };
 		778AB11F1C7A3F8200EE974B /* RightTitlesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778AB11E1C7A3F8200EE974B /* RightTitlesCell.xib */; };
 		779D3F121C79C00E00C89BBD /* ForecastObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779D3F111C79C00E00C89BBD /* ForecastObject.swift */; };
+		779D58D51C7A8D54007FEF5D /* ForecastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 779D58D41C7A8D54007FEF5D /* ForecastCell.xib */; };
+		779D58D71C7A9825007FEF5D /* CurrentDetailLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779D58D61C7A9825007FEF5D /* CurrentDetailLayout.swift */; };
 		77A2669C1C7A5D3C0082E22D /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A2669B1C7A5D3C0082E22D /* TextCell.xib */; };
 		77DAC62B1C7737E9004A1C72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAC62A1C7737E9004A1C72 /* AppDelegate.swift */; };
 		77DAC6301C7737E9004A1C72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DAC62E1C7737E9004A1C72 /* Main.storyboard */; };
@@ -73,6 +75,8 @@
 		778AB11C1C7A3F2400EE974B /* LeftTitlesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftTitlesCell.xib; sourceTree = "<group>"; };
 		778AB11E1C7A3F8200EE974B /* RightTitlesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightTitlesCell.xib; sourceTree = "<group>"; };
 		779D3F111C79C00E00C89BBD /* ForecastObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastObject.swift; sourceTree = "<group>"; };
+		779D58D41C7A8D54007FEF5D /* ForecastCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForecastCell.xib; sourceTree = "<group>"; };
+		779D58D61C7A9825007FEF5D /* CurrentDetailLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentDetailLayout.swift; sourceTree = "<group>"; };
 		77A2669B1C7A5D3C0082E22D /* TextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextCell.xib; sourceTree = "<group>"; };
 		77DAC6271C7737E9004A1C72 /* WeatherAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DAC62A1C7737E9004A1C72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				776BDF421C7751BB0004D9A5 /* MainViewController.swift */,
 				772CC7511C77BF57008ECCFC /* CitySearchViewController.swift */,
 				7732B36E1C78E72B00B845F4 /* CurrentDetailViewController.swift */,
+				779D58D61C7A9825007FEF5D /* CurrentDetailLayout.swift */,
 				778AB11B1C7A3EAF00EE974B /* Xib */,
 			);
 			path = ViewController;
@@ -177,6 +182,7 @@
 				778AB11C1C7A3F2400EE974B /* LeftTitlesCell.xib */,
 				778AB11E1C7A3F8200EE974B /* RightTitlesCell.xib */,
 				77A2669B1C7A5D3C0082E22D /* TextCell.xib */,
+				779D58D41C7A8D54007FEF5D /* ForecastCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -357,6 +363,7 @@
 				778AB11D1C7A3F2400EE974B /* LeftTitlesCell.xib in Resources */,
 				77A2669C1C7A5D3C0082E22D /* TextCell.xib in Resources */,
 				778AB11F1C7A3F8200EE974B /* RightTitlesCell.xib in Resources */,
+				779D58D51C7A8D54007FEF5D /* ForecastCell.xib in Resources */,
 				776BDF521C7764C60004D9A5 /* city.list.json in Resources */,
 				77DAC6321C7737E9004A1C72 /* Assets.xcassets in Resources */,
 				77DAC6301C7737E9004A1C72 /* Main.storyboard in Resources */,
@@ -449,6 +456,7 @@
 				776BDF4F1C775DA00004D9A5 /* CityObject.swift in Sources */,
 				772CC7521C77BF57008ECCFC /* CitySearchViewController.swift in Sources */,
 				7732B36F1C78E72B00B845F4 /* CurrentDetailViewController.swift in Sources */,
+				779D58D71C7A9825007FEF5D /* CurrentDetailLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
