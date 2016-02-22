@@ -33,10 +33,7 @@ class MainViewController: UITableViewController {
         
         self.title = "Weather Alert"
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_willLoadCityData:", name: CityObject.Notification.Identifier.willLoadCityData, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didLoadCityData:", name: CityObject.Notification.Identifier.didLoadCityData, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didSaveCurrentObject:", name: CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didSaveCurrentObject:", name: CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)        
         
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
@@ -62,15 +59,7 @@ class MainViewController: UITableViewController {
     func getCurrents() -> Results<CurrentObject> {
         let realm = try! Realm()
         return realm.objects(CurrentObject).sorted("name", ascending: true).sorted("isFavourite", ascending: false)
-    }
-    
-    @objc private func methodOfReceivedNotification_willLoadCityData(notification : NSNotification) {
-        navigationItem.rightBarButtonItem?.enabled = false
-    }
-    
-    @objc private func methodOfReceivedNotification_didLoadCityData(notification : NSNotification) {
-        navigationItem.rightBarButtonItem?.enabled = true
-    }
+    }    
     
     // MARK: - Table View
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

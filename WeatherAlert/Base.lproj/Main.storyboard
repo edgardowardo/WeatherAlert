@@ -68,36 +68,6 @@
             </objects>
             <point key="canvasLocation" x="1020" y="-681"/>
         </scene>
-        <!--Cities-->
-        <scene sceneID="ffO-r8-HK2">
-            <objects>
-                <viewController storyboardIdentifier="CitySearchViewController" title="Cities" id="KT1-MB-84x" customClass="CitySearchViewController" customModule="WeatherAlert" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Cag-Pe-JgR">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityCell" id="JKb-es-4YO">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JKb-es-4YO" id="D5D-32-z0K">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="entityName" value="CityObject"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="searchPropertyKeyPath" value="name"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="useContainsSearch" value="NO"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="sortAscending" value="NO"/>
-                    </userDefinedRuntimeAttributes>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gdp-ZX-vk3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1020" y="95"/>
-        </scene>
         <!--Current Detail View Controller-->
         <scene sceneID="rm8-Nw-ejC">
             <objects>

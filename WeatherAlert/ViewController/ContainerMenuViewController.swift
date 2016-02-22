@@ -19,4 +19,22 @@ class ContainerMenuViewController : SlideMenuController {
         }
         return false
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_willLoadCityData:", name: CityObject.Notification.Identifier.willLoadCityData, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didLoadCityData:", name: CityObject.Notification.Identifier.didLoadCityData, object: nil)
+    }
+    
+    
+    @objc private func methodOfReceivedNotification_willLoadCityData(notification : NSNotification) {
+        self.showHud(text: "Installing cities")
+    }
+    
+    @objc private func methodOfReceivedNotification_didLoadCityData(notification : NSNotification) {
+        self.hideHud()
+    }
+    
 }
