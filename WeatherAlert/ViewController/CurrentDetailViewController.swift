@@ -12,7 +12,6 @@ import RealmSwift
 
 class TextCell : UICollectionReusableView {
     static let size = CGSizeMake(140, 38)
-    static let kind = "TextCellKind"
     @IBOutlet weak var text: UILabel!
 }
 
@@ -78,11 +77,11 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         var cell : UICollectionReusableView
         switch kind {
-        case UICollectionElementKindSectionHeader :
+        case TitlesCell.kindTableHeader :
             cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "LeftTitlesCellIdentifier", forIndexPath: indexPath) as! TitlesCell
-        case UICollectionElementKindSectionFooter :
+        case TitlesCell.kindTableFooter :
             cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "RightTitlesCellIdentifier", forIndexPath: indexPath) as! TitlesCell
-        case TextCell.kind :
+        case UICollectionElementKindSectionHeader :
             cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "TextCellIdentifier", forIndexPath: indexPath) as! TextCell
         default :
             cell = UICollectionReusableView()
@@ -93,15 +92,16 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
 
 extension CurrentDetailViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return TitlesCell.size
-    }
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return TitlesCell.size
+        return TextCell.size
     }
 }
 
 extension CurrentDetailViewController : UICollectionViewDelegate {
-
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if let f = self.forecastuples?[indexPath.section].2[indexPath.row] {
+            self.updateChart(withDirectionCode: f.directioncode, andDirectionName: f.directionname, andSpeed: f.speedvalue, andSpeedName: f.speedname)
+        }
+    }
 }
 
 class CurrentDetailViewController: UIViewController {
@@ -146,9 +146,9 @@ class CurrentDetailViewController: UIViewController {
         
         forecastsView.delegate = self
         forecastsView.dataSource = self
-        forecastsView.registerNib(UINib(nibName: "LeftTitlesCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "LeftTitlesCellIdentifier")
-        forecastsView.registerNib(UINib(nibName: "RightTitlesCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "RightTitlesCellIdentifier")
-        forecastsView.registerNib(UINib(nibName: "TextCell", bundle: nil), forSupplementaryViewOfKind: TextCell.kind, withReuseIdentifier: "TextCellIdentifier")
+        forecastsView.registerNib(UINib(nibName: "LeftTitlesCell", bundle: nil), forSupplementaryViewOfKind: TitlesCell.kindTableHeader, withReuseIdentifier: "LeftTitlesCellIdentifier")
+        forecastsView.registerNib(UINib(nibName: "RightTitlesCell", bundle: nil), forSupplementaryViewOfKind: TitlesCell.kindTableFooter, withReuseIdentifier: "RightTitlesCellIdentifier")
+        forecastsView.registerNib(UINib(nibName: "TextCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "TextCellIdentifier")
         forecastsView.contentInset = UIEdgeInsets(top: 0, left: -TitlesCell.size.width, bottom: 0, right: -TitlesCell.size.width)
     }
     
@@ -188,28 +188,34 @@ class CurrentDetailViewController: UIViewController {
     @objc private func methodOfReceivedNotification_didSaveCurrentObject(notification : NSNotification) {
         if let c = notification.object as? CurrentObject {
             self.current = c
-            if let index = directions.indexOf(c.directioncode) {
-                
-                if index == 0 {
-                    speeds[directions.count-1] = c.speedvalue
-                } else {
-                    speeds[index-1] = c.speedvalue
-                }
-                
-                if index == directions.count-1 {
-                    speeds[0] = c.speedvalue
-                } else {
-                    speeds[index + 1] = c.speedvalue
-                }
-                
-                speeds[index] = c.speedvalue
-            }
-            setChart(directions, values: speeds)
+            self.updateChart(withDirectionCode: c.directioncode, andDirectionName: c.directionname, andSpeed: c.speedvalue, andSpeedName: c.speedname )
         }
     }
     
-    func setChart(dataPoints: [String], values: [Double]) {
-        guard let c = self.current else { return }
+    func updateChart(withDirectionCode code : String, andDirectionName directionname : String, andSpeed speed : Double, andSpeedName speedname : String ) {
+
+        self.speeds = Array<Double>.init(count: 16, repeatedValue: 0.0)
+        
+        if let index = directions.indexOf(code) {
+            
+            if index == 0 {
+                speeds[directions.count-1] = speed
+            } else {
+                speeds[index-1] = speed
+            }
+            
+            if index == directions.count-1 {
+                speeds[0] = speed
+            } else {
+                speeds[index + 1] = speed
+            }
+            
+            speeds[index] = speed
+        }
+        setChart(directions, values: speeds, andDirectionName: directionname, andSpeed: speed, andSpeedName: speedname)
+    }
+    
+    func setChart(dataPoints: [String], values: [Double], andDirectionName directionname1 : String, andSpeed speed : Double, andSpeedName speedname : String) {
         
         var dataEntries: [ChartDataEntry] = []
         
@@ -218,20 +224,17 @@ class CurrentDetailViewController: UIViewController {
             dataEntries.append(dataEntry)
         }
         
-        let speedname = ( c.speedname == "" ) ? "Windless" : c.speedname
-        let directionname = ( c.directionname == "" ) ? "nowhere" : c.directionname.lowercaseString
-        let chartDataSet = RadarChartDataSet(yVals: dataEntries, label: "\(speedname) towards \(directionname) at \(c.speedvalue) m/s")
+        let speedname = ( speedname == "" ) ? "Windless" : speedname
+        let directionname = ( directionname1 == "" ) ? "nowhere" : directionname1.lowercaseString
+        let chartDataSet = RadarChartDataSet(yVals: dataEntries, label: "\(speedname) towards \(directionname) at \(speed) m/s")
         chartDataSet.drawValuesEnabled = false
         chartDataSet.lineWidth = 2.0
         chartDataSet.drawFilledEnabled = true
         chartDataSet.drawHorizontalHighlightIndicatorEnabled = false
         chartDataSet.drawVerticalHighlightIndicatorEnabled = false
-        if let c = self.current {
-            let speedColor = UIColor.getColorOfSpeed(c.speedvalue)
-            chartDataSet.fillColor = speedColor
-            chartDataSet.setColor(speedColor, alpha: 0.6)
-            
-        }
+        let speedColor = UIColor.getColorOfSpeed(speed)
+        chartDataSet.fillColor = speedColor
+        chartDataSet.setColor(speedColor, alpha: 0.6)
         let chartData = RadarChartData(xVals: directions, dataSets: [chartDataSet])
         
         radarChart.data = chartData
