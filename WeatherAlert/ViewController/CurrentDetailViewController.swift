@@ -183,6 +183,7 @@ class CurrentDetailViewController: UIViewController {
         try! realm.write {
             let f = realm.objects(CurrentObject).filter("cityid == \(c.cityid)").first!
             f.isFavourite = !f.isFavourite
+            NSNotificationCenter.defaultCenter().postNotificationName(CurrentObject.Notification.Identifier.didSaveCurrentObject, object: c)
         }
         resetRightBarButtonItem()
     }

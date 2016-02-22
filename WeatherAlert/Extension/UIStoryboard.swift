@@ -11,10 +11,6 @@ import UIKit
 extension UIStoryboard {
     class func mainStoryboard() -> UIStoryboard { return UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()) }
     
-    class func citySearchViewController() -> CitySearchViewController? {
-        return mainStoryboard().instantiateViewControllerWithIdentifier("CitySearchViewController") as? CitySearchViewController
-    }
-    
     class func currentDetailViewController() -> CurrentDetailViewController? {
         return mainStoryboard().instantiateViewControllerWithIdentifier("CurrentDetailViewController") as? CurrentDetailViewController
     }    

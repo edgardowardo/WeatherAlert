@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 extension UIViewController {
     
@@ -24,4 +25,17 @@ extension UIViewController {
         self.slideMenuController()?.removeLeftGestures()
         self.slideMenuController()?.removeRightGestures()
     }
+    
+    func showHud(text text : String) {
+        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        hud.dimBackground = true
+        hud.labelText = text
+    }
+    
+    func hideHud() {
+        MBProgressHUD.hideAllHUDsForView(view, animated: true)
+    }
 }
+
+
+

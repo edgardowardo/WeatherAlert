@@ -60,10 +60,18 @@ class CurrentObject: Object {
         }
     }
     
-    
     // MARK: - Functions -
     
-    static func saveXML(xml : String) {
+    func setPropertiesFromCity(city : CityObject) {
+        cityid = city._id
+        name = city.name
+        country = city.country
+        lon = city.lon
+    }
+    
+    static func saveXML(xml : String) -> Int? {
+        
+        var cityid : Int? = nil
         
         autoreleasepool {
             
@@ -106,11 +114,15 @@ class CurrentObject: Object {
                     //print("Realm located at \(realm.path)")
                     
                     NSNotificationCenter.defaultCenter().postNotificationName(Notification.Identifier.didSaveCurrentObject, object: current)
+                    
+                    cityid = current.cityid
                 }
                 
             } catch let error {
                 print(error)
             }
         }
+        
+        return cityid
     }
 }

@@ -17,7 +17,9 @@ import RealmSwift
 
  Sample json to parse {"_id":3333164,"name":"City and Borough of Leeds","country":"GB","coord":{"lon":-1.5477,"lat":53.79644}}
 
- TODO: Re-write city search. This save to disk business is all wasted since performance along with RealmSearchViewController is unacceptable!
+ Search by name on the OpenWeather api is very ambiguous and does not return sensible results for example use Xxx returns a croatian city. It should return an error instead search locally is so much better!
+
+ Cannot use RealmSearchViewController
 
 */
 
@@ -28,8 +30,8 @@ class CityObject: Object {
     dynamic var _id: Int = 0
     dynamic var name  = ""
     dynamic var country = ""
-    dynamic var lon : Float = 0
-    dynamic var lat : Float = 0
+    dynamic var lon : Double = 0
+    dynamic var lat : Double = 0
     
     // MARK: - Property Attributes -
     
@@ -56,7 +58,7 @@ class CityObject: Object {
         
         dispatch_async(dispatch_queue_create("loadCityOnBackground", nil)) { autoreleasepool {
             
-            if let jsonFilePath = NSBundle.mainBundle().pathForResource("city0", ofType: "json"), jsonData = NSData(contentsOfFile: jsonFilePath) {
+            if let jsonFilePath = NSBundle.mainBundle().pathForResource("city.list", ofType: "json"), jsonData = NSData(contentsOfFile: jsonFilePath) {
                 
                 dispatch_sync(dispatch_get_main_queue(), {
                     NSNotificationCenter.defaultCenter().postNotificationName(Notification.Identifier.willLoadCityData, object: nil)
@@ -74,7 +76,7 @@ class CityObject: Object {
                         for cityData in jsonArray {
                             let city = CityObject()
                             
-                            if let id = cityData["_id"] as? Int, name = cityData["name"] as? String, country = cityData["country"] as? String, coordData = cityData["coord"] as? [String : AnyObject], lon = coordData["lon"] as? Float, lat = coordData["lat"] as? Float {
+                            if let id = cityData["_id"] as? Int, name = cityData["name"] as? String, country = cityData["country"] as? String, coordData = cityData["coord"] as? [String : AnyObject], lon = coordData["lon"] as? Double, lat = coordData["lat"] as? Double {
                                     
                                 city._id = id
                                 city.name = name
