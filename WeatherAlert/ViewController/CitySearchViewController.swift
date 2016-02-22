@@ -57,22 +57,31 @@ class CitySearchViewController: RealmSearchViewController {
         
         if let city = anObject as? CityObject {
             
-            Alamofire.request(Router.Search(id: city._id)).responseXMLDocument({ response -> Void in
-                if let xml = response.result.value {
-                    let xmlString = "\(xml)"
-                    CurrentObject.saveXML(xmlString)
-                }
-            })
+            var current : CurrentObject? = nil
             
-            Alamofire.request(Router.Forecast(id: city._id)).responseXMLDocument({ response -> Void in
-                if let xml = response.result.value {
-                    let xmlString = "\(xml)"
-                    ForecastObject.saveXML(xmlString)
-                }
-            })
+            let id = "\(city._id)" 
+            if let realm = try? Realm(), c = realm.objects(CurrentObject).filter("cityid == \(id)").first, lastupdate = c.lastupdate where NSDate().timeIntervalSinceDate(lastupdate) / 3600 < 3 {
+                current = c
+            } else {
+                print("Searching...")
+                Alamofire.request(Router.Search(id: city._id)).responseXMLDocument({ response -> Void in
+                    if let xml = response.result.value {
+                        let xmlString = "\(xml)"
+                        CurrentObject.saveXML(xmlString)
+                    }
+                })
+                
+                Alamofire.request(Router.Forecast(id: city._id)).responseXMLDocument({ response -> Void in
+                    if let xml = response.result.value {
+                        let xmlString = "\(xml)"
+                        ForecastObject.saveXML(xmlString)
+                    }
+                })
+            }
             
             if let controller = UIStoryboard.currentDetailViewController() {
                 controller.title = "\(city.country), \(city.name)"
+                controller.current = current
                 self.navigationController?.pushViewController(controller, animated: true)
             }
         }

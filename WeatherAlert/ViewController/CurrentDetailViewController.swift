@@ -85,7 +85,7 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
 extension CurrentDetailViewController : UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let f = self.forecastuples?[indexPath.section].2[indexPath.row] {
-            self.updateChart(withDirectionCode: f.directioncode, andDirectionName: f.directionname, andSpeed: f.speedvalue, andSpeedName: f.speedname)
+            self.updateChart(withDirectionCode: f.directioncode, andDirectionName: f.directionname, andSpeed: f.speedvalue, andSpeedName: f.speedname, andSince: "")
         }
     }
 }
@@ -137,6 +137,14 @@ class CurrentDetailViewController: UIViewController {
         forecastsView.registerNib(UINib(nibName: "RightTitlesCell", bundle: nil), forSupplementaryViewOfKind: TitlesCell.kindTableFooter, withReuseIdentifier: "RightTitlesCellIdentifier")
         forecastsView.registerNib(UINib(nibName: "TextCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "TextCellIdentifier")
         forecastsView.contentInset = UIEdgeInsets(top: 0, left: -TitlesCell.size.width, bottom: 0, right: -TitlesCell.size.width)
+        
+        if let c = self.current, realm = try? Realm() {
+            let id = "\(c.cityid)"
+            self.updateChart(withDirectionCode: c.directioncode, andDirectionName: c.directionname, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(c.hourAndMin)" )
+            self.resetRightBarButtonItem()
+            self.realmForecasts = realm.objects(ForecastObject).filter("cityid == \(id)").sorted("timefrom", ascending: true)
+            self.forecastsView.reloadData()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -151,14 +159,32 @@ class CurrentDetailViewController: UIViewController {
         let leftButton : UIBarButtonItem = UIBarButtonItem(image : UIImage(named: "icon-arrow-left"), style: .Done, target: self, action: Selector("back"))
         navigationItem.leftBarButtonItem = leftButton
         
-        let rightButton: UIBarButtonItem = UIBarButtonItem(image : UIImage(named: "icon-star"), style: .Done, target: self, action: Selector("starred"))
-        navigationItem.rightBarButtonItem = rightButton
+        resetRightBarButtonItem()
     }
     
     // MARK: - Helpers -
     
+    func resetRightBarButtonItem() {        
+        var i : UIImage =  UIImage(named: "icon-star")!
+        if let isFavourite = self.current?.isFavourite where isFavourite == true {
+            i = UIImage(named: "icon-star-yellow")!
+        }
+        let star = UIButton(type: .Custom)
+        star.bounds = CGRectMake(0, 0, i.size.width, i.size.height)
+        star.setImage(i, forState: .Normal)
+        star.addTarget(self, action: Selector("starred"), forControlEvents: .TouchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: star)
+    }
+    
     func starred() {
+        guard let c = self.current else { return }
         
+        let realm = try! Realm()
+        try! realm.write {
+            let f = realm.objects(CurrentObject).filter("cityid == \(c.cityid)").first!
+            f.isFavourite = !f.isFavourite
+        }
+        resetRightBarButtonItem()
     }
     
     func back() {
@@ -175,11 +201,12 @@ class CurrentDetailViewController: UIViewController {
     @objc private func methodOfReceivedNotification_didSaveCurrentObject(notification : NSNotification) {
         if let c = notification.object as? CurrentObject {
             self.current = c
-            self.updateChart(withDirectionCode: c.directioncode, andDirectionName: c.directionname, andSpeed: c.speedvalue, andSpeedName: c.speedname )
+            self.updateChart(withDirectionCode: c.directioncode, andDirectionName: c.directionname, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(c.hourAndMin)" )
+            self.resetRightBarButtonItem()
         }
     }
     
-    func updateChart(withDirectionCode code : String, andDirectionName directionname : String, andSpeed speed : Double, andSpeedName speedname : String ) {
+    func updateChart(withDirectionCode code : String, andDirectionName directionname : String, andSpeed speed : Double, andSpeedName speedname : String, andSince since : String ) {
 
         self.speeds = Array<Double>.init(count: 16, repeatedValue: 0.0)
         
@@ -199,10 +226,10 @@ class CurrentDetailViewController: UIViewController {
             
             speeds[index] = speed
         }
-        setChart(directions, values: speeds, andDirectionName: directionname, andSpeed: speed, andSpeedName: speedname)
+        setChart(directions, values: speeds, andDirectionName: directionname, andSpeed: speed, andSpeedName: speedname, andSince: since)
     }
     
-    func setChart(dataPoints: [String], values: [Double], andDirectionName directionname1 : String, andSpeed speed : Double, andSpeedName speedname : String) {
+    func setChart(dataPoints: [String], values: [Double], andDirectionName directionname1 : String, andSpeed speed : Double, andSpeedName speedname : String, andSince since : String) {
         
         var dataEntries: [ChartDataEntry] = []
         
@@ -213,7 +240,7 @@ class CurrentDetailViewController: UIViewController {
         
         let speedname = ( speedname == "" ) ? "Windless" : speedname
         let directionname = ( directionname1 == "" ) ? "nowhere" : directionname1.lowercaseString
-        let chartDataSet = RadarChartDataSet(yVals: dataEntries, label: "\(speedname) towards \(directionname) at \(speed) m/s")
+        let chartDataSet = RadarChartDataSet(yVals: dataEntries, label: "\(speedname) towards \(directionname) at \(speed) m/s \(since)")
         chartDataSet.drawValuesEnabled = false
         chartDataSet.lineWidth = 2.0
         chartDataSet.drawFilledEnabled = true

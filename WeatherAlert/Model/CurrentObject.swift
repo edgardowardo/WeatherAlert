@@ -24,6 +24,7 @@ class CurrentObject: Object {
     dynamic var directionname = ""
     dynamic var directionvalue : Double = 0
     dynamic var lastupdate : NSDate? = nil
+    dynamic var isFavourite = false
     
     // MARK: - Notifications -
     
@@ -42,6 +43,25 @@ class CurrentObject: Object {
     override static func indexedProperties() -> [String] {
         return ["cityid"]
     }
+    
+    override static func ignoredProperties() -> [String] {
+        return ["hourAndMin"]
+    }
+    
+    var hourAndMin : String {
+        get {
+            if let t = lastupdate {
+                let f = NSDateFormatter()
+                f.dateFormat = "HH:ss"
+                let s = f.stringFromDate(t)
+                return s
+            }
+            return "sometime"
+        }
+    }
+    
+    
+    // MARK: - Functions -
     
     static func saveXML(xml : String) {
         

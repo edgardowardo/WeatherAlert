@@ -42,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.createMenuView()
         
-        // Load Blog Data
         if try! Realm().objects(CityObject).count == 0 {
             CityObject.loadCityData()
         }
