@@ -25,6 +25,7 @@
 		776BDF4F1C775DA00004D9A5 /* CityObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776BDF4E1C775DA00004D9A5 /* CityObject.swift */; };
 		776BDF521C7764C60004D9A5 /* city.list.json in Resources */ = {isa = PBXBuildFile; fileRef = 776BDF511C7764C60004D9A5 /* city.list.json */; };
 		776BDF541C776D5A0004D9A5 /* city0.json in Resources */ = {isa = PBXBuildFile; fileRef = 776BDF531C776D5A0004D9A5 /* city0.json */; };
+		7770699F1C7C632E00B5870B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7770699E1C7C632E00B5870B /* README.md */; };
 		778AB11D1C7A3F2400EE974B /* LeftTitlesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778AB11C1C7A3F2400EE974B /* LeftTitlesCell.xib */; };
 		778AB11F1C7A3F8200EE974B /* RightTitlesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778AB11E1C7A3F8200EE974B /* RightTitlesCell.xib */; };
 		779D3F121C79C00E00C89BBD /* ForecastObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779D3F111C79C00E00C89BBD /* ForecastObject.swift */; };
@@ -74,6 +75,7 @@
 		776BDF4E1C775DA00004D9A5 /* CityObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityObject.swift; sourceTree = "<group>"; };
 		776BDF511C7764C60004D9A5 /* city.list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list.json; sourceTree = "<group>"; };
 		776BDF531C776D5A0004D9A5 /* city0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city0.json; sourceTree = "<group>"; };
+		7770699E1C7C632E00B5870B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		778AB11C1C7A3F2400EE974B /* LeftTitlesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftTitlesCell.xib; sourceTree = "<group>"; };
 		778AB11E1C7A3F8200EE974B /* RightTitlesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightTitlesCell.xib; sourceTree = "<group>"; };
 		779D3F111C79C00E00C89BBD /* ForecastObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastObject.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				77DAC6331C7737E9004A1C72 /* LaunchScreen.storyboard */,
 				7768A64E1C7BEFF0007F1521 /* Pods-acknowledgements.plist */,
 				77DAC6361C7737E9004A1C72 /* Info.plist */,
+				7770699E1C7C632E00B5870B /* README.md */,
 			);
 			path = WeatherAlert;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				7768A6511C7BF044007F1521 /* WAAcknowledgementsViewController.swift in Sources */,
 				776BDF451C7752340004D9A5 /* ContainerMenuViewController.swift in Sources */,
 				776BDF491C77579E0004D9A5 /* UIViewController.swift in Sources */,
+				7770699F1C7C632E00B5870B /* README.md in Sources */,
 				775C375B1C78DBB8007D0C80 /* Router.swift in Sources */,
 				773E7CBB1C79FB3800047988 /* NSDate.swift in Sources */,
 				779D3F121C79C00E00C89BBD /* ForecastObject.swift in Sources */,
