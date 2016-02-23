@@ -6,7 +6,6 @@ Minimum deployment requirement : iOS 9.0
 Using Swift 2.1.1 on Xcode 7.2
 
 ![alt tag](https://github.com/edgardowardo/WeatherAlert/blob/master/a.png)
-
 ![alt tag](https://github.com/edgardowardo/WeatherAlert/blob/master/b.png)
 
 # Key design and architectural decisions
