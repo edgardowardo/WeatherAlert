@@ -23,6 +23,12 @@ class LeftViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        cell.textLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 20)
+        return cell
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         

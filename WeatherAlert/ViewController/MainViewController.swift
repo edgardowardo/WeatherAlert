@@ -81,6 +81,7 @@ class MainViewController: UITableViewController {
         } else {
             c = favs[indexPath.row]
         }
+        cell.textLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 17)
         cell.textLabel!.text = c.name
         cell.detailTextLabel!.text = c.country
         cell.accessoryType = .DisclosureIndicator

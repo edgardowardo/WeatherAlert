@@ -12,15 +12,6 @@ import VTAcknowledgementsViewController
 
 class WAAcknowledgementsViewController : VTAcknowledgementsViewController {
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.sharedApplication().statusBarStyle = .Default
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         cell.textLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 20)
