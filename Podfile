@@ -17,3 +17,8 @@ pod 'VTAcknowledgementsViewController'
 pod 'EasyTipView'
 
 end
+
+post_install do | installer |
+    require 'fileutils'
+    FileUtils.cp_r('Pods/Target Support Files/Pods-WeatherAlert/Pods-WeatherAlert-acknowledgements.plist', 'Pods-acknowledgements.plist', :remove_destination => true)
+end

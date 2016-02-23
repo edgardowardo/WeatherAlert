@@ -15,6 +15,8 @@
 		773FAF881C78A17F00D9FE21 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773FAF871C78A17F00D9FE21 /* Alamofire.swift */; };
 		773FAF8A1C78BBAF00D9FE21 /* CurrentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773FAF891C78BBAF00D9FE21 /* CurrentObject.swift */; };
 		775C375B1C78DBB8007D0C80 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C375A1C78DBB8007D0C80 /* Router.swift */; };
+		7768A64F1C7BEFF0007F1521 /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7768A64E1C7BEFF0007F1521 /* Pods-acknowledgements.plist */; };
+		7768A6511C7BF044007F1521 /* WAAcknowledgementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7768A6501C7BF044007F1521 /* WAAcknowledgementsViewController.swift */; };
 		776BDE821C7750BE0004D9A5 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776BDE811C7750BE0004D9A5 /* UIApplication.swift */; };
 		776BDF431C7751BB0004D9A5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776BDF421C7751BB0004D9A5 /* MainViewController.swift */; };
 		776BDF451C7752340004D9A5 /* ContainerMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776BDF441C7752340004D9A5 /* ContainerMenuViewController.swift */; };
@@ -62,6 +64,8 @@
 		773FAF871C78A17F00D9FE21 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		773FAF891C78BBAF00D9FE21 /* CurrentObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentObject.swift; sourceTree = "<group>"; };
 		775C375A1C78DBB8007D0C80 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		7768A64E1C7BEFF0007F1521 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		7768A6501C7BF044007F1521 /* WAAcknowledgementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAAcknowledgementsViewController.swift; sourceTree = "<group>"; };
 		776BDE811C7750BE0004D9A5 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		776BDF421C7751BB0004D9A5 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		776BDF441C7752340004D9A5 /* ContainerMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerMenuViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 				776BDF421C7751BB0004D9A5 /* MainViewController.swift */,
 				7732B36E1C78E72B00B845F4 /* CurrentDetailViewController.swift */,
 				779D58D61C7A9825007FEF5D /* CurrentDetailLayout.swift */,
+				7768A6501C7BF044007F1521 /* WAAcknowledgementsViewController.swift */,
 				778AB11B1C7A3EAF00EE974B /* Xib */,
 			);
 			path = ViewController;
@@ -217,6 +222,7 @@
 				77DAC62E1C7737E9004A1C72 /* Main.storyboard */,
 				77DAC6311C7737E9004A1C72 /* Assets.xcassets */,
 				77DAC6331C7737E9004A1C72 /* LaunchScreen.storyboard */,
+				7768A64E1C7BEFF0007F1521 /* Pods-acknowledgements.plist */,
 				77DAC6361C7737E9004A1C72 /* Info.plist */,
 			);
 			path = WeatherAlert;
@@ -363,6 +369,7 @@
 				779D58D51C7A8D54007FEF5D /* ForecastCell.xib in Resources */,
 				776BDF521C7764C60004D9A5 /* city.list.json in Resources */,
 				77DAC6321C7737E9004A1C72 /* Assets.xcassets in Resources */,
+				7768A64F1C7BEFF0007F1521 /* Pods-acknowledgements.plist in Resources */,
 				77DAC6301C7737E9004A1C72 /* Main.storyboard in Resources */,
 				776BDF541C776D5A0004D9A5 /* city0.json in Resources */,
 			);
@@ -440,6 +447,7 @@
 				776BDF431C7751BB0004D9A5 /* MainViewController.swift in Sources */,
 				77102DA31C793FEB00BDAEE7 /* UIColor.swift in Sources */,
 				773FAF8A1C78BBAF00D9FE21 /* CurrentObject.swift in Sources */,
+				7768A6511C7BF044007F1521 /* WAAcknowledgementsViewController.swift in Sources */,
 				776BDF451C7752340004D9A5 /* ContainerMenuViewController.swift in Sources */,
 				776BDF491C77579E0004D9A5 /* UIViewController.swift in Sources */,
 				775C375B1C78DBB8007D0C80 /* Router.swift in Sources */,
