@@ -105,7 +105,7 @@
                         <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x0s-LA-SR0">
                             <rect key="frame" x="0.0" y="72" width="600" height="123"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <string key="text">Weather Alert helps you organise your cities by searching from the bar above and clicking star to save them as favourites. Favourites will appear first in the list followed by recently searched cities.</string>
+                            <string key="text">Weather Alert helps you organise your cities by searching from the bar above and clicking star to save them as favourites. Favourites will appear first in the list followed by recently inspected cities.</string>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
