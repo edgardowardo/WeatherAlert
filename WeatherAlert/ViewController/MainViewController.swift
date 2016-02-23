@@ -85,9 +85,9 @@ class MainViewController: UITableViewController {
         cell.detailTextLabel!.text = c.country
         cell.accessoryType = .DisclosureIndicator
         if c.isFavourite {
-            cell.imageView?.image = UIImage(named: "icon-star-yellow")
+            cell.imageView?.image = UIImage(named: "icon-superstar")
         } else {
-            cell.imageView?.image = nil
+            cell.imageView?.image = UIImage(named: "icon-dot-fill")
         }
         return cell
     }

@@ -36,6 +36,7 @@ class CurrentDetailLayout : UICollectionViewLayout {
                 // Cell
                 let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
                 attributes.frame = CGRectMake(totalWidth, 0, ForecastCell.size.width, ForecastCell.size.height)
+                attributes.zIndex = 100
                 totalWidth+=ForecastCell.size.width
                 totalWidth++
                 cellInfo[indexPath] = attributes

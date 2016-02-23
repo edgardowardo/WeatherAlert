@@ -90,7 +90,7 @@ class CityObject: Object {
                         
                         try! realm.commitWrite()
                         
-                        print("\(NSDate()) loadedCityData")
+                        print("\(NSDate()) loadedCityData... \(realm.objects(CityObject).count) records")
                         print("Realm located at \(realm.path)")
                     }
                 } catch {
