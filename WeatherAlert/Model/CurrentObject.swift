@@ -82,12 +82,17 @@ class CurrentObject: Object {
                     realm.beginWrite()
                     //print("\(NSDate()) saveXML")
 
-                    let current = CurrentObject()
+                    var current = CurrentObject()
                     
                     if let city = root.firstChild(tag:"city"), name = city["name"], id = city["id"], country = city.firstChild(tag: "country"), coord = city.firstChild(tag: "coord"), lon = coord["lon"], lat = coord["lat"] {
                         
+                        if let existing = realm.objects(CurrentObject).filter("cityid == \(id)").first {
+                            current = existing
+                        } else {
+                            current.cityid = Int(id)!
+                        }
+                        
                         current.name = name
-                        current.cityid = Int(id)!
                         current.country = country.stringValue
                         current.lon = NSString(string: lon).doubleValue
                         current.lat = NSString(string: lat).doubleValue
