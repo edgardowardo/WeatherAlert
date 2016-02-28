@@ -11,14 +11,14 @@ import Charts
 import RealmSwift
 
 class TextCell : UICollectionReusableView {
-    static let size = CGSizeMake(140, 38)
+    static let size = CGSizeMake(140, 150)
     @IBOutlet weak var text: UILabel!
 }
 
 class TitlesCell : UICollectionReusableView {
     static let kindTableHeader = "TableHeaderKind"
     static let kindTableFooter = "TableFooterKind"
-    static let size = CGSizeMake(140, 150)
+    static let size = CGSizeMake(110, 150)
     @IBOutlet weak var speedTitle: UILabel!
     @IBOutlet weak var temperatureTitle: UILabel!
 }
@@ -71,8 +71,13 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
             cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "RightTitlesCellIdentifier", forIndexPath: indexPath) as! TitlesCell
         case UICollectionElementKindSectionHeader :
             cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "TextCellIdentifier", forIndexPath: indexPath)
-            if let c = cell as? TextCell, day = self.forecastuples?[indexPath.section].2[indexPath.row].day {
-                c.text.text = day
+            let forecastEntry = self.forecastuples?[indexPath.section].2[indexPath.row]
+            if let c = cell as? TextCell {
+                if let day = forecastEntry?.day, hour = forecastEntry?.hour  where Int(hour) < 21 {
+                    c.text.text = day
+                } else {
+                    c.text.text = ""
+                }
             }
         default :
             cell = UICollectionReusableView()

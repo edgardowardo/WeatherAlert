@@ -6,17 +6,29 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TextCellIdentifier" id="7i8-Wc-GcK" customClass="TextCell" customModule="WeatherAlert" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="140" height="38"/>
+        <collectionReusableView opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TextCellIdentifier" id="7i8-Wc-GcK" customClass="TextCell" customModule="WeatherAlert" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="140" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EEE, DD Mmm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Zi-Rw-XrS">
-                    <rect key="frame" x="8" y="8" width="124" height="21"/>
+                <view contentMode="scaleToFill" id="g4O-ZF-34y">
+                    <rect key="frame" x="0.0" y="0.0" width="140" height="150"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WED, 02, MAR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Zi-Rw-XrS">
+                            <rect key="frame" x="8" y="8" width="124" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" id="aT0-lc-fnz">
+                            <rect key="frame" x="0.0" y="0.0" width="1" height="150"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <connections>
                 <outlet property="text" destination="6Zi-Rw-XrS" id="e3V-yg-s4h"/>

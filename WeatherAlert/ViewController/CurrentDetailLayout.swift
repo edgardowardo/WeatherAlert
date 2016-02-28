@@ -7,7 +7,10 @@
 //
 
 import UIKit
-//import Foundation
+
+class SectionAttributes : UICollectionViewLayoutAttributes {
+    var originalX : CGFloat!
+}
 
 class CurrentDetailLayout : UICollectionViewLayout {
     
@@ -15,12 +18,17 @@ class CurrentDetailLayout : UICollectionViewLayout {
     var layoutInfo = [String : AnyObject]()
     var suppsInfo = [String : UICollectionViewLayoutAttributes]()
     
+    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
+        return true
+    }
+
     override func prepareLayout() {
         
         // Prepare some variables
         guard let numSections = collectionView?.numberOfSections() where numSections > 0 else { return }
         var cellInfo = [NSIndexPath : AnyObject]()
         var sectionInfo = [NSIndexPath : AnyObject]()
+        totalWidth = 0
         
         // Table header
         let headerAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: TitlesCell.kindTableHeader, withIndexPath: NSIndexPath(forRow: 0, inSection: 0))
@@ -48,8 +56,10 @@ class CurrentDetailLayout : UICollectionViewLayout {
             
             // Section header
             let indexPath = NSIndexPath(forRow: 0, inSection: section)
-            let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withIndexPath: indexPath)
-            attributes.frame = CGRectMake(firstAttribute!.frame.origin.x, firstAttribute!.frame.origin.y, TitlesCell.size.width, TitlesCell.size.height)
+            let attributes = SectionAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withIndexPath: indexPath)
+            attributes.zIndex = section
+            attributes.originalX = firstAttribute!.frame.origin.x
+            attributes.frame = CGRectMake(xOfHeader(attributes), firstAttribute!.frame.origin.y, TitlesCell.size.width, TitlesCell.size.height)
             sectionInfo[indexPath] = attributes
             
         }
@@ -59,6 +69,7 @@ class CurrentDetailLayout : UICollectionViewLayout {
         // Table footer
         let footerAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: TitlesCell.kindTableFooter, withIndexPath: NSIndexPath(forRow: 0, inSection: 0))
         footerAttributes.frame = CGRectMake(totalWidth, 0, TitlesCell.size.width, TitlesCell.size.height)
+        footerAttributes.zIndex = 200
         self.suppsInfo[TitlesCell.kindTableFooter] = footerAttributes
         self.totalWidth+=TitlesCell.size.width
         
@@ -76,8 +87,8 @@ class CurrentDetailLayout : UICollectionViewLayout {
     override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         switch elementKind {
         case UICollectionElementKindSectionHeader :
-            let matchInfo = layoutInfo[elementKind] as! [NSIndexPath : AnyObject]
-            return matchInfo[indexPath] as? UICollectionViewLayoutAttributes
+            let sectionInfo = layoutInfo[elementKind] as! [NSIndexPath : AnyObject]
+            return sectionInfo[indexPath] as? UICollectionViewLayoutAttributes
         default :
             return self.suppsInfo[elementKind]
         }
@@ -115,4 +126,61 @@ class CurrentDetailLayout : UICollectionViewLayout {
         return elements
     }
     
+    override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint) -> CGPoint {
+        return targetContentOffsetAdjustment(proposedContentOffset)
+    }
+    override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+        return targetContentOffsetAdjustment(proposedContentOffset)
+    }
+    
+    func xOfHeader(sectionAttributes : SectionAttributes, proposedContentOffset: CGPoint? = nil) -> CGFloat {
+
+        var leftEdge = self.collectionView!.contentOffset.x
+        if let offset = proposedContentOffset {
+            leftEdge = offset.x
+        }
+
+// compare next item if colliding  sectionAttributes.indexPath ?
+        
+        // Hold section headers on the left edge if needed
+        
+        if leftEdge >= sectionAttributes.originalX {
+            return leftEdge
+        } else {
+            return sectionAttributes.originalX
+        }
+    }
+    
+    func targetContentOffsetAdjustment(proposedContentOffset: CGPoint) -> CGPoint {
+        var newContentOffset = proposedContentOffset
+        let titleWidth = TitlesCell.size.width
+
+        // Snap the left titles in place along it's leading and trailing edges
+        
+        let leftEdge = collectionView!.contentOffset.x
+        if leftEdge < 20 {
+            newContentOffset.x = 0
+            self.collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        } else if 20 ..< titleWidth ~= leftEdge {
+            newContentOffset.x = titleWidth
+            UIApplication.delay(0.35, closure: { () -> () in
+                self.collectionView?.contentInset = UIEdgeInsets(top: 0, left: -titleWidth, bottom: 0, right: -titleWidth)
+            })
+        }
+        
+        // Snap the right titles in place along it's leading and trailing edges
+        
+        let rightEdge = leftEdge + UIScreen.mainScreen().bounds.size.width
+        let rightThreshold = totalWidth - 10
+        let rightThresholdLeading = totalWidth - titleWidth
+        
+        if rightEdge > rightThreshold {
+            newContentOffset.x = totalWidth - UIScreen.mainScreen().bounds.size.width
+            self.collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        } else if rightThresholdLeading ..< rightThreshold ~= rightEdge {
+            newContentOffset.x = totalWidth - UIScreen.mainScreen().bounds.size.width - titleWidth
+        }
+        
+        return newContentOffset
+    }
 }
