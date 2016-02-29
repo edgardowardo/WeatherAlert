@@ -59,7 +59,8 @@ class CurrentDetailLayout : UICollectionViewLayout {
             let attributes = SectionAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withIndexPath: indexPath)
             attributes.zIndex = section
             attributes.originalX = firstAttribute!.frame.origin.x
-            attributes.frame = CGRectMake(xOfHeader(attributes), firstAttribute!.frame.origin.y, TitlesCell.size.width, TitlesCell.size.height)
+            attributes.frame = CGRectMake(attributes.originalX, firstAttribute!.frame.origin.y, TitlesCell.size.width, TitlesCell.size.height)
+            attributes.frame.origin.x = xOfDay(attributes)
             sectionInfo[indexPath] = attributes
             
         }
@@ -133,20 +134,31 @@ class CurrentDetailLayout : UICollectionViewLayout {
         return targetContentOffsetAdjustment(proposedContentOffset)
     }
     
-    func xOfHeader(sectionAttributes : SectionAttributes, proposedContentOffset: CGPoint? = nil) -> CGFloat {
+    func xOfDay(sectionAttributes : SectionAttributes, proposedContentOffset: CGPoint? = nil) -> CGFloat {
 
+        // Use the right content offset
         var leftEdge = self.collectionView!.contentOffset.x
         if let offset = proposedContentOffset {
             leftEdge = offset.x
         }
 
-// compare next item if colliding  sectionAttributes.indexPath ?
-        
-        // Hold section headers on the left edge if needed
-        
+        // Snap and displace section header to the leading edge of screen otherwise use the original calculated X position
         if leftEdge >= sectionAttributes.originalX {
-            return leftEdge
+            // snap to the left edge
+            var xReturn = leftEdge
+            // compare next item if colliding  sectionAttributes.indexPath ?
+            if let sectionInfo = layoutInfo[UICollectionElementKindSectionHeader] as? [NSIndexPath : AnyObject] {
+                let nextSectionPath = NSIndexPath(forRow: sectionAttributes.indexPath.row, inSection: sectionAttributes.indexPath.section + 1)
+                if let nextDay = sectionInfo[nextSectionPath] as? SectionAttributes {
+                    let trailingEdge = leftEdge + DayCell.size.width
+                    if trailingEdge >= nextDay.frame.origin.x {
+                        xReturn = nextDay.frame.origin.x - TitlesCell.size.width //adjustment
+                    }
+                }
+            }
+            return xReturn
         } else {
+            // Use the original calculated X position
             return sectionAttributes.originalX
         }
     }

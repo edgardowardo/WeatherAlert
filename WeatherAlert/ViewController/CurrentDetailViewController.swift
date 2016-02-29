@@ -10,8 +10,8 @@ import UIKit
 import Charts
 import RealmSwift
 
-class TextCell : UICollectionReusableView {
-    static let size = CGSizeMake(140, 150)
+class DayCell : UICollectionReusableView {
+    static let size = CGSizeMake(110, 150)
     @IBOutlet weak var text: UILabel!
 }
 
@@ -70,9 +70,9 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
         case TitlesCell.kindTableFooter :
             cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "RightTitlesCellIdentifier", forIndexPath: indexPath) as! TitlesCell
         case UICollectionElementKindSectionHeader :
-            cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "TextCellIdentifier", forIndexPath: indexPath)
+            cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "DayCellIdentifier", forIndexPath: indexPath)
             let forecastEntry = self.forecastuples?[indexPath.section].2[indexPath.row]
-            if let c = cell as? TextCell {
+            if let c = cell as? DayCell {
                 if let day = forecastEntry?.day, hour = forecastEntry?.hour  where Int(hour) < 21 {
                     c.text.text = day
                 } else {
@@ -140,7 +140,7 @@ class CurrentDetailViewController: UIViewController {
         forecastsView.registerNib(UINib(nibName: "ForecastCell", bundle: nil), forCellWithReuseIdentifier: "ForecastCellIdentifier")
         forecastsView.registerNib(UINib(nibName: "LeftTitlesCell", bundle: nil), forSupplementaryViewOfKind: TitlesCell.kindTableHeader, withReuseIdentifier: "LeftTitlesCellIdentifier")
         forecastsView.registerNib(UINib(nibName: "RightTitlesCell", bundle: nil), forSupplementaryViewOfKind: TitlesCell.kindTableFooter, withReuseIdentifier: "RightTitlesCellIdentifier")
-        forecastsView.registerNib(UINib(nibName: "TextCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "TextCellIdentifier")
+        forecastsView.registerNib(UINib(nibName: "DayCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "DayCellIdentifier")
         forecastsView.contentInset = UIEdgeInsets(top: 0, left: -TitlesCell.size.width, bottom: 0, right: -TitlesCell.size.width)
         
         if let c = self.current, realm = try? Realm() {
