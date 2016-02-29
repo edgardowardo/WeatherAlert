@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         UISearchBar.appearance().barTintColor = UIColor.flatPeterRiverColor()
         UISearchBar.appearance().tintColor = UIColor.whiteColor()
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UITableViewHeaderFooterView.self]).font = UIFont(name: "HelveticaNeue-Light", size: 15)!
         UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.flatPeterRiverColor()
         UINavigationBar.appearance().barTintColor = UIColor.flatPeterRiverColor()
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()

@@ -62,11 +62,12 @@ class CurrentObject: Object {
     
     // MARK: - Functions -
     
-    func setPropertiesFromCity(city : CityObject) {
+    func setPropertiesFromCity(city : CityObject) -> CurrentObject {
         cityid = city._id
         name = city.name
         country = city.country
         lon = city.lon
+        return self
     }
     
     static func saveXML(xml : String) -> Int? {

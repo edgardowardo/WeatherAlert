@@ -15,8 +15,8 @@ class MainViewController: UITableViewController {
     // MARK: - Properties -
     
     lazy var detailViewController: CurrentDetailViewController? = UIStoryboard.currentDetailViewController()
-    lazy var favs : Results<CurrentObject> = self.getCurrents()
-    var filteredFavs : [CurrentObject]!
+    lazy var currentObjects : [(String, [CurrentObject])] = self.getCurrentObjects()
+    var filteredObjects : [(String, [CurrentObject])]!
     let searchController = UISearchController(searchResultsController: nil)
     
     // MARK: - View lifecycle -
@@ -55,31 +55,51 @@ class MainViewController: UITableViewController {
     }
     
     // MARK: - Helpers -
-    
-    func getCurrents() -> Results<CurrentObject> {
+ 
+    func getCurrentObjects(searchText : String? = nil) -> [(String, [CurrentObject])] {
         let realm = try! Realm()
-        return realm.objects(CurrentObject).sorted("name", ascending: true).sorted("isFavourite", ascending: false)
-    }    
+        var currents = [(String, [CurrentObject])]()
+        
+        // Get favourite objects
+        var favourites = realm.objects(CurrentObject).filter("isFavourite == 1")
+        if let s = searchText {
+            favourites = favourites.filter("name contains '\(s)'")
+        }
+        favourites = favourites.sorted("lastupdate", ascending: false)
+        currents.append(("FAVOURITES", Array(favourites)))
+        
+        // Get recent objects
+        var recents = realm.objects(CurrentObject).filter("isFavourite == 0")
+        if let s = searchText {
+            recents = recents.filter("name contains '\(s)'")
+        }
+        recents = recents.sorted("lastupdate", ascending: false)
+        currents.append(("RECENTS", Array(recents)))
+        return currents
+    }
     
     // MARK: - Table View
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        if searchController.active && searchController.searchBar.text != "" {
+            return filteredObjects.count
+        }
+        return currentObjects.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.active && searchController.searchBar.text != "" {
-            return filteredFavs.count
+            return filteredObjects[section].1.count
         }
-        return favs.count
+        return currentObjects[section].1.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
         let c: CurrentObject
         if searchController.active && searchController.searchBar.text != "" {
-            c = filteredFavs[indexPath.row]
+            c = filteredObjects[indexPath.section].1[indexPath.row]
         } else {
-            c = favs[indexPath.row]
+            c = currentObjects[indexPath.section].1[indexPath.row]
         }
         cell.textLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 17)
         cell.textLabel!.text = c.name
@@ -99,9 +119,9 @@ class MainViewController: UITableViewController {
         
         let current: CurrentObject
         if searchController.active && searchController.searchBar.text != "" {
-            current = filteredFavs[indexPath.row]
+            current = filteredObjects[indexPath.section].1[indexPath.row]
         } else {
-            current = favs[indexPath.row]
+            current = currentObjects[indexPath.section].1[indexPath.row]
         }
         
         // Current data is not stale. That is  it's less than 3 hours, show this data.
@@ -134,19 +154,29 @@ class MainViewController: UITableViewController {
                     })
                 }
             })
+            UIApplication.delay(5, closure: { () -> () in
+                self.hideHud()
+            })
         }
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if searchController.active && searchController.searchBar.text != "" {
+            return filteredObjects[section].0
+        }
+        return currentObjects[section].0
     }
     
     // MARK: - Helpers -
     
     func filterContentForSearchText(searchText: String) {
-        filteredFavs = Array(favs.filter("name contains '\(searchText)'"))
+        filteredObjects = self.getCurrentObjects(searchText)
         tableView.reloadData()
     }
     
     @objc private func methodOfReceivedNotification_didSaveCurrentObject(notification : NSNotification) {
         if let _ = notification.object as? CurrentObject {
-            favs = self.getCurrents()
+            currentObjects = self.getCurrentObjects()
         }
         tableView.reloadData()
     }
@@ -166,11 +196,12 @@ extension MainViewController: UISearchBarDelegate {
             a.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
             presentViewController(a, animated: true, completion: nil)
         } else {
-            filteredFavs = Array(cities.map({
-                let c = CurrentObject()
-                c.setPropertiesFromCity($0)
-                return c
+            var currents = [(String, [CurrentObject])]()
+            let recents = Array(cities.map({
+                return CurrentObject().setPropertiesFromCity($0)
             }))
+            currents.append(("RESULTS", recents))
+            filteredObjects = currents
             tableView.reloadData()
         }
     }

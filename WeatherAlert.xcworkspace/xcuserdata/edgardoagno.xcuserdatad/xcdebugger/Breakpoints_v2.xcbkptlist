@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherAlert/ViewController/MainViewController.swift"
-            timestampString = "477886427.546115"
+            timestampString = "478447680.074476"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180">
+            startingLineNumber = "211"
+            endingLineNumber = "211">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -38,15 +38,23 @@
          <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
-            continueAfterRunningActions = "No"
+            continueAfterRunningActions = "Yes"
             filePath = "WeatherAlert/ViewController/MainViewController.swift"
-            timestampString = "477886427.546115"
+            timestampString = "478447680.074476"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "filterContentForSearchText(_:)"
             landmarkType = "5">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "po &quot;searchText == \(searchText)&quot;">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
