@@ -95,10 +95,6 @@ class CurrentObject: Object {
 
                     var current = CurrentObject()
                     
-                    if let u = AppObject.sharedInstance?.units {
-                        current.units = u
-                    }
-                    
                     if let city = root.firstChild(tag:"city"), name = city["name"], id = city["id"], country = city.firstChild(tag: "country"), coord = city.firstChild(tag: "coord"), lon = coord["lon"], lat = coord["lat"] {
                         
                         if let existing = realm.objects(CurrentObject).filter("cityid == \(id)").first {
@@ -111,6 +107,10 @@ class CurrentObject: Object {
                         current.country = country.stringValue
                         current.lon = NSString(string: lon).doubleValue
                         current.lat = NSString(string: lat).doubleValue
+                    }
+                    
+                    if let u = AppObject.sharedInstance?.units {
+                        current.units = u
                     }
                     
                     if let wind = root.firstChild(tag:"wind"), speed = wind.firstChild(tag: "speed"), speedvalue = speed["value"], speedname = speed["name"], dir = wind.firstChild(tag: "direction"), dircode = dir["code"], dirname = dir["name"], dirvalue = dir["value"] {

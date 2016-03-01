@@ -12,6 +12,17 @@ import UIColor_FlatColors
 enum Units : String {
     case Metric , Imperial
     
+    var inverse : Units {
+        get {
+            switch self {
+            case .Metric :
+                return .Imperial
+            case .Imperial :
+                return .Metric
+            }
+        }
+    }
+    
     var lowercase : String {
         get {
             return self.rawValue.lowercaseString
