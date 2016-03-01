@@ -25,6 +25,7 @@ class CurrentObject: Object {
     dynamic var directionvalue : Double = 0
     dynamic var lastupdate : NSDate? = nil
     dynamic var isFavourite = false
+    dynamic var _units = ""
     
     // MARK: - Notifications -
     
@@ -45,7 +46,16 @@ class CurrentObject: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["hourAndMin"]
+        return ["hourAndMin", "units"]
+    }
+    
+    var units : Units {
+        get {
+            return Units(rawValue: _units)!
+        }
+        set {
+            _units = newValue.rawValue
+        }
     }
     
     var hourAndMin : String {
@@ -84,6 +94,10 @@ class CurrentObject: Object {
                     //print("\(NSDate()) saveXML")
 
                     var current = CurrentObject()
+                    
+                    if let u = AppObject.sharedInstance?.units {
+                        current.units = u
+                    }
                     
                     if let city = root.firstChild(tag:"city"), name = city["name"], id = city["id"], country = city.firstChild(tag: "country"), coord = city.firstChild(tag: "coord"), lon = coord["lon"], lat = coord["lat"] {
                         

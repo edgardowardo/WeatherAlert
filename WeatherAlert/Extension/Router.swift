@@ -21,13 +21,14 @@ enum Router: URLRequestConvertible {
     
     var URLRequest: NSMutableURLRequest {
         let result: (path: String, parameters: [String: AnyObject]) = {
+            let units = AppObject.sharedInstance!.units.lowercase
             switch self {
             case .Search(let id) :
-                return ("/weather?", ["APPID" : Router.appid, "mode" : Router.mode, "id" : id])
+                return ("/weather?", ["APPID" : Router.appid, "mode" : Router.mode, "units" : units, "id" : id])
             case .SearchName(let name) :
-                return ("/weather?", ["APPID" : Router.appid, "mode" : Router.mode, "q" : name])
+                return ("/weather?", ["APPID" : Router.appid, "mode" : Router.mode, "units" : units, "q" : name])
             case .Forecast(let id) :
-                return ("/forecast?", ["APPID" : Router.appid, "mode" : Router.mode, "id" : id])
+                return ("/forecast?", ["APPID" : Router.appid, "mode" : Router.mode, "units" : units, "id" : id])
             }
         }()
         

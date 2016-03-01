@@ -175,9 +175,7 @@ class MainViewController: UITableViewController {
     }
     
     @objc private func methodOfReceivedNotification_didSaveCurrentObject(notification : NSNotification) {
-        if let _ = notification.object as? CurrentObject {
-            currentObjects = self.getCurrentObjects()
-        }
+        currentObjects = self.getCurrentObjects()
         tableView.reloadData()
     }
 }

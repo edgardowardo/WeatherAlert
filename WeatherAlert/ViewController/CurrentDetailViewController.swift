@@ -46,13 +46,14 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ForecastCellIdentifier", forIndexPath: indexPath) as! ForecastCell
+        guard let curry = current else { return cell }
         let t = self.forecastuples![indexPath.section]
         let f = t.2[indexPath.row]
         let speed = String(format: "%.2f", f.speedvalue)
         let temperature = String(format: "%.1f", f.temperatureValue)
         cell.labelHH.text = f.hour
         cell.labelSpeed.text = "\(speed)"
-        cell.labelSpeed.backgroundColor = UIColor.getColorOfSpeed(f.speedvalue)
+        cell.labelSpeed.backgroundColor = curry.units.getColorOfSpeed(f.speedvalue)
         cell.labelTemp.text = "\(temperature)°"
         if f.directioncode.characters.count > 0 {
             cell.imageDirection.image = UIImage(named: f.directioncode)
@@ -63,12 +64,21 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        guard let curry = current else { return UICollectionReusableView() }
+        
         var cell : UICollectionReusableView
         switch kind {
         case TitlesCell.kindTableHeader :
-            cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "LeftTitlesCellIdentifier", forIndexPath: indexPath) as! TitlesCell
+            let t = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "LeftTitlesCellIdentifier", forIndexPath: indexPath) as! TitlesCell
+            t.speedTitle.text = "Speed, \(curry.units.speed)"
+            t.temperatureTitle.text = "Temperature, °\(curry.units.temperature)"
+            cell = t
         case TitlesCell.kindTableFooter :
-            cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "RightTitlesCellIdentifier", forIndexPath: indexPath) as! TitlesCell
+            let t = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "RightTitlesCellIdentifier", forIndexPath: indexPath) as! TitlesCell
+
+            t.speedTitle.text = "Speed, \(curry.units.speed)"
+            t.temperatureTitle.text = "Temperature, °\(curry.units.temperature)"
+            cell = t
         case UICollectionElementKindSectionHeader :
             cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "DayCellIdentifier", forIndexPath: indexPath)
             let forecastEntry = self.forecastuples?[indexPath.section].2[indexPath.row]
@@ -149,6 +159,7 @@ class CurrentDetailViewController: UIViewController {
             self.resetRightBarButtonItem()
             self.realmForecasts = realm.objects(ForecastObject).filter("cityid == \(id)").sorted("timefrom", ascending: true)
             self.forecastsView.reloadData()
+            self.radarChart.yAxis.customAxisMax = c.units.maxSpeed
         }
     }
     
@@ -236,7 +247,8 @@ class CurrentDetailViewController: UIViewController {
     }
     
     func setChart(dataPoints: [String], values: [Double], andDirectionName directionname1 : String, andSpeed speed : Double, andSpeedName speedname : String, andSince since : String) {
-        
+       
+        guard let curry = current else { return }
         var dataEntries: [ChartDataEntry] = []
         
         for i in 0 ..< dataPoints.count {
@@ -246,13 +258,14 @@ class CurrentDetailViewController: UIViewController {
         
         let speedname = ( speedname == "" ) ? "Windless" : speedname
         let directionname = ( directionname1 == "" ) ? "nowhere" : directionname1.lowercaseString
-        let chartDataSet = RadarChartDataSet(yVals: dataEntries, label: "\(speedname) towards \(directionname) at \(speed) m/s \(since)")
+        let speedUnit = curry.units.speed
+        let chartDataSet = RadarChartDataSet(yVals: dataEntries, label: "\(speedname) towards \(directionname) at \(speed) \(speedUnit) \(since)")
         chartDataSet.drawValuesEnabled = false
         chartDataSet.lineWidth = 2.0
         chartDataSet.drawFilledEnabled = true
         chartDataSet.drawHorizontalHighlightIndicatorEnabled = false
         chartDataSet.drawVerticalHighlightIndicatorEnabled = false
-        let speedColor = UIColor.getColorOfSpeed(speed)
+        let speedColor = curry.units.getColorOfSpeed(speed)
         chartDataSet.fillColor = speedColor
         chartDataSet.setColor(speedColor, alpha: 0.6)
         let chartData = RadarChartData(xVals: directions, dataSets: [chartDataSet])

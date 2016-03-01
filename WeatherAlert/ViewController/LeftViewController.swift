@@ -41,9 +41,7 @@ class LeftViewController: UITableViewController {
                 if let realm = try? Realm() {
                     let recents = realm.objects(CurrentObject).filter("isFavourite == 0")
                     try! realm.write {
-                        for r in recents {
-                            realm.delete(r)
-                        }
+                        realm.delete(recents)
                         NSNotificationCenter.defaultCenter().postNotificationName(CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)
                     }
                 }

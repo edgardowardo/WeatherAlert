@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		231DBD9F85EC442927C50492 /* Pods_WeatherAlert.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A48BC8A65B50C0391F38EED2 /* Pods_WeatherAlert.framework */; };
+		7700D7671C84ABAC00ADCE06 /* AppObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7700D7661C84ABAC00ADCE06 /* AppObject.swift */; };
 		77102DA31C793FEB00BDAEE7 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77102DA21C793FEB00BDAEE7 /* UIColor.swift */; };
 		772CC7561C77CE0A008ECCFC /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772CC7551C77CE0A008ECCFC /* UIStoryboard.swift */; };
 		7732B36F1C78E72B00B845F4 /* CurrentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732B36E1C78E72B00B845F4 /* CurrentDetailViewController.swift */; };
@@ -38,6 +39,7 @@
 		77DAC6351C7737E9004A1C72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DAC6331C7737E9004A1C72 /* LaunchScreen.storyboard */; };
 		77DAC6401C7737E9004A1C72 /* WeatherAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAC63F1C7737E9004A1C72 /* WeatherAlertTests.swift */; };
 		77DAC64B1C7737EA004A1C72 /* WeatherAlertUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAC64A1C7737EA004A1C72 /* WeatherAlertUITests.swift */; };
+		77F282DA1C85154B0018FAF8 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F282D91C85154B0018FAF8 /* Units.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7700D7661C84ABAC00ADCE06 /* AppObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppObject.swift; sourceTree = "<group>"; };
 		77102DA21C793FEB00BDAEE7 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		772CC7551C77CE0A008ECCFC /* UIStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
 		7732B36E1C78E72B00B845F4 /* CurrentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentDetailViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +97,7 @@
 		77DAC6461C7737EA004A1C72 /* WeatherAlertUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAlertUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DAC64A1C7737EA004A1C72 /* WeatherAlertUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAlertUITests.swift; sourceTree = "<group>"; };
 		77DAC64C1C7737EA004A1C72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77F282D91C85154B0018FAF8 /* Units.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
 		A48BC8A65B50C0391F38EED2 /* Pods_WeatherAlert.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherAlert.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D14725FC47CD75A6BA838F31 /* Pods-WeatherAlert.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAlert.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAlert/Pods-WeatherAlert.release.xcconfig"; sourceTree = "<group>"; };
 		FE148F6C992E6D53BBDF3F3F /* Pods-WeatherAlert.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAlert.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAlert/Pods-WeatherAlert.debug.xcconfig"; sourceTree = "<group>"; };
@@ -164,6 +168,8 @@
 		776BDF4D1C775D8A0004D9A5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				77F282D91C85154B0018FAF8 /* Units.swift */,
+				7700D7661C84ABAC00ADCE06 /* AppObject.swift */,
 				776BDF4E1C775DA00004D9A5 /* CityObject.swift */,
 				773FAF891C78BBAF00D9FE21 /* CurrentObject.swift */,
 				779D3F111C79C00E00C89BBD /* ForecastObject.swift */,
@@ -460,8 +466,10 @@
 				776BDE821C7750BE0004D9A5 /* UIApplication.swift in Sources */,
 				77DAC62B1C7737E9004A1C72 /* AppDelegate.swift in Sources */,
 				776BDF471C77535A0004D9A5 /* LeftViewController.swift in Sources */,
+				77F282DA1C85154B0018FAF8 /* Units.swift in Sources */,
 				773FAF881C78A17F00D9FE21 /* Alamofire.swift in Sources */,
 				772CC7561C77CE0A008ECCFC /* UIStoryboard.swift in Sources */,
+				7700D7671C84ABAC00ADCE06 /* AppObject.swift in Sources */,
 				776BDF4F1C775DA00004D9A5 /* CityObject.swift in Sources */,
 				7732B36F1C78E72B00B845F4 /* CurrentDetailViewController.swift in Sources */,
 				779D58D71C7A9825007FEF5D /* CurrentDetailLayout.swift in Sources */,
