@@ -36,7 +36,7 @@ class _04CityObjectSpec : QuickSpec {
                 CityObject.loadCityData()
             })
             
-            expect(realm.objects(CityObject).count).toEventually( equal(209579), timeout: 30)
+            expect(realm.objects(CityObject).count).toEventually( equal(209579), timeout: 60)
         }
     }
 }
