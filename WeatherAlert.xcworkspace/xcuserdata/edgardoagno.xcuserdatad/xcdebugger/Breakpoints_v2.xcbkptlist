@@ -44,9 +44,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "filterContentForSearchText(_:)"
-            landmarkType = "5">
+            endingLineNumber = "173">
             <Actions>
                <BreakpointActionProxy
                   ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
@@ -198,12 +196,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherAlertUITests/WeatherAlertUITests.swift"
-            timestampString = "478577512.458541"
+            timestampString = "478602932.981126"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "test_02_search_city_manchester()"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "test_01_search_city_leeds()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -214,13 +212,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherAlertUITests/WeatherAlertUITests.swift"
-            timestampString = "478577848.984439"
+            timestampString = "478602932.981126"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "test_04_search_city_london()"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "test_03_search_city_tagaytay()"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAlertUITests/WeatherAlertUITests.swift"
+            timestampString = "478607767.518256"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

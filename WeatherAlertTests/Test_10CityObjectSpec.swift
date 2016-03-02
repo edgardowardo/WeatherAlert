@@ -12,7 +12,7 @@ import Quick
 import Nimble
 @testable import WeatherAlert
 
-class _04CityObjectSpec : QuickSpec {
+class _10CityObjectSpec : QuickSpec {
     override func spec() {
 
         var realm : Realm!

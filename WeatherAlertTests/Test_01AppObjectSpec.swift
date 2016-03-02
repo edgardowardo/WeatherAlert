@@ -16,7 +16,7 @@ import Nimble
 NB: These test specs are named with prefix numbers in order to force the order of execution. CityObjectSpec to be done in the end because it's the longest test.
 */
 
-class _01AppObjectSpec : QuickSpec {
+class Test_01AppObjectSpec : QuickSpec {
     override func spec() {
         
         var realm : Realm!
