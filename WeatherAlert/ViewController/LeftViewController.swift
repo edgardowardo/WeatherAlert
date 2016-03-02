@@ -11,6 +11,10 @@ import RealmSwift
 
 class LeftViewController: UITableViewController {
     
+    enum Items : Int {
+        case Units = 0, Bin, License
+    }
+    
     var mainViewController: UIViewController!
     
     override func viewDidLoad() {
@@ -26,35 +30,53 @@ class LeftViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         cell.textLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 20)
+        
+        if let app = AppObject.sharedInstance where indexPath.row == Items.Units.rawValue {
+            cell.textLabel?.text = "\(app.units) and °\(app.units.temperature)"
+        }
+        
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        switch indexPath.row {
+        switch Items(rawValue: indexPath.row)! {
+        // Units
+        case .Units:
+            if let app = AppObject.sharedInstance {
+                let invert = app.units.inverse
+                let a = UIAlertController(title: "Change units", message: "Would you like the next queries to return °\(invert.temperature) and \(invert.lowercase) measurements?", preferredStyle: UIAlertControllerStyle.Alert)
+                a.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+                a.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in
+                    app.units = invert
+                    self.tableView.reloadData()
+                }))
+                UIApplication.delay(0.1, closure: { () -> () in
+                    self.presentViewController(a, animated: true, completion: nil)
+                })
+            }
+            
         // Clear recents
-        case 0 :
+        case .Bin :
             let a = UIAlertController(title: "Clear recents", message: "Continue to clear recents?", preferredStyle: UIAlertControllerStyle.Alert)
             a.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
             a.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in
                 if let realm = try? Realm() {
                     let recents = realm.objects(CurrentObject).filter("isFavourite == 0")
                     try! realm.write {
-                        for r in recents {
-                            realm.delete(r)
-                        }
+                        realm.delete(recents)
                         NSNotificationCenter.defaultCenter().postNotificationName(CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)
                     }
                 }
             }))
-            presentViewController(a, animated: true, completion: nil)
+            UIApplication.delay(0.1, closure: { () -> () in
+                self.presentViewController(a, animated: true, completion: nil)
+            })
             
         // License
-        case 1 :
+        case .License :
             presentViewController(self.getAcknowledgementsNavigationViewController(), animated: true, completion: nil)
-        default :
-            return
         }
     }
     

@@ -44,10 +44,10 @@ class ForecastObject: Object {
     var hour : String {
         get {
             if let t = timefrom {
-                let f = NSDateFormatter()
-                f.dateFormat = "HH"
-                let s = f.stringFromDate(t)
-                return s
+                let h = NSCalendar.currentCalendar().component(.Hour, fromDate: t)
+                let f = NSNumberFormatter()
+                f.minimumIntegerDigits = 2
+                return f.stringFromNumber(h)!
             }
             return "HH"
         }

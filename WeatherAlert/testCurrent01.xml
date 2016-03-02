@@ -1,0 +1,19 @@
+<current>
+    <city id="1684552" name="Tagaytay City">
+        <coord lon="120.93" lat="14.11"/>
+        <country>PH</country>
+        <sun rise="2016-02-29T22:12:16" set="2016-03-01T10:04:42"/>
+    </city>
+    <temperature value="26" min="26" max="26" unit="celsius"/>
+    <humidity value="65" unit="%"/>
+    <pressure value="1014" unit="hPa"/>
+    <wind>
+        <speed value="2.6" name="Light breeze"/>
+        <direction value="40" code="NE" name="NorthEast"/>
+    </wind>
+    <clouds value="75" name="broken clouds"/>
+    <visibility value="10000"/>
+    <precipitation mode="no"/>
+    <weather number="803" value="broken clouds" icon="04n"/>
+    <lastupdate value="2016-03-01T21:00:00"/>
+</current>

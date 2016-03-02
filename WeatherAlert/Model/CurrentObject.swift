@@ -25,6 +25,7 @@ class CurrentObject: Object {
     dynamic var directionvalue : Double = 0
     dynamic var lastupdate : NSDate? = nil
     dynamic var isFavourite = false
+    dynamic var _units = ""
     
     // MARK: - Notifications -
     
@@ -45,7 +46,16 @@ class CurrentObject: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["hourAndMin"]
+        return ["hourAndMin", "units"]
+    }
+    
+    var units : Units {
+        get {
+            return Units(rawValue: _units)!
+        }
+        set {
+            _units = newValue.rawValue
+        }
     }
     
     var hourAndMin : String {
@@ -62,11 +72,12 @@ class CurrentObject: Object {
     
     // MARK: - Functions -
     
-    func setPropertiesFromCity(city : CityObject) {
+    func setPropertiesFromCity(city : CityObject) -> CurrentObject {
         cityid = city._id
         name = city.name
         country = city.country
         lon = city.lon
+        return self
     }
     
     static func saveXML(xml : String) -> Int? {
@@ -82,15 +93,24 @@ class CurrentObject: Object {
                     realm.beginWrite()
                     //print("\(NSDate()) saveXML")
 
-                    let current = CurrentObject()
+                    var current = CurrentObject()
                     
                     if let city = root.firstChild(tag:"city"), name = city["name"], id = city["id"], country = city.firstChild(tag: "country"), coord = city.firstChild(tag: "coord"), lon = coord["lon"], lat = coord["lat"] {
                         
+                        if let existing = realm.objects(CurrentObject).filter("cityid == \(id)").first {
+                            current = existing
+                        } else {
+                            current.cityid = Int(id)!
+                        }
+                        
                         current.name = name
-                        current.cityid = Int(id)!
                         current.country = country.stringValue
                         current.lon = NSString(string: lon).doubleValue
                         current.lat = NSString(string: lat).doubleValue
+                    }
+                    
+                    if let u = AppObject.sharedInstance?.units {
+                        current.units = u
                     }
                     
                     if let wind = root.firstChild(tag:"wind"), speed = wind.firstChild(tag: "speed"), speedvalue = speed["value"], speedname = speed["name"], dir = wind.firstChild(tag: "direction"), dircode = dir["code"], dirname = dir["name"], dirvalue = dir["value"] {

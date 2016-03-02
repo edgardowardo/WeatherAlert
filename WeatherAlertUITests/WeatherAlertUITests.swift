@@ -8,8 +8,14 @@
 
 import XCTest
 
+/*
+NB: I couldn't setup Quick and Nimble with UI Tests. The application was not loading when configured with Q&N. And it's late. So I opted to use the classic way.
+*/
+
 class WeatherAlertUITests: XCTestCase {
-        
+    
+    let app = XCUIApplication()
+    
     override func setUp() {
         super.setUp()
         
@@ -28,9 +34,37 @@ class WeatherAlertUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test_01_search_city_leeds() {
+        app.tables.searchFields["Search with a city name"].tap()
+        app.searchFields["Search with a city name"].typeText("Leeds")
+        app.keyboards.buttons["Search"].tap()
+        let cells = app.tables.cells
+        XCTAssertEqual(cells.count, 8, "found instead: \(cells.debugDescription)")
     }
     
+    func test_02_search_city_manchester() {
+        app.tables.searchFields["Search with a city name"].tap()
+        app.searchFields["Search with a city name"].typeText("Manchester")
+        app.keyboards.buttons["Search"].tap()
+        let cells = app.tables.cells
+        XCTAssertEqual(cells.count, 23, "found instead: \(cells.debugDescription)")
+    }
+    
+    func test_03_search_city_tagaytay() {
+        app.tables.searchFields["Search with a city name"].tap()
+        app.searchFields["Search with a city name"].typeText("Tagaytay")
+        app.keyboards.buttons["Search"].tap()
+        let cells = app.tables.cells
+        XCTAssertEqual(cells.count, 4, "found instead: \(cells.debugDescription)")
+    }
+
+    func test_04_search_city_london() {
+        app.tables.searchFields["Search with a city name"].tap()
+        app.searchFields["Search with a city name"].typeText("London")
+        app.keyboards.buttons["Search"].tap()
+        let cells = app.tables.cells
+        XCTAssertEqual(cells.count, 29, "found instead: \(cells.debugDescription)")
+    }
 }
+
+

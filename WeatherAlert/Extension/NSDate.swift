@@ -31,6 +31,7 @@ extension NSDateFormatter {
     }
     static func nsdateFromString(string : String) -> NSDate? {
         let formatter = NSDateFormatter()
+        formatter.locale = NSLocale(localeIdentifier: "en_UK")
         formatter.dateFormat = NSDateFormatter.openweatherFormat()
         
         guard let date = formatter.dateFromString(string) else {
