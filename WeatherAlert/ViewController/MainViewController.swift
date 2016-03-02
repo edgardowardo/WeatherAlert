@@ -18,6 +18,7 @@ class MainViewController: UITableViewController {
     lazy var currentObjects : [(String, [CurrentObject])] = self.getCurrentObjects()
     var filteredObjects : [(String, [CurrentObject])]!
     let searchController = UISearchController(searchResultsController: nil)
+    var delegate : ContainerMenuViewDelegate?
     
     // MARK: - View lifecycle -
     
@@ -132,7 +133,7 @@ class MainViewController: UITableViewController {
             self.navigationController?.pushViewController(controller, animated: true)
             
         } else {
-            self.showHud(text: "Searching...")
+            self.delegate?.showHud(text: "Searching...")
             Alamofire.request(Router.Search(id: current.cityid)).responseXMLDocument({ response -> Void in
                 if let xml = response.result.value {
                     let xmlString = "\(xml)"
@@ -142,7 +143,7 @@ class MainViewController: UITableViewController {
                             let xmlString = "\(xml)"
                             ForecastObject.saveXML(xmlString)
                             
-                            self.hideHud()
+                            self.delegate?.hideHud()
                             
                             let cityid = current.cityid
                             if let realm = try? Realm(), current = realm.objects(CurrentObject).filter("cityid == \(cityid)").first {
@@ -155,7 +156,7 @@ class MainViewController: UITableViewController {
                 }
             })
             UIApplication.delay(5, closure: { () -> () in
-                self.hideHud()
+                self.delegate?.hideHud()
             })
         }
     }

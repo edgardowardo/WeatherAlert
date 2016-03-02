@@ -29,10 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         leftViewController.mainViewController = nvc
         
-        let slideMenuController = ContainerMenuViewController(mainViewController:nvc, leftMenuViewController: leftViewController)
-        slideMenuController.automaticallyAdjustsScrollViewInsets = true
+        let container = ContainerMenuViewController(mainViewController:nvc, leftMenuViewController: leftViewController)
+        container.automaticallyAdjustsScrollViewInsets = true
+        mainViewController.delegate = container
         self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
-        self.window?.rootViewController = slideMenuController
+        self.window?.rootViewController = container
         self.window?.makeKeyAndVisible()
         
         UIApplication.sharedApplication().statusBarStyle = .LightContent

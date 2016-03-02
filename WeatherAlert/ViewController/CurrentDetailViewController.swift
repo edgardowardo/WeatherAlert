@@ -112,6 +112,7 @@ class CurrentDetailViewController: UIViewController {
     let directions : [String] = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" ]
     var speeds : [Double] = { return Array<Double>.init(count: 16, repeatedValue: 0.0) }()
     var current : CurrentObject?
+    var since : String = ""
     @IBOutlet weak var radarChart: RadarChartView!
     @IBOutlet weak var forecastsView: UICollectionView!
     var forecastuples : [(String, NSDate, [ForecastObject])]?
@@ -144,6 +145,8 @@ class CurrentDetailViewController: UIViewController {
         radarChart.innerWebLineWidth = 0.0
         radarChart.webAlpha = 1.0
         radarChart.yAxis.customAxisMax = 17.0
+        let gesture = UITapGestureRecognizer(target: self, action: "clickChart:")
+        radarChart.addGestureRecognizer(gesture)
         
         forecastsView.delegate = self
         forecastsView.dataSource = self
@@ -180,7 +183,13 @@ class CurrentDetailViewController: UIViewController {
     
     // MARK: - Helpers -
     
-    func resetRightBarButtonItem() {        
+    func clickChart(sender:UITapGestureRecognizer){
+        if let c = self.current where since.characters.count == 0 {
+            self.updateChart(withDirectionCode: c.directioncode, andDirectionName: c.directionname, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(c.hourAndMin)" )
+        }
+    }
+    
+    func resetRightBarButtonItem() {
         var i : UIImage =  UIImage(named: "icon-star")!
         if let isFavourite = self.current?.isFavourite where isFavourite == true {
             i = UIImage(named: "icon-star-yellow")!
@@ -225,6 +234,7 @@ class CurrentDetailViewController: UIViewController {
     
     func updateChart(withDirectionCode code : String, andDirectionName directionname : String, andSpeed speed : Double, andSpeedName speedname : String, andSince since : String ) {
 
+        self.since = since
         self.speeds = Array<Double>.init(count: 16, repeatedValue: 0.0)
         
         if let index = directions.indexOf(code) {

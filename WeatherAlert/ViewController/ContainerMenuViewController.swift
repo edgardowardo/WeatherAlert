@@ -8,6 +8,25 @@
 
 import UIKit
 import SlideMenuControllerSwift
+import MBProgressHUD
+
+protocol ContainerMenuViewDelegate {
+    func showHud(text text : String)
+    func hideHud()
+}
+
+extension ContainerMenuViewController : ContainerMenuViewDelegate {
+    
+    func showHud(text text : String) {
+        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        hud.dimBackground = true
+        hud.labelText = text
+    }
+    
+    func hideHud() {
+        MBProgressHUD.hideAllHUDsForView(view, animated: true)
+    }
+}
 
 class ContainerMenuViewController : SlideMenuController {
 
@@ -27,7 +46,6 @@ class ContainerMenuViewController : SlideMenuController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_willLoadCityData:", name: CityObject.Notification.Identifier.willLoadCityData, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didLoadCityData:", name: CityObject.Notification.Identifier.didLoadCityData, object: nil)
     }
-    
     
     @objc private func methodOfReceivedNotification_willLoadCityData(notification : NSNotification) {
         self.showHud(text: "Installing cities")
