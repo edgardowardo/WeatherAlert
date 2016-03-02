@@ -14,6 +14,8 @@ import Nimble
 
 /*
 NB: These test specs are named with prefix numbers in order to force the order of execution. CityObjectSpec to be done in the end because it's the longest test.
+NB: If tests fail, please run as normal on simulator or device, before running test specs.
+
 */
 
 class Test_01AppObjectSpec : QuickSpec {

@@ -44,7 +44,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "173"
-            endingLineNumber = "173">
+            endingLineNumber = "173"
+            landmarkName = "filterContentForSearchText(_:)"
+            landmarkType = "5">
             <Actions>
                <BreakpointActionProxy
                   ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
@@ -233,6 +235,134 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
             endingLineNumber = "90">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAlertTests/Test_04_MainViewControllerSpec.swift"
+            timestampString = "478611256.145541"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "spec()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAlert/ViewController/MainViewController.swift"
+            timestampString = "478611514.510488"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "searchBarSearchButtonClicked(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAlertTests/Test_04_MainViewControllerSpec.swift"
+            timestampString = "478611859.585703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "spec()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAlertTests.Test_04MainViewContollerSpec.(spec (WeatherAlertTests.Test_04MainViewContollerSpec) -&gt; () -&gt; ()).(closure #5)"
+                  moduleName = "WeatherAlertTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edgardoagno/Documents/WeatherAlert/WeatherAlertTests/Test_04_MainViewControllerSpec.swift"
+                  timestampString = "478611868.646283"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "1757">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAlertTests.Test_04MainViewContollerSpec.(spec (WeatherAlertTests.Test_04MainViewContollerSpec) -&gt; () -&gt; ()).(closure #5).(implicit closure #2)"
+                  moduleName = "WeatherAlertTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edgardoagno/Documents/WeatherAlert/WeatherAlertTests/Test_04_MainViewControllerSpec.swift"
+                  timestampString = "478611868.646961"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAlertTests/Test_04_MainViewControllerSpec.swift"
+            timestampString = "478611948.853746"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "spec()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAlertTests.Test_04MainViewContollerSpec.(spec (WeatherAlertTests.Test_04MainViewContollerSpec) -&gt; () -&gt; ()).(closure #6)"
+                  moduleName = "WeatherAlertTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edgardoagno/Documents/WeatherAlert/WeatherAlertTests/Test_04_MainViewControllerSpec.swift"
+                  timestampString = "478611959.124708"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "1757">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAlertTests.Test_04MainViewContollerSpec.(spec (WeatherAlertTests.Test_04MainViewContollerSpec) -&gt; () -&gt; ()).(closure #6).(implicit closure #2)"
+                  moduleName = "WeatherAlertTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edgardoagno/Documents/WeatherAlert/WeatherAlertTests/Test_04_MainViewControllerSpec.swift"
+                  timestampString = "478611959.125135"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
