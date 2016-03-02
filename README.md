@@ -1,7 +1,7 @@
 # WeatherAlert
 For Sky contract position on Feb 2016
 
-Minimum deployment requirement : iOS 9.0
+Minimum deployment requirement : iOS 9.2
 
 Using Swift 2.1.1 on Xcode 7.2
 
