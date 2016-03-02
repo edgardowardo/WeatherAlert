@@ -78,11 +78,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "Yes"
             filePath = "WeatherAlert/Model/CurrentObject.swift"
-            timestampString = "478532748.864332"
+            timestampString = "478563611.116459"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "saveXML(_:)"
             landmarkType = "5">
             <Actions>
@@ -93,6 +93,102 @@
                   </ActionContent>
                </BreakpointActionProxy>
             </Actions>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAlertTests/CurrentObjectSpec.swift"
+            timestampString = "478566872.842572"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "spec()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAlertTests.CurrentObjectSpec.(spec (WeatherAlertTests.CurrentObjectSpec) -&gt; () -&gt; ()).(closure #3)"
+                  moduleName = "WeatherAlertTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edgardoagno/Documents/WeatherAlert/WeatherAlertTests/CurrentObjectSpec.swift"
+                  timestampString = "478566847.595939"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "2695">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAlertTests.CurrentObjectSpec.(spec (WeatherAlertTests.CurrentObjectSpec) -&gt; () -&gt; ()).(closure #3).(implicit closure #3)"
+                  moduleName = "WeatherAlertTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edgardoagno/Documents/WeatherAlert/WeatherAlertTests/CurrentObjectSpec.swift"
+                  timestampString = "478566847.596335"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAlertTests/_04CityObjectSpec.swift"
+            timestampString = "478569472.236931"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "spec()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAlertTests._04CityObjectSpec.spec (WeatherAlertTests._04CityObjectSpec)() -&gt; ()"
+                  moduleName = "WeatherAlertTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edgardoagno/Documents/WeatherAlert/WeatherAlertTests/_04CityObjectSpec.swift"
+                  timestampString = "478569542.717375"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "366">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAlertTests._04CityObjectSpec.(spec (WeatherAlertTests._04CityObjectSpec) -&gt; () -&gt; ()).(closure #3)"
+                  moduleName = "WeatherAlertTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edgardoagno/Documents/WeatherAlert/WeatherAlertTests/_04CityObjectSpec.swift"
+                  timestampString = "478569542.718392"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "1799">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
