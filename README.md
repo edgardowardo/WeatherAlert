@@ -8,6 +8,7 @@ Using Swift 2.1.1 on Xcode 7.2
 ![alt tag](https://github.com/edgardowardo/WeatherAlert/blob/master/a.png)
 ![alt tag](https://github.com/edgardowardo/WeatherAlert/blob/master/b.png)
 
+
 # Key design and architectural decisions
 
 Why realm? It is the fastest local datastore. City search scans at least 200K records on disk. So performance is important. 
@@ -17,3 +18,6 @@ Why save city data on disk in the first place? Open weather map org recommends t
 Why Alamofire? There is an existing OpenWeatherMapAPI why not use it? OpenWeatherMapAPI cocoa pod only provides JSON data without the direction codes and speed name, whilst the XML data returns more sensible wind info such as speed name, direction code which simplifies plotting of cardinal direction. JSON data does not provide these descriptive data.
  
 Why Charts? It's the best and easiest way to plot a radar chart.
+
+#Test results
+![alt tag](https://github.com/edgardowardo/WeatherAlert/blob/master/c.png)
