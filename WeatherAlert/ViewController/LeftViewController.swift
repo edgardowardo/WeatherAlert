@@ -51,6 +51,7 @@ class LeftViewController: UITableViewController {
                 a.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in
                     app.units = invert
                     self.tableView.reloadData()
+                    NSNotificationCenter.defaultCenter().postNotificationName(CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)
                 }))
                 UIApplication.delay(0.1, closure: { () -> () in
                     self.presentViewController(a, animated: true, completion: nil)

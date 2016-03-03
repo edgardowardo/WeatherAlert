@@ -38,3 +38,11 @@ extension UIApplication {
             dispatch_get_main_queue(), closure)
     }
 }
+
+extension Double {
+    func format(f: String) -> String {
+        return String(format: "%\(f)f", self)
+    }
+}
+
+

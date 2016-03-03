@@ -9,11 +9,14 @@
 import UIKit
 import RealmSwift
 import Alamofire
+import CoreLocation
 
 class MainViewController: UITableViewController {
     
     // MARK: - Properties -
     
+    let locationManager = CLLocationManager()
+    var location : CLLocation?
     lazy var detailViewController: CurrentDetailViewController? = UIStoryboard.currentDetailViewController()
     lazy var currentObjects : [(String, [CurrentObject])] = self.getCurrentObjects()
     var filteredObjects : [(String, [CurrentObject])]!
@@ -31,6 +34,12 @@ class MainViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        if CLLocationManager.authorizationStatus() == .NotDetermined || CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+        }
         
         self.title = "Weather Alert"
         
@@ -102,9 +111,19 @@ class MainViewController: UITableViewController {
         } else {
             c = currentObjects[indexPath.section].1[indexPath.row]
         }
+        var distanceText = ""
+        if let d = self.location?.distanceFromLocation(c.location) {
+            var units = Units.Metric
+            var distance = d / 1000
+            if let appUnits = AppObject.sharedInstance?.units where appUnits == .Imperial {
+                units = appUnits
+                distance *= 0.62137
+            }
+            distanceText = ", \(distance.format(".0")) \(units.short)"
+        }
         cell.textLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 17)
         cell.textLabel!.text = c.name
-        cell.detailTextLabel!.text = c.country
+        cell.detailTextLabel!.text = "\(c.country)\(distanceText)"
         cell.accessoryType = .DisclosureIndicator
         if c.isFavourite {
             cell.imageView?.image = UIImage(named: "icon-superstar")
@@ -180,6 +199,32 @@ class MainViewController: UITableViewController {
         tableView.reloadData()
     }
 }
+
+// MARK: - Core Location -
+
+extension MainViewController : CLLocationManagerDelegate {
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            self.location = location
+            tableView.reloadData()
+            locationManager.stopUpdatingLocation()
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Error finding location: \(error.localizedDescription)")
+    }
+}
+
+
+// MARK: - Search Bar Delegate -
 
 extension MainViewController: UISearchBarDelegate {
     

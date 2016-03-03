@@ -23,6 +23,17 @@ enum Units : String {
         }
     }
     
+    var short : String {
+        get {
+            switch self {
+            case .Metric :
+                return "km"
+            case .Imperial :
+                return "mi"
+            }
+        }
+    }
+    
     var lowercase : String {
         get {
             return self.rawValue.lowercaseString

@@ -8,6 +8,7 @@
 
 import RealmSwift
 import Fuzi
+import CoreLocation
 
 class CurrentObject: Object {
     
@@ -46,7 +47,13 @@ class CurrentObject: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["hourAndMin", "units"]
+        return ["hourAndMin", "units", "location"]
+    }
+    
+    var location : CLLocation {
+        get {
+            return CLLocation(latitude: self.lat, longitude: self.lon)
+        }
     }
     
     var units : Units {
@@ -77,6 +84,7 @@ class CurrentObject: Object {
         name = city.name
         country = city.country
         lon = city.lon
+        lat = city.lat
         return self
     }
     
