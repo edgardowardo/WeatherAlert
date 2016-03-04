@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Realm
 import RealmSwift
 import Alamofire
 import CoreLocation
@@ -22,6 +23,7 @@ class MainViewController: UITableViewController {
     var filteredObjects : [(String, [CurrentObject])]!
     let searchController = UISearchController(searchResultsController: nil)
     var delegate : ContainerMenuViewDelegate?
+    var token : RLMNotificationToken!
     
     // MARK: - View lifecycle -
     
@@ -29,11 +31,22 @@ class MainViewController: UITableViewController {
         if let superView = searchController.view.superview {
             superView.removeFromSuperview()
         }
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func getToken() -> RLMNotificationToken {
+        let token = try! Realm().objects(AppObject).filter("distanceKm > 0").addNotificationBlock { notification, realm in
+            self.currentObjects = self.getCurrentObjects()
+            self.tableView.reloadData()
+        }
+        return token
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        token = self.getToken()
         
         if CLLocationManager.authorizationStatus() == .NotDetermined || CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -43,7 +56,8 @@ class MainViewController: UITableViewController {
         
         self.title = "Weather Alert"
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didSaveCurrentObject:", name: CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didSaveCurrentObject:", name: CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didLoadCityData:", name: CityObject.Notification.Identifier.didLoadCityData, object: nil)        
         
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
@@ -78,11 +92,11 @@ class MainViewController: UITableViewController {
         favourites = favourites.sorted("lastupdate", ascending: false)
         currents.append(("FAVOURITES - \(favourites.count)", Array(favourites)))
         
-        if let loc = location {
+        if let loc = location, app = AppObject.sharedInstance {
             let latitude = loc.coordinate.latitude, longitude = loc.coordinate.longitude
-            var searchDistance = 1.00
-            if let appUnits = AppObject.sharedInstance?.units where appUnits == .Imperial {
-                searchDistance = appUnits.toImperial(searchDistance)
+            var searchDistance = app.distanceKm
+            if app.units == .Imperial {
+                searchDistance = app.units.toImperial(searchDistance)
             }
             let minLat = latitude - (searchDistance / 69)
             let maxLat = latitude + (searchDistance / 69)
@@ -93,9 +107,10 @@ class MainViewController: UITableViewController {
             if let s = searchText {
                 nearbyCities = nearbyCities.filter("name contains '\(s)'")
             }
-            let nearbies = nearbyCities.map({
-                return CurrentObject().setPropertiesFromCity($0)
+            var nearbies = nearbyCities.map({
+                return CurrentObject().setPropertiesFromCity($0, currentLocation: loc)
             })
+            nearbies.sortInPlace({ return $0.0.distanceKm < $0.1.distanceKm })
             currents.append(("NEARBY - \(nearbies.count)", Array(nearbies)))
         }
         
@@ -132,19 +147,9 @@ class MainViewController: UITableViewController {
         } else {
             c = currentObjects[indexPath.section].1[indexPath.row]
         }
-        var distanceText = ""
-        if let d = self.location?.distanceFromLocation(c.location) {
-            var units = Units.Metric
-            var distance = d / 1000
-            if let appUnits = AppObject.sharedInstance?.units where appUnits == .Imperial {
-                units = appUnits
-                distance = appUnits.toImperial(distance)
-            }
-            distanceText = ", \(distance.format(".0")) \(units.short)"
-        }
         cell.textLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 17)
         cell.textLabel!.text = c.name
-        cell.detailTextLabel!.text = "\(c.country)\(distanceText)"
+        cell.detailTextLabel!.text = "\(c.country)\(c.distanceText)"
         cell.accessoryType = .DisclosureIndicator
         if c.isFavourite {
             cell.imageView?.image = UIImage(named: "icon-superstar")
@@ -216,6 +221,11 @@ class MainViewController: UITableViewController {
     }
     
     @objc private func methodOfReceivedNotification_didSaveCurrentObject(notification : NSNotification) {
+        currentObjects = self.getCurrentObjects()
+        tableView.reloadData()
+    }
+
+    @objc private func methodOfReceivedNotification_didLoadCityData(notification : NSNotification) {
         currentObjects = self.getCurrentObjects()
         tableView.reloadData()
     }

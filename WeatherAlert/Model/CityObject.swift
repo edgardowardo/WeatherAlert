@@ -56,7 +56,7 @@ class CityObject: Object {
     
     static func loadCityData() {
         
-        dispatch_async(dispatch_queue_create("loadCityOnBackground", nil)) { autoreleasepool {
+        dispatch_async(dispatch_queue_create("loadCityOnBackground", nil)) {
             
             if let jsonFilePath = NSBundle.mainBundle().pathForResource("city.list", ofType: "json"), jsonData = NSData(contentsOfFile: jsonFilePath) {
                 
@@ -67,32 +67,35 @@ class CityObject: Object {
                 do {
                     let jsonObject = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers)
                     
-                    if let jsonArray = jsonObject as? [NSDictionary], realm = try? Realm() {
-                        
-                        realm.beginWrite()
-                        
-                        print("\(NSDate()) loadCityData")
-                        
-                        for cityData in jsonArray {
-                            let city = CityObject()
+                    autoreleasepool {
+                        if let jsonArray = jsonObject as? [NSDictionary], realm = try? Realm() {
                             
-                            if let id = cityData["_id"] as? Int, name = cityData["name"] as? String, country = cityData["country"] as? String, coordData = cityData["coord"] as? [String : AnyObject], lon = coordData["lon"] as? Double, lat = coordData["lat"] as? Double {
+                            realm.beginWrite()
+                            
+                            print("\(NSDate()) loadCityData")
+                            
+                            for cityData in jsonArray {
+                                let city = CityObject()
+                                
+                                if let id = cityData["_id"] as? Int, name = cityData["name"] as? String, country = cityData["country"] as? String, coordData = cityData["coord"] as? [String : AnyObject], lon = coordData["lon"] as? Double, lat = coordData["lat"] as? Double {
                                     
-                                city._id = id
-                                city.name = name
-                                city.country = country
-                                city.lon = lon
-                                city.lat = lat
+                                    city._id = id
+                                    city.name = name
+                                    city.country = country
+                                    city.lon = lon
+                                    city.lat = lat
+                                }
+                                
+                                realm.add(city, update: true)
                             }
                             
-                            realm.add(city, update: true)
+                            try! realm.commitWrite()
+                            
+                            print("\(NSDate()) loadedCityData... \(realm.objects(CityObject).count) records")
+                            print("Realm located at \(realm.path)")
                         }
-                        
-                        try! realm.commitWrite()
-                        
-                        print("\(NSDate()) loadedCityData... \(realm.objects(CityObject).count) records")
-                        print("Realm located at \(realm.path)")
                     }
+                    
                 } catch {
                     print("city JSON Error: \(error)")
                 }
@@ -101,6 +104,6 @@ class CityObject: Object {
                     NSNotificationCenter.defaultCenter().postNotificationName(Notification.Identifier.didLoadCityData, object: nil)
                 })
             }
-        }}
+        }
     }
 }

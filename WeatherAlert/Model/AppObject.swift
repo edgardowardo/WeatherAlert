@@ -15,6 +15,7 @@ class AppObject: Object {
     dynamic var _id = "1"
     dynamic var _units : String = Units.Metric.rawValue
     dynamic var _sortProperty = "lastupdate"
+    dynamic var distanceKm = 1.0
     static let sharedInstance = AppObject.loadAppData()
     
     var units : Units {

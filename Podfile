@@ -2,6 +2,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'WeatherAlert' do
+pod 'ReactKit'
 pod 'Charts'
 pod 'Alamofire'
 pod 'Ono'

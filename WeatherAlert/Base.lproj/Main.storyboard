@@ -68,7 +68,7 @@
                                                         <constraint firstAttribute="width" constant="25" id="beY-zA-uCm"/>
                                                     </constraints>
                                                 </imageView>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="maX-uo-QGK">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="maX-uo-QGK">
                                                     <rect key="frame" x="54" y="7" width="540" height="31"/>
                                                     <connections>
                                                         <action selector="sliderChanged:" destination="juO-1I-rW1" eventType="valueChanged" id="Bh2-KC-pLg"/>

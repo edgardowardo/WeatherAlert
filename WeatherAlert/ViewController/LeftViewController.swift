@@ -12,6 +12,11 @@ import RealmSwift
 class LeftViewController: UITableViewController {
     
     @IBAction func sliderChanged(sender: AnyObject) {
+        if let slider = sender as? UISlider, app = AppObject.sharedInstance, realm = try? Realm() {
+            try! realm.write {
+                app.distanceKm = Double(slider.value)
+            }
+        }
     }
     
     enum Items : Int {

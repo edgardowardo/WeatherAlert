@@ -28,8 +28,8 @@ class Test_04MainViewContollerSpec : QuickSpec {
             if let c = controller {
                 let currents = c.getCurrentObjects("Leeds")
                 expect(currents.count).to(equal(2))
-                expect(currents[0].0).to(equal("FAVOURITES"))
-                expect(currents[1].0).to(equal("RECENTS"))
+                expect(currents[0].0).to(equal("FAVOURITES - 0"))
+                expect(currents[1].0).to(equal("RECENTS - 0"))
             }
         }
         
@@ -43,7 +43,7 @@ class Test_04MainViewContollerSpec : QuickSpec {
                 
                 let fi = c.filteredObjects
                 let title = fi[0].0
-                expect(title).to(equal("RESULTS"))
+                expect(title).to(equal("RESULTS - 5"))
                 
                 let entry = fi[0].1[0]
                 expect(entry.cityid).to(equal(3333164))
@@ -63,7 +63,7 @@ class Test_04MainViewContollerSpec : QuickSpec {
                 
                 let fi = c.filteredObjects
                 let title = fi[0].0
-                expect(title).to(equal("RESULTS"))
+                expect(title).to(equal("RESULTS - 20"))
                 
                 let entry = fi[0].1[1]
                 expect(entry.cityid).to(equal(3333169))
@@ -83,7 +83,7 @@ class Test_04MainViewContollerSpec : QuickSpec {
                 
                 let fi = c.filteredObjects
                 let title = fi[0].0
-                expect(title).to(equal("RESULTS"))
+                expect(title).to(equal("RESULTS - 1"))
                 
                 let entry = fi[0].1[0]
                 expect(entry.cityid).to(equal(1684552))
@@ -103,7 +103,7 @@ class Test_04MainViewContollerSpec : QuickSpec {
                 
                 let fi = c.filteredObjects
                 let title = fi[0].0
-                expect(title).to(equal("RESULTS"))
+                expect(title).to(equal("RESULTS - 26"))
                 
                 let entry = fi[0].1[1]
                 expect(entry.cityid).to(equal(2648110))

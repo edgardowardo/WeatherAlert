@@ -47,8 +47,10 @@ class CurrentObject: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["hourAndMin", "units", "location"]
+        return ["hourAndMin", "units", "location", "currentLocation", "distanceKm", "distanceText"]
     }
+    
+    var currentLocation : CLLocation?
     
     var location : CLLocation {
         get {
@@ -77,14 +79,40 @@ class CurrentObject: Object {
         }
     }
     
+    var distanceKm : Double {
+        get {
+            if let d = self.currentLocation?.distanceFromLocation(location) {
+                let distance = d / 1000
+                return distance
+            }
+            return 0.0
+        }
+    }
+    
+    var distanceText : String {
+        get {
+            if let _ = self.currentLocation {
+                var units = Units.Metric
+                var distance = self.distanceKm
+                if let appUnits = AppObject.sharedInstance?.units where appUnits == .Imperial {
+                    units = appUnits
+                    distance = appUnits.toImperial(distance)
+                }
+                return ", \(distance.format(".0")) \(units.short)"
+            }
+            return ""
+        }
+    }
+    
     // MARK: - Functions -
     
-    func setPropertiesFromCity(city : CityObject) -> CurrentObject {
+    func setPropertiesFromCity(city : CityObject, currentLocation : CLLocation? = nil) -> CurrentObject {
         cityid = city._id
         name = city.name
         country = city.country
         lon = city.lon
         lat = city.lat
+        self.currentLocation = currentLocation
         return self
     }
     
