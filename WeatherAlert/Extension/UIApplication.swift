@@ -43,6 +43,9 @@ extension Double {
     func format(f: String) -> String {
         return String(format: "%\(f)f", self)
     }
+    var degreesToRadians : Double {
+        return self * M_PI / 180.0
+    }
 }
 
 

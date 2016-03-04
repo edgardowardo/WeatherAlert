@@ -11,8 +11,11 @@ import RealmSwift
 
 class LeftViewController: UITableViewController {
     
+    @IBAction func sliderChanged(sender: AnyObject) {
+    }
+    
     enum Items : Int {
-        case Units = 0, Bin, License
+        case Units = 0, Distance, Bin, License
     }
     
     var mainViewController: UIViewController!
@@ -78,6 +81,8 @@ class LeftViewController: UITableViewController {
         // License
         case .License :
             presentViewController(self.getAcknowledgementsNavigationViewController(), animated: true, completion: nil)
+        default :
+            return
         }
     }
     

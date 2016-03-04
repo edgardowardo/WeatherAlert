@@ -12,6 +12,10 @@ import UIColor_FlatColors
 enum Units : String {
     case Metric , Imperial
     
+    func toImperial(km : Double) -> Double {
+        return km * 0.62137
+    }
+    
     var inverse : Units {
         get {
             switch self {

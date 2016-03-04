@@ -76,7 +76,28 @@ class MainViewController: UITableViewController {
             favourites = favourites.filter("name contains '\(s)'")
         }
         favourites = favourites.sorted("lastupdate", ascending: false)
-        currents.append(("FAVOURITES", Array(favourites)))
+        currents.append(("FAVOURITES - \(favourites.count)", Array(favourites)))
+        
+        if let loc = location {
+            let latitude = loc.coordinate.latitude, longitude = loc.coordinate.longitude
+            var searchDistance = 1.00
+            if let appUnits = AppObject.sharedInstance?.units where appUnits == .Imperial {
+                searchDistance = appUnits.toImperial(searchDistance)
+            }
+            let minLat = latitude - (searchDistance / 69)
+            let maxLat = latitude + (searchDistance / 69)
+            let minLon = longitude - searchDistance / fabs(cos(latitude.degreesToRadians)*69)
+            let maxLon = longitude + searchDistance / fabs(cos(latitude.degreesToRadians)*69)
+            let predicate = "lat <= \(maxLat) AND lat >= \(minLat) AND lon <= \(maxLon) AND lon >= \(minLon)"
+            var nearbyCities = realm.objects(CityObject).filter(predicate)
+            if let s = searchText {
+                nearbyCities = nearbyCities.filter("name contains '\(s)'")
+            }
+            let nearbies = nearbyCities.map({
+                return CurrentObject().setPropertiesFromCity($0)
+            })
+            currents.append(("NEARBY - \(nearbies.count)", Array(nearbies)))
+        }
         
         // Get recent objects
         var recents = realm.objects(CurrentObject).filter("isFavourite == 0")
@@ -84,7 +105,7 @@ class MainViewController: UITableViewController {
             recents = recents.filter("name contains '\(s)'")
         }
         recents = recents.sorted("lastupdate", ascending: false)
-        currents.append(("RECENTS", Array(recents)))
+        currents.append(("RECENTS - \(recents.count)", Array(recents)))
         return currents
     }
     
@@ -117,7 +138,7 @@ class MainViewController: UITableViewController {
             var distance = d / 1000
             if let appUnits = AppObject.sharedInstance?.units where appUnits == .Imperial {
                 units = appUnits
-                distance *= 0.62137
+                distance = appUnits.toImperial(distance)
             }
             distanceText = ", \(distance.format(".0")) \(units.short)"
         }
@@ -213,6 +234,7 @@ extension MainViewController : CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             self.location = location
+            currentObjects = getCurrentObjects()
             tableView.reloadData()
             locationManager.stopUpdatingLocation()
         }
@@ -241,10 +263,10 @@ extension MainViewController: UISearchBarDelegate {
             presentViewController(a, animated: true, completion: nil)
         } else {
             var currents = [(String, [CurrentObject])]()
-            let recents = Array(cities.map({
+            let results = Array(cities.map({
                 return CurrentObject().setPropertiesFromCity($0)
             }))
-            currents.append(("RESULTS", recents))
+            currents.append(("RESULTS - \(results.count)", results))
             filteredObjects = currents
             tableView.reloadData()
         }
