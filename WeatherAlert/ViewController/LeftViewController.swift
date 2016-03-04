@@ -11,14 +11,6 @@ import RealmSwift
 
 class LeftViewController: UITableViewController {
     
-    @IBAction func sliderChanged(sender: AnyObject) {
-        if let slider = sender as? UISlider, app = AppObject.sharedInstance, realm = try? Realm() {
-            try! realm.write {
-                app.distanceKm = Double(slider.value)
-            }
-        }
-    }
-    
     enum Items : Int {
         case Units = 0, Distance, Bin, License
     }
@@ -39,8 +31,15 @@ class LeftViewController: UITableViewController {
         let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         cell.textLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 20)
         
-        if let app = AppObject.sharedInstance where indexPath.row == Items.Units.rawValue {
-            cell.textLabel?.text = "\(app.units) and °\(app.units.temperature)"
+        if let app = AppObject.sharedInstance {
+            switch indexPath.row {
+            case Items.Units.rawValue :
+                cell.textLabel?.text = "\(app.units) and °\(app.units.temperature)"
+            case Items.Distance.rawValue :
+                cell.textLabel?.text = "Approximately \(app.distance * 2) \(app.units.short)"
+            default :
+                return cell
+            }
         }
         
         return cell
@@ -66,6 +65,30 @@ class LeftViewController: UITableViewController {
                 })
             }
             
+        // Distance
+        case .Distance :
+            let controller = UIViewController();
+            let slider = UISlider(frame: CGRectMake(10.0, 10.0, 250.0, 25.0))
+            slider.minimumValue = 1
+            slider.maximumValue = 20
+            slider.value = Float((AppObject.sharedInstance?.distanceKm)!)
+            controller.view.addSubview(slider)
+            
+            let alert = UIAlertController(title: " ", message: "Set approximate distance of 'nearby' city wind stations.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+                if let app = AppObject.sharedInstance, realm = try? Realm() {
+                    try! realm.write {
+                        app.distanceKm = Double(slider.value)
+                    }
+                    self.tableView.reloadData()
+                }
+            }))
+            alert.view.addSubview(controller.view)
+            UIApplication.delay(0.1, closure: { () -> () in
+                self.presentViewController(alert, animated: true, completion: nil)
+            })
+            
         // Clear recents
         case .Bin :
             let a = UIAlertController(title: "Clear recents", message: "Continue to clear recents?", preferredStyle: UIAlertControllerStyle.Alert)
@@ -86,8 +109,6 @@ class LeftViewController: UITableViewController {
         // License
         case .License :
             presentViewController(self.getAcknowledgementsNavigationViewController(), animated: true, completion: nil)
-        default :
-            return
         }
     }
     

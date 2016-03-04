@@ -13,7 +13,7 @@ enum Units : String {
     case Metric , Imperial
     
     func toImperial(km : Double) -> Double {
-        return km * 0.62137
+        return km * 0.621371
     }
     
     var inverse : Units {

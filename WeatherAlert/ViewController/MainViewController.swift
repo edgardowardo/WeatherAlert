@@ -94,10 +94,7 @@ class MainViewController: UITableViewController {
         
         if let loc = location, app = AppObject.sharedInstance {
             let latitude = loc.coordinate.latitude, longitude = loc.coordinate.longitude
-            var searchDistance = app.distanceKm
-            if app.units == .Imperial {
-                searchDistance = app.units.toImperial(searchDistance)
-            }
+            let searchDistance = app.distanceKm
             let minLat = latitude - (searchDistance / 69)
             let maxLat = latitude + (searchDistance / 69)
             let minLon = longitude - searchDistance / fabs(cos(latitude.degreesToRadians)*69)

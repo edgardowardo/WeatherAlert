@@ -37,6 +37,16 @@ class AppObject: Object {
         }
     }
     
+    var distance : Int {
+        get {
+            var d = Int(distanceKm)
+            if units == .Imperial {
+                d = Int(units.toImperial(distanceKm))
+            }
+            return d
+        }
+    }
+    
     // MARK: - Type Functions -
     
     override static func primaryKey() -> String? {
@@ -44,7 +54,7 @@ class AppObject: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["unit"]
+        return ["unit", "distance"]
     }
     
     static func loadAppData() -> AppObject? {
