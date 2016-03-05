@@ -9,6 +9,22 @@
 import Foundation
 
 extension NSDate {
+    func isYesterday() -> Bool {
+        let cal = NSCalendar.currentCalendar()
+        let yesterdayAndTime = cal.dateByAddingUnit(.Day, value: -1, toDate: NSDate(), options: [])!
+        var components = cal.components([.Era, .Year, .Month, .Day], fromDate:yesterdayAndTime)
+        let yesterday = cal.dateFromComponents(components)!
+        
+        components = cal.components([.Era, .Year, .Month, .Day], fromDate:self)
+        let otherDate = cal.dateFromComponents(components)!
+        
+        if(yesterday.isEqualToDate(otherDate)) {
+            return true
+        } else {
+            return false
+        }
+    }    
+    
     func isToday() -> Bool {
         let cal = NSCalendar.currentCalendar()
         var components = cal.components([.Era, .Year, .Month, .Day], fromDate:NSDate())

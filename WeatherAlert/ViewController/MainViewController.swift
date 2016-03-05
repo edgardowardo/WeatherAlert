@@ -144,6 +144,9 @@ class MainViewController: UITableViewController {
         } else {
             c = currentObjects[indexPath.section].1[indexPath.row]
         }
+        if let loc = self.location {
+            c.currentLocation = loc
+        }
         cell.textLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 17)
         cell.textLabel!.text = c.name
         cell.detailTextLabel!.text = "\(c.country)\(c.distanceText)"
@@ -160,11 +163,15 @@ class MainViewController: UITableViewController {
         
         guard let controller = UIStoryboard.currentDetailViewController() else { return }
         
-        let current: CurrentObject
+        var current: CurrentObject
         if searchController.active && searchController.searchBar.text != "" {
             current = filteredObjects[indexPath.section].1[indexPath.row]
         } else {
             current = currentObjects[indexPath.section].1[indexPath.row]
+        }
+        
+        if let realm = try? Realm(), first = realm.objects(CurrentObject).filter("cityid == \(current.cityid)").first where current.lastupdate == nil {
+            current = first
         }
         
         // Current data is not stale. That is  it's less than 3 hours, show this data.

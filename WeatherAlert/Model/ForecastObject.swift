@@ -58,6 +58,8 @@ class ForecastObject: Object {
             if let t = timefrom {
                 if t.isToday() {
                     return "TODAY"
+                } else if t.isYesterday() {
+                    return ""
                 }
                 
                 let f = NSDateFormatter()

@@ -83,10 +83,11 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
             cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "DayCellIdentifier", forIndexPath: indexPath)
             let forecastEntry = self.forecastuples?[indexPath.section].2[indexPath.row]
             if let c = cell as? DayCell {
-                if let day = forecastEntry?.day, hour = forecastEntry?.hour  where Int(hour) < 21 {
+                if let day = forecastEntry?.day {
                     c.text.text = day
-                } else {
-                    c.text.text = ""
+                    if let entries = self.forecastuples?[indexPath.section].2 where day == "TODAY" && entries.count < 3 {
+                        c.text.text = ""
+                    }
                 }
             }
         default :
