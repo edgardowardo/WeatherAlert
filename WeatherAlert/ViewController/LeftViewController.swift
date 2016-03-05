@@ -12,14 +12,14 @@ import RealmSwift
 class LeftViewController: UITableViewController {
     
     enum Items : Int {
-        case Units = 0, Distance, Bin, License
+        case Units = 0, Distance, Bin, License, Disclaimer
     }
     
     var mainViewController: UIViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
     override func didReceiveMemoryWarning() {
@@ -109,6 +109,13 @@ class LeftViewController: UITableViewController {
         // License
         case .License :
             presentViewController(self.getAcknowledgementsNavigationViewController(), animated: true, completion: nil)
+        // Diclaimer
+        case .Disclaimer :
+            let a = UIAlertController(title: "Disclaimer", message: "The information contained in the app is provided for general information purposes only and do not claim to be or constitute legal or other professional advice and shall not be relied upon as such. \n\nWe accept no liability or responsibility to any person or organisation as a consequence of any reliance upon the information contained in this app. \n\nInformation from city weather stations are provided by OpenWeatherMap. ", preferredStyle: UIAlertControllerStyle.Alert)
+            a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+            UIApplication.delay(0.1, closure: { () -> () in
+                self.presentViewController(a, animated: true, completion: nil)
+            })
         }
     }
     

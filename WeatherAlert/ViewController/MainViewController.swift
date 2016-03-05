@@ -11,6 +11,7 @@ import Realm
 import RealmSwift
 import Alamofire
 import CoreLocation
+import iAd
 
 class MainViewController: UITableViewController {
     
@@ -54,6 +55,7 @@ class MainViewController: UITableViewController {
             locationManager.requestWhenInUseAuthorization()
         }
         
+        self.canDisplayBannerAds = true
         self.title = "Weather Alert"
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didSaveCurrentObject:", name: CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)

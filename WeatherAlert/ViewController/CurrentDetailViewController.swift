@@ -136,6 +136,7 @@ class CurrentDetailViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        self.interstitialPresentationPolicy = .Automatic
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didSaveCurrentObject:", name: CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didSaveForecastObjects:", name: ForecastObject.Notification.Identifier.didSaveForecastObjects, object: nil)
         

@@ -41,6 +41,7 @@
 		77B310C91C86576A00DB3CAF /* testCurrent01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 77B310C81C86576A00DB3CAF /* testCurrent01.xml */; };
 		77B310CB1C865C8700DB3CAF /* Test_03ForecastObjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B310CA1C865C8700DB3CAF /* Test_03ForecastObjectSpec.swift */; };
 		77B310CD1C865CC700DB3CAF /* testForecast01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 77B310CC1C865CC700DB3CAF /* testForecast01.xml */; };
+		77CFF5CC1C8B455F002D57A5 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77CFF5CB1C8B455F002D57A5 /* iAd.framework */; };
 		77DAC62B1C7737E9004A1C72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAC62A1C7737E9004A1C72 /* AppDelegate.swift */; };
 		77DAC6301C7737E9004A1C72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DAC62E1C7737E9004A1C72 /* Main.storyboard */; };
 		77DAC6321C7737E9004A1C72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DAC6311C7737E9004A1C72 /* Assets.xcassets */; };
@@ -102,6 +103,7 @@
 		77B310C81C86576A00DB3CAF /* testCurrent01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = testCurrent01.xml; sourceTree = "<group>"; };
 		77B310CA1C865C8700DB3CAF /* Test_03ForecastObjectSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test_03ForecastObjectSpec.swift; sourceTree = "<group>"; };
 		77B310CC1C865CC700DB3CAF /* testForecast01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = testForecast01.xml; sourceTree = "<group>"; };
+		77CFF5CB1C8B455F002D57A5 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		77DAC6271C7737E9004A1C72 /* WeatherAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DAC62A1C7737E9004A1C72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77DAC62F1C7737E9004A1C72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77CFF5CC1C8B455F002D57A5 /* iAd.framework in Frameworks */,
 				231DBD9F85EC442927C50492 /* Pods_WeatherAlert.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +155,7 @@
 		2DC10FD5BF2AFF5214465EA9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77CFF5CB1C8B455F002D57A5 /* iAd.framework */,
 				A48BC8A65B50C0391F38EED2 /* Pods_WeatherAlert.framework */,
 				8A4062DB4CCB1E9E41E8391F /* Pods_WeatherAlertTests.framework */,
 				4CE13E9B2AD1611236B17440 /* Pods_WeatherAlertUITests.framework */,

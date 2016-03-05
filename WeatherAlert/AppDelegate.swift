@@ -9,6 +9,7 @@
 import UIKit
 import UIColor_FlatColors
 import RealmSwift
+import iAd
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -51,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.createMenuView()
+        UIViewController.prepareInterstitialAds()
         
         if try! Realm().objects(CityObject).count == 0 {
             CityObject.loadCityData()
