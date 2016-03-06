@@ -30,6 +30,7 @@
 		77810E0B1C86FCCE00945584 /* Test_04_MainViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77810E0A1C86FCCE00945584 /* Test_04_MainViewControllerSpec.swift */; };
 		778AB11D1C7A3F2400EE974B /* LeftTitlesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778AB11C1C7A3F2400EE974B /* LeftTitlesCell.xib */; };
 		778AB11F1C7A3F8200EE974B /* RightTitlesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778AB11E1C7A3F8200EE974B /* RightTitlesCell.xib */; };
+		778C97C61C8B980C00668B0D /* CurrentInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778C97C51C8B980C00668B0D /* CurrentInfoView.xib */; };
 		779D3F121C79C00E00C89BBD /* ForecastObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779D3F111C79C00E00C89BBD /* ForecastObject.swift */; };
 		779D58D51C7A8D54007FEF5D /* ForecastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 779D58D41C7A8D54007FEF5D /* ForecastCell.xib */; };
 		779D58D71C7A9825007FEF5D /* CurrentDetailLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779D58D61C7A9825007FEF5D /* CurrentDetailLayout.swift */; };
@@ -92,6 +93,7 @@
 		77810E0A1C86FCCE00945584 /* Test_04_MainViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test_04_MainViewControllerSpec.swift; sourceTree = "<group>"; };
 		778AB11C1C7A3F2400EE974B /* LeftTitlesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftTitlesCell.xib; sourceTree = "<group>"; };
 		778AB11E1C7A3F8200EE974B /* RightTitlesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightTitlesCell.xib; sourceTree = "<group>"; };
+		778C97C51C8B980C00668B0D /* CurrentInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrentInfoView.xib; sourceTree = "<group>"; };
 		779D3F111C79C00E00C89BBD /* ForecastObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastObject.swift; sourceTree = "<group>"; };
 		779D58D41C7A8D54007FEF5D /* ForecastCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForecastCell.xib; sourceTree = "<group>"; };
 		779D58D61C7A9825007FEF5D /* CurrentDetailLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentDetailLayout.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				778AB11E1C7A3F8200EE974B /* RightTitlesCell.xib */,
 				77A2669B1C7A5D3C0082E22D /* DayCell.xib */,
 				779D58D41C7A8D54007FEF5D /* ForecastCell.xib */,
+				778C97C51C8B980C00668B0D /* CurrentInfoView.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				77AFC9FC1C860D61009F090B /* Pods-acknowledgements.plist in Resources */,
 				77DAC6321C7737E9004A1C72 /* Assets.xcassets in Resources */,
 				77B310CD1C865CC700DB3CAF /* testForecast01.xml in Resources */,
+				778C97C61C8B980C00668B0D /* CurrentInfoView.xib in Resources */,
 				77DAC6301C7737E9004A1C72 /* Main.storyboard in Resources */,
 				776BDF541C776D5A0004D9A5 /* city0.json in Resources */,
 			);

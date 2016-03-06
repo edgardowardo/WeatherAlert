@@ -32,6 +32,38 @@ class ForecastCell : UICollectionViewCell {
     @IBOutlet weak var labelTemp: UILabel!
 }
 
+class CurrentInfoView : UIView {
+    @IBOutlet weak var legend1: UIView!
+    @IBOutlet weak var legend2: UIView!
+    @IBOutlet weak var legend3: UIView!
+    @IBOutlet weak var legend4: UIView!
+    @IBOutlet weak var legend1Text: UILabel!
+    @IBOutlet weak var legend2Text: UILabel!
+    @IBOutlet weak var legend3Text: UILabel!
+    @IBOutlet weak var legend4Text: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let unit = Units(rawValue: "Metric")!
+        legend1.layer.cornerRadius = legend1.frame.size.width / 2
+        legend2.layer.cornerRadius = legend1.frame.size.width / 2
+        legend3.layer.cornerRadius = legend1.frame.size.width / 2
+        legend4.layer.cornerRadius = legend1.frame.size.width / 2
+        legend1.backgroundColor = unit.getColorOfSpeed(0.0)
+        legend2.backgroundColor = unit.getColorOfSpeed(7.0)
+        legend3.backgroundColor = unit.getColorOfSpeed(10.0)
+        legend4.backgroundColor = unit.getColorOfSpeed(16.0)
+
+        if let u = AppObject.sharedInstance?.units {
+            legend1Text.text = u.getLegendOfSpeed(.Gentle)
+            legend2Text.text = u.getLegendOfSpeed(.Moderate)
+            legend3Text.text = u.getLegendOfSpeed(.Fresh)
+            legend4Text.text = u.getLegendOfSpeed(.Strong)
+        }
+    }
+}
+
 extension CurrentDetailViewController : UICollectionViewDataSource {
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -217,6 +249,18 @@ class CurrentDetailViewController: UIViewController {
     
     func back() {
         self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
+    @IBAction func showInfo(sender: AnyObject) {
+        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        if let infoView = NSBundle.mainBundle().loadNibNamed("CurrentInfoView", owner: self, options: nil).first as? CurrentInfoView {
+            let margin:CGFloat = 8.0
+            infoView.frame =  CGRectMake(margin, margin, alertController.view.bounds.size.width - margin * 4, 400.0)
+            alertController.view.addSubview(infoView)
+        }
+        let cancelAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        self.presentViewController(alertController, animated: true, completion:{})
     }
     
     @objc private func methodOfReceivedNotification_didSaveForecastObjects(notification : NSNotification) {

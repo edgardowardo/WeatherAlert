@@ -9,6 +9,10 @@
 import Foundation
 import UIColor_FlatColors
 
+enum PseudoSpeed {
+    case Gentle, Moderate, Fresh, Strong
+}
+
 enum Units : String {
     case Metric , Imperial
     
@@ -73,7 +77,34 @@ enum Units : String {
         case .Imperial :
             return 38.0279
         }
-    }    
+    }
+    
+    func getLegendOfSpeed(pseudoSpeed : PseudoSpeed) -> String {
+        switch self {
+        case .Metric :
+            switch pseudoSpeed {
+            case .Gentle :
+                return "0 - 6 \(speed)"
+            case .Moderate :
+                return "6 - 9 \(speed)"
+            case .Fresh :
+                return "9 - 15 \(speed)"
+            case .Strong :
+                return "15+ \(speed)"
+            }
+        case .Imperial :
+            switch pseudoSpeed {
+            case .Gentle :
+                return "0 - 14 \(speed)"
+            case .Moderate :
+                return "14 - 21 \(speed)"
+            case .Fresh :
+                return "21 - 34 \(speed)"
+            case .Strong :
+                return "34+ \(speed)"
+            }
+        }
+    }
     
     func getColorOfSpeed(speed : Double) -> UIColor {
         switch self {

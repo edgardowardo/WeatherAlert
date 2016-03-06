@@ -244,7 +244,24 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ch1-hT-pX5" customClass="RadarChartView" customModule="Charts">
                                         <rect key="frame" x="0.0" y="0.0" width="594" height="450"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0C-J5-11C">
+                                                <rect key="frame" x="561" y="8" width="25" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="amk-Il-3Vh"/>
+                                                    <constraint firstAttribute="width" constant="25" id="eYA-4A-HaB"/>
+                                                </constraints>
+                                                <state key="normal" title="Button" image="icon-info"/>
+                                                <connections>
+                                                    <action selector="showInfo:" destination="Y8o-VK-8sT" eventType="touchUpInside" id="tzh-4T-gDd"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="Y0C-J5-11C" firstAttribute="top" secondItem="ch1-hT-pX5" secondAttribute="top" constant="8" id="HIo-8l-yqc"/>
+                                            <constraint firstAttribute="trailing" secondItem="Y0C-J5-11C" secondAttribute="trailing" constant="8" id="x0Q-Qi-JiG"/>
+                                        </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5tD-Ke-UEG">
                                         <rect key="frame" x="0.0" y="450" width="594" height="150"/>
@@ -284,6 +301,7 @@
     <resources>
         <image name="icon-exclamation" width="25" height="25"/>
         <image name="icon-focus" width="25" height="25"/>
+        <image name="icon-info" width="25" height="25"/>
         <image name="icon-open-box" width="25" height="25"/>
         <image name="icon-temperature" width="25" height="25"/>
         <image name="icon-trash" width="25" height="25"/>
