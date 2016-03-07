@@ -116,7 +116,7 @@ class CurrentObject: Object {
         return self
     }
     
-    static func saveXML(xml : String) -> Int? {
+    static func saveXML(xml : String, realm : Realm! = try! Realm()) -> Int? {
         
         var cityid : Int? = nil
         
@@ -124,7 +124,7 @@ class CurrentObject: Object {
             
             do {
                 let document = try XMLDocument(string: xml)
-                if let root = document.root, realm = try? Realm() {
+                if let root = document.root {
                     
                     realm.beginWrite()
                     //print("\(NSDate()) saveXML")

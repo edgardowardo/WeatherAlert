@@ -17,6 +17,7 @@ class MainViewController: UITableViewController {
     
     // MARK: - Properties -
     
+    var realm : Realm! = nil
     let locationManager = CLLocationManager()
     var location : CLLocation?
     lazy var detailViewController: CurrentDetailViewController? = UIStoryboard.currentDetailViewController()
@@ -36,7 +37,7 @@ class MainViewController: UITableViewController {
     }
     
     func getToken() -> RLMNotificationToken {
-        let token = try! Realm().objects(AppObject).filter("distanceKm > 0").addNotificationBlock { notification, realm in
+        token = realm.objects(AppObject).filter("distanceKm > 0").addNotificationBlock { notification, realm in
             self.currentObjects = self.getCurrentObjects()
             self.tableView.reloadData()
         }
@@ -46,7 +47,10 @@ class MainViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+
+        if realm == nil {
+            realm = try! Realm()
+        }
         token = self.getToken()
         
         if CLLocationManager.authorizationStatus() == .NotDetermined || CLLocationManager.locationServicesEnabled() {
@@ -83,7 +87,6 @@ class MainViewController: UITableViewController {
     // MARK: - Helpers -
  
     func getCurrentObjects(searchText : String? = nil) -> [(String, [CurrentObject])] {
-        let realm = try! Realm()
         var currents = [(String, [CurrentObject])]()
         
         // Get favourite objects
@@ -161,10 +164,9 @@ class MainViewController: UITableViewController {
         return cell
     }
     
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        guard let controller = UIStoryboard.currentDetailViewController() else { return }
-        
+
         var current: CurrentObject
         if searchController.active && searchController.searchBar.text != "" {
             current = filteredObjects[indexPath.section].1[indexPath.row]
@@ -172,13 +174,29 @@ class MainViewController: UITableViewController {
             current = currentObjects[indexPath.section].1[indexPath.row]
         }
         
-        if let realm = try? Realm(), first = realm.objects(CurrentObject).filter("cityid == \(current.cityid)").first where current.lastupdate == nil {
+        showCurrentObject(current)
+        
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if searchController.active && searchController.searchBar.text != "" {
+            return filteredObjects[section].0
+        }
+        return currentObjects[section].0
+    }
+    
+    // MARK: - Helpers -
+    
+    func showCurrentObject(var current : CurrentObject) {
+        guard let _ = realm, controller = UIStoryboard.currentDetailViewController() else { return }
+        
+        if let first = realm.objects(CurrentObject).filter("cityid == \(current.cityid)").first where current.lastupdate == nil {
             current = first
         }
         
         // Current data is not stale. That is  it's less than 3 hours, show this data.
         if let lastupdate = current.lastupdate where NSDate().timeIntervalSinceDate(lastupdate) / 3600 < 3 {
-
+            
             controller.title = "\(current.country), \(current.name)"
             controller.current = current
             self.navigationController?.pushViewController(controller, animated: true)
@@ -188,16 +206,16 @@ class MainViewController: UITableViewController {
             Alamofire.request(Router.Search(id: current.cityid)).responseXMLDocument({ response -> Void in
                 if let xml = response.result.value {
                     let xmlString = "\(xml)"
-                    CurrentObject.saveXML(xmlString)
+                    CurrentObject.saveXML(xmlString, realm: self.realm)
                     Alamofire.request(Router.Forecast(id: current.cityid)).responseXMLDocument({ response -> Void in
                         if let xml = response.result.value {
                             let xmlString = "\(xml)"
-                            ForecastObject.saveXML(xmlString)
+                            ForecastObject.saveXML(xmlString, realm: self.realm)
                             
                             self.delegate?.hideHud()
                             
                             let cityid = current.cityid
-                            if let realm = try? Realm(), current = realm.objects(CurrentObject).filter("cityid == \(cityid)").first {
+                            if let current = self.realm.objects(CurrentObject).filter("cityid == \(cityid)").first {
                                 controller.title = "\(current.country), \(current.name)"
                                 controller.current = current
                                 self.navigationController?.pushViewController(controller, animated: true)
@@ -212,14 +230,6 @@ class MainViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if searchController.active && searchController.searchBar.text != "" {
-            return filteredObjects[section].0
-        }
-        return currentObjects[section].0
-    }
-    
-    // MARK: - Helpers -
     
     func filterContentForSearchText(searchText: String) {
         filteredObjects = self.getCurrentObjects(searchText)
@@ -269,7 +279,6 @@ extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         
-        let realm = try! Realm()
         let cities = realm.objects(CityObject).filter("name contains '\(searchText)'")
         
         if cities.count == 0 {

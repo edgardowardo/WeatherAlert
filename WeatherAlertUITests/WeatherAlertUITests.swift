@@ -36,6 +36,8 @@ class WeatherAlertUITests: XCTestCase {
     
     func test_01_search_city_leeds() {
         app.tables.searchFields["Search with a city name"].tap()
+        
+        
         app.searchFields["Search with a city name"].typeText("Leeds")
         app.keyboards.buttons["Search"].tap()
         let cells = app.tables.cells
@@ -64,6 +66,10 @@ class WeatherAlertUITests: XCTestCase {
         app.keyboards.buttons["Search"].tap()
         let cells = app.tables.cells
         XCTAssertEqual(cells.count, 31, "found instead: \(cells.debugDescription)")
+    }
+    
+    func test_05_end_of_tests() {
+        XCTAssertEqual(0, 0, "will not show")
     }
 }
 

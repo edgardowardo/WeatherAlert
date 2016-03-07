@@ -87,13 +87,13 @@ class ForecastObject: Object {
     // MARK: - Helpers -
 
     
-    static func saveXML(xml : String) {
+    static func saveXML(xml : String, realm : Realm! = try! Realm()) {
         
         autoreleasepool {
             
             do {
                 let document = try XMLDocument(string: xml)
-                if let root = document.root, realm = try? Realm() {
+                if let root = document.root {
                     
                     realm.beginWrite()
                     
