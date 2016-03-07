@@ -20,14 +20,7 @@ class WAAcknowledgementsViewController : VTAcknowledgementsViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let ack = self.acknowledgements![indexPath.row]
-        let ackController = WAAcknowledgementViewController(title: ack.title, text: ack.text)!
+        let ackController = VTAcknowledgementViewController(title: ack.title, text: ack.text)!
         self.navigationController?.pushViewController(ackController, animated: true)
-    }
-}
-
-class WAAcknowledgementViewController : VTAcknowledgementViewController {
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.sharedApplication().statusBarStyle = .Default
     }
 }
