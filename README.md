@@ -12,4 +12,5 @@ The test cases show basic unit tests for reading and writing the realm objects w
 
 The UI tests are limited to 5 test cases because there is an issue in UISearchController result-set being voice-over in-accessible. Since XCUI is based on UI elements being voice over accessible, testing is impossible unless the whole search function is re-written by not using UISearchController. This holds true to Apple specific apps such as Mail that employs UISearchController. Even WhatsApp search bar results is voice over un-accessible!
 
-The issue in stackoverflow regarding voice over in-accessible search controller is ![alt tag](http://stackoverflow.com/questions/33056324/uisearchcontroller-in-accessible)
+The issue in stackoverflow regarding voice over in-accessible search controller is 
+ [Linky Text](http://stackoverflow.com/questions/33056324/uisearchcontroller-in-accessible)
