@@ -39,7 +39,7 @@ class WeatherAlertUITests: XCTestCase {
         app.searchFields["Search with a city name"].typeText("Leeds")
         app.keyboards.buttons["Search"].tap()
         let cells = app.tables.cells
-        XCTAssertEqual(cells.count, 9, "found instead: \(cells.debugDescription)")
+        XCTAssertEqual(cells.count, 10, "found instead: \(cells.debugDescription)")
     }
     
     func test_02_search_city_manchester() {
@@ -47,7 +47,7 @@ class WeatherAlertUITests: XCTestCase {
         app.searchFields["Search with a city name"].typeText("Manchester")
         app.keyboards.buttons["Search"].tap()
         let cells = app.tables.cells
-        XCTAssertEqual(cells.count, 24, "found instead: \(cells.debugDescription)")
+        XCTAssertEqual(cells.count, 25, "found instead: \(cells.debugDescription)")
     }
     
     func test_03_search_city_tagaytay() {
@@ -55,7 +55,7 @@ class WeatherAlertUITests: XCTestCase {
         app.searchFields["Search with a city name"].typeText("Tagaytay")
         app.keyboards.buttons["Search"].tap()
         let cells = app.tables.cells
-        XCTAssertEqual(cells.count, 5, "found instead: \(cells.debugDescription)")
+        XCTAssertEqual(cells.count, 6, "found instead: \(cells.debugDescription)")
     }
 
     func test_04_search_city_london() {
@@ -63,7 +63,7 @@ class WeatherAlertUITests: XCTestCase {
         app.searchFields["Search with a city name"].typeText("London")
         app.keyboards.buttons["Search"].tap()
         let cells = app.tables.cells
-        XCTAssertEqual(cells.count, 30, "found instead: \(cells.debugDescription)")
+        XCTAssertEqual(cells.count, 31, "found instead: \(cells.debugDescription)")
     }
 }
 

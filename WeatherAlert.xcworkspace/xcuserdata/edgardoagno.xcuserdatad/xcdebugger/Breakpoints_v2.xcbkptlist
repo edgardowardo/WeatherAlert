@@ -160,38 +160,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherAlertUITests/WeatherAlertUITests.swift"
-            timestampString = "478602932.981126"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "test_01_search_city_leeds()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WeatherAlertUITests/WeatherAlertUITests.swift"
-            timestampString = "478602932.981126"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "test_03_search_city_tagaytay()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WeatherAlertUITests/WeatherAlertUITests.swift"
             timestampString = "478630016.065606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
