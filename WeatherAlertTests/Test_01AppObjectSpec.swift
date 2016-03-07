@@ -21,13 +21,38 @@ NB: If tests fail, please run as normal on simulator or device, before running t
 class Test_01AppObjectSpec : QuickSpec {
     override func spec() {
         
-        var realm : Realm!
+        var testrealm : Realm!
         
         beforeEach {
-            realm = try! Realm()
+            testrealm = try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "InMemoryRealmForTest"))
+            AppObject.sharedInstance = AppObject.loadAppData(testrealm)
         }
         
         afterEach {
+        }
+        
+        it ("checks default units is metric") {
+            if let app = AppObject.sharedInstance {
+                expect(app.units).to(equal(Units.Metric))
+            }
+        }
+        
+        it ("checks default distance is 2 km") {
+            if let app = AppObject.sharedInstance {
+                expect(app.distanceKm).to(equal(2.0))
+            }
+        }
+        
+        it ("saves the distance to 6 km") {
+            if let app = AppObject.sharedInstance {
+                try! testrealm.write{
+                    app.distanceKm = 6.0
+                }
+            }
+            
+            if let app = testrealm.objects(AppObject).first {
+                expect(app.distanceKm).to(equal(6.0))
+            }
         }
         
         it("saves imperial units to the app settings") {
@@ -36,7 +61,7 @@ class Test_01AppObjectSpec : QuickSpec {
                 app.units = .Imperial
             }
             
-            if let app = realm.objects(AppObject).first {
+            if let app = testrealm.objects(AppObject).first {
                 expect(app.units).to(equal(Units.Imperial))
             }
         }
@@ -47,7 +72,7 @@ class Test_01AppObjectSpec : QuickSpec {
                 app.units = .Metric
             }
             
-            if let app = realm.objects(AppObject).first {
+            if let app = testrealm.objects(AppObject).first {
                 expect(app.units).to(equal(Units.Metric))
             }
         }
