@@ -16,7 +16,27 @@ class AppObject: Object {
     dynamic var _units : String = Units.Metric.rawValue
     dynamic var _sortProperty = "lastupdate"
     dynamic var distanceKm = 2.0
+    dynamic var _isAdsShown = true
     static var sharedInstance = AppObject.loadAppData()
+    
+    var isAdsShown : Bool {
+        get {
+            if let _ = self.realm, app = realm!.objects(AppObject).first {
+                return app._isAdsShown
+            }
+            return true
+        }
+        set {
+            if let _ = self.realm {
+                try! realm!.write {
+                    if let app = AppObject.sharedInstance {
+                        app._isAdsShown = newValue
+                        realm!.add(app, update: true)
+                    }
+                }
+            }
+        }
+    }
     
     var units : Units {
         get {
@@ -55,7 +75,7 @@ class AppObject: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["unit", "distance"]
+        return ["unit", "distance", "isAdsShown"]
     }
     
     static func loadAppData(var realm : Realm! = nil) -> AppObject? {

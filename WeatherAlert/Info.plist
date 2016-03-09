@@ -20,7 +20,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleDisplayName</key>
-	<string>Weather Alert</string>
+	<string>Wind Times</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

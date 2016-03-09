@@ -12,9 +12,10 @@ import RealmSwift
 class LeftViewController: UITableViewController {
     
     enum Items : Int {
-        case Units = 0, Distance, Bin, License, Disclaimer
+        case Units = 0, Distance, Bin, License, Disclaimer, Donation
     }
     
+    lazy var donationNavigationViewController : UINavigationController? = self.getDonationsNavigationViewController()
     var mainViewController: UIViewController!
     
     override func viewDidLoad() {
@@ -116,7 +117,15 @@ class LeftViewController: UITableViewController {
             UIApplication.delay(0.1, closure: { () -> () in
                 self.presentViewController(a, animated: true, completion: nil)
             })
+        case .Donation :
+            presentViewController(self.donationNavigationViewController!, animated: true, completion: nil)
         }
+    }
+    
+    func getDonationsNavigationViewController() -> UINavigationController {
+        let vc = UIStoryboard.donationViewController()!
+        let nav = UINavigationController(rootViewController: vc)
+        return nav
     }
     
     func getAcknowledgementsNavigationViewController() -> UINavigationController {

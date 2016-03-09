@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import Realm
 import RealmSwift
 
 class DayCell : UICollectionReusableView {
@@ -141,7 +142,8 @@ extension CurrentDetailViewController : UICollectionViewDelegate {
 class CurrentDetailViewController: UIViewController {
     
     // MARK: - Properties -
-    
+
+    var token : RLMNotificationToken!
     let directions : [String] = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" ]
     var speeds : [Double] = { return Array<Double>.init(count: 16, repeatedValue: 0.0) }()
     var current : CurrentObject?
@@ -168,7 +170,13 @@ class CurrentDetailViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.interstitialPresentationPolicy = .Automatic
+        if let app = AppObject.sharedInstance where app.isAdsShown {
+            self.interstitialPresentationPolicy = .Automatic
+        } else {
+            self.interstitialPresentationPolicy = .None
+        }
+        token = self.getToken()
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didSaveCurrentObject:", name: CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didSaveForecastObjects:", name: ForecastObject.Notification.Identifier.didSaveForecastObjects, object: nil)
         
@@ -216,6 +224,18 @@ class CurrentDetailViewController: UIViewController {
     }
     
     // MARK: - Helpers -
+    
+    func getToken() -> RLMNotificationToken {
+        guard let realm = try? Realm() else { return token }
+        token = realm.objects(AppObject).addNotificationBlock { notification, realm in
+            if let app = AppObject.sharedInstance where app.isAdsShown {
+                self.interstitialPresentationPolicy = .Automatic
+            } else {
+                self.interstitialPresentationPolicy = .None
+            }
+        }
+        return token
+    }
     
     func clickChart(sender:UITapGestureRecognizer){
         if let c = self.current where since.characters.count == 0 {

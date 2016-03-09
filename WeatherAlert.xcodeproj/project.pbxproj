@@ -17,6 +17,8 @@
 		773E7CBB1C79FB3800047988 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E7CBA1C79FB3800047988 /* NSDate.swift */; };
 		773FAF881C78A17F00D9FE21 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773FAF871C78A17F00D9FE21 /* Alamofire.swift */; };
 		773FAF8A1C78BBAF00D9FE21 /* CurrentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773FAF891C78BBAF00D9FE21 /* CurrentObject.swift */; };
+		774E2EE21C902AE700CC83E4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774E2EE11C902AE700CC83E4 /* StoreKit.framework */; };
+		774E2EE41C902AF700CC83E4 /* DonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774E2EE31C902AF700CC83E4 /* DonationViewController.swift */; };
 		775C375B1C78DBB8007D0C80 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C375A1C78DBB8007D0C80 /* Router.swift */; };
 		7768A6511C7BF044007F1521 /* WAAcknowledgementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7768A6501C7BF044007F1521 /* WAAcknowledgementsViewController.swift */; };
 		776BDE821C7750BE0004D9A5 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776BDE811C7750BE0004D9A5 /* UIApplication.swift */; };
@@ -80,6 +82,8 @@
 		773E7CBA1C79FB3800047988 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		773FAF871C78A17F00D9FE21 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		773FAF891C78BBAF00D9FE21 /* CurrentObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentObject.swift; sourceTree = "<group>"; };
+		774E2EE11C902AE700CC83E4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		774E2EE31C902AF700CC83E4 /* DonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationViewController.swift; sourceTree = "<group>"; };
 		775C375A1C78DBB8007D0C80 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		7768A6501C7BF044007F1521 /* WAAcknowledgementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAAcknowledgementsViewController.swift; sourceTree = "<group>"; };
 		776BDE811C7750BE0004D9A5 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				774E2EE21C902AE700CC83E4 /* StoreKit.framework in Frameworks */,
 				77CFF5CC1C8B455F002D57A5 /* iAd.framework in Frameworks */,
 				231DBD9F85EC442927C50492 /* Pods_WeatherAlert.framework in Frameworks */,
 			);
@@ -157,6 +162,7 @@
 		2DC10FD5BF2AFF5214465EA9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				774E2EE11C902AE700CC83E4 /* StoreKit.framework */,
 				77CFF5CB1C8B455F002D57A5 /* iAd.framework */,
 				A48BC8A65B50C0391F38EED2 /* Pods_WeatherAlert.framework */,
 				8A4062DB4CCB1E9E41E8391F /* Pods_WeatherAlertTests.framework */,
@@ -188,6 +194,7 @@
 				7732B36E1C78E72B00B845F4 /* CurrentDetailViewController.swift */,
 				779D58D61C7A9825007FEF5D /* CurrentDetailLayout.swift */,
 				7768A6501C7BF044007F1521 /* WAAcknowledgementsViewController.swift */,
+				774E2EE31C902AF700CC83E4 /* DonationViewController.swift */,
 				778AB11B1C7A3EAF00EE974B /* Xib */,
 			);
 			path = ViewController;
@@ -592,6 +599,7 @@
 				7700D7671C84ABAC00ADCE06 /* AppObject.swift in Sources */,
 				776BDF4F1C775DA00004D9A5 /* CityObject.swift in Sources */,
 				7732B36F1C78E72B00B845F4 /* CurrentDetailViewController.swift in Sources */,
+				774E2EE41C902AF700CC83E4 /* DonationViewController.swift in Sources */,
 				779D58D71C7A9825007FEF5D /* CurrentDetailLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

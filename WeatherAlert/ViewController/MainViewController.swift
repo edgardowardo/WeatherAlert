@@ -37,7 +37,10 @@ class MainViewController: UITableViewController {
     }
     
     func getToken() -> RLMNotificationToken {
-        token = realm.objects(AppObject).filter("distanceKm > 0").addNotificationBlock { notification, realm in
+        token = realm.objects(AppObject).addNotificationBlock { notification, realm in
+            if let app = AppObject.sharedInstance {
+                self.canDisplayBannerAds = app.isAdsShown
+            }
             self.currentObjects = self.getCurrentObjects()
             self.tableView.reloadData()
         }
@@ -59,8 +62,10 @@ class MainViewController: UITableViewController {
             locationManager.requestWhenInUseAuthorization()
         }
         
-        self.canDisplayBannerAds = true
-        self.title = "Weather Alert"
+        if let app = AppObject.sharedInstance {
+            self.canDisplayBannerAds = app.isAdsShown
+        }
+        self.title = "Wind Times"
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didSaveCurrentObject:", name: CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "methodOfReceivedNotification_didLoadCityData:", name: CityObject.Notification.Identifier.didLoadCityData, object: nil)        

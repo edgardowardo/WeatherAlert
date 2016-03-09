@@ -133,15 +133,43 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="3rv-LL-W9k" detailTextLabel="jDU-jc-KX3" imageView="tDI-cx-3OQ" style="IBUITableViewCellStyleValue1" id="BSs-AY-GiW">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="5uC-As-MIo" detailTextLabel="2gh-qn-urW" imageView="Hoi-Vc-0er" style="IBUITableViewCellStyleValue1" id="rap-N9-4wN">
                                         <rect key="frame" x="0.0" y="304" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rap-N9-4wN" id="v5j-B2-fvy">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Disclaimer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5uC-As-MIo">
+                                                    <rect key="frame" x="55" y="10" width="89" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2gh-qn-urW">
+                                                    <rect key="frame" x="543" y="14" width="42" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon-exclamation" id="Hoi-Vc-0er">
+                                                    <rect key="frame" x="15" y="9" width="25" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="3rv-LL-W9k" detailTextLabel="jDU-jc-KX3" imageView="tDI-cx-3OQ" style="IBUITableViewCellStyleValue1" id="BSs-AY-GiW">
+                                        <rect key="frame" x="0.0" y="348" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BSs-AY-GiW" id="hwe-71-eIE">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Disclaimer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3rv-LL-W9k">
-                                                    <rect key="frame" x="55" y="10" width="89" height="24"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Remove ads" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3rv-LL-W9k">
+                                                    <rect key="frame" x="55" y="10" width="109" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -154,7 +182,7 @@
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon-exclamation" id="tDI-cx-3OQ">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon-ads" id="tDI-cx-3OQ">
                                                     <rect key="frame" x="15" y="9" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -172,7 +200,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ew-XT-lUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="351" y="-664"/>
+            <point key="canvasLocation" x="335" y="-716"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="jDz-Mt-ZSm">
@@ -185,7 +213,7 @@
                         <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x0s-LA-SR0">
                             <rect key="frame" x="0.0" y="72" width="600" height="163"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <string key="text">Weather Alert helps you organise your cities by searching from the bar above and clicking star to save them as favourites. Favourites will appear first in the list followed by nearby cities then recently inspected cities. Nearby cities can be approximately adjusted on the left side menu.</string>
+                            <string key="text">Wind Times help you organise your cities by searching from the bar above and clicking star to save them as favourites. Favourites will appear first in the list followed by nearby cities then recently inspected cities. Nearby cities can be approximately adjusted on the left side menu.</string>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -297,8 +325,149 @@
             </objects>
             <point key="canvasLocation" x="1700" y="95"/>
         </scene>
+        <!--Donation-->
+        <scene sceneID="g8i-27-N8e">
+            <objects>
+                <viewController storyboardIdentifier="DonationViewController" title="Donation" id="qTF-D2-cNM" customClass="DonationViewController" customModule="WeatherAlert" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="N3Y-CG-CvB"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Hv-e7-aGa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fck-72-pTQ">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duK-2A-U5K">
+                                <rect key="frame" x="20" y="221" width="560" height="95"/>
+                                <string key="text">Wind Times relies on your support to fund its development. If you find it useful, please consider supporting the app by leaving a donation. Any donation given will also remove all advertisements from the app. </string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ehz-D5-KXR">
+                                <rect key="frame" x="200" y="0.0" width="200" height="221"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="6vh-mi-saP">
+                                        <rect key="frame" x="50" y="61" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="M4z-eI-4Ut"/>
+                                            <constraint firstAttribute="width" constant="100" id="S2K-8g-aNx"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="6vh-mi-saP" secondAttribute="centerY" id="E9e-xb-X3F"/>
+                                    <constraint firstAttribute="width" constant="200" id="WAu-92-fRi"/>
+                                    <constraint firstAttribute="centerX" secondItem="6vh-mi-saP" secondAttribute="centerX" id="sfs-PX-qeK"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gbh-3G-TTf">
+                                <rect key="frame" x="20" y="324" width="560" height="212"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="ydN-O6-fe5">
+                                        <rect key="frame" x="131" y="8" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="JKj-ah-0Gp"/>
+                                            <constraint firstAttribute="height" constant="100" id="l1F-M3-iei"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <state key="normal" title=" One-off donation of £0.79">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="handleOneoff:" destination="qTF-D2-cNM" eventType="touchUpInside" id="EZ4-Rz-hJL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Twv-rx-sH1">
+                                        <rect key="frame" x="329" y="8" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="1CI-1d-xCZ"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="JqB-ts-drY"/>
+                                            <constraint firstAttribute="width" constant="100" id="Zrs-1T-ppV"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="ucT-n9-Igx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <state key="normal" title="Generous donation of £2.99">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="handleSmashing:" destination="qTF-D2-cNM" eventType="touchUpInside" id="kGk-gf-8V7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vfS-Uz-wWD">
+                                        <rect key="frame" x="196" y="116" width="168" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="9Ah-QI-zk3"/>
+                                            <constraint firstAttribute="width" constant="168" id="l15-QL-kpW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <state key="normal" title="Restore one-off">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="handleRestore:" destination="qTF-D2-cNM" eventType="touchUpInside" id="gzv-Fa-hZ8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="tG7-aA-hUR">
+                                        <rect key="frame" x="230" y="8" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="Tcm-mZ-KDA"/>
+                                            <constraint firstAttribute="height" constant="100" id="c8Q-I4-jkf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <state key="normal" title="  Fresh donation of £1.49">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="handleGreat:" destination="qTF-D2-cNM" eventType="touchUpInside" id="eXi-pp-Zkk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="tG7-aA-hUR" firstAttribute="leading" secondItem="ydN-O6-fe5" secondAttribute="trailing" constant="-1" id="2aB-b3-RHt"/>
+                                    <constraint firstItem="Twv-rx-sH1" firstAttribute="leading" secondItem="tG7-aA-hUR" secondAttribute="trailing" constant="-1" id="726-Au-y6C"/>
+                                    <constraint firstItem="tG7-aA-hUR" firstAttribute="top" secondItem="Gbh-3G-TTf" secondAttribute="top" constant="8" id="Cxs-IB-nCJ"/>
+                                    <constraint firstItem="vfS-Uz-wWD" firstAttribute="top" secondItem="Twv-rx-sH1" secondAttribute="bottom" constant="8" id="E3J-BM-y43"/>
+                                    <constraint firstAttribute="centerX" secondItem="vfS-Uz-wWD" secondAttribute="centerX" id="FoQ-08-SfQ"/>
+                                    <constraint firstAttribute="centerX" secondItem="tG7-aA-hUR" secondAttribute="centerX" id="Wpc-Ec-E3n"/>
+                                    <constraint firstItem="ydN-O6-fe5" firstAttribute="top" secondItem="Gbh-3G-TTf" secondAttribute="top" constant="8" id="dkO-pO-N4D"/>
+                                    <constraint firstItem="Twv-rx-sH1" firstAttribute="top" secondItem="Gbh-3G-TTf" secondAttribute="top" constant="8" id="gsO-10-X2h"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="duK-2A-U5K" firstAttribute="trailing" secondItem="fck-72-pTQ" secondAttribute="trailingMargin" id="0ux-yk-dvC"/>
+                            <constraint firstItem="Gbh-3G-TTf" firstAttribute="trailing" secondItem="fck-72-pTQ" secondAttribute="trailingMargin" id="GLu-7i-gP4"/>
+                            <constraint firstAttribute="centerY" secondItem="duK-2A-U5K" secondAttribute="centerY" id="OGK-Bd-zAl"/>
+                            <constraint firstItem="5Hv-e7-aGa" firstAttribute="top" secondItem="Gbh-3G-TTf" secondAttribute="bottom" id="QeS-2q-Cg6"/>
+                            <constraint firstItem="Gbh-3G-TTf" firstAttribute="top" secondItem="duK-2A-U5K" secondAttribute="bottom" constant="8" id="SDX-PM-nuY"/>
+                            <constraint firstAttribute="centerX" secondItem="Ehz-D5-KXR" secondAttribute="centerX" id="XNV-Xh-m31"/>
+                            <constraint firstItem="Gbh-3G-TTf" firstAttribute="leading" secondItem="fck-72-pTQ" secondAttribute="leadingMargin" id="Y5f-b1-puq"/>
+                            <constraint firstItem="Ehz-D5-KXR" firstAttribute="top" secondItem="N3Y-CG-CvB" secondAttribute="bottom" id="cPj-d2-rYz"/>
+                            <constraint firstItem="duK-2A-U5K" firstAttribute="leading" secondItem="fck-72-pTQ" secondAttribute="leadingMargin" id="nka-nQ-QmR"/>
+                            <constraint firstItem="duK-2A-U5K" firstAttribute="top" secondItem="Ehz-D5-KXR" secondAttribute="bottom" id="qPQ-GD-oAt"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="buttonGreat" destination="tG7-aA-hUR" id="khY-Tz-tcQ"/>
+                        <outlet property="buttonOneOff" destination="ydN-O6-fe5" id="1ri-ZP-SRg"/>
+                        <outlet property="buttonRestore" destination="vfS-Uz-wWD" id="1WX-2Q-gnF"/>
+                        <outlet property="buttonSmashing" destination="Twv-rx-sH1" id="WXO-AD-q8R"/>
+                        <outlet property="logoImageView" destination="6vh-mi-saP" id="xbE-AU-cYc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IGT-V4-sxj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="330" y="-16"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="iTunesArtwork" width="512" height="512"/>
+        <image name="icon-ads" width="25" height="25"/>
         <image name="icon-exclamation" width="25" height="25"/>
         <image name="icon-focus" width="25" height="25"/>
         <image name="icon-info" width="25" height="25"/>

@@ -13,5 +13,9 @@ extension UIStoryboard {
     
     class func currentDetailViewController() -> CurrentDetailViewController? {
         return mainStoryboard().instantiateViewControllerWithIdentifier("CurrentDetailViewController") as? CurrentDetailViewController
-    }    
+    }
+    
+    class func donationViewController() -> DonationViewController? {
+        return mainStoryboard().instantiateViewControllerWithIdentifier("DonationViewController") as? DonationViewController
+    }
 }
