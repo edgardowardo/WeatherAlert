@@ -25,9 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let leftViewController = storyboard.instantiateViewControllerWithIdentifier("LeftViewController") as! LeftViewController
         
         let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
-        
-        UINavigationBar.appearance().tintColor = UIColor.flatMidnightBlueColor()
-        
         leftViewController.mainViewController = nvc
         
         let container = ContainerMenuViewController(mainViewController:nvc, leftMenuViewController: leftViewController)

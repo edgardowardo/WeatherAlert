@@ -39,6 +39,7 @@ class DonationViewController : UIViewController {
         self.title = "Remove Ads & Donate"
         self.logoImageView.layer.masksToBounds = true
         self.logoImageView.layer.cornerRadius = self.logoImageView.frame.size.width / 2
+        self.logoImageView.backgroundColor = UIColor.flatPeterRiverColor()
         if let _ = self.presentingViewController {
             if self == (self.navigationController?.viewControllers.first!)! as UIViewController {
                 self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("close:"))

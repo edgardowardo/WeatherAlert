@@ -347,7 +347,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ehz-D5-KXR">
                                 <rect key="frame" x="200" y="0.0" width="200" height="221"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="6vh-mi-saP">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchImage" translatesAutoresizingMaskIntoConstraints="NO" id="6vh-mi-saP">
                                         <rect key="frame" x="50" y="61" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="M4z-eI-4Ut"/>
@@ -466,7 +466,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="iTunesArtwork" width="512" height="512"/>
         <image name="icon-ads" width="25" height="25"/>
         <image name="icon-exclamation" width="25" height="25"/>
         <image name="icon-focus" width="25" height="25"/>
@@ -474,6 +473,7 @@
         <image name="icon-open-box" width="25" height="25"/>
         <image name="icon-temperature" width="25" height="25"/>
         <image name="icon-trash" width="25" height="25"/>
+        <image name="launchImage" width="410" height="410"/>
         <image name="wind" width="275" height="183"/>
     </resources>
 </document>
