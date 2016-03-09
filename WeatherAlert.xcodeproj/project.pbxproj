@@ -385,6 +385,7 @@
 				TargetAttributes = {
 					77DAC6261C7737E9004A1C72 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = LGLDN3729L;
 					};
 					77DAC63A1C7737E9004A1C72 = {
 						CreatedOnToolsVersion = 7.2;
@@ -745,11 +746,14 @@
 			baseConfigurationReference = FE148F6C992E6D53BBDF3F3F /* Pods-WeatherAlert.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = WeatherAlert/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.edgardoagno.WeatherAlert;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -758,11 +762,14 @@
 			baseConfigurationReference = D14725FC47CD75A6BA838F31 /* Pods-WeatherAlert.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = WeatherAlert/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.edgardoagno.WeatherAlert;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
