@@ -7,9 +7,7 @@ Using Swift 2.1.1 on Xcode 7.2
 
 # The Requirements
 
-Build the app requirements in a week, as specified in the word document.
-
-![alt tag](https://github.com/edgardowardo/WeatherAlert/blob/master/Weather Alert UT - Sky.docx)
+Build the [app requirements](https://github.com/edgardowardo/WeatherAlert/blob/master/Weather Alert UT - Sky.docx) in a week, as specified in the word document.
 
 # The Solution: Key design and architectural decisions
 
