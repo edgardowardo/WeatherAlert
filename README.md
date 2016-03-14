@@ -29,3 +29,8 @@ The test cases show basic unit tests for reading and writing the realm objects w
 
 The UI tests are limited to 5 test cases because there is an [issue in UISearchController result-set being voice-over in-accessible](http://stackoverflow.com/questions/33056324/uisearchcontroller-in-accessible). Since XCUI is based on UI elements being voice over accessible, testing is impossible unless the whole search function is re-written by not using UISearchController. This holds true to Apple specific apps such as Mail that employs UISearchController. Even WhatsApp search bar results is voice over in-accessible and therefore XCUI un-testable!
 
+# Post development
+
+After submitting version 1.0 in the itunes app store and marketing this as Wind Times, I've written a [blog entry](http://www.edgardoagno.com/#!Weather-Alert-app-development-a-skills-benchmark-and-walkthrough/cvk5/56e4735f0cf29c0b75f6d973) detail my experiences above.
+
+
