@@ -18,4 +18,8 @@ extension UIStoryboard {
     class func donationViewController() -> DonationViewController? {
         return mainStoryboard().instantiateViewControllerWithIdentifier("DonationViewController") as? DonationViewController
     }
+    
+    class func mapViewController() -> MapViewController? {
+        return mainStoryboard().instantiateViewControllerWithIdentifier("MapViewController") as? MapViewController
+    }    
 }

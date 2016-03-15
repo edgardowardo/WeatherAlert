@@ -9,6 +9,7 @@
 import RealmSwift
 import Fuzi
 import CoreLocation
+import MapKit
 
 class CurrentObject: Object {
     
@@ -180,5 +181,26 @@ class CurrentObject: Object {
         }
         
         return cityid
+    }
+}
+
+extension CurrentObject : MKAnnotation {
+    
+    var coordinate: CLLocationCoordinate2D {
+        get {
+            return self.location.coordinate
+        }
+    }
+    
+    var title: String? {
+        get {
+            return self.name
+        }
+    }
+
+    var subtitle: String? {
+        get {
+            return self.country
+        }
     }
 }

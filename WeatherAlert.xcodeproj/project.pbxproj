@@ -50,6 +50,7 @@
 		77DAC6321C7737E9004A1C72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DAC6311C7737E9004A1C72 /* Assets.xcassets */; };
 		77DAC64B1C7737EA004A1C72 /* WeatherAlertUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAC64A1C7737EA004A1C72 /* WeatherAlertUITests.swift */; };
 		77DEB4501C90E6B3002B84D7 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DEB44F1C90E6B3002B84D7 /* Launch.storyboard */; };
+		77E1ECDC1C9779F400DA777D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1ECDB1C9779F400DA777D /* MapViewController.swift */; };
 		77F282DA1C85154B0018FAF8 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F282D91C85154B0018FAF8 /* Units.swift */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,7 @@
 		77DAC64A1C7737EA004A1C72 /* WeatherAlertUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAlertUITests.swift; sourceTree = "<group>"; };
 		77DAC64C1C7737EA004A1C72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77DEB44F1C90E6B3002B84D7 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		77E1ECDB1C9779F400DA777D /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		77F282D91C85154B0018FAF8 /* Units.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
 		8A4062DB4CCB1E9E41E8391F /* Pods_WeatherAlertTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherAlertTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48BC8A65B50C0391F38EED2 /* Pods_WeatherAlert.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherAlert.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +197,7 @@
 				779D58D61C7A9825007FEF5D /* CurrentDetailLayout.swift */,
 				7768A6501C7BF044007F1521 /* WAAcknowledgementsViewController.swift */,
 				774E2EE31C902AF700CC83E4 /* DonationViewController.swift */,
+				77E1ECDB1C9779F400DA777D /* MapViewController.swift */,
 				778AB11B1C7A3EAF00EE974B /* Xib */,
 			);
 			path = ViewController;
@@ -595,6 +598,7 @@
 				77DAC62B1C7737E9004A1C72 /* AppDelegate.swift in Sources */,
 				776BDF471C77535A0004D9A5 /* LeftViewController.swift in Sources */,
 				77F282DA1C85154B0018FAF8 /* Units.swift in Sources */,
+				77E1ECDC1C9779F400DA777D /* MapViewController.swift in Sources */,
 				773FAF881C78A17F00D9FE21 /* Alamofire.swift in Sources */,
 				772CC7561C77CE0A008ECCFC /* UIStoryboard.swift in Sources */,
 				7700D7671C84ABAC00ADCE06 /* AppObject.swift in Sources */,

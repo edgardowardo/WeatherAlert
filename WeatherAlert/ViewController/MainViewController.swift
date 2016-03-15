@@ -20,6 +20,7 @@ class MainViewController: UITableViewController {
     var realm : Realm! = nil
     let locationManager = CLLocationManager()
     var location : CLLocation?
+    lazy var mapNavigationViewController : UINavigationController? = self.getMapNavigationViewController()
     lazy var detailViewController: CurrentDetailViewController? = UIStoryboard.currentDetailViewController()
     lazy var currentObjects : [(String, [CurrentObject])] = self.getCurrentObjects()
     var filteredObjects : [(String, [CurrentObject])]!
@@ -77,6 +78,10 @@ class MainViewController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
+        
+        if let _ = self.location {
+            resetRightBarButtonItem()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,6 +95,26 @@ class MainViewController: UITableViewController {
     }
     
     // MARK: - Helpers -
+    
+    func resetRightBarButtonItem() {
+        let i : UIImage =  UIImage(named: "icon-map")!
+        let map = UIButton(type: .Custom)
+        map.bounds = CGRectMake(0, 0, i.size.width, i.size.height)
+        map.setImage(i, forState: .Normal)
+        map.addTarget(self, action: Selector("openMap"), forControlEvents: .TouchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: map)
+    }
+    
+    func openMap() {
+        presentViewController(self.mapNavigationViewController!, animated: true, completion: nil)
+    }
+    
+    func getMapNavigationViewController() -> UINavigationController {
+        let vc = UIStoryboard.mapViewController()!
+        vc.delegate = self
+        let nav = UINavigationController(rootViewController: vc)
+        return nav
+    }
  
     func getCurrentObjects(searchText : String? = nil) -> [(String, [CurrentObject])] {
         var currents = [(String, [CurrentObject])]()
@@ -252,6 +277,29 @@ class MainViewController: UITableViewController {
     }
 }
 
+// MARK: - Map Delegate -
+
+extension MainViewController : MapDelegate {
+
+    func getNearbyCurrents() -> [CurrentObject] {
+        let nearbies = self.currentObjects.filter({ $0.0.containsString("NEARBY")}).first!.1
+        let cachedCities = realm.objects(CurrentObject)
+        let nearbyCurrents = nearbies.map({ (c : CurrentObject) -> CurrentObject in
+            let id = c.cityid
+            if let first = cachedCities.filter({ $0.cityid == id }).first {
+                return first
+            } else {
+                return c
+            }
+        })
+        return nearbyCurrents
+    }
+    
+    func getCurrentLocation() -> CLLocation {
+        return self.location!
+    }
+}
+
 // MARK: - Core Location -
 
 extension MainViewController : CLLocationManagerDelegate {
@@ -268,6 +316,7 @@ extension MainViewController : CLLocationManagerDelegate {
             currentObjects = getCurrentObjects()
             tableView.reloadData()
             locationManager.stopUpdatingLocation()
+            resetRightBarButtonItem()
         }
     }
     

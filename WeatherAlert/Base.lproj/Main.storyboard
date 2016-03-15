@@ -202,6 +202,41 @@
             </objects>
             <point key="canvasLocation" x="335" y="-716"/>
         </scene>
+        <!--Nearby-->
+        <scene sceneID="odV-kB-ayx">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" title="Nearby" id="ypX-Jf-ty7" customClass="MapViewController" customModule="WeatherAlert" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DPO-ay-1NA"/>
+                        <viewControllerLayoutGuide type="bottom" id="KdG-w3-jbS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VOn-oR-v1O">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="t9Z-Tq-LUd">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ypX-Jf-ty7" id="1tP-7Y-ioz"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KdG-w3-jbS" firstAttribute="top" secondItem="t9Z-Tq-LUd" secondAttribute="bottom" id="6ES-9R-WK6"/>
+                            <constraint firstItem="t9Z-Tq-LUd" firstAttribute="top" secondItem="VOn-oR-v1O" secondAttribute="topMargin" id="JOr-8Q-m92"/>
+                            <constraint firstItem="t9Z-Tq-LUd" firstAttribute="leading" secondItem="VOn-oR-v1O" secondAttribute="leadingMargin" constant="-20" id="dCu-8S-1wP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="t9Z-Tq-LUd" secondAttribute="trailing" constant="-20" id="sPV-T6-K8x"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="map" destination="t9Z-Tq-LUd" id="1dv-fy-GjJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eDS-kA-QI2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1020" y="-1355"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="jDz-Mt-ZSm">
             <objects>
