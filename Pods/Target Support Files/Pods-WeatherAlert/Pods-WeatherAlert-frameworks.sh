@@ -84,26 +84,34 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-WeatherAlert/AKPickerView.framework"
   install_framework "Pods-WeatherAlert/Alamofire.framework"
   install_framework "Pods-WeatherAlert/Charts.framework"
   install_framework "Pods-WeatherAlert/Fuzi.framework"
   install_framework "Pods-WeatherAlert/MBProgressHUD.framework"
   install_framework "Pods-WeatherAlert/Ono.framework"
+  install_framework "Pods-WeatherAlert/ReactKit.framework"
   install_framework "Pods-WeatherAlert/Realm.framework"
   install_framework "Pods-WeatherAlert/RealmSwift.framework"
   install_framework "Pods-WeatherAlert/SlideMenuControllerSwift.framework"
+  install_framework "Pods-WeatherAlert/SwiftTask.framework"
+  install_framework "Pods-WeatherAlert/TTRangeSlider.framework"
   install_framework "Pods-WeatherAlert/UIColor_FlatColors.framework"
   install_framework "Pods-WeatherAlert/VTAcknowledgementsViewController.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-WeatherAlert/AKPickerView.framework"
   install_framework "Pods-WeatherAlert/Alamofire.framework"
   install_framework "Pods-WeatherAlert/Charts.framework"
   install_framework "Pods-WeatherAlert/Fuzi.framework"
   install_framework "Pods-WeatherAlert/MBProgressHUD.framework"
   install_framework "Pods-WeatherAlert/Ono.framework"
+  install_framework "Pods-WeatherAlert/ReactKit.framework"
   install_framework "Pods-WeatherAlert/Realm.framework"
   install_framework "Pods-WeatherAlert/RealmSwift.framework"
   install_framework "Pods-WeatherAlert/SlideMenuControllerSwift.framework"
+  install_framework "Pods-WeatherAlert/SwiftTask.framework"
+  install_framework "Pods-WeatherAlert/TTRangeSlider.framework"
   install_framework "Pods-WeatherAlert/UIColor_FlatColors.framework"
   install_framework "Pods-WeatherAlert/VTAcknowledgementsViewController.framework"
 fi

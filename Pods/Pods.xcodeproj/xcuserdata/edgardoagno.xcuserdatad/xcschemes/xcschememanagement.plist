@@ -4,115 +4,120 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AKPickerView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 		<key>Charts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>Fuzi.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>Nimble.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>Ono.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 		<key>Pods-WeatherAlert.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>7</integer>
 		</dict>
 		<key>Pods-WeatherAlertTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>8</integer>
 		</dict>
 		<key>Pods-WeatherAlertUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>9</integer>
 		</dict>
 		<key>Quick.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>10</integer>
+		</dict>
+		<key>ReactKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Realm.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>11</integer>
 		</dict>
 		<key>RealmSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>12</integer>
 		</dict>
 		<key>SlideMenuControllerSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>13</integer>
+		</dict>
+		<key>SwiftTask.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>TTRangeSlider.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>UIColor+FlatColors.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>14</integer>
 		</dict>
 		<key>VTAcknowledgementsViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>15</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>10050594B48723BC783F2DE57F831B83</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>143CD03FBF1C29C2DA14C71FA74B3594</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3B0AED0E2B51C1EE369DF7E3648297B6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3BB8DCC26BE8F17E945060A329E97538</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,12 +127,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>42E8CE4B64386D948F3DFAAE3CC913C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>49C497DE819F53D1322D99E958FEB459</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4C4EFEAC6446E779C2A69398AE5050D9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4CB4EEB7064821C322ECB1EA68084F6E</key>
+		<key>59068B3DED6A9A0AE067FCC608ADBDA6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5D5E4DBEA9821DC3268EEDD998BF678C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,17 +157,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>75230B9AB1BB9BAAC5357E68CBFE3707</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>825F421F25C78E53E9C8CFAD36F70BF6</key>
+		<key>896A7FBEEBBF3D7AD87682102AEAF03F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -167,22 +182,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E44B22F7A16BA23ACD8F6728CB1B1434</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E4D2E8146BA89615D6F2B2D47153B13C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EB2486EC86FFAD2C363C4BB41C077F8B</key>
+		<key>E64591950A019B1A47F3859B97FD310B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9436BFB5A8CC69A656A84504A1871F3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

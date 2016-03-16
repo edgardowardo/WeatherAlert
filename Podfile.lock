@@ -1,4 +1,5 @@
 PODS:
+  - AKPickerView (0.2.7)
   - Alamofire (3.2.0)
   - Charts (2.2.2):
     - Charts/Core (= 2.2.2)
@@ -8,16 +9,21 @@ PODS:
   - Nimble (3.1.0)
   - Ono (1.2.2)
   - Quick (0.9.1)
+  - ReactKit (0.12.0):
+    - SwiftTask (~> 4.0.0)
   - Realm (0.98.2):
     - Realm/Headers (= 0.98.2)
   - Realm/Headers (0.98.2)
   - RealmSwift (0.98.2):
     - Realm (= 0.98.2)
   - SlideMenuControllerSwift (2.0.5)
+  - SwiftTask (4.0.0)
+  - TTRangeSlider (1.0.3)
   - UIColor+FlatColors (0.0.2)
   - VTAcknowledgementsViewController (0.17)
 
 DEPENDENCIES:
+  - AKPickerView
   - Alamofire
   - Charts
   - Fuzi
@@ -25,12 +31,15 @@ DEPENDENCIES:
   - Nimble
   - Ono
   - Quick
+  - ReactKit
   - RealmSwift
   - SlideMenuControllerSwift
+  - TTRangeSlider
   - UIColor+FlatColors
   - VTAcknowledgementsViewController
 
 SPEC CHECKSUMS:
+  AKPickerView: 125372e36fcc372216127600a541f14dcdbb7993
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
   Charts: e32b718fa716bdb7693b9e419d6d4a39a3f7992e
   Fuzi: 4725b8743f0a92100108e013347bf32ca80d93a1
@@ -38,9 +47,12 @@ SPEC CHECKSUMS:
   Nimble: 79d40f4d69d47314229bbabacaa02b8838c779b9
   Ono: 80b1c686777d3f6d5d5ce6fcac8a74afef4ca197
   Quick: a5221fc21788b6aeda934805e68b061839bc3165
+  ReactKit: a2b705e8a8674b9cb38b8112c07891df87e8e62b
   Realm: 88a147fe04b8f07191a676b15c779b2b448991de
   RealmSwift: 9907c7415b3e19ef2ab9f89878fc890f03f93aea
   SlideMenuControllerSwift: 9dcae36265e14c4f42e729f212463beb60d2cf96
+  SwiftTask: 724ff63fc8bd9b366d242696d4aff098f6de3c3a
+  TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e
   UIColor+FlatColors: 6c699df7a575281794c688c64cee6c44fd1f93b4
   VTAcknowledgementsViewController: 6056f5f5e5ed995bbf0581bed6ddd29355ca9a80
 

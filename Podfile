@@ -2,6 +2,8 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'WeatherAlert' do
+pod "TTRangeSlider"
+pod "AKPickerView"
 pod 'ReactKit'
 pod 'Charts'
 pod 'Alamofire'
