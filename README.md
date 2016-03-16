@@ -31,6 +31,6 @@ The UI tests are limited to 5 test cases because there is an [issue in UISearchC
 
 # Post development
 
-After submitting version 1.0 in the itunes app store and marketing this as Wind Times, I've written a [blog entry](http://www.edgardoagno.com/#!Weather-Alert-app-development-a-skills-benchmark-and-walkthrough/cvk5/56e4735f0cf29c0b75f6d973) detail my experiences above.
+After developing this app for the Sky interview, I have now submitted this to the itunes app store and marketing this as [Wind Times](https://itunes.apple.com/gb/app/wind-times/id1073477632?mt=8), I've also written a [blog entry](http://www.edgardoagno.com/#!Weather-Alert-app-development-a-skills-benchmark-and-walkthrough/cvk5/56e4735f0cf29c0b75f6d973) on my website detailing my experiences above.
 
 
