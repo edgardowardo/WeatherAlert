@@ -115,18 +115,8 @@ class MainViewController: UITableViewController {
         let nav = UINavigationController(rootViewController: vc)
         return nav
     }
- 
-    func getCurrentObjects(searchText : String? = nil) -> [(String, [CurrentObject])] {
-        var currents = [(String, [CurrentObject])]()
-        
-        // Get favourite objects
-        var favourites = realm.objects(CurrentObject).filter("isFavourite == 1")
-        if let s = searchText {
-            favourites = favourites.filter("name contains '\(s)'")
-        }
-        favourites = favourites.sorted("lastupdate", ascending: false)
-        currents.append(("FAVOURITES - \(favourites.count)", Array(favourites)))
-        
+    
+    func getNearbies(fromLocation location: CLLocation?, andSearchText searchText : String?) -> [CurrentObject] {
         if let loc = location, app = AppObject.sharedInstance {
             let latitude = loc.coordinate.latitude, longitude = loc.coordinate.longitude
             let searchDistance = app.distanceKm
@@ -143,6 +133,24 @@ class MainViewController: UITableViewController {
                 return CurrentObject().setPropertiesFromCity($0, currentLocation: loc)
             })
             nearbies.sortInPlace({ return $0.0.distanceKm < $0.1.distanceKm })
+            return nearbies
+        }
+        return []
+    }
+    
+    func getCurrentObjects(searchText : String? = nil) -> [(String, [CurrentObject])] {
+        var currents = [(String, [CurrentObject])]()
+        
+        // Get favourite objects
+        var favourites = realm.objects(CurrentObject).filter("isFavourite == 1")
+        if let s = searchText {
+            favourites = favourites.filter("name contains '\(s)'")
+        }
+        favourites = favourites.sorted("lastupdate", ascending: false)
+        currents.append(("FAVOURITES - \(favourites.count)", Array(favourites)))
+        
+        if let loc = location {
+            let nearbies = getNearbies(fromLocation: loc, andSearchText: searchText)
             currents.append(("NEARBY - \(nearbies.count)", Array(nearbies)))
         }
         
@@ -217,8 +225,29 @@ class MainViewController: UITableViewController {
     
     // MARK: - Helpers -
     
+    func filterContentForSearchText(searchText: String) {
+        filteredObjects = self.getCurrentObjects(searchText)
+        tableView.reloadData()
+    }
+    
+    @objc private func methodOfReceivedNotification_didSaveCurrentObject(notification : NSNotification) {
+        currentObjects = self.getCurrentObjects()
+        tableView.reloadData()
+    }
+
+    @objc private func methodOfReceivedNotification_didLoadCityData(notification : NSNotification) {
+        currentObjects = self.getCurrentObjects()
+        tableView.reloadData()
+    }
+}
+
+// MARK: - Map Delegate -
+
+extension MainViewController : MapDelegate {
+    
     func showCurrentObject(var current : CurrentObject) {
         guard let _ = realm, controller = UIStoryboard.currentDetailViewController() else { return }
+        controller.delegate = self
         
         if let first = realm.objects(CurrentObject).filter("cityid == \(current.cityid)").first where current.lastupdate == nil {
             current = first
@@ -259,30 +288,13 @@ class MainViewController: UITableViewController {
             })
         }
     }
+
+    func getNearbies(fromLocation location: CLLocation?) -> [CurrentObject] {
+        let nearbies = getNearbies(fromLocation: location, andSearchText: nil)
+        return swapCachedNearbies(nearbies)
+    }    
     
-    
-    func filterContentForSearchText(searchText: String) {
-        filteredObjects = self.getCurrentObjects(searchText)
-        tableView.reloadData()
-    }
-    
-    @objc private func methodOfReceivedNotification_didSaveCurrentObject(notification : NSNotification) {
-        currentObjects = self.getCurrentObjects()
-        tableView.reloadData()
-    }
-
-    @objc private func methodOfReceivedNotification_didLoadCityData(notification : NSNotification) {
-        currentObjects = self.getCurrentObjects()
-        tableView.reloadData()
-    }
-}
-
-// MARK: - Map Delegate -
-
-extension MainViewController : MapDelegate {
-
-    func getNearbyCurrents() -> [CurrentObject] {
-        let nearbies = self.currentObjects.filter({ $0.0.containsString("NEARBY")}).first!.1
+    func swapCachedNearbies(nearbies : [CurrentObject]) -> [CurrentObject] {
         let cachedCities = realm.objects(CurrentObject)
         let nearbyCurrents = nearbies.map({ (c : CurrentObject) -> CurrentObject in
             let id = c.cityid
@@ -295,8 +307,8 @@ extension MainViewController : MapDelegate {
         return nearbyCurrents
     }
     
-    func getCurrentLocation() -> CLLocation {
-        return self.location!
+    func getDeviceLocation() -> CLLocation? {
+        return self.location
     }
 }
 

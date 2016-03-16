@@ -143,6 +143,8 @@ class CurrentDetailViewController: UIViewController {
     
     // MARK: - Properties -
 
+    lazy var mapNavigationViewController : UINavigationController? = self.getMapNavigationViewController()
+    var delegate : MapDelegate?
     var token : RLMNotificationToken!
     let directions : [String] = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" ]
     var speeds : [Double] = { return Array<Double>.init(count: 16, repeatedValue: 0.0) }()
@@ -244,6 +246,7 @@ class CurrentDetailViewController: UIViewController {
     }
     
     func resetRightBarButtonItem() {
+        // Favourite
         var i : UIImage =  UIImage(named: "icon-star")!
         if let isFavourite = self.current?.isFavourite where isFavourite == true {
             i = UIImage(named: "icon-star-yellow")!
@@ -252,8 +255,28 @@ class CurrentDetailViewController: UIViewController {
         star.bounds = CGRectMake(0, 0, i.size.width, i.size.height)
         star.setImage(i, forState: .Normal)
         star.addTarget(self, action: Selector("starred"), forControlEvents: .TouchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: star)
+        
+        // Map
+        let mapImage = UIImage(named: "icon-map")!
+        let map = UIButton(type: .Custom)
+        map.bounds = CGRectMake(0, 0, mapImage.size.width, mapImage.size.height)
+        map.setImage(mapImage, forState: .Normal)
+        map.addTarget(self, action: Selector("showMap"), forControlEvents: .TouchUpInside)
+        
+        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: star), UIBarButtonItem(customView: map)], animated: true)
     }
+    
+    func showMap() {
+        presentViewController(self.mapNavigationViewController!, animated: true, completion: nil)
+    }
+    
+    func getMapNavigationViewController() -> UINavigationController {
+        let vc = UIStoryboard.mapViewController()!
+        vc.delegate = delegate
+        vc.current = self.current
+        let nav = UINavigationController(rootViewController: vc)
+        return nav
+    }    
     
     func starred() {
         guard let c = self.current else { return }
