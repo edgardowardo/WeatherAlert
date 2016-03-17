@@ -60,6 +60,9 @@ class AlarmSettingViewController : UIViewController {
                 endDirection.selectItem(UInt(index.hashValue), animated: false)
             }
         }
+        
+        startDirection.reloadData()
+        endDirection.reloadData()
     }
     
     override func viewWillAppear(animated: Bool) {
