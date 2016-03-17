@@ -12,9 +12,10 @@ import RealmSwift
 class LeftViewController: UITableViewController {
     
     enum Items : Int {
-        case Units = 0, Distance, Bin, License, Disclaimer, Donation
+        case Alarm = 0, Units, Distance, Bin, License, Disclaimer, Donation
     }
-    
+
+    lazy var alarmNavigationViewController : UINavigationController? = self.getAlarmNavigationViewController()
     lazy var donationNavigationViewController : UINavigationController? = self.getDonationsNavigationViewController()
     var mainViewController: UIViewController!
     
@@ -50,6 +51,9 @@ class LeftViewController: UITableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         switch Items(rawValue: indexPath.row)! {
+        // Alarm
+        case .Alarm:
+            presentViewController(self.getAlarmNavigationViewController(), animated: true, completion: nil)
         // Units
         case .Units:
             if let app = AppObject.sharedInstance {
@@ -120,6 +124,12 @@ class LeftViewController: UITableViewController {
         case .Donation :
             presentViewController(self.donationNavigationViewController!, animated: true, completion: nil)
         }
+    }
+    
+    func getAlarmNavigationViewController() -> UINavigationController {
+        let vc = UIStoryboard.alarmSettingViewController()!
+        let nav = UINavigationController(rootViewController: vc)
+        return nav
     }
     
     func getDonationsNavigationViewController() -> UINavigationController {

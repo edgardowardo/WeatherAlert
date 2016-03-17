@@ -17,6 +17,11 @@ class AppObject: Object {
     dynamic var _sortProperty = "lastupdate"
     dynamic var distanceKm = 2.0
     dynamic var _isAdsShown = true
+    dynamic var _speedMin = 0.0
+    dynamic var _speedMax = 0.0
+    dynamic var _directionCodeStart = ""
+    dynamic var _directionCodeEnd = ""
+    
     static var sharedInstance = AppObject.loadAppData()
     
     var isAdsShown : Bool {
@@ -33,6 +38,64 @@ class AppObject: Object {
                         app._isAdsShown = newValue
                         realm!.add(app, update: true)
                     }
+                }
+            }
+        }
+    }
+    
+    // km/s
+    var speedMin : Double {
+        get {
+            return _speedMin
+        }
+        set {
+            if let _ = realm {
+                try! realm!.write {
+                    _speedMin = newValue
+                    realm!.add(self, update: true)
+                }
+            }
+        }
+    }
+    
+    // km/s
+    var speedMax : Double {
+        get {
+            return _speedMax
+        }
+        set {
+            if let _ = realm {
+                try! realm!.write {
+                    _speedMax = newValue
+                    realm!.add(self, update: true)
+                }
+            }
+        }
+    }
+    
+    var directionCodeStart : String {
+        get {
+            return _directionCodeStart
+        }
+        set {
+            if let _ = realm {
+                try! realm!.write {
+                    _directionCodeStart = newValue
+                    realm!.add(self, update: true)
+                }
+            }
+        }
+    }
+
+    var directionCodeEnd : String {
+        get {
+            return _directionCodeEnd
+        }
+        set {
+            if let _ = realm {
+                try! realm!.write {
+                    _directionCodeEnd = newValue
+                    realm!.add(self, update: true)
                 }
             }
         }
@@ -75,7 +138,7 @@ class AppObject: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["unit", "distance", "isAdsShown"]
+        return ["unit", "distance", "isAdsShown", "speedMin", "speedMax", "directionCodeStart", "directionCodeEnd"]
     }
     
     static func loadAppData(var realm : Realm! = nil) -> AppObject? {

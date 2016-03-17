@@ -88,8 +88,8 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
         cell.labelSpeed.text = "\(speed)"
         cell.labelSpeed.backgroundColor = curry.units.getColorOfSpeed(f.speedvalue)
         cell.labelTemp.text = "\(temperature)°"
-        if f.directioncode.characters.count > 0 {
-            cell.imageDirection.image = UIImage(named: f.directioncode)
+        if let direction = f.direction {
+            cell.imageDirection.image = UIImage(named:  direction.inverse.rawValue)
         } else {
             cell.imageDirection.image = nil
         }
@@ -134,7 +134,7 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
 extension CurrentDetailViewController : UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let f = self.forecastuples?[indexPath.section].2[indexPath.row] {
-            self.updateChart(withDirectionCode: f.directioncode, andDirectionName: f.directionname, andSpeed: f.speedvalue, andSpeedName: f.speedname, andSince: "")
+            self.updateChart(withDirection: f.direction, andSpeed: f.speedvalue, andSpeedName: f.speedname, andSince: "")
         }
     }
 }
@@ -146,7 +146,7 @@ class CurrentDetailViewController: UIViewController {
     lazy var mapNavigationViewController : UINavigationController? = self.getMapNavigationViewController()
     var delegate : MapDelegate?
     var token : RLMNotificationToken!
-    let directions : [String] = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW" ]
+    let directions = Direction.directions.map({ return $0.rawValue })
     var speeds : [Double] = { return Array<Double>.init(count: 16, repeatedValue: 0.0) }()
     var current : CurrentObject?
     var since : String = ""
@@ -202,7 +202,7 @@ class CurrentDetailViewController: UIViewController {
         
         if let c = self.current, realm = try? Realm() {
             let id = "\(c.cityid)"
-            self.updateChart(withDirectionCode: c.directioncode, andDirectionName: c.directionname, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(c.hourAndMin)" )
+            self.updateChart(withDirection: c.direction, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(c.hourAndMin)" )
             self.resetRightBarButtonItem()
             self.realmForecasts = realm.objects(ForecastObject).filter("cityid == \(id)").sorted("timefrom", ascending: true)
             self.forecastsView.reloadData()
@@ -241,7 +241,7 @@ class CurrentDetailViewController: UIViewController {
     
     func clickChart(sender:UITapGestureRecognizer){
         if let c = self.current where since.characters.count == 0 {
-            self.updateChart(withDirectionCode: c.directioncode, andDirectionName: c.directionname, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(c.hourAndMin)" )
+            self.updateChart(withDirection: c.direction, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(c.hourAndMin)" )
         }
     }
     
@@ -316,13 +316,18 @@ class CurrentDetailViewController: UIViewController {
     @objc private func methodOfReceivedNotification_didSaveCurrentObject(notification : NSNotification) {
         if let c = notification.object as? CurrentObject {
             self.current = c
-            self.updateChart(withDirectionCode: c.directioncode, andDirectionName: c.directionname, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(c.hourAndMin)" )
+            self.updateChart(withDirection: c.direction, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(c.hourAndMin)" )
             self.resetRightBarButtonItem()
         }
     }
     
-    func updateChart(withDirectionCode code : String, andDirectionName directionname : String, andSpeed speed : Double, andSpeedName speedname : String, andSince since : String ) {
-
+    func updateChart(withDirection direction: Direction?, andSpeed speed : Double, andSpeedName speedname : String, andSince since : String ) {
+        
+        var code = ""
+        if let d = direction {
+            code = d.inverse.rawValue
+        }
+        
         self.since = since
         self.speeds = Array<Double>.init(count: 16, repeatedValue: 0.0)
         
@@ -342,10 +347,10 @@ class CurrentDetailViewController: UIViewController {
             
             speeds[index] = speed
         }
-        setChart(directions, values: speeds, andDirectionName: directionname, andSpeed: speed, andSpeedName: speedname, andSince: since)
+        setChart(directions, values: speeds, andDirection: direction, andSpeed: speed, andSpeedName: speedname, andSince: since)
     }
     
-    func setChart(dataPoints: [String], values: [Double], andDirectionName directionname1 : String, andSpeed speed : Double, andSpeedName speedname : String, andSince since : String) {
+    func setChart(dataPoints: [String], values: [Double], andDirection direction: Direction?, andSpeed speed : Double, andSpeedName speedname : String, andSince since : String) {
        
         guard let curry = current else { return }
         var dataEntries: [ChartDataEntry] = []
@@ -356,9 +361,9 @@ class CurrentDetailViewController: UIViewController {
         }
         
         let speedname = ( speedname == "" ) ? "Windless" : speedname
-        let directionname = ( directionname1 == "" ) ? "nowhere" : directionname1.lowercaseString
+        let directionname = ( direction == nil ) ? "nowhere" : direction!.name.lowercaseString
         let speedUnit = curry.units.speed
-        let chartDataSet = RadarChartDataSet(yVals: dataEntries, label: "\(speedname) towards \(directionname) at \(speed) \(speedUnit) \(since)")
+        let chartDataSet = RadarChartDataSet(yVals: dataEntries, label: "\(speedname) from \(directionname) at \(speed) \(speedUnit) \(since)")
         chartDataSet.drawValuesEnabled = false
         chartDataSet.lineWidth = 2.0
         chartDataSet.drawFilledEnabled = true

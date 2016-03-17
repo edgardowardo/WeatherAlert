@@ -16,6 +16,14 @@ enum PseudoSpeed {
 enum Units : String {
     case Metric , Imperial
     
+    func toMs(mph : Double) -> Double {
+        return mph / 2.237
+    }
+    
+    func toMph(ms : Double) -> Double {
+        return ms * 2.237
+    }
+    
     func toImperial(km : Double) -> Double {
         return km * 0.621371
     }

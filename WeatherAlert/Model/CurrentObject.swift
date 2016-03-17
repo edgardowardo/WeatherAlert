@@ -48,10 +48,20 @@ class CurrentObject: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["hourAndMin", "units", "location", "currentLocation", "distanceKm", "distanceText"]
+        return ["hourAndMin", "units", "location", "currentLocation", "distanceKm", "distanceText", "direction"]
     }
     
     var currentLocation : CLLocation?
+    
+    var direction : Direction? {
+        get {
+            if directioncode.characters.count > 0 {
+                return Direction(rawValue: directioncode)!
+            } else {
+                return nil
+            }
+        }
+    }
     
     var location : CLLocation {
         get {

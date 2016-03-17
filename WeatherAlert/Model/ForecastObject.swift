@@ -38,7 +38,17 @@ class ForecastObject: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["hour", "day", "date"]
+        return ["hour", "day", "date", "direction"]
+    }
+    
+    var direction : Direction? {
+        get {
+            if directioncode.characters.count > 0 {
+                return Direction(rawValue: directioncode)!
+            } else {
+                return nil
+            }
+        }
     }
     
     var hour : String {

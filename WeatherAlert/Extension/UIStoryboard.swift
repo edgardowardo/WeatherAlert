@@ -21,5 +21,10 @@ extension UIStoryboard {
     
     class func mapViewController() -> MapViewController? {
         return mainStoryboard().instantiateViewControllerWithIdentifier("MapViewController") as? MapViewController
-    }    
+    }
+    
+    class func alarmSettingViewController() -> AlarmSettingViewController? {
+        return mainStoryboard().instantiateViewControllerWithIdentifier("AlarmSettingViewController") as? AlarmSettingViewController
+    }
+    
 }

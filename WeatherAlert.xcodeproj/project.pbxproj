@@ -11,6 +11,7 @@
 		27D003060F067FB371C7FBB9 /* Pods_WeatherAlertTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4062DB4CCB1E9E41E8391F /* Pods_WeatherAlertTests.framework */; };
 		56EEB10EC5A5CD6A6356455B /* Pods_WeatherAlertUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE13E9B2AD1611236B17440 /* Pods_WeatherAlertUITests.framework */; };
 		7700D7671C84ABAC00ADCE06 /* AppObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7700D7661C84ABAC00ADCE06 /* AppObject.swift */; };
+		7703763A1C99B20700175D51 /* AlarmSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770376391C99B20700175D51 /* AlarmSettingViewController.swift */; };
 		77102DA31C793FEB00BDAEE7 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77102DA21C793FEB00BDAEE7 /* UIColor.swift */; };
 		772CC7561C77CE0A008ECCFC /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772CC7551C77CE0A008ECCFC /* UIStoryboard.swift */; };
 		7732B36F1C78E72B00B845F4 /* CurrentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732B36E1C78E72B00B845F4 /* CurrentDetailViewController.swift */; };
@@ -44,6 +45,7 @@
 		77B310C91C86576A00DB3CAF /* testCurrent01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 77B310C81C86576A00DB3CAF /* testCurrent01.xml */; };
 		77B310CB1C865C8700DB3CAF /* Test_03ForecastObjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B310CA1C865C8700DB3CAF /* Test_03ForecastObjectSpec.swift */; };
 		77B310CD1C865CC700DB3CAF /* testForecast01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 77B310CC1C865CC700DB3CAF /* testForecast01.xml */; };
+		77B3478F1C9AA32000B5B4B7 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B3478E1C9AA32000B5B4B7 /* Direction.swift */; };
 		77CFF5CC1C8B455F002D57A5 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77CFF5CB1C8B455F002D57A5 /* iAd.framework */; };
 		77DAC62B1C7737E9004A1C72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAC62A1C7737E9004A1C72 /* AppDelegate.swift */; };
 		77DAC6301C7737E9004A1C72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DAC62E1C7737E9004A1C72 /* Main.storyboard */; };
@@ -77,6 +79,7 @@
 		4CE13E9B2AD1611236B17440 /* Pods_WeatherAlertUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherAlertUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64427D1956FDF194CA70B052 /* Pods-WeatherAlertTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAlertTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAlertTests/Pods-WeatherAlertTests.release.xcconfig"; sourceTree = "<group>"; };
 		7700D7661C84ABAC00ADCE06 /* AppObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppObject.swift; sourceTree = "<group>"; };
+		770376391C99B20700175D51 /* AlarmSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmSettingViewController.swift; sourceTree = "<group>"; };
 		77102DA21C793FEB00BDAEE7 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		772CC7551C77CE0A008ECCFC /* UIStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
 		7732B36E1C78E72B00B845F4 /* CurrentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentDetailViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +113,7 @@
 		77B310C81C86576A00DB3CAF /* testCurrent01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = testCurrent01.xml; sourceTree = "<group>"; };
 		77B310CA1C865C8700DB3CAF /* Test_03ForecastObjectSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test_03ForecastObjectSpec.swift; sourceTree = "<group>"; };
 		77B310CC1C865CC700DB3CAF /* testForecast01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = testForecast01.xml; sourceTree = "<group>"; };
+		77B3478E1C9AA32000B5B4B7 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		77CFF5CB1C8B455F002D57A5 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		77DAC6271C7737E9004A1C72 /* WeatherAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DAC62A1C7737E9004A1C72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 		776BDE831C77514A0004D9A5 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				770376391C99B20700175D51 /* AlarmSettingViewController.swift */,
 				776BDF441C7752340004D9A5 /* ContainerMenuViewController.swift */,
 				776BDF461C77535A0004D9A5 /* LeftViewController.swift */,
 				776BDF421C7751BB0004D9A5 /* MainViewController.swift */,
@@ -206,6 +211,7 @@
 		776BDF4D1C775D8A0004D9A5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				77B3478E1C9AA32000B5B4B7 /* Direction.swift */,
 				77F282D91C85154B0018FAF8 /* Units.swift */,
 				7700D7661C84ABAC00ADCE06 /* AppObject.swift */,
 				776BDF4E1C775DA00004D9A5 /* CityObject.swift */,
@@ -603,6 +609,8 @@
 				772CC7561C77CE0A008ECCFC /* UIStoryboard.swift in Sources */,
 				7700D7671C84ABAC00ADCE06 /* AppObject.swift in Sources */,
 				776BDF4F1C775DA00004D9A5 /* CityObject.swift in Sources */,
+				77B3478F1C9AA32000B5B4B7 /* Direction.swift in Sources */,
+				7703763A1C99B20700175D51 /* AlarmSettingViewController.swift in Sources */,
 				7732B36F1C78E72B00B845F4 /* CurrentDetailViewController.swift in Sources */,
 				774E2EE41C902AF700CC83E4 /* DonationViewController.swift in Sources */,
 				779D58D71C7A9825007FEF5D /* CurrentDetailLayout.swift in Sources */,
