@@ -149,7 +149,9 @@ extension MapViewController : MKMapViewDelegate {
             var color = UIColor.flatMidnightBlueColor()
             if let _ = c.lastupdate {
                 color = c.units.getColorOfSpeed(c.speedvalue)
-                image = UIImage(named: "\(c.directioncode)-white")
+                if let d = c.direction {
+                    image = UIImage(named: "\(d.inverse.rawValue)-white")
+                }
             }
             let btn = UIButton(type: .DetailDisclosure)
             btn.addTarget(self, action: "pressedAnnotation:", forControlEvents: .TouchUpInside)

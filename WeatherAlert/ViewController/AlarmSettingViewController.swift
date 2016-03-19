@@ -15,6 +15,8 @@ class AlarmSettingViewController : UIViewController {
     
     // MARK: - Properties -
     
+    @IBOutlet weak var allowTitle: UILabel!
+    @IBOutlet weak var allowNotifications: UISwitch!
     @IBOutlet weak var speedTitle: UILabel!
     @IBOutlet weak var speedSlider: TTRangeSlider!
     @IBOutlet weak var directionTitle: UILabel!
@@ -33,6 +35,7 @@ class AlarmSettingViewController : UIViewController {
                 self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("close:"))
             }
         }
+        self.title = "Forecast Notifications"
         
         startDirection.delegate = self
         startDirection.dataSource = self
@@ -42,16 +45,20 @@ class AlarmSettingViewController : UIViewController {
         endDirection.fisheyeFactor = 0.01
         
         if let app = AppObject.sharedInstance {
+            allowNotifications.on = app.allowNotifications
+            speedSlider.tintColor = app.units.getColorOfSpeed(app.speedMin)
             speedSlider.delegate = self
             speedSlider.maxValue = Float(app.units.maxSpeed)
-            speedTitle.text = "Speed (\(app.units.speed))"
+            speedTitle.text = "Speed (max \(Int(app.units.maxSpeed))\(app.units.speed) or faster)"
             speedSlider.selectedMinimum = Float(app.speedMin)
             speedSlider.selectedMaximum = Float(app.speedMax)
             if app.units == .Imperial {
                 speedSlider.selectedMinimum = Float(app.units.toMph(app.speedMin))
                 speedSlider.selectedMaximum = Float(app.units.toMph(app.speedMax))
             }
-            directionTitle.text = "Directions between \(app.directionCodeStart) & \(app.directionCodeEnd)"
+            let start = app.directionCodeStart
+            let end = app.directionCodeEnd
+            directionTitle.text =  ( start == end ) ? "Direction towards \(start) " : "Directions between \(start) & \(end)"
             
             if let dir = Direction(rawValue: app.directionCodeStart), index = directions.indexOf(dir) {
                 startDirection.selectItem(UInt(index.hashValue), animated: false)
@@ -63,6 +70,10 @@ class AlarmSettingViewController : UIViewController {
         
         startDirection.reloadData()
         endDirection.reloadData()
+        
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        resetAllowTitle()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -70,6 +81,26 @@ class AlarmSettingViewController : UIViewController {
     }
     
     // MARK: - Helpers  -
+    
+    func resetAlarm() {
+        if let d = UIApplication.sharedApplication().delegate as? AppDelegate {
+            d.resetAlarm()
+            resetAllowTitle()
+        }
+    }
+    
+    func resetAllowTitle() {
+        if let count = UIApplication.sharedApplication().scheduledLocalNotifications?.count {
+            allowTitle.text = "Allow Notifications (\(count))"
+        }
+    }
+    
+    @IBAction func clickedAllow(sender: AnyObject) {
+        if let app = AppObject.sharedInstance {
+            app.allowNotifications = allowNotifications.on
+            resetAlarm()
+        }
+    }
     
     @IBAction func close(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -94,7 +125,7 @@ extension AlarmSettingViewController : AKPickerViewDelegate {
     func pickerView(pickerView: AKPickerView!, didSelectItem item: Int) {
         let start = self.directions[Int(startDirection.selectedItem)].rawValue
         let end = self.directions[Int(endDirection.selectedItem)].rawValue
-        directionTitle.text = "Directions between \(start) & \(end)"
+        directionTitle.text =  ( start == end ) ? "Direction towards \(start) " : "Directions between \(start) & \(end)"
         if let app = AppObject.sharedInstance {
             let code = directions[Int(pickerView.selectedItem)].rawValue
             if pickerView == startDirection {
@@ -104,6 +135,7 @@ extension AlarmSettingViewController : AKPickerViewDelegate {
                 app.directionCodeEnd =  code
             }
         }
+        resetAlarm()
     }
     
 }
@@ -119,6 +151,10 @@ extension AlarmSettingViewController : TTRangeSliderDelegate {
         }
         AppObject.sharedInstance?.speedMin = min
         AppObject.sharedInstance?.speedMax = max
+        
+        let slider = sender as TTRangeSlider
+        slider.tintColor = AppObject.sharedInstance?.units.getColorOfSpeed(Double(selectedMinimum))
+
+        resetAlarm()
     }
-    
 }

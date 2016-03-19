@@ -19,8 +19,9 @@ class AppObject: Object {
     dynamic var _isAdsShown = true
     dynamic var _speedMin = 0.0
     dynamic var _speedMax = 0.0
-    dynamic var _directionCodeStart = ""
-    dynamic var _directionCodeEnd = ""
+    dynamic var _directionCodeStart = "N"
+    dynamic var _directionCodeEnd = "N"
+    dynamic var _allowNotifications = true
     
     static var sharedInstance = AppObject.loadAppData()
     
@@ -68,6 +69,49 @@ class AppObject: Object {
                 try! realm!.write {
                     _speedMax = newValue
                     realm!.add(self, update: true)
+                }
+            }
+        }
+    }
+    
+    var oppositeCodes : [String] {
+        get {
+            var start = 0, end = 0
+            var sliced = [String]()
+            let directions = Direction.directions
+            
+            if let d = Direction(rawValue: directionCodeStart)?.inverse, indexStart = directions.indexOf(d) {
+                start = indexStart
+            }
+            if let d = Direction(rawValue: directionCodeEnd)?.inverse, indexStart = directions.indexOf(d) {
+                end = indexStart
+            }
+            if start <= end {
+                sliced = directions[start ... end].map({ "'\($0.rawValue)'"})
+            } else {
+                let half1 = directions[start ... directions.count - 1].map({ "'\($0.rawValue)'"})
+                let half2 = directions[0 ... end].map({ "'\($0.rawValue)'"})
+                let whole = half1 + half2
+                sliced = whole
+            }
+            return sliced
+        }
+    }
+    
+    var allowNotifications : Bool {
+        get {
+            if let _ = self.realm, app = realm!.objects(AppObject).first {
+                return app._allowNotifications
+            }
+            return true
+        }
+        set {
+            if let _ = self.realm {
+                try! realm!.write {
+                    if let app = AppObject.sharedInstance {
+                        app._allowNotifications = newValue
+                        realm!.add(app, update: true)
+                    }
                 }
             }
         }
@@ -138,7 +182,7 @@ class AppObject: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["unit", "distance", "isAdsShown", "speedMin", "speedMax", "directionCodeStart", "directionCodeEnd"]
+        return ["unit", "distance", "isAdsShown", "speedMin", "speedMax", "directionCodeStart", "directionCodeEnd", "oppositeCodes", "allowNotifications"]
     }
     
     static func loadAppData(var realm : Realm! = nil) -> AppObject? {

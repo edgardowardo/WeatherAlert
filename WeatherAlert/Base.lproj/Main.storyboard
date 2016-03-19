@@ -18,10 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forecast Notification" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7F5-S0-Qd0">
-                                <rect key="frame" x="20" y="20" width="168" height="30"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow Notifications" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7F5-S0-Qd0">
+                                <rect key="frame" x="20" y="20" width="560" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="168" id="E3C-Ps-Uoe"/>
                                     <constraint firstAttribute="height" constant="30" id="uVv-c7-7U3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
@@ -34,15 +33,17 @@
                                     <constraint firstAttribute="width" constant="49" id="8KY-3B-eXq"/>
                                     <constraint firstAttribute="height" constant="31" id="zPn-B6-BIJ"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="clickedAllow:" destination="UMH-wl-kAS" eventType="touchUpInside" id="d2k-ZT-99e"/>
+                                </connections>
                             </switch>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0W-zK-ak8">
-                                <rect key="frame" x="20" y="194" width="560" height="218"/>
+                                <rect key="frame" x="20" y="226" width="560" height="218"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed (km)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vuj-nY-dGC">
-                                        <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="5lx-06-qcN"/>
-                                            <constraint firstAttribute="width" constant="140" id="kyT-L8-aHZ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -137,6 +138,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Qk3-6y-RnA" firstAttribute="top" secondItem="8cU-Lo-FC3" secondAttribute="bottom" constant="8" id="5bV-qs-9SO"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vuj-nY-dGC" secondAttribute="trailing" id="9Pv-8j-EN2"/>
                                     <constraint firstItem="aq2-Nm-LO9" firstAttribute="top" secondItem="Qk3-6y-RnA" secondAttribute="bottom" constant="8" id="Din-X0-nOh"/>
                                     <constraint firstAttribute="height" constant="218" id="Gtv-ah-vwB"/>
                                     <constraint firstItem="Vuj-nY-dGC" firstAttribute="leading" secondItem="J0W-zK-ak8" secondAttribute="leading" id="Ikr-0m-C7w"/>
@@ -154,11 +156,12 @@
                                     <constraint firstItem="Qk3-6y-RnA" firstAttribute="leading" secondItem="J0W-zK-ak8" secondAttribute="leading" id="ySK-7D-Ua7"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Setup notification rules when specific speed strength and directions occur based on favourites and last taken forecasts." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxb-dO-bmi">
-                                <rect key="frame" x="20" y="97" width="560" height="89"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxb-dO-bmi">
+                                <rect key="frame" x="20" y="97" width="560" height="121"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="89" id="7zj-fr-hvT"/>
+                                    <constraint firstAttribute="height" constant="121" id="7zj-fr-hvT"/>
                                 </constraints>
+                                <string key="text">Setup notification rules when specific speed strength and directions occur based on favourites and last taken forecasts. Tip: keep the range differences low otherwise expect a high volume of notifications.</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -170,6 +173,7 @@
                             <constraint firstItem="J0W-zK-ak8" firstAttribute="leading" secondItem="M54-1I-5RG" secondAttribute="leadingMargin" id="FTG-mV-Ig9"/>
                             <constraint firstItem="mxb-dO-bmi" firstAttribute="top" secondItem="YFZ-CS-5Dn" secondAttribute="bottom" constant="8" id="HYd-aA-4EX"/>
                             <constraint firstItem="7F5-S0-Qd0" firstAttribute="leading" secondItem="M54-1I-5RG" secondAttribute="leadingMargin" id="M2X-Xe-PSy"/>
+                            <constraint firstItem="7F5-S0-Qd0" firstAttribute="trailing" secondItem="M54-1I-5RG" secondAttribute="trailingMargin" id="T0w-F6-kep"/>
                             <constraint firstItem="J0W-zK-ak8" firstAttribute="trailing" secondItem="M54-1I-5RG" secondAttribute="trailingMargin" id="UQn-N2-VOn"/>
                             <constraint firstItem="7F5-S0-Qd0" firstAttribute="top" secondItem="0wl-Rf-pg8" secondAttribute="bottom" id="Ymb-Cp-4KM"/>
                             <constraint firstItem="YFZ-CS-5Dn" firstAttribute="top" secondItem="7F5-S0-Qd0" secondAttribute="bottom" constant="8" id="a43-I3-ucm"/>
@@ -182,6 +186,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="allowNotifications" destination="YFZ-CS-5Dn" id="MuN-bu-gDW"/>
+                        <outlet property="allowTitle" destination="7F5-S0-Qd0" id="UVb-Vd-Va7"/>
                         <outlet property="directionTitle" destination="Qk3-6y-RnA" id="4Is-gQ-l8Z"/>
                         <outlet property="endDirection" destination="SQo-Df-IOG" id="cwp-jy-e3s"/>
                         <outlet property="rules2YouCanConstraint" destination="4ki-Oe-KC4" id="tMV-l7-MZl"/>
@@ -217,8 +223,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Notify forecasts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="24Y-Km-rAv">
-                                                    <rect key="frame" x="55" y="10" width="134" height="24"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="24Y-Km-rAv">
+                                                    <rect key="frame" x="55" y="10" width="106" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

@@ -39,6 +39,13 @@ extension NSDate {
             return false
         }
     }
+    
+    var text: String {
+        let formatter = NSDateFormatter()
+        formatter.locale = NSLocale(localeIdentifier: "en_UK")
+        formatter.dateFormat = "dd-MMM-yyyy HH:mm"
+        return formatter.stringFromDate(self)
+    }    
 }
 
 extension NSDateFormatter {
