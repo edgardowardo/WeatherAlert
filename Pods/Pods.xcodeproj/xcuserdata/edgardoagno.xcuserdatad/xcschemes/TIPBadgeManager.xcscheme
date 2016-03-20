@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '187CE6FE50839D42DA7F79C9'
-               BlueprintName = 'AKPickerView'
+               BlueprintIdentifier = '06BCA2FC3472B031DE0790AE'
+               BlueprintName = 'TIPBadgeManager'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'AKPickerView.framework'>
+               BuildableName = 'TIPBadgeManager.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

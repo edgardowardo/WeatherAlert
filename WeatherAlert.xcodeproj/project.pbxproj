@@ -211,8 +211,8 @@
 		776BDF4D1C775D8A0004D9A5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				77B3478E1C9AA32000B5B4B7 /* Direction.swift */,
 				77F282D91C85154B0018FAF8 /* Units.swift */,
+				77B3478E1C9AA32000B5B4B7 /* Direction.swift */,
 				7700D7661C84ABAC00ADCE06 /* AppObject.swift */,
 				776BDF4E1C775DA00004D9A5 /* CityObject.swift */,
 				773FAF891C78BBAF00D9FE21 /* CurrentObject.swift */,

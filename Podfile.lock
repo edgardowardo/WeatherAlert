@@ -18,6 +18,7 @@ PODS:
     - Realm (= 0.98.2)
   - SlideMenuControllerSwift (2.0.5)
   - SwiftTask (4.0.0)
+  - TIPBadgeManager (0.3.0)
   - TTRangeSlider (1.0.3)
   - UIColor+FlatColors (0.0.2)
   - VTAcknowledgementsViewController (0.17)
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - ReactKit
   - RealmSwift
   - SlideMenuControllerSwift
+  - TIPBadgeManager
   - TTRangeSlider
   - UIColor+FlatColors
   - VTAcknowledgementsViewController
@@ -52,6 +54,7 @@ SPEC CHECKSUMS:
   RealmSwift: 9907c7415b3e19ef2ab9f89878fc890f03f93aea
   SlideMenuControllerSwift: 9dcae36265e14c4f42e729f212463beb60d2cf96
   SwiftTask: 724ff63fc8bd9b366d242696d4aff098f6de3c3a
+  TIPBadgeManager: 7ed3e6bc67f67f8c75fdba54f6f3aa5ac81f269b
   TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e
   UIColor+FlatColors: 6c699df7a575281794c688c64cee6c44fd1f93b4
   VTAcknowledgementsViewController: 6056f5f5e5ed995bbf0581bed6ddd29355ca9a80

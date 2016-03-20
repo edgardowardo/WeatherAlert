@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let application = UIApplication.sharedApplication()
         application.cancelAllLocalNotifications()
         application.applicationIconBadgeNumber = 0
-//        print("cancelAllLocalNotifications")
+//      print("resetAlarm: cancelAllLocalNotifications")
         
         let currents = realm.objects(CurrentObject).filter("isFavourite == 1")
         if currents.count == 0 {
@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var interv = 0.0
         let cityids = currents.map({ "\($0.cityid)" }).joinWithSeparator(",")
         let forecasts = self.realm.objects(ForecastObject).filter("cityid IN {\(cityids)} ").filter("speedvalue BETWEEN {\(app.speedMin),\(max)} ").filter("directioncode IN { \(directions) }").sorted("timefrom", ascending: true)
-//print("resetAlarm: forecasts.count(\(forecasts.count)) ")
+//      print("resetAlarm: forecasts.count(\(forecasts.count)) ")
         for f in forecasts {
             if let _ = f.direction, timefrom = f.timefrom, c = realm.objects(CurrentObject).filter("cityid == \(f.cityid)").first where NSDate().compare(timefrom) == .OrderedAscending {
                 let notification = UILocalNotification()
@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 notification.timeZone = NSTimeZone.defaultTimeZone()
                 notification.fireDate = f.timefrom
                 interv = interv + 60
-//                notification.fireDate = NSDate(timeIntervalSinceNow: interv)
+                notification.fireDate = NSDate(timeIntervalSinceNow: interv)
                 notification.alertAction = "show details"
                 notification.alertTitle = "Wind Times"
                 notification.alertBody = "\(speedname) (\(f.speedvalue) \(c.units.speed)) in \(c.name) coming from \(f.directionname.lowercaseString). Forecast on \(c.lastupdate!.text)."
@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 notification.applicationIconBadgeNumber = application.scheduledLocalNotifications!.count + 1
                 notification.userInfo = ["cityid" : c.cityid]
                 application.scheduleLocalNotification(notification)
-//print("resetAlarm: \(notification.alertBody!) \(f.timefrom!) ")
+//              print("resetAlarm: \(notification.alertBody!) \(f.timefrom!) ")
             }
         }
     }
@@ -131,6 +131,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func handleNotification(notification : UILocalNotification, forApplication application : UIApplication) {
+        NSLog("handleNotification: \(notification.alertBody!)")
+        
+        let a = UIAlertController(title: notification.alertTitle!, message: notification.alertBody!, preferredStyle: UIAlertControllerStyle.Alert)
+        a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+        if let cityid = notification.userInfo?["cityid"] as? Int, current = realm.objects(CurrentObject).filter("cityid == \(cityid)").first, container = self.window?.visibleViewController as? ContainerMenuViewController {
+            if container.isLeftOpen() {
+                container.closeLeft()
+            }
+            delegate.showCurrentObject(current)
+        }
+        renumberBadgesOfPendingNotifications()
+        self.window?.visibleViewController?.presentViewController(a, animated: true, completion: nil)
+    }
+    
     // MARK: - Application Delegates -
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -154,7 +169,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if let o = launchOptions, notification = o[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
-            self.application(application, didReceiveLocalNotification: notification)
+            handleNotification(notification, forApplication: application)
         }
         
         return true
@@ -165,16 +180,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        let a = UIAlertController(title: notification.alertTitle!, message: notification.alertBody!, preferredStyle: UIAlertControllerStyle.Alert)
-        a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
-        if let cityid = notification.userInfo?["cityid"] as? Int, current = realm.objects(CurrentObject).filter("cityid == \(cityid)").first, container = self.window?.visibleViewController as? ContainerMenuViewController {
-            if container.isLeftOpen() {
-                container.closeLeft()
-            }
-            delegate.showCurrentObject(current)
-        }
-        renumberBadgesOfPendingNotifications()
-        self.window?.visibleViewController?.presentViewController(a, animated: true, completion: nil)
+        handleNotification(notification, forApplication: application)
     }
     
     func applicationWillResignActive(application: UIApplication) {

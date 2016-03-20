@@ -2,6 +2,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'WeatherAlert' do
+pod 'TIPBadgeManager'
 pod "TTRangeSlider"
 pod "AKPickerView"
 pod 'ReactKit'

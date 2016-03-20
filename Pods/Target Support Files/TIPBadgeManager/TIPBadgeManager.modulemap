@@ -1,0 +1,6 @@
+framework module TIPBadgeManager {
+  umbrella header "TIPBadgeManager-umbrella.h"
+
+  export *
+  module * { export * }
+}
