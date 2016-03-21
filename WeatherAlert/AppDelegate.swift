@@ -52,52 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITableViewHeaderFooterView.appearance().tintColor = UIColor.flatCloudsColor()
         
     }
-
-    func resetAlarm() {
-
-        let application = UIApplication.sharedApplication()
-        application.cancelAllLocalNotifications()
-        application.applicationIconBadgeNumber = 0
-//      print("resetAlarm: cancelAllLocalNotifications")
-        
-        let currents = realm.objects(CurrentObject).filter("isFavourite == 1")
-        if currents.count == 0 {
-            return
-        }
-        
-        guard let app = AppObject.sharedInstance where app.allowNotifications else { return }
-        
-        let directions = app.oppositeCodes.joinWithSeparator(",")
-        let max : Double
-        if app.speedMax == app.units.maxSpeed {
-            max = 1000.0 // predicates do not like Double.infinity
-        }  else {
-            max = app.speedMax
-        }
-        
-        var interv = 0.0
-        let cityids = currents.map({ "\($0.cityid)" }).joinWithSeparator(",")
-        let forecasts = self.realm.objects(ForecastObject).filter("cityid IN {\(cityids)} ").filter("speedvalue BETWEEN {\(app.speedMin),\(max)} ").filter("directioncode IN { \(directions) }").sorted("timefrom", ascending: true)
-//      print("resetAlarm: forecasts.count(\(forecasts.count)) ")
-        for f in forecasts {
-            if let _ = f.direction, timefrom = f.timefrom, c = realm.objects(CurrentObject).filter("cityid == \(f.cityid)").first where NSDate().compare(timefrom) == .OrderedAscending {
-                let notification = UILocalNotification()
-                let speedname : String = ( f.speedname.characters.count == 0 ) ? "Windless" : f.speedname
-                notification.timeZone = NSTimeZone.defaultTimeZone()
-                notification.fireDate = f.timefrom
-                interv = interv + 60
-                notification.fireDate = NSDate(timeIntervalSinceNow: interv)
-                notification.alertAction = "show details"
-                notification.alertTitle = "Wind Times"
-                notification.alertBody = "\(speedname) (\(f.speedvalue) \(c.units.speed)) in \(c.name) coming from \(f.directionname.lowercaseString). Forecast on \(c.lastupdate!.text)."
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.applicationIconBadgeNumber = application.scheduledLocalNotifications!.count + 1
-                notification.userInfo = ["cityid" : c.cityid]
-                application.scheduleLocalNotification(notification)
-//              print("resetAlarm: \(notification.alertBody!) \(f.timefrom!) ")
-            }
-        }
-    }
     
     func renumberBadgesOfPendingNotifications() {
         let app = UIApplication.sharedApplication()
@@ -108,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // first get a copy of all pending notifications (unfortunately you cannot 'modify' a pending notification)
         // if there are any pending notifications -> adjust their badge number
         if let pendings = app.scheduledLocalNotifications where pendings.count > 0 {
-//            print("renumberBadgesOfPendingNotifications: pendings.count(\(pendings.count)) ")
+print("renumberBadgesOfPendingNotifications: pendings.count(\(pendings.count)) ")
 
             // sorted by fire date.
             let notifications = pendings.sort({ p1, p2 in p1.fireDate!.compare(p2.fireDate!) == .OrderedAscending })
@@ -125,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 // schedule 'again'
                 app.scheduleLocalNotification(n)
-//                print("renumberBadgesOfPendingNotifications: \(n.alertBody!) ")
+print("renumberBadgesOfPendingNotifications: \(n.alertBody!) ")
             
             }
         }
@@ -160,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // observer to reset forecast notifications
         tokenFavourites = realm.objects(CurrentObject).filter("isFavourite == 1").addNotificationBlock { objects, error in
-            self.resetAlarm()
+            NotificationObject.resetAlarm()
         }
 
         // load city on install

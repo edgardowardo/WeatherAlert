@@ -83,10 +83,8 @@ class AlarmSettingViewController : UIViewController {
     // MARK: - Helpers  -
     
     func resetAlarm() {
-        if let d = UIApplication.sharedApplication().delegate as? AppDelegate {
-            d.resetAlarm()
-            resetAllowTitle()
-        }
+        NotificationObject.resetAlarm()
+        resetAllowTitle()
     }
     
     func resetAllowTitle() {

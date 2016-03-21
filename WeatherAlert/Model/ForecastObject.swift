@@ -22,6 +22,16 @@ class ForecastObject: Object {
     dynamic var directionvalue : Double = 0
     dynamic var temperatureUnit = ""
     dynamic var temperatureValue = 0.0
+    dynamic var id = NSUUID().UUIDString
+    
+    var isAlarmed : Bool {
+        get {
+            if let r = self.realm, _ = r.objects(NotificationObject).filter("forecast.id == '\(self.id)'").first {
+                return true
+            }
+            return false
+        }
+    }
     
     // MARK: - Notifications -
     
@@ -38,7 +48,11 @@ class ForecastObject: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["hour", "day", "date", "direction"]
+        return ["hour", "day", "date", "direction", "isAlarmed"]
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
     
     var direction : Direction? {

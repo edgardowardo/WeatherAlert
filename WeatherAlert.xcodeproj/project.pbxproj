@@ -18,6 +18,7 @@
 		773E7CBB1C79FB3800047988 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E7CBA1C79FB3800047988 /* NSDate.swift */; };
 		773FAF881C78A17F00D9FE21 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773FAF871C78A17F00D9FE21 /* Alamofire.swift */; };
 		773FAF8A1C78BBAF00D9FE21 /* CurrentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773FAF891C78BBAF00D9FE21 /* CurrentObject.swift */; };
+		7748379B1C9F151200E37F90 /* NotificationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7748379A1C9F151200E37F90 /* NotificationObject.swift */; };
 		774E2EE21C902AE700CC83E4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774E2EE11C902AE700CC83E4 /* StoreKit.framework */; };
 		774E2EE41C902AF700CC83E4 /* DonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774E2EE31C902AF700CC83E4 /* DonationViewController.swift */; };
 		775C375B1C78DBB8007D0C80 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C375A1C78DBB8007D0C80 /* Router.swift */; };
@@ -86,6 +87,7 @@
 		773E7CBA1C79FB3800047988 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		773FAF871C78A17F00D9FE21 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		773FAF891C78BBAF00D9FE21 /* CurrentObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentObject.swift; sourceTree = "<group>"; };
+		7748379A1C9F151200E37F90 /* NotificationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationObject.swift; sourceTree = "<group>"; };
 		774E2EE11C902AE700CC83E4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		774E2EE31C902AF700CC83E4 /* DonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationViewController.swift; sourceTree = "<group>"; };
 		775C375A1C78DBB8007D0C80 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				776BDF4E1C775DA00004D9A5 /* CityObject.swift */,
 				773FAF891C78BBAF00D9FE21 /* CurrentObject.swift */,
 				779D3F111C79C00E00C89BBD /* ForecastObject.swift */,
+				7748379A1C9F151200E37F90 /* NotificationObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 				773FAF881C78A17F00D9FE21 /* Alamofire.swift in Sources */,
 				772CC7561C77CE0A008ECCFC /* UIStoryboard.swift in Sources */,
 				7700D7671C84ABAC00ADCE06 /* AppObject.swift in Sources */,
+				7748379B1C9F151200E37F90 /* NotificationObject.swift in Sources */,
 				776BDF4F1C775DA00004D9A5 /* CityObject.swift in Sources */,
 				77B3478F1C9AA32000B5B4B7 /* Direction.swift in Sources */,
 				7703763A1C99B20700175D51 /* AlarmSettingViewController.swift in Sources */,

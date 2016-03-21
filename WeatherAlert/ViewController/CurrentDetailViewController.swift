@@ -31,6 +31,7 @@ class ForecastCell : UICollectionViewCell {
     @IBOutlet weak var imageDirection: UIImageView!
     @IBOutlet weak var labelSpeed: UILabel!
     @IBOutlet weak var labelTemp: UILabel!
+    @IBOutlet weak var imageAlarmed: UIImageView!
 }
 
 class CurrentInfoView : UIView {
@@ -79,11 +80,12 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ForecastCellIdentifier", forIndexPath: indexPath) as! ForecastCell
-        guard let curry = current else { return cell }
+        guard let curry = current, app = AppObject.sharedInstance else { return cell }
         let t = self.forecastuples![indexPath.section]
         let f = t.2[indexPath.row]
         let speed = String(format: "%.2f", f.speedvalue)
         let temperature = String(format: "%.1f", f.temperatureValue)
+        cell.imageAlarmed.hidden = !(f.isAlarmed && app.allowNotifications && curry.isFavourite)
         cell.labelHH.text = f.hour
         cell.labelSpeed.text = "\(speed)"
         cell.labelSpeed.backgroundColor = curry.units.getColorOfSpeed(f.speedvalue)
@@ -288,6 +290,7 @@ class CurrentDetailViewController: UIViewController {
             NSNotificationCenter.defaultCenter().postNotificationName(CurrentObject.Notification.Identifier.didSaveCurrentObject, object: c)
         }
         resetRightBarButtonItem()
+        forecastsView.reloadData()
     }
     
     func back() {

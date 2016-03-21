@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
@@ -39,11 +40,16 @@
                         <rect key="frame" x="10" y="61" width="15" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-alarm" id="WdT-Xc-dwd">
+                        <rect key="frame" x="10" y="127" width="15" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <size key="customSize" width="35" height="150"/>
             <connections>
+                <outlet property="imageAlarmed" destination="WdT-Xc-dwd" id="Tpz-xY-Vs9"/>
                 <outlet property="imageDirection" destination="18P-q7-6Y3" id="BqO-nJ-NKf"/>
                 <outlet property="labelHH" destination="rLv-6n-LVN" id="8sI-UX-NLT"/>
                 <outlet property="labelSpeed" destination="Icu-aT-Qu8" id="GO3-LM-Bmc"/>
@@ -52,4 +58,7 @@
             <point key="canvasLocation" x="291.5" y="348"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="icon-alarm" width="25" height="25"/>
+    </resources>
 </document>

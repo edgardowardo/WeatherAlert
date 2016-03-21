@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import Realm
 import RealmSwift
+import TIPBadgeManager
 
 class LeftViewController: UITableViewController {
     
@@ -15,6 +17,8 @@ class LeftViewController: UITableViewController {
         case Alarm = 0, Units, Distance, Bin, License, Disclaimer, Donation
     }
 
+    var realm : Realm! = nil
+    var token : RLMNotificationToken!
     lazy var alarmNavigationViewController : UINavigationController? = self.getAlarmNavigationViewController()
     lazy var donationNavigationViewController : UINavigationController? = self.getDonationsNavigationViewController()
     var mainViewController: UIViewController!
@@ -22,6 +26,15 @@ class LeftViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        if realm == nil {
+            realm = try! Realm()
+        }
+        token = realm.objects(NotificationObject).addNotificationBlock { notifications, realm in
+            if let count = notifications?.filter(NSPredicate(format: "fireDate < %@", NSDate())).count {
+                TIPBadgeManager.sharedInstance.setBadgeValue("alarmView", value: count)
+                self.tableView.reloadData()
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,6 +48,8 @@ class LeftViewController: UITableViewController {
         
         if let app = AppObject.sharedInstance {
             switch indexPath.row {
+            case Items.Alarm.rawValue :
+                TIPBadgeManager.sharedInstance.addBadgeSuperview("alarmView", view: cell.imageView!)
             case Items.Units.rawValue :
                 cell.textLabel?.text = "\(app.units) and °\(app.units.temperature)"
             case Items.Distance.rawValue :
