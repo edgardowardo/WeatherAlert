@@ -35,7 +35,7 @@ class AlarmSettingViewController : UIViewController {
                 self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("close:"))
             }
         }
-        self.title = "Forecast Notifications"
+        self.title = "Settings"
         
         startDirection.delegate = self
         startDirection.dataSource = self

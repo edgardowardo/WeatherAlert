@@ -12,15 +12,41 @@ class NotificationObject: Object {
     
     // MARK: - Properties -
 
-    dynamic var forecast : ForecastObject? = nil
+    dynamic var forecast : ForecastObject!
     dynamic var body = ""
     dynamic var fireDate : NSDate? = nil
+    dynamic var id = NSUUID().UUIDString
+    dynamic var _isNotificationRead : Bool = false
+    
+    var isNotificationRead : Bool {
+        get {
+            return self._isNotificationRead
+        }
+        set {
+            if let _ = self.realm {
+                try! realm!.write {
+                    self._isNotificationRead = newValue
+                    realm!.add(self, update: true)
+                }
+            }
+        }
+    }
     
     // MARK: - Functions -
+    
+    override static func ignoredProperties() -> [String] {
+        return ["isNotificationRead"]
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
     
     convenience init(forecast: ForecastObject) {
         self.init()
         self.forecast = forecast
+        forecast.notification = self
+        self.id = forecast.id
     }
     
     static func resetAlarm() {
@@ -58,28 +84,36 @@ class NotificationObject: Object {
         for f in forecasts {
             if let _ = f.direction, timefrom = f.timefrom, c = realm.objects(CurrentObject).filter("cityid == \(f.cityid)").first where NSDate().compare(timefrom) == .OrderedAscending {
                 
-                // create the iOS local notificatin object
-                let notification = UILocalNotification()
                 let speedname : String = ( f.speedname.characters.count == 0 ) ? "Windless" : f.speedname
-                notification.timeZone = NSTimeZone.defaultTimeZone()
-                notification.fireDate = f.timefrom
+                let body = "\(speedname) (\(f.speedvalue) \(c.units.speed)) in \(c.name) coming from \(f.directionname.lowercaseString). Forecast on \(c.lastupdate!.text)."
                 interv = interv + 60
-                notification.fireDate = NSDate(timeIntervalSinceNow: interv)
-                notification.alertAction = "Show details"
-                notification.alertTitle = "Wind Times"
-                notification.alertBody = "\(speedname) (\(f.speedvalue) \(c.units.speed)) in \(c.name) coming from \(f.directionname.lowercaseString). Forecast on \(c.lastupdate!.text)."
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.applicationIconBadgeNumber = application.scheduledLocalNotifications!.count + 1
-                notification.userInfo = ["cityid" : c.cityid, "timefrom" : f.timefrom!]
-                application.scheduleLocalNotification(notification)
-//
-                print("resetAlarm: \(notification.alertBody!) \(f.timefrom!) ")
+                let fireDate = NSDate(timeIntervalSinceNow: interv) //f.timefrom
                 
                 // create the persistent notification object
-                let n = NotificationObject(forecast: f)
-                n.body = notification.alertBody!
-                n.fireDate = notification.fireDate
-                realm.add(n)
+                var n : NotificationObject
+                if let note = f.notification {
+                    n = note
+                } else {
+                    n = NotificationObject(forecast: f)
+                }
+                n.body = body
+                n.fireDate = fireDate
+                n._isNotificationRead = false
+                realm.add(n, update: true)
+                
+                // create the iOS local notificatin object
+                let notification = UILocalNotification()
+                notification.timeZone = NSTimeZone.defaultTimeZone()
+                notification.fireDate = fireDate
+                notification.alertAction = "Show details"
+                notification.alertTitle = "Wind Times"
+                notification.alertBody = body
+                notification.soundName = UILocalNotificationDefaultSoundName
+                notification.applicationIconBadgeNumber = application.scheduledLocalNotifications!.count + 1
+                notification.userInfo = ["cityid" : c.cityid, "timefrom" : f.timefrom!, "notificationId" : n.id]
+                application.scheduleLocalNotification(notification)
+//
+                print("resetAlarm: \(notification.alertBody!) \(fireDate)")
             }
         }
         

@@ -90,7 +90,8 @@ print("renumberBadgesOfPendingNotifications: \(n.alertBody!) ")
         
         let a = UIAlertController(title: notification.alertTitle!, message: notification.alertBody!, preferredStyle: UIAlertControllerStyle.Alert)
         a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
-        if let cityid = notification.userInfo?["cityid"] as? Int, current = realm.objects(CurrentObject).filter("cityid == \(cityid)").first, container = self.window?.visibleViewController as? ContainerMenuViewController {
+        if let cityid = notification.userInfo?["cityid"] as? Int, current = realm.objects(CurrentObject).filter("cityid == \(cityid)").first, container = self.window?.visibleViewController as? ContainerMenuViewController, notificationId = notification.userInfo?["notificationId"] as? String, n = realm.objects(NotificationObject).filter("id == '\(notificationId)'").first {
+            n.isNotificationRead = true
             if container.isLeftOpen() {
                 container.closeLeft()
             }

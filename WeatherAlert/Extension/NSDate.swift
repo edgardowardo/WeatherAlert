@@ -45,7 +45,72 @@ extension NSDate {
         formatter.locale = NSLocale(localeIdentifier: "en_UK")
         formatter.dateFormat = "dd-MMM-yyyy HH:mm"
         return formatter.stringFromDate(self)
-    }    
+    }
+        
+    var remainingTime : String {
+        let unitFlags: NSCalendarUnit = [.Minute, .Hour, .Day, .Month, .Year]
+        let c = NSCalendar.currentCalendar().components(unitFlags, fromDate: self, toDate: NSDate(), options: [])
+        var remaining : String?
+        
+        // If it's been years return this
+        if c.year > 0 {
+            remaining = "\(c.year) year"
+        }
+        if let r = remaining where c.year > 1 {
+            remaining = "\(r)s"
+        }
+        if let years = remaining {
+            return "\(years) ago"
+        }
+        
+        // If it's been months return this
+        if c.month > 0 {
+            remaining = "\(c.month) month"
+        }
+        if let r = remaining where c.month > 1 {
+            remaining = "\(r)s"
+        }
+        if let months = remaining {
+            return "\(months) ago"
+        }
+        
+        // If it's been days return this
+        if c.day > 0 {
+            remaining = "\(c.day) day"
+        }
+        if let r = remaining where c.day > 1 {
+            remaining = "\(r)s"
+        }
+        if let day = remaining {
+            return "\(day) ago"
+        }
+        
+        
+        // If it's been hours return this
+        if c.hour > 0 {
+            remaining = "\(c.hour) hour"
+        }
+        if let r = remaining where c.hour > 1 {
+            remaining = "\(r)s"
+        }
+        if let hour = remaining {
+            return "\(hour) ago"
+        }
+        
+        
+        // If it's been minutes return this
+        if c.minute > 0 {
+            remaining = "\(c.minute) minute"
+        }
+        if let r = remaining where c.minute > 1 {
+            remaining = "\(r)s"
+        }
+        if let minute = remaining {
+            return "\(minute) ago"
+        }
+        
+        return "now"
+    }
 }
 
 extension NSDateFormatter {

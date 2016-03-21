@@ -19,22 +19,32 @@ class LeftViewController: UITableViewController {
 
     var realm : Realm! = nil
     var token : RLMNotificationToken!
-    lazy var alarmNavigationViewController : UINavigationController? = self.getAlarmNavigationViewController()
+    var notifications : Results<(NotificationObject)>!
+    lazy var notificationNavigationViewController : UINavigationController? = self.getNotificationTabNavigationViewController()
     lazy var donationNavigationViewController : UINavigationController? = self.getDonationsNavigationViewController()
     var mainViewController: UIViewController!
     
+    func updateTabBadge() {
+        let filteredNotifications = notifications.filter("_isNotificationRead == 0")
+        TIPBadgeManager.sharedInstance.setBadgeValue("alarmView", value: filteredNotifications.count)
+        self.tableView.reloadData()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
         if realm == nil {
             realm = try! Realm()
         }
+        
         token = realm.objects(NotificationObject).addNotificationBlock { notifications, realm in
-            if let count = notifications?.filter(NSPredicate(format: "fireDate < %@", NSDate())).count {
-                TIPBadgeManager.sharedInstance.setBadgeValue("alarmView", value: count)
-                self.tableView.reloadData()
-            }
+            self.notifications = notifications!.filter(NSPredicate(format: "fireDate < %@", NSDate())).sorted("fireDate", ascending: false)
+            self.updateTabBadge()
         }
+        
+        notifications = realm.objects(NotificationObject).filter(NSPredicate(format: "fireDate < %@", NSDate())).sorted("fireDate", ascending: false)
+        self.updateTabBadge()
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)        
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,7 +78,8 @@ class LeftViewController: UITableViewController {
         switch Items(rawValue: indexPath.row)! {
         // Alarm
         case .Alarm:
-            presentViewController(self.getAlarmNavigationViewController(), animated: true, completion: nil)
+            presentViewController(self.getNotificationTabNavigationViewController(), animated: true, completion: nil)
+            return
         // Units
         case .Units:
             if let app = AppObject.sharedInstance {
@@ -141,8 +152,8 @@ class LeftViewController: UITableViewController {
         }
     }
     
-    func getAlarmNavigationViewController() -> UINavigationController {
-        let vc = UIStoryboard.alarmSettingViewController()!
+    func getNotificationTabNavigationViewController() -> UINavigationController {
+        let vc = UIStoryboard.notificationTabController()!
         let nav = UINavigationController(rootViewController: vc)
         return nav
     }

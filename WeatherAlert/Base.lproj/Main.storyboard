@@ -185,6 +185,7 @@
                             <constraint firstItem="mxb-dO-bmi" firstAttribute="leading" secondItem="M54-1I-5RG" secondAttribute="leadingMargin" id="vpL-BB-mm6"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="icon-settings" id="Psl-bM-a6m"/>
                     <connections>
                         <outlet property="allowNotifications" destination="YFZ-CS-5Dn" id="MuN-bu-gDW"/>
                         <outlet property="allowTitle" destination="7F5-S0-Qd0" id="UVb-Vd-Va7"/>
@@ -199,7 +200,64 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Koz-Bg-hhD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="336" y="-1396"/>
+            <point key="canvasLocation" x="-367" y="-208"/>
+        </scene>
+        <!--Notifications-->
+        <scene sceneID="MPn-ET-cBc">
+            <objects>
+                <tableViewController id="2RI-dc-eWS" customClass="NotificationsViewController" customModule="WeatherAlert" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="BFc-fA-eBc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Setup notification rules when specific speed strength and directions occur based on favourites and last taken forecasts." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7sa-Py-f9z">
+                            <rect key="frame" x="0.0" y="72" width="600" height="163"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotificationCell" textLabel="VYJ-36-6x2" detailTextLabel="u4Y-Fe-qc3" imageView="yRg-pk-FPe" style="IBUITableViewCellStyleSubtitle" id="sxO-7D-0yy">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sxO-7D-0yy" id="q86-MU-CnF">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VYJ-36-6x2">
+                                            <rect key="frame" x="66" y="6" width="29" height="19"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u4Y-Fe-qc3">
+                                            <rect key="frame" x="66" y="25" width="36" height="13"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="E" id="yRg-pk-FPe">
+                                            <rect key="frame" x="15" y="3" width="36" height="36"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2RI-dc-eWS" id="FXG-Fa-QYy"/>
+                            <outlet property="delegate" destination="2RI-dc-eWS" id="K24-GA-ODE"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Notifications" image="icon-alarm" id="1O1-wi-wAc"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CsN-FK-zqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-367" y="-936"/>
         </scene>
         <!--Left View Controller-->
         <scene sceneID="WXi-hU-aUl">
@@ -722,14 +780,35 @@
             </objects>
             <point key="canvasLocation" x="330" y="-16"/>
         </scene>
+        <!--Notification Tab Controller-->
+        <scene sceneID="3rp-xb-s4m">
+            <objects>
+                <tabBarController storyboardIdentifier="NotificationTabController" id="J4z-SJ-vy3" customClass="NotificationTabController" customModule="WeatherAlert" customModuleProvider="target" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="01R-w9-qtz">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="2RI-dc-eWS" kind="relationship" relationship="viewControllers" id="hFJ-Hd-W3h"/>
+                        <segue destination="UMH-wl-kAS" kind="relationship" relationship="viewControllers" id="mkw-rH-4cr"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nuv-Ao-BJe" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1117" y="-568"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="E" width="36" height="36"/>
         <image name="icon-ads" width="25" height="25"/>
         <image name="icon-alarm" width="25" height="25"/>
         <image name="icon-exclamation" width="25" height="25"/>
         <image name="icon-focus" width="25" height="25"/>
         <image name="icon-info" width="25" height="25"/>
         <image name="icon-open-box" width="25" height="25"/>
+        <image name="icon-settings" width="20" height="20"/>
         <image name="icon-temperature" width="25" height="25"/>
         <image name="icon-trash" width="25" height="25"/>
         <image name="launchImage" width="410" height="410"/>

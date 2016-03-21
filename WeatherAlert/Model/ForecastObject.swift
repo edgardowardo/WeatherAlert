@@ -23,10 +23,11 @@ class ForecastObject: Object {
     dynamic var temperatureUnit = ""
     dynamic var temperatureValue = 0.0
     dynamic var id = NSUUID().UUIDString
+    dynamic var notification : NotificationObject? = nil
     
     var isAlarmed : Bool {
         get {
-            if let r = self.realm, _ = r.objects(NotificationObject).filter("forecast.id == '\(self.id)'").first {
+            if let _ = notification {
                 return true
             }
             return false
