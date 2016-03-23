@@ -91,7 +91,7 @@ class NotificationObject: Object {
             if let _ = f.direction, _ = directions.filter({ $0 == f.directioncode }).first, timefrom = f.timefrom, c = realm.objects(CurrentObject).filter("cityid == \(f.cityid)").first where NSDate().compare(timefrom) == .OrderedAscending && app.speedMin ... max ~= f.speedvalue {
                 
                 let speedname : String = ( f.speedname.characters.count == 0 ) ? "Windless" : f.speedname
-                let body = "\(speedname) (\(f.speedvalue) \(c.units.speed)) in \(c.name) coming from \(f.directionname.lowercaseString). Forecast on \(c.lastupdate!.text)."
+                let body = "\(speedname) (\(f.speedvalue) \(c.units.speed)) at \(c.name) coming from \(f.directionname.lowercaseString)."
                 interv = interv + 60
                 let fireDate = NSDate(timeIntervalSinceNow: interv) //f.timefrom
                 

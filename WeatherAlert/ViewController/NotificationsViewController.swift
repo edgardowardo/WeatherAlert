@@ -11,6 +11,17 @@ import Realm
 import RealmSwift
 import TIPBadgeManager
 
+
+class NotificationCell : UITableViewCell {
+    @IBOutlet weak var arrowView: UIImageView!
+    @IBOutlet weak var labelBody: UILabel!
+    @IBOutlet weak var labelLapsed: UILabel!    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.arrowView.layer.cornerRadius = self.arrowView.frame.size.width / 2
+    }
+}
+
 class NotificationsViewController: UITableViewController{
 
     // MARK: - Properties -
@@ -49,17 +60,15 @@ class NotificationsViewController: UITableViewController{
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("NotificationCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("NotificationCell", forIndexPath: indexPath) as! NotificationCell
         let n = notifications[indexPath.row]
         
         cell.contentView.backgroundColor = ( n.isNotificationRead ) ? UIColor.clearColor() : UIColor.flatCloudsColor()
-        cell.textLabel?.font = UIFont(name: "HelveticaNeue-Thin", size: 17)
-        cell.textLabel!.text = n.body
-        cell.detailTextLabel!.text = "\(n.fireDate!.remainingTime)" // == \(n.fireDate!)"
-        cell.imageView?.image = UIImage(named: "\(Direction(rawValue: n.directioncode)!.inverse.rawValue)-white")
-        cell.imageView?.backgroundColor = Units.Metric.getColorOfSpeed(n.speedvalue)
-        cell.imageView?.layer.cornerRadius = cell.imageView!.frame.size.width / 2
-        
+        cell.labelBody.text = n.body
+        cell.labelLapsed.text = "\(n.fireDate!.remainingTime)"
+        cell.arrowView.image = UIImage(named: "\(Direction(rawValue: n.directioncode)!.inverse.rawValue)-white")
+        cell.arrowView.backgroundColor = Units.Metric.getColorOfSpeed(n.speedvalue)
+
         return cell
     }
     

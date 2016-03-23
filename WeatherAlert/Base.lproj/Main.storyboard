@@ -206,46 +206,68 @@
         <scene sceneID="MPn-ET-cBc">
             <objects>
                 <tableViewController id="2RI-dc-eWS" customClass="NotificationsViewController" customModule="WeatherAlert" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="BFc-fA-eBc">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="BFc-fA-eBc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Setup notification rules when specific speed strength and directions occur based on favourites and last taken forecasts." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7sa-Py-f9z">
-                            <rect key="frame" x="0.0" y="72" width="600" height="163"/>
+                            <rect key="frame" x="0.0" y="103" width="600" height="163"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotificationCell" textLabel="VYJ-36-6x2" detailTextLabel="u4Y-Fe-qc3" imageView="yRg-pk-FPe" style="IBUITableViewCellStyleSubtitle" id="sxO-7D-0yy">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotificationCell" rowHeight="75" id="sxO-7D-0yy" customClass="NotificationCell" customModule="WeatherAlert" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sxO-7D-0yy" id="q86-MU-CnF">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VYJ-36-6x2">
-                                            <rect key="frame" x="66" y="6" width="29" height="19"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u4Y-Fe-qc3">
-                                            <rect key="frame" x="66" y="25" width="36" height="13"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="E" id="yRg-pk-FPe">
-                                            <rect key="frame" x="15" y="3" width="36" height="36"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LPh-U3-PC2">
+                                            <rect key="frame" x="8" y="24" width="25" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="25" id="5Fq-3e-Eqm"/>
+                                                <constraint firstAttribute="height" constant="25" id="HKv-A8-CBy"/>
+                                            </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztK-sz-1cA">
+                                            <rect key="frame" x="41" y="8" width="551" height="43"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="43" id="kkA-bD-0oQ"/>
+                                            </constraints>
+                                            <string key="text">Strong breeze (11.56 m/s) in Oklahoma coming from the southwest. Strong breeze (11.56 m/s) in Oklahoma coming from the southwest.</string>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="48 minutes ago" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYD-Xm-7gq">
+                                            <rect key="frame" x="41" y="51" width="551" height="15"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ztK-sz-1cA" firstAttribute="leading" secondItem="LPh-U3-PC2" secondAttribute="trailing" constant="8" id="0My-BD-o83"/>
+                                        <constraint firstItem="ztK-sz-1cA" firstAttribute="trailing" secondItem="q86-MU-CnF" secondAttribute="trailingMargin" id="2KX-f8-oAR"/>
+                                        <constraint firstItem="ztK-sz-1cA" firstAttribute="leading" secondItem="LPh-U3-PC2" secondAttribute="trailing" constant="8" id="E8q-xu-lNz"/>
+                                        <constraint firstItem="WYD-Xm-7gq" firstAttribute="top" secondItem="ztK-sz-1cA" secondAttribute="bottom" id="G3v-Qb-M2R"/>
+                                        <constraint firstItem="WYD-Xm-7gq" firstAttribute="leading" secondItem="q86-MU-CnF" secondAttribute="leadingMargin" constant="33" id="GM3-E9-vhS"/>
+                                        <constraint firstItem="LPh-U3-PC2" firstAttribute="leading" secondItem="q86-MU-CnF" secondAttribute="leadingMargin" id="JYP-TW-bGa"/>
+                                        <constraint firstItem="ztK-sz-1cA" firstAttribute="top" secondItem="q86-MU-CnF" secondAttribute="topMargin" id="RJR-I8-O4J"/>
+                                        <constraint firstItem="LPh-U3-PC2" firstAttribute="centerY" secondItem="q86-MU-CnF" secondAttribute="centerY" id="hhz-Mj-YF8"/>
+                                        <constraint firstItem="WYD-Xm-7gq" firstAttribute="trailing" secondItem="q86-MU-CnF" secondAttribute="trailingMargin" id="r6F-ga-rWS"/>
+                                        <constraint firstItem="WYD-Xm-7gq" firstAttribute="bottom" secondItem="q86-MU-CnF" secondAttribute="bottomMargin" id="swQ-j8-Md1"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="arrowView" destination="LPh-U3-PC2" id="VhG-oa-yVz"/>
+                                    <outlet property="labelBody" destination="ztK-sz-1cA" id="Nja-es-DQH"/>
+                                    <outlet property="labelLapsed" destination="WYD-Xm-7gq" id="3sD-Hm-Jy8"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -801,7 +823,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="E" width="36" height="36"/>
         <image name="icon-ads" width="25" height="25"/>
         <image name="icon-alarm" width="25" height="25"/>
         <image name="icon-exclamation" width="25" height="25"/>
