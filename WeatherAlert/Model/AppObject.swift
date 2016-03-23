@@ -87,10 +87,10 @@ class AppObject: Object {
                 end = indexStart
             }
             if start <= end {
-                sliced = directions[start ... end].map({ "'\($0.rawValue)'"})
+                sliced = directions[start ... end].map({ "\($0.rawValue)"})
             } else {
                 let half1 = directions[start ... directions.count - 1].map({ "'\($0.rawValue)'"})
-                let half2 = directions[0 ... end].map({ "'\($0.rawValue)'"})
+                let half2 = directions[0 ... end].map({ "\($0.rawValue)"})
                 let whole = half1 + half2
                 sliced = whole
             }

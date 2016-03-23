@@ -12,7 +12,9 @@ class NotificationObject: Object {
     
     // MARK: - Properties -
 
-    dynamic var forecast : ForecastObject!
+    dynamic var cityid: Int = 0
+    dynamic var speedvalue : Double = 0
+    dynamic var directioncode = ""
     dynamic var body = ""
     dynamic var fireDate : NSDate? = nil
     dynamic var id = NSUUID().UUIDString
@@ -42,11 +44,14 @@ class NotificationObject: Object {
         return "id"
     }
     
-    convenience init(forecast: ForecastObject) {
+    convenience init(cityid : Int, speedvalue : Double, directioncode : String, body: String, fireDate : NSDate?, forecast: ForecastObject) {
         self.init()
-        self.forecast = forecast
+        self.cityid = cityid
+        self.speedvalue = speedvalue
+        self.directioncode = directioncode
+        self.body = body
+        self.fireDate = fireDate
         forecast.notification = self
-        self.id = forecast.id
     }
     
     static func resetAlarm() {
@@ -65,7 +70,7 @@ class NotificationObject: Object {
         
         guard let app = AppObject.sharedInstance where app.allowNotifications else { return }
         
-        let directions = app.oppositeCodes.joinWithSeparator(",")
+        let directions = app.oppositeCodes
         let max : Double
         if app.speedMax == app.units.maxSpeed {
             max = 1000.0 // predicates do not like Double.infinity
@@ -75,14 +80,15 @@ class NotificationObject: Object {
         
         var interv = 0.0
         let cityids = currents.map({ "\($0.cityid)" }).joinWithSeparator(",")
-        let forecasts = realm.objects(ForecastObject).filter("cityid IN {\(cityids)} ").filter("speedvalue BETWEEN {\(app.speedMin),\(max)} ").filter("directioncode IN { \(directions) }").sorted("timefrom", ascending: true)
+        let forecasts = realm.objects(ForecastObject).filter("cityid IN {\(cityids)} ").sorted("timefrom", ascending: true)
 //
         print("resetAlarm: forecasts.count(\(forecasts.count)) ")
+        
         
         realm.beginWrite()
         
         for f in forecasts {
-            if let _ = f.direction, timefrom = f.timefrom, c = realm.objects(CurrentObject).filter("cityid == \(f.cityid)").first where NSDate().compare(timefrom) == .OrderedAscending {
+            if let _ = f.direction, _ = directions.filter({ $0 == f.directioncode }).first, timefrom = f.timefrom, c = realm.objects(CurrentObject).filter("cityid == \(f.cityid)").first where NSDate().compare(timefrom) == .OrderedAscending && app.speedMin ... max ~= f.speedvalue {
                 
                 let speedname : String = ( f.speedname.characters.count == 0 ) ? "Windless" : f.speedname
                 let body = "\(speedname) (\(f.speedvalue) \(c.units.speed)) in \(c.name) coming from \(f.directionname.lowercaseString). Forecast on \(c.lastupdate!.text)."
@@ -94,7 +100,7 @@ class NotificationObject: Object {
                 if let note = f.notification {
                     n = note
                 } else {
-                    n = NotificationObject(forecast: f)
+                    n = NotificationObject(cityid: f.cityid, speedvalue: f.speedvalue, directioncode: f.directioncode, body: body, fireDate: fireDate, forecast: f)
                 }
                 n.body = body
                 n.fireDate = fireDate
@@ -114,6 +120,8 @@ class NotificationObject: Object {
                 application.scheduleLocalNotification(notification)
 //
                 print("resetAlarm: \(notification.alertBody!) \(fireDate)")
+            } else {
+                f.notification = nil
             }
         }
         
