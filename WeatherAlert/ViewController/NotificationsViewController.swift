@@ -9,44 +9,28 @@
 import UIKit
 import Realm
 import RealmSwift
+import TIPBadgeManager
 
 class NotificationsViewController: UITableViewController{
 
     // MARK: - Properties -
 
     var realm : Realm! = nil
-    var token : RLMNotificationToken!
     var notifications : Results<(NotificationObject)>!
-    
-
-    // MARK: - Functions -
-    
-    func updateTabBadge() {
-        
-        let filteredNotifications = notifications.filter("_isNotificationRead == 0")
-        if filteredNotifications.count > 0 {
-            self.tabBarItem.badgeValue = "\(notifications.count)"
-        } else {
-            self.tabBarItem.badgeValue = nil
-        }
-    }
     
     // MARK: - View Controller Lifecycle -
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        TIPBadgeManager.sharedInstance.clearAllBadgeValues(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if realm == nil {
             realm = try! Realm()
         }
-        token = realm.objects(NotificationObject).addNotificationBlock { notifications, realm in
-            self.notifications = notifications!.filter(NSPredicate(format: "fireDate < %@", NSDate())).sorted("fireDate", ascending: false)
-            self.updateTabBadge()
-            self.tableView.reloadData()
-        }
-        
         notifications = realm.objects(NotificationObject).filter(NSPredicate(format: "fireDate < %@", NSDate())).sorted("fireDate", ascending: false)
-        updateTabBadge()
     }
 
     override func didReceiveMemoryWarning() {

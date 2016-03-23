@@ -11,6 +11,7 @@ import UIColor_FlatColors
 import Realm
 import RealmSwift
 import iAd
+import TIPBadgeManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -57,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let app = UIApplication.sharedApplication()
         
         // clear the badge on the icon
-        app.applicationIconBadgeNumber = 0
+        TIPBadgeManager.sharedInstance.clearAllBadgeValues(true)
         
         // first get a copy of all pending notifications (unfortunately you cannot 'modify' a pending notification)
         // if there are any pending notifications -> adjust their badge number

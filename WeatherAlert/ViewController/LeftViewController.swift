@@ -17,34 +17,28 @@ class LeftViewController: UITableViewController {
         case Alarm = 0, Units, Distance, Bin, License, Disclaimer, Donation
     }
 
+    // MARK: - Properties -
+
     var realm : Realm! = nil
-    var token : RLMNotificationToken!
-    var notifications : Results<(NotificationObject)>!
     lazy var notificationNavigationViewController : UINavigationController? = self.getNotificationTabNavigationViewController()
     lazy var donationNavigationViewController : UINavigationController? = self.getDonationsNavigationViewController()
     var mainViewController: UIViewController!
     
-    func updateTabBadge() {
-        let filteredNotifications = notifications.filter("_isNotificationRead == 0")
-        TIPBadgeManager.sharedInstance.setBadgeValue("alarmView", value: filteredNotifications.count)
+    // MARK: - Lifecycle -
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        TIPBadgeManager.sharedInstance.setBadgeValue("alarmView", value: UIApplication.sharedApplication().applicationIconBadgeNumber)
         self.tableView.reloadData()
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if realm == nil {
             realm = try! Realm()
         }
-        
-        token = realm.objects(NotificationObject).addNotificationBlock { notifications, realm in
-            self.notifications = notifications!.filter(NSPredicate(format: "fireDate < %@", NSDate())).sorted("fireDate", ascending: false)
-            self.updateTabBadge()
-        }
-        
-        notifications = realm.objects(NotificationObject).filter(NSPredicate(format: "fireDate < %@", NSDate())).sorted("fireDate", ascending: false)
-        self.updateTabBadge()
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)        
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,7 +53,10 @@ class LeftViewController: UITableViewController {
         if let app = AppObject.sharedInstance {
             switch indexPath.row {
             case Items.Alarm.rawValue :
-                TIPBadgeManager.sharedInstance.addBadgeSuperview("alarmView", view: cell.imageView!)
+                let badgeManager = TIPBadgeManager.sharedInstance
+                if badgeManager.tipBadgeObjDict["alarmView"] == nil {
+                    badgeManager.addBadgeSuperview("alarmView", view: cell.imageView!)
+                }
             case Items.Units.rawValue :
                 cell.textLabel?.text = "\(app.units) and °\(app.units.temperature)"
             case Items.Distance.rawValue :
@@ -108,8 +105,8 @@ class LeftViewController: UITableViewController {
             let alert = UIAlertController(title: " ", message: "Set approximate distance of 'nearby' city wind stations.", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-                if let app = AppObject.sharedInstance, realm = try? Realm() {
-                    try! realm.write {
+                if let app = AppObject.sharedInstance {
+                    try! self.realm.write {
                         app.distanceKm = Double(slider.value)
                     }
                     self.tableView.reloadData()
@@ -125,12 +122,10 @@ class LeftViewController: UITableViewController {
             let a = UIAlertController(title: "Clear recents", message: "Continue to clear recents?", preferredStyle: UIAlertControllerStyle.Alert)
             a.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
             a.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in
-                if let realm = try? Realm() {
-                    let recents = realm.objects(CurrentObject).filter("isFavourite == 0")
-                    try! realm.write {
-                        realm.delete(recents)
-                        NSNotificationCenter.defaultCenter().postNotificationName(CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)
-                    }
+                let recents = self.realm.objects(CurrentObject).filter("isFavourite == 0")
+                try! self.realm.write {
+                    self.realm.delete(recents)
+                    NSNotificationCenter.defaultCenter().postNotificationName(CurrentObject.Notification.Identifier.didSaveCurrentObject, object: nil)
                 }
             }))
             UIApplication.delay(0.1, closure: { () -> () in
