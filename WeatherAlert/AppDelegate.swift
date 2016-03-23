@@ -86,18 +86,27 @@ print("renumberBadgesOfPendingNotifications: \(n.alertBody!) ")
         }
     }
     
-    func handleNotification(notification : UILocalNotification, forApplication application : UIApplication) {
-        NSLog("handleNotification: \(notification.alertBody!)")
-        
-        let a = UIAlertController(title: notification.alertTitle!, message: notification.alertBody!, preferredStyle: UIAlertControllerStyle.Alert)
-        a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
-        if let cityid = notification.userInfo?["cityid"] as? Int, current = realm.objects(CurrentObject).filter("cityid == \(cityid)").first, container = self.window?.visibleViewController as? ContainerMenuViewController, notificationId = notification.userInfo?["notificationId"] as? String, n = realm.objects(NotificationObject).filter("id == '\(notificationId)'").first {
-            n.isNotificationRead = true
+    func showCurrentObjectFromNotification(notification : NotificationObject) {
+        if let current = realm.objects(CurrentObject).filter("cityid == \(notification.cityid)").first, container = self.window?.visibleViewController as? ContainerMenuViewController {
+            notification.isNotificationRead = true
             if container.isLeftOpen() {
                 container.closeLeft()
             }
             delegate.showCurrentObject(current)
         }
+    }
+    
+    func handleNotification(notification : UILocalNotification, forApplication application : UIApplication) {
+        NSLog("handleNotification: \(notification.alertBody!)")
+        
+        let a = UIAlertController(title: notification.alertTitle!, message: notification.alertBody!, preferredStyle: UIAlertControllerStyle.Alert)
+        a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+        
+        if let notificationId = notification.userInfo?["notificationId"] as? String, notification = realm.objects(NotificationObject).filter("id == '\(notificationId)'").first {
+
+            showCurrentObjectFromNotification(notification)
+        }
+        
         renumberBadgesOfPendingNotifications()
         self.window?.visibleViewController?.presentViewController(a, animated: true, completion: nil)
     }

@@ -81,8 +81,13 @@ class NotificationsViewController: UITableViewController{
             n.isNotificationRead = true
         }
         
-        //showCurrentObject(current)
-        
+        // show current object
+        self.dismissViewControllerAnimated(true, completion: nil)
+        UIApplication.delay(0.5) { () -> () in
+            if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+                appDelegate.showCurrentObjectFromNotification(n)
+            }
+        }
     }
 }
 
