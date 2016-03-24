@@ -70,7 +70,7 @@ class NotificationObject: Object {
         
         guard let app = AppObject.sharedInstance where app.allowNotifications else { return }
         
-        let directions = app.oppositeCodes
+        let directions = app.getCodes(true)
         let max : Double
         if app.speedMax == app.units.maxSpeed {
             max = 1000.0 // predicates do not like Double.infinity

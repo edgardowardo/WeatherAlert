@@ -74,30 +74,6 @@ class AppObject: Object {
         }
     }
     
-    var oppositeCodes : [String] {
-        get {
-            var start = 0, end = 0
-            var sliced = [String]()
-            let directions = Direction.directions
-            
-            if let d = Direction(rawValue: directionCodeStart)?.inverse, indexStart = directions.indexOf(d) {
-                start = indexStart
-            }
-            if let d = Direction(rawValue: directionCodeEnd)?.inverse, indexStart = directions.indexOf(d) {
-                end = indexStart
-            }
-            if start <= end {
-                sliced = directions[start ... end].map({ "\($0.rawValue)"})
-            } else {
-                let half1 = directions[start ... directions.count - 1].map({ "'\($0.rawValue)'"})
-                let half2 = directions[0 ... end].map({ "\($0.rawValue)"})
-                let whole = half1 + half2
-                sliced = whole
-            }
-            return sliced
-        }
-    }
-    
     var allowNotifications : Bool {
         get {
             if let _ = self.realm, app = realm!.objects(AppObject).first {
@@ -176,13 +152,44 @@ class AppObject: Object {
     
     // MARK: - Type Functions -
     
+    func getCodes(isInverse : Bool = false) -> [String] {
+        var start = 0, end = 0
+        var sliced = [String]()
+        let directions = Direction.directions
+        
+        if isInverse {
+            if let d = Direction(rawValue: directionCodeStart)?.inverse, indexStart = directions.indexOf(d) {
+                start = indexStart
+            }
+            if let d = Direction(rawValue: directionCodeEnd)?.inverse, indexStart = directions.indexOf(d) {
+                end = indexStart
+            }
+        } else {
+            if let d = Direction(rawValue: directionCodeStart), indexStart = directions.indexOf(d) {
+                start = indexStart
+            }
+            if let d = Direction(rawValue: directionCodeEnd), indexStart = directions.indexOf(d) {
+                end = indexStart
+            }
+        }
+        
+        if start <= end {
+            sliced = directions[start ... end].map({ "\($0.rawValue)"})
+        } else {
+            let half1 = directions[start ... directions.count - 1].map({ "'\($0.rawValue)'"})
+            let half2 = directions[0 ... end].map({ "\($0.rawValue)"})
+            let whole = half1 + half2
+            sliced = whole
+        }
+        return sliced
+    }
     
     override static func primaryKey() -> String? {
         return "_id"
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["unit", "distance", "isAdsShown", "speedMin", "speedMax", "directionCodeStart", "directionCodeEnd", "oppositeCodes", "allowNotifications"]
+        return ["unit", "distance", "isAdsShown", "speedMin", "speedMax", "directionCodeStart", "directionCodeEnd", "allowNotifications"]
     }
     
     static func loadAppData(var realm : Realm! = nil) -> AppObject? {

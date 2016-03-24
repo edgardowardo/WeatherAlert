@@ -25,7 +25,8 @@ class NotificationSettingsViewController : UIViewController {
     @IBOutlet weak var startDirection: AKPickerView!
     @IBOutlet weak var endDirection: AKPickerView!
     @IBOutlet weak var radarChart: RadarChartView!
-    let directions = Direction.directions
+    let directionsEnum = Direction.directions
+    let directions = Direction.directions.map({ return $0.rawValue })
     
     // MARK: - View lifecycle -
     
@@ -55,12 +56,14 @@ class NotificationSettingsViewController : UIViewController {
             let end = app.directionCodeEnd
             directionTitle.text =  ( start == end ) ? "Direction towards \(start) " : "Directions between \(start) & \(end)"
             
-            if let dir = Direction(rawValue: app.directionCodeStart), index = directions.indexOf(dir) {
+            if let dir = Direction(rawValue: app.directionCodeStart), index = directionsEnum.indexOf(dir) {
                 startDirection.selectItem(UInt(index.hashValue), animated: false)
             }
-            if let dir = Direction(rawValue: app.directionCodeEnd), index = directions.indexOf(dir) {
+            if let dir = Direction(rawValue: app.directionCodeEnd), index = directionsEnum.indexOf(dir) {
                 endDirection.selectItem(UInt(index.hashValue), animated: false)
             }
+            
+            radarChart.yAxis.customAxisMax = app.units.maxSpeed
         }
         
         startDirection.reloadData()
@@ -68,12 +71,24 @@ class NotificationSettingsViewController : UIViewController {
         
         let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-        resetAllowTitle()        
+        resetAllowTitle()
+        
+        // radar chart
+        
+        radarChart.noDataText = "Wind data is still up in the air..."
+        radarChart.descriptionText = ""
+        radarChart.rotationEnabled = false
+        radarChart.webLineWidth = 0.6
+        radarChart.innerWebLineWidth = 0.0
+        radarChart.webAlpha = 1.0
+        radarChart.legendRenderer.legend = nil
+        radarChart.yAxis.drawLabelsEnabled = false
     }
     
     // MARK: - Helpers  -
     
     func resetAlarm() {
+        updateChart()
 //        NotificationObject.resetAlarm()
         resetAllowTitle()
     }
@@ -84,6 +99,38 @@ class NotificationSettingsViewController : UIViewController {
         }
     }
     
+    func updateChart() {
+        guard let app = AppObject.sharedInstance else { return }
+        let appliedCodes = app.getCodes()
+        let speed = Double(app.speedMin)
+        
+        let speeds = directions.map({ dir -> Double in
+            if let _ = appliedCodes.filter({ $0 == dir }).first {
+                return speed
+            }
+            return 0.0
+        })
+        setChart(directions, values: speeds, andSpeed: speed)
+    }
+    
+    func setChart(dataPoints: [String], values: [Double], andSpeed speed : Double) {
+        
+        guard let app = AppObject.sharedInstance else { return }
+        let dataEntries = values.enumerate().map({ (index, element) in return ChartDataEntry(value: element, xIndex: index)  })
+        let chartDataSet = RadarChartDataSet(yVals: dataEntries, label: nil)
+        chartDataSet.drawValuesEnabled = false
+        chartDataSet.lineWidth = 2.0
+        chartDataSet.drawFilledEnabled = true
+        chartDataSet.drawHorizontalHighlightIndicatorEnabled = false
+        chartDataSet.drawVerticalHighlightIndicatorEnabled = false
+        let speedColor = app.units.getColorOfSpeed(speed)
+        chartDataSet.fillColor = speedColor
+        chartDataSet.setColor(speedColor, alpha: 0.6)
+        let chartData = RadarChartData(xVals: directions, dataSets: [chartDataSet])
+        
+        radarChart.data = chartData
+        radarChart.animate(yAxisDuration: NSTimeInterval(1.4), easingOption: ChartEasingOption.EaseOutBack)
+    }
 }
 
 extension NotificationSettingsViewController : AKPickerViewDataSource {
@@ -93,7 +140,7 @@ extension NotificationSettingsViewController : AKPickerViewDataSource {
     }
     
     func pickerView(pickerView: AKPickerView!, imageForItem item: Int) -> UIImage! {
-        return UIImage(named: directions[item].rawValue )
+        return UIImage(named: directionsEnum[item].rawValue )
     }
     
 }
@@ -101,11 +148,11 @@ extension NotificationSettingsViewController : AKPickerViewDataSource {
 extension NotificationSettingsViewController : AKPickerViewDelegate {
     
     func pickerView(pickerView: AKPickerView!, didSelectItem item: Int) {
-        let start = self.directions[Int(startDirection.selectedItem)].rawValue
-        let end = self.directions[Int(endDirection.selectedItem)].rawValue
+        let start = self.directionsEnum[Int(startDirection.selectedItem)].rawValue
+        let end = self.directionsEnum[Int(endDirection.selectedItem)].rawValue
         directionTitle.text =  ( start == end ) ? "Direction towards \(start) " : "Directions between \(start) & \(end)"
         if let app = AppObject.sharedInstance {
-            let code = directions[Int(pickerView.selectedItem)].rawValue
+            let code = directionsEnum[Int(pickerView.selectedItem)].rawValue
             if pickerView == startDirection {
                 app.directionCodeStart =  code
             }

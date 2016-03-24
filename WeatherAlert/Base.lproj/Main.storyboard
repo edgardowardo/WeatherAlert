@@ -381,7 +381,7 @@
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hy6-97-ZmC" customClass="RadarChartView" customModule="Charts">
                                                                 <rect key="frame" x="35" y="0.0" width="200" height="200"/>
-                                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="200" id="Yxt-ve-aaJ"/>
                                                                     <constraint firstAttribute="height" constant="200" id="xc3-3r-c9p"/>
