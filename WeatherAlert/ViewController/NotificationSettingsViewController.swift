@@ -85,6 +85,8 @@ class NotificationSettingsViewController : UIViewController {
         radarChart.webAlpha = 1.0
         radarChart.legendRenderer.legend = nil
         radarChart.yAxis.drawLabelsEnabled = false
+
+        updateChart()
     }
     
     // MARK: - Helpers  -
