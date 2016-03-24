@@ -68,19 +68,20 @@ class NotificationObject: Object {
             return
         }
         
-        guard let app = AppObject.sharedInstance where app.allowNotifications else { return }
+        guard let app = AppObject.sharedInstance else { return }
         
         let directions = app.getCodes(true)
-        let max : Double
-        if app.speedMax == app.units.maxSpeed {
-            max = 1000.0 // predicates do not like Double.infinity
-        }  else {
-            max = app.speedMax
-        }
-        
         var interv = 0.0
         let cityids = currents.map({ "\($0.cityid)" }).joinWithSeparator(",")
         let forecasts = realm.objects(ForecastObject).filter("cityid IN {\(cityids)} ").sorted("timefrom", ascending: true)
+        let maxNotifications = app.maxNotifications
+        let tempArray = currents.map({ (element) -> (Int, Int) in return (element.cityid, 0) })
+        let tempInitial = [Int: Int]()
+        var notificationCounter = tempArray.reduce(tempInitial) { (var dictionary, tuple) in
+            dictionary.updateValue(tuple.1, forKey: tuple.0)
+            return dictionary
+        }
+        
 //
         print("resetAlarm: forecasts.count(\(forecasts.count)) ")
         
@@ -88,12 +89,13 @@ class NotificationObject: Object {
         realm.beginWrite()
         
         for f in forecasts {
-            if let _ = f.direction, _ = directions.filter({ $0 == f.directioncode }).first, timefrom = f.timefrom, c = realm.objects(CurrentObject).filter("cityid == \(f.cityid)").first where NSDate().compare(timefrom) == .OrderedAscending && app.speedMin ... max ~= f.speedvalue {
+            if let _ = f.direction, _ = directions.filter({ $0 == f.directioncode }).first, timefrom = f.timefrom, c = realm.objects(CurrentObject).filter("cityid == \(f.cityid)").first, count = notificationCounter[f.cityid] where NSDate().compare(timefrom) == .OrderedAscending && app.speedMin ... app.speedMax ~= f.speedvalue && count <  maxNotifications {
                 
                 let speedname : String = ( f.speedname.characters.count == 0 ) ? "Windless" : f.speedname
                 let body = "\(speedname) (\(f.speedvalue) \(c.units.speed)) at \(c.name) coming from \(f.directionname.lowercaseString)."
                 interv = interv + 60
                 let fireDate = NSDate(timeIntervalSinceNow: interv) //f.timefrom
+                notificationCounter[f.cityid] = count + 1
                 
                 // create the persistent notification object
                 var n : NotificationObject

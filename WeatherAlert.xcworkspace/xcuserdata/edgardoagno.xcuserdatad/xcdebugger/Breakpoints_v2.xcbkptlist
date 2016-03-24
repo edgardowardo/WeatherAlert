@@ -325,46 +325,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeatherAlert/Model/NotificationObject.swift"
-            timestampString = "480420984.728678"
+            filePath = "WeatherAlert/ViewController/LeftViewController.swift"
+            timestampString = "480430148.057098"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "resetAlarm()"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static WeatherAlert.NotificationObject.resetAlarm (WeatherAlert.NotificationObject.Type)() -&gt; ()"
-                  moduleName = "WeatherAlert"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/edgardoagno/Documents/WeatherAlert/WeatherAlert/Model/NotificationObject.swift"
-                  timestampString = "480420663.962229"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "2288">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static WeatherAlert.NotificationObject.(resetAlarm (WeatherAlert.NotificationObject.Type) -&gt; () -&gt; ()).(closure #2)"
-                  moduleName = "WeatherAlert"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/edgardoagno/Documents/WeatherAlert/WeatherAlert/Model/NotificationObject.swift"
-                  timestampString = "480420663.962455"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -373,13 +341,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeatherAlert/ViewController/LeftViewController.swift"
-            timestampString = "480430148.057098"
+            filePath = "WeatherAlert/ViewController/NotificationSettingsViewController.swift"
+            timestampString = "480524818.703419"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "viewWillAppear(_:)"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "rangeSlider(_:didChangeSelectedMinimumValue:andMaximumValue:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

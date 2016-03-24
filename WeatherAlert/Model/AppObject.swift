@@ -17,11 +17,11 @@ class AppObject: Object {
     dynamic var _sortProperty = "lastupdate"
     dynamic var distanceKm = 2.0
     dynamic var _isAdsShown = true
-    dynamic var _speedMin = 0.0
-    dynamic var _speedMax = 0.0
+    dynamic var _speedMin = 15.0
+    dynamic var _speedMax = 17.0
     dynamic var _directionCodeStart = "N"
-    dynamic var _directionCodeEnd = "N"
-    dynamic var _allowNotifications = true
+    dynamic var _directionCodeEnd = "NE"
+    dynamic var _maxNotifications = 1 // per city
     
     static var sharedInstance = AppObject.loadAppData()
     
@@ -62,7 +62,7 @@ class AppObject: Object {
     // km/s
     var speedMax : Double {
         get {
-            return _speedMax
+            return (_speedMax == units.maxSpeed) ? 999.0 : _speedMax
         }
         set {
             if let _ = realm {
@@ -74,20 +74,15 @@ class AppObject: Object {
         }
     }
     
-    var allowNotifications : Bool {
+    var maxNotifications : Int {
         get {
-            if let _ = self.realm, app = realm!.objects(AppObject).first {
-                return app._allowNotifications
-            }
-            return true
+            return (_maxNotifications == 10) ? 999 : _maxNotifications
         }
         set {
-            if let _ = self.realm {
+            if let _ = realm {
                 try! realm!.write {
-                    if let app = AppObject.sharedInstance {
-                        app._allowNotifications = newValue
-                        realm!.add(app, update: true)
-                    }
+                    _maxNotifications = newValue
+                    realm!.add(self, update: true)
                 }
             }
         }
@@ -189,7 +184,7 @@ class AppObject: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["unit", "distance", "isAdsShown", "speedMin", "speedMax", "directionCodeStart", "directionCodeEnd", "allowNotifications"]
+        return ["unit", "distance", "isAdsShown", "speedMin", "speedMax", "directionCodeStart", "directionCodeEnd", "maxNotifications"]
     }
     
     static func loadAppData(var realm : Realm! = nil) -> AppObject? {

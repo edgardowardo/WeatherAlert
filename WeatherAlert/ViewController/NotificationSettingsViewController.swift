@@ -42,7 +42,9 @@ class NotificationSettingsViewController : UIViewController {
         endDirection.fisheyeFactor = 0.001
         
         if let app = AppObject.sharedInstance {
-            speedSlider.tintColor = app.units.getColorOfSpeed(app.speedMin)
+            percitySlider.delegate = self
+            percitySlider.selectedMaximum = Float(app.maxNotifications)
+            speedSlider.tintColor = app.units.getColorOfSpeed(Double( (app.units == .Imperial) ? app.units.toMph(app.speedMin) : app.speedMin ))
             speedSlider.delegate = self
             speedSlider.maxValue = Float(app.units.maxSpeed)
             speedTitle.text = "Speed (max \(Int(app.units.maxSpeed))\(app.units.speed) or faster)"
@@ -89,7 +91,7 @@ class NotificationSettingsViewController : UIViewController {
     
     func resetAlarm() {
         updateChart()
-//        NotificationObject.resetAlarm()
+        NotificationObject.resetAlarm()
         resetAllowTitle()
     }
     
@@ -102,8 +104,7 @@ class NotificationSettingsViewController : UIViewController {
     func updateChart() {
         guard let app = AppObject.sharedInstance else { return }
         let appliedCodes = app.getCodes()
-        let speed = Double(app.speedMin)
-        
+        let speed = Double( (app.units == .Imperial) ? app.units.toMph(app.speedMin) : app.speedMin  )
         let speeds = directions.map({ dir -> Double in
             if let _ = appliedCodes.filter({ $0 == dir }).first {
                 return speed
@@ -168,17 +169,23 @@ extension NotificationSettingsViewController : AKPickerViewDelegate {
 extension NotificationSettingsViewController : TTRangeSliderDelegate {
     
     func rangeSlider(sender: TTRangeSlider!, didChangeSelectedMinimumValue selectedMinimum: Float, andMaximumValue selectedMaximum: Float) {
-        var min = Double(selectedMinimum)
-        var max = Double(selectedMaximum)
-        if let app = AppObject.sharedInstance where app.units == .Imperial {
-            min = app.units.toMs(min)
-            max = app.units.toMs(max)
+        if sender === speedSlider {
+            guard let app = AppObject.sharedInstance else { return }
+            var min = Double(selectedMinimum)
+            var max = Double(selectedMaximum)
+            if app.units == .Imperial {
+                min = app.units.toMs(min)
+                max = app.units.toMs(max)
+            }
+            AppObject.sharedInstance?.speedMin = min
+            AppObject.sharedInstance?.speedMax = max
+            
+            let slider = sender as TTRangeSlider
+            let speedMin = Double( (app.units == .Imperial) ? app.units.toMph(min) : min )
+            slider.tintColor = AppObject.sharedInstance?.units.getColorOfSpeed(speedMin)
+        } else if sender == percitySlider {
+            AppObject.sharedInstance?.maxNotifications = Int(selectedMaximum)
         }
-        AppObject.sharedInstance?.speedMin = min
-        AppObject.sharedInstance?.speedMax = max
-        
-        let slider = sender as TTRangeSlider
-        slider.tintColor = AppObject.sharedInstance?.units.getColorOfSpeed(Double(selectedMinimum))
         
         resetAlarm()
     }

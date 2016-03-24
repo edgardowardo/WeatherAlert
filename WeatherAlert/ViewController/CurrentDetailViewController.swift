@@ -85,7 +85,7 @@ extension CurrentDetailViewController : UICollectionViewDataSource {
         let f = t.2[indexPath.row]
         let speed = String(format: "%.2f", f.speedvalue)
         let temperature = String(format: "%.1f", f.temperatureValue)
-        cell.imageAlarmed.hidden = !(f.isAlarmed && app.allowNotifications && curry.isFavourite)
+        cell.imageAlarmed.hidden = !(f.isAlarmed && app.maxNotifications > 0 && curry.isFavourite)
         cell.labelHH.text = f.hour
         cell.labelSpeed.text = "\(speed)"
         cell.labelSpeed.backgroundColor = curry.units.getColorOfSpeed(f.speedvalue)

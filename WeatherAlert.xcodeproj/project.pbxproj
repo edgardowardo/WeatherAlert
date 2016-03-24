@@ -11,7 +11,6 @@
 		27D003060F067FB371C7FBB9 /* Pods_WeatherAlertTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4062DB4CCB1E9E41E8391F /* Pods_WeatherAlertTests.framework */; };
 		56EEB10EC5A5CD6A6356455B /* Pods_WeatherAlertUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE13E9B2AD1611236B17440 /* Pods_WeatherAlertUITests.framework */; };
 		7700D7671C84ABAC00ADCE06 /* AppObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7700D7661C84ABAC00ADCE06 /* AppObject.swift */; };
-		7703763A1C99B20700175D51 /* AlarmSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770376391C99B20700175D51 /* AlarmSettingViewController.swift */; };
 		77102DA31C793FEB00BDAEE7 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77102DA21C793FEB00BDAEE7 /* UIColor.swift */; };
 		772CC7561C77CE0A008ECCFC /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772CC7551C77CE0A008ECCFC /* UIStoryboard.swift */; };
 		7732B36F1C78E72B00B845F4 /* CurrentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732B36E1C78E72B00B845F4 /* CurrentDetailViewController.swift */; };
@@ -83,7 +82,6 @@
 		4CE13E9B2AD1611236B17440 /* Pods_WeatherAlertUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherAlertUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64427D1956FDF194CA70B052 /* Pods-WeatherAlertTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAlertTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAlertTests/Pods-WeatherAlertTests.release.xcconfig"; sourceTree = "<group>"; };
 		7700D7661C84ABAC00ADCE06 /* AppObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppObject.swift; sourceTree = "<group>"; };
-		770376391C99B20700175D51 /* AlarmSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmSettingViewController.swift; sourceTree = "<group>"; };
 		77102DA21C793FEB00BDAEE7 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		772CC7551C77CE0A008ECCFC /* UIStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
 		7732B36E1C78E72B00B845F4 /* CurrentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentDetailViewController.swift; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 				7737E0E51CA00AE000CB0C40 /* NotificationTabController.swift */,
 				7737E0E11CA0036E00CB0C40 /* NotificationsViewController.swift */,
 				7793C3F71CA3160400B657CC /* NotificationSettingsViewController.swift */,
-				770376391C99B20700175D51 /* AlarmSettingViewController.swift */,
 				776BDF441C7752340004D9A5 /* ContainerMenuViewController.swift */,
 				776BDF461C77535A0004D9A5 /* LeftViewController.swift */,
 				776BDF421C7751BB0004D9A5 /* MainViewController.swift */,
@@ -625,7 +622,6 @@
 				776BDF4F1C775DA00004D9A5 /* CityObject.swift in Sources */,
 				77B3478F1C9AA32000B5B4B7 /* Direction.swift in Sources */,
 				7737E0E21CA0036E00CB0C40 /* NotificationsViewController.swift in Sources */,
-				7703763A1C99B20700175D51 /* AlarmSettingViewController.swift in Sources */,
 				7732B36F1C78E72B00B845F4 /* CurrentDetailViewController.swift in Sources */,
 				774E2EE41C902AF700CC83E4 /* DonationViewController.swift in Sources */,
 				779D58D71C7A9825007FEF5D /* CurrentDetailLayout.swift in Sources */,
