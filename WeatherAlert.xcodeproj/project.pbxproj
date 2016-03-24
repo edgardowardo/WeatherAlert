@@ -37,6 +37,7 @@
 		778AB11D1C7A3F2400EE974B /* LeftTitlesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778AB11C1C7A3F2400EE974B /* LeftTitlesCell.xib */; };
 		778AB11F1C7A3F8200EE974B /* RightTitlesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778AB11E1C7A3F8200EE974B /* RightTitlesCell.xib */; };
 		778C97C61C8B980C00668B0D /* CurrentInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778C97C51C8B980C00668B0D /* CurrentInfoView.xib */; };
+		7793C3F81CA3160400B657CC /* NotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793C3F71CA3160400B657CC /* NotificationSettingsViewController.swift */; };
 		779D3F121C79C00E00C89BBD /* ForecastObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779D3F111C79C00E00C89BBD /* ForecastObject.swift */; };
 		779D58D51C7A8D54007FEF5D /* ForecastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 779D58D41C7A8D54007FEF5D /* ForecastCell.xib */; };
 		779D58D71C7A9825007FEF5D /* CurrentDetailLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779D58D61C7A9825007FEF5D /* CurrentDetailLayout.swift */; };
@@ -108,6 +109,7 @@
 		778AB11C1C7A3F2400EE974B /* LeftTitlesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftTitlesCell.xib; sourceTree = "<group>"; };
 		778AB11E1C7A3F8200EE974B /* RightTitlesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightTitlesCell.xib; sourceTree = "<group>"; };
 		778C97C51C8B980C00668B0D /* CurrentInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrentInfoView.xib; sourceTree = "<group>"; };
+		7793C3F71CA3160400B657CC /* NotificationSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewController.swift; sourceTree = "<group>"; };
 		779D3F111C79C00E00C89BBD /* ForecastObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastObject.swift; sourceTree = "<group>"; };
 		779D58D41C7A8D54007FEF5D /* ForecastCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForecastCell.xib; sourceTree = "<group>"; };
 		779D58D61C7A9825007FEF5D /* CurrentDetailLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentDetailLayout.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			children = (
 				7737E0E51CA00AE000CB0C40 /* NotificationTabController.swift */,
 				7737E0E11CA0036E00CB0C40 /* NotificationsViewController.swift */,
+				7793C3F71CA3160400B657CC /* NotificationSettingsViewController.swift */,
 				770376391C99B20700175D51 /* AlarmSettingViewController.swift */,
 				776BDF441C7752340004D9A5 /* ContainerMenuViewController.swift */,
 				776BDF461C77535A0004D9A5 /* LeftViewController.swift */,
@@ -626,6 +629,7 @@
 				7732B36F1C78E72B00B845F4 /* CurrentDetailViewController.swift in Sources */,
 				774E2EE41C902AF700CC83E4 /* DonationViewController.swift in Sources */,
 				779D58D71C7A9825007FEF5D /* CurrentDetailLayout.swift in Sources */,
+				7793C3F81CA3160400B657CC /* NotificationSettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
