@@ -137,7 +137,7 @@ class LeftViewController: UITableViewController {
             presentViewController(self.getAcknowledgementsNavigationViewController(), animated: true, completion: nil)
         // Diclaimer
         case .Disclaimer :
-            let a = UIAlertController(title: "Disclaimer", message: "The information contained in the app is provided for general information purposes only and do not claim to be or constitute legal or other professional advice and shall not be relied upon as such. \n\nWe accept no liability or responsibility to any person or organisation as a consequence of any reliance upon the information contained in this app. \n\nInformation from city weather stations are provided by OpenWeatherMap. ", preferredStyle: UIAlertControllerStyle.Alert)
+            let a = UIAlertController(title: "Disclaimer", message: "The information contained in the app is provided for general information purposes only and do not claim to be or constitute legal or other professional advice and shall not be relied upon as such. \n\nNotifications are based on forecasts taken prior to delivery, and may have changed since then. \n\nWe accept no liability or responsibility to any person or organisation as a consequence of any reliance upon the information contained in this app. \n\nInformation from city weather stations are provided by OpenWeatherMap.", preferredStyle: UIAlertControllerStyle.Alert)
             a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
             UIApplication.delay(0.1, closure: { () -> () in
                 self.presentViewController(a, animated: true, completion: nil)

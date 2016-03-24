@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // first get a copy of all pending notifications (unfortunately you cannot 'modify' a pending notification)
         // if there are any pending notifications -> adjust their badge number
         if let pendings = app.scheduledLocalNotifications where pendings.count > 0 {
-print("renumberBadgesOfPendingNotifications: pendings.count(\(pendings.count)) ")
+//print("renumberBadgesOfPendingNotifications: pendings.count(\(pendings.count)) ")
 
             // sorted by fire date.
             let notifications = pendings.sort({ p1, p2 in p1.fireDate!.compare(p2.fireDate!) == .OrderedAscending })
@@ -80,7 +80,7 @@ print("renumberBadgesOfPendingNotifications: pendings.count(\(pendings.count)) "
                 
                 // schedule 'again'
                 app.scheduleLocalNotification(n)
-print("renumberBadgesOfPendingNotifications: \(n.alertBody!) ")
+//print("renumberBadgesOfPendingNotifications: \(n.alertBody!) ")
             
             }
         }

@@ -28,6 +28,7 @@ class NotificationsViewController: UITableViewController{
 
     var realm : Realm! = nil
     var notifications : Results<(NotificationObject)>!
+    var token : RLMNotificationToken!
     
     // MARK: - View Controller Lifecycle -
     
@@ -40,6 +41,10 @@ class NotificationsViewController: UITableViewController{
         super.viewDidLoad()
         if realm == nil {
             realm = try! Realm()
+        }
+        token = realm.objects(NotificationObject).addNotificationBlock { objects, error in
+            self.notifications = self.realm.objects(NotificationObject).filter(NSPredicate(format: "fireDate < %@", NSDate())).sorted("fireDate", ascending: false)
+            self.tableView.reloadData()
         }
         notifications = realm.objects(NotificationObject).filter(NSPredicate(format: "fireDate < %@", NSDate())).sorted("fireDate", ascending: false)
     }

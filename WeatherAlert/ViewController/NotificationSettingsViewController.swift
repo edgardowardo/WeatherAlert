@@ -85,11 +85,31 @@ class NotificationSettingsViewController : UIViewController {
         radarChart.webAlpha = 1.0
         radarChart.legendRenderer.legend = nil
         radarChart.yAxis.drawLabelsEnabled = false
-
+        
         updateChart()
     }
     
     // MARK: - Helpers  -
+        
+    @IBAction func clickedPercityInfo(sender: AnyObject) {
+        guard let count = UIApplication.sharedApplication().scheduledLocalNotifications?.count else { return }
+        let a = UIAlertController(title: "Notifications per city", message: "The maximum number of notifications generated per city. Set to zero to disable notifications. Set to one or more to enable. Set to ten and the limit is lifted. Default is one per city. There are currently \(count) scheduled notification(s).", preferredStyle: UIAlertControllerStyle.Alert)
+        a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+        presentViewController(a, animated: true, completion: nil)
+    }
+    
+    @IBAction func clickedSpeedInfo(sender: AnyObject) {
+        guard let app = AppObject.sharedInstance else { return }
+        let a = UIAlertController(title: "Speed range", message: "The minimum and maximum speed. Set the maximum to \(Int(app.units.maxSpeed))\(app.units.speed) and the limit is lifted.", preferredStyle: UIAlertControllerStyle.Alert)
+        a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+        presentViewController(a, animated: true, completion: nil)
+    }
+    
+    @IBAction func clickedDirectionsInfo(sender: AnyObject) {
+        let a = UIAlertController(title: "Directions", message: "Limit the range of wind directions as shown on the radar chart. ", preferredStyle: UIAlertControllerStyle.Alert)
+        a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+        presentViewController(a, animated: true, completion: nil)
+    }    
     
     func resetAlarm() {
         updateChart()

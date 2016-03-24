@@ -7,6 +7,7 @@
 //
 
 import RealmSwift
+import TIPBadgeManager
 
 class NotificationObject: Object {
     
@@ -54,14 +55,25 @@ class NotificationObject: Object {
         forecast.notification = self
     }
     
-    static func resetAlarm() {
+    static func deleteNotifications() {
         guard let realm = try? Realm() else { return }
-        
         let application = UIApplication.sharedApplication()
         application.cancelAllLocalNotifications()
-        application.applicationIconBadgeNumber = 0
-//
-        print("resetAlarm: cancelAllLocalNotifications")
+        TIPBadgeManager.sharedInstance.clearAllBadgeValues(true)
+        
+        let notifications = realm.objects(NotificationObject)
+        try! realm.write {
+            realm.delete(notifications)
+        }
+    }
+    
+    static func resetAlarm() {
+        guard let realm = try? Realm() else { return }        
+        let application = UIApplication.sharedApplication()
+        application.cancelAllLocalNotifications()
+        TIPBadgeManager.sharedInstance.clearAllBadgeValues(true)
+
+//      print("resetAlarm: cancelAllLocalNotifications")
         
         let currents = realm.objects(CurrentObject).filter("isFavourite == 1")
         if currents.count == 0 {
@@ -71,7 +83,7 @@ class NotificationObject: Object {
         guard let app = AppObject.sharedInstance else { return }
         
         let directions = app.getCodes(true)
-        var interv = 0.0
+//        var interv = 0.0
         let cityids = currents.map({ "\($0.cityid)" }).joinWithSeparator(",")
         let forecasts = realm.objects(ForecastObject).filter("cityid IN {\(cityids)} ").sorted("timefrom", ascending: true)
         let maxNotifications = app.maxNotifications
@@ -82,9 +94,7 @@ class NotificationObject: Object {
             return dictionary
         }
         
-//
-        print("resetAlarm: forecasts.count(\(forecasts.count)) ")
-        
+//      print("resetAlarm: forecasts.count(\(forecasts.count)) ")
         
         realm.beginWrite()
         
@@ -93,8 +103,8 @@ class NotificationObject: Object {
                 
                 let speedname : String = ( f.speedname.characters.count == 0 ) ? "Windless" : f.speedname
                 let body = "\(speedname) (\(f.speedvalue) \(c.units.speed)) at \(c.name) coming from \(f.directionname.lowercaseString)."
-                interv = interv + 60
-                let fireDate = NSDate(timeIntervalSinceNow: interv) //f.timefrom
+//                interv = interv + 60
+                let fireDate = f.timefrom //NSDate(timeIntervalSinceNow: interv) //f.timefrom
                 notificationCounter[f.cityid] = count + 1
                 
                 // create the persistent notification object
@@ -120,8 +130,8 @@ class NotificationObject: Object {
                 notification.applicationIconBadgeNumber = application.scheduledLocalNotifications!.count + 1
                 notification.userInfo = ["cityid" : c.cityid, "timefrom" : f.timefrom!, "notificationId" : n.id]
                 application.scheduleLocalNotification(notification)
-//
-                print("resetAlarm: \(notification.alertBody!) \(fireDate)")
+
+//                print("resetAlarm: \(notification.alertBody!) \(fireDate)")
             } else {
                 f.notification = nil
             }
