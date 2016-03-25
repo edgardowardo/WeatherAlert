@@ -32,6 +32,15 @@
 		776BDF4F1C775DA00004D9A5 /* CityObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776BDF4E1C775DA00004D9A5 /* CityObject.swift */; };
 		776BDF521C7764C60004D9A5 /* city.list.json in Resources */ = {isa = PBXBuildFile; fileRef = 776BDF511C7764C60004D9A5 /* city.list.json */; };
 		776BDF541C776D5A0004D9A5 /* city0.json in Resources */ = {isa = PBXBuildFile; fileRef = 776BDF531C776D5A0004D9A5 /* city0.json */; };
+		77736B4D1CA5433E004BDC71 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77736B4B1CA5433E004BDC71 /* Interface.storyboard */; };
+		77736B4F1CA5433E004BDC71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77736B4E1CA5433E004BDC71 /* Assets.xcassets */; };
+		77736B561CA5433E004BDC71 /* Wind Times Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 77736B551CA5433E004BDC71 /* Wind Times Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		77736B5D1CA5433E004BDC71 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77736B5C1CA5433E004BDC71 /* InterfaceController.swift */; };
+		77736B5F1CA5433E004BDC71 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77736B5E1CA5433E004BDC71 /* ExtensionDelegate.swift */; };
+		77736B611CA5433E004BDC71 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77736B601CA5433E004BDC71 /* NotificationController.swift */; };
+		77736B631CA5433E004BDC71 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77736B621CA5433E004BDC71 /* ComplicationController.swift */; };
+		77736B651CA5433E004BDC71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77736B641CA5433E004BDC71 /* Assets.xcassets */; };
+		77736B691CA5433E004BDC71 /* Wind Times.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 77736B491CA5433E004BDC71 /* Wind Times.app */; };
 		77810E0B1C86FCCE00945584 /* Test_04MainViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77810E0A1C86FCCE00945584 /* Test_04MainViewControllerSpec.swift */; };
 		778AB11D1C7A3F2400EE974B /* LeftTitlesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778AB11C1C7A3F2400EE974B /* LeftTitlesCell.xib */; };
 		778AB11F1C7A3F8200EE974B /* RightTitlesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778AB11E1C7A3F8200EE974B /* RightTitlesCell.xib */; };
@@ -60,6 +69,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		77736B571CA5433E004BDC71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77DAC61F1C7737E9004A1C72 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 77736B541CA5433E004BDC71;
+			remoteInfo = "Wind Times Extension";
+		};
+		77736B671CA5433E004BDC71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77DAC61F1C7737E9004A1C72 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 77736B481CA5433E004BDC71;
+			remoteInfo = "Wind Times";
+		};
 		77DAC63C1C7737E9004A1C72 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 77DAC61F1C7737E9004A1C72 /* Project object */;
@@ -75,6 +98,31 @@
 			remoteInfo = WeatherAlert;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		77736B6F1CA5433E004BDC71 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				77736B561CA5433E004BDC71 /* Wind Times Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77736B711CA5433E004BDC71 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				77736B691CA5433E004BDC71 /* Wind Times.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		10B88FAFA75804927EC6567D /* Pods-WeatherAlertUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAlertUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAlertUITests/Pods-WeatherAlertUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +151,18 @@
 		776BDF4E1C775DA00004D9A5 /* CityObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityObject.swift; sourceTree = "<group>"; };
 		776BDF511C7764C60004D9A5 /* city.list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list.json; sourceTree = "<group>"; };
 		776BDF531C776D5A0004D9A5 /* city0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city0.json; sourceTree = "<group>"; };
+		77736B491CA5433E004BDC71 /* Wind Times.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wind Times.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		77736B4C1CA5433E004BDC71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		77736B4E1CA5433E004BDC71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		77736B501CA5433E004BDC71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77736B551CA5433E004BDC71 /* Wind Times Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Wind Times Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		77736B5B1CA5433E004BDC71 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		77736B5C1CA5433E004BDC71 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		77736B5E1CA5433E004BDC71 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		77736B601CA5433E004BDC71 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		77736B621CA5433E004BDC71 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		77736B641CA5433E004BDC71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		77736B661CA5433E004BDC71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77810E0A1C86FCCE00945584 /* Test_04MainViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test_04MainViewControllerSpec.swift; sourceTree = "<group>"; };
 		778AB11C1C7A3F2400EE974B /* LeftTitlesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftTitlesCell.xib; sourceTree = "<group>"; };
 		778AB11E1C7A3F8200EE974B /* RightTitlesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightTitlesCell.xib; sourceTree = "<group>"; };
@@ -142,6 +202,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		77736B521CA5433E004BDC71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77DAC6241C7737E9004A1C72 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,6 +308,38 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		77736B4A1CA5433E004BDC71 /* Wind Times */ = {
+			isa = PBXGroup;
+			children = (
+				77736B4B1CA5433E004BDC71 /* Interface.storyboard */,
+				77736B4E1CA5433E004BDC71 /* Assets.xcassets */,
+				77736B501CA5433E004BDC71 /* Info.plist */,
+			);
+			path = "Wind Times";
+			sourceTree = "<group>";
+		};
+		77736B591CA5433E004BDC71 /* Wind Times Extension */ = {
+			isa = PBXGroup;
+			children = (
+				77736B5C1CA5433E004BDC71 /* InterfaceController.swift */,
+				77736B5E1CA5433E004BDC71 /* ExtensionDelegate.swift */,
+				77736B601CA5433E004BDC71 /* NotificationController.swift */,
+				77736B621CA5433E004BDC71 /* ComplicationController.swift */,
+				77736B641CA5433E004BDC71 /* Assets.xcassets */,
+				77736B661CA5433E004BDC71 /* Info.plist */,
+				77736B5A1CA5433E004BDC71 /* Supporting Files */,
+			);
+			path = "Wind Times Extension";
+			sourceTree = "<group>";
+		};
+		77736B5A1CA5433E004BDC71 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				77736B5B1CA5433E004BDC71 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		778AB11B1C7A3EAF00EE974B /* Xib */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +358,8 @@
 				77DAC6291C7737E9004A1C72 /* WeatherAlert */,
 				77DAC63E1C7737E9004A1C72 /* WeatherAlertTests */,
 				77DAC6491C7737EA004A1C72 /* WeatherAlertUITests */,
+				77736B4A1CA5433E004BDC71 /* Wind Times */,
+				77736B591CA5433E004BDC71 /* Wind Times Extension */,
 				77DAC6281C7737E9004A1C72 /* Products */,
 				B5DBFDFA54EDD0D81C1927F0 /* Pods */,
 				2DC10FD5BF2AFF5214465EA9 /* Frameworks */,
@@ -271,6 +372,8 @@
 				77DAC6271C7737E9004A1C72 /* WeatherAlert.app */,
 				77DAC63B1C7737E9004A1C72 /* WeatherAlertTests.xctest */,
 				77DAC6461C7737EA004A1C72 /* WeatherAlertUITests.xctest */,
+				77736B491CA5433E004BDC71 /* Wind Times.app */,
+				77736B551CA5433E004BDC71 /* Wind Times Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -330,6 +433,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		77736B481CA5433E004BDC71 /* Wind Times */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77736B701CA5433E004BDC71 /* Build configuration list for PBXNativeTarget "Wind Times" */;
+			buildPhases = (
+				77736B471CA5433E004BDC71 /* Resources */,
+				77736B6F1CA5433E004BDC71 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				77736B581CA5433E004BDC71 /* PBXTargetDependency */,
+			);
+			name = "Wind Times";
+			productName = "Wind Times";
+			productReference = 77736B491CA5433E004BDC71 /* Wind Times.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		77736B541CA5433E004BDC71 /* Wind Times Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77736B6E1CA5433E004BDC71 /* Build configuration list for PBXNativeTarget "Wind Times Extension" */;
+			buildPhases = (
+				77736B511CA5433E004BDC71 /* Sources */,
+				77736B521CA5433E004BDC71 /* Frameworks */,
+				77736B531CA5433E004BDC71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Wind Times Extension";
+			productName = "Wind Times Extension";
+			productReference = 77736B551CA5433E004BDC71 /* Wind Times Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		77DAC6261C7737E9004A1C72 /* WeatherAlert */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 77DAC64F1C7737EA004A1C72 /* Build configuration list for PBXNativeTarget "WeatherAlert" */;
@@ -340,10 +477,12 @@
 				77DAC6251C7737E9004A1C72 /* Resources */,
 				706BC6F05E81F2875E444152 /* Embed Pods Frameworks */,
 				138A724BA88A26CAE2E507C7 /* Copy Pods Resources */,
+				77736B711CA5433E004BDC71 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				77736B681CA5433E004BDC71 /* PBXTargetDependency */,
 			);
 			name = WeatherAlert;
 			productName = WeatherAlert;
@@ -401,6 +540,13 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "EDGARDO AGNO";
 				TargetAttributes = {
+					77736B481CA5433E004BDC71 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = LGLDN3729L;
+					};
+					77736B541CA5433E004BDC71 = {
+						CreatedOnToolsVersion = 7.2;
+					};
 					77DAC6261C7737E9004A1C72 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = LGLDN3729L;
@@ -431,11 +577,30 @@
 				77DAC6261C7737E9004A1C72 /* WeatherAlert */,
 				77DAC63A1C7737E9004A1C72 /* WeatherAlertTests */,
 				77DAC6451C7737EA004A1C72 /* WeatherAlertUITests */,
+				77736B481CA5433E004BDC71 /* Wind Times */,
+				77736B541CA5433E004BDC71 /* Wind Times Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		77736B471CA5433E004BDC71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77736B4F1CA5433E004BDC71 /* Assets.xcassets in Resources */,
+				77736B4D1CA5433E004BDC71 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77736B531CA5433E004BDC71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77736B651CA5433E004BDC71 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77DAC6251C7737E9004A1C72 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -596,6 +761,17 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		77736B511CA5433E004BDC71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77736B611CA5433E004BDC71 /* NotificationController.swift in Sources */,
+				77736B631CA5433E004BDC71 /* ComplicationController.swift in Sources */,
+				77736B5F1CA5433E004BDC71 /* ExtensionDelegate.swift in Sources */,
+				77736B5D1CA5433E004BDC71 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		77DAC6231C7737E9004A1C72 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -652,6 +828,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		77736B581CA5433E004BDC71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 77736B541CA5433E004BDC71 /* Wind Times Extension */;
+			targetProxy = 77736B571CA5433E004BDC71 /* PBXContainerItemProxy */;
+		};
+		77736B681CA5433E004BDC71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 77736B481CA5433E004BDC71 /* Wind Times */;
+			targetProxy = 77736B671CA5433E004BDC71 /* PBXContainerItemProxy */;
+		};
 		77DAC63D1C7737E9004A1C72 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 77DAC6261C7737E9004A1C72 /* WeatherAlert */;
@@ -665,6 +851,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		77736B4B1CA5433E004BDC71 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77736B4C1CA5433E004BDC71 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		77DAC62E1C7737E9004A1C72 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -676,6 +870,72 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		77736B6A1CA5433E004BDC71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = Wind_Times_Extension;
+				INFOPLIST_FILE = "Wind Times/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.edgardoagno.WeatherAlert.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Debug;
+		};
+		77736B6B1CA5433E004BDC71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = Wind_Times_Extension;
+				INFOPLIST_FILE = "Wind Times/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.edgardoagno.WeatherAlert.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Release;
+		};
+		77736B6C1CA5433E004BDC71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				INFOPLIST_FILE = "Wind Times Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.edgardoagno.WeatherAlert.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Debug;
+		};
+		77736B6D1CA5433E004BDC71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				INFOPLIST_FILE = "Wind Times Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.edgardoagno.WeatherAlert.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Release;
+		};
 		77DAC64D1C7737EA004A1C72 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -844,6 +1104,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		77736B6E1CA5433E004BDC71 /* Build configuration list for PBXNativeTarget "Wind Times Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77736B6C1CA5433E004BDC71 /* Debug */,
+				77736B6D1CA5433E004BDC71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		77736B701CA5433E004BDC71 /* Build configuration list for PBXNativeTarget "Wind Times" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77736B6A1CA5433E004BDC71 /* Debug */,
+				77736B6B1CA5433E004BDC71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		77DAC6221C7737E9004A1C72 /* Build configuration list for PBXProject "WeatherAlert" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
