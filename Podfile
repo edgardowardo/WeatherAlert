@@ -27,6 +27,14 @@ target 'WeatherAlertUITests' do
     pod 'Nimble'
 end
 
+
+target 'Wind Times' do
+end
+
+target 'Wind Times Extension' do
+    pod 'NKWatchChart'
+end
+
 post_install do | installer |
     require 'fileutils'
     FileUtils.cp_r('Pods/Target Support Files/Pods-WeatherAlert/Pods-WeatherAlert-acknowledgements.plist', 'Pods-acknowledgements.plist', :remove_destination => true)

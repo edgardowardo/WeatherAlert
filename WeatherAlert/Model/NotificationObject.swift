@@ -94,7 +94,7 @@ class NotificationObject: Object {
             return dictionary
         }
         
-//      print("resetAlarm: forecasts.count(\(forecasts.count)) ")
+      print("resetAlarm: forecasts.count(\(forecasts.count)) ")
         
         realm.beginWrite()
         
@@ -108,9 +108,11 @@ class NotificationObject: Object {
                 notificationCounter[f.cityid] = count + 1
                 
                 // create the persistent notification object
+                
                 var n : NotificationObject
-                if let note = f.notification {
-                    n = note
+                if let notification = realm.objects(NotificationObject).filter("cityid == \(f.cityid)").filter(NSPredicate(format: "fireDate == %@", fireDate!)).first {
+                    n = notification
+                    f.notification = n
                 } else {
                     n = NotificationObject(cityid: f.cityid, speedvalue: f.speedvalue, directioncode: f.directioncode, body: body, fireDate: fireDate, forecast: f)
                 }
@@ -131,7 +133,7 @@ class NotificationObject: Object {
                 notification.userInfo = ["cityid" : c.cityid, "timefrom" : f.timefrom!, "notificationId" : n.id]
                 application.scheduleLocalNotification(notification)
 
-//                print("resetAlarm: \(notification.alertBody!) \(fireDate)")
+                print("resetAlarm: \(notification.alertBody!) \(fireDate)")
             } else {
                 f.notification = nil
             }

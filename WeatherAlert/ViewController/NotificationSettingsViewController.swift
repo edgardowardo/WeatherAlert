@@ -93,7 +93,7 @@ class NotificationSettingsViewController : UIViewController {
         
     @IBAction func clickedPercityInfo(sender: AnyObject) {
         guard let count = UIApplication.sharedApplication().scheduledLocalNotifications?.count else { return }
-        let a = UIAlertController(title: "Notifications per city", message: "The maximum number of notifications generated per city. Set to zero to disable notifications. Set to one or more to enable. Set to ten and the limit is lifted. Default is one per city. There are currently \(count) scheduled notification(s).", preferredStyle: UIAlertControllerStyle.Alert)
+        let a = UIAlertController(title: "Notifications per city", message: "The maximum number of notifications generated per city. Set to zero to disable notifications. Set to one or more to enable. Set to ten and the limit is lifted. Default is one per city. There are currently \(count) expected notification(s) to arrive.", preferredStyle: UIAlertControllerStyle.Alert)
         a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
         presentViewController(a, animated: true, completion: nil)
     }
