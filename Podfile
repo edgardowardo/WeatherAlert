@@ -1,6 +1,11 @@
 platform :ios, '9.0'
 use_frameworks!
 
+def shared_pods
+    pod 'RealmSwift'
+    pod 'UIColor+FlatColors'
+end
+
 target 'WeatherAlert' do
 pod 'TIPBadgeManager'
 pod "TTRangeSlider"
@@ -32,6 +37,7 @@ target 'Wind Times' do
 end
 
 target 'Wind Times Extension' do
+    platform :watchos, '2.1'
     pod 'NKWatchChart'
 end
 

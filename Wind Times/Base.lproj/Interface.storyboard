@@ -5,13 +5,16 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--CurrentPageController-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Wind_Times" customModuleProvider="target">
+                <controller identifier="CurrentPageController" id="AgC-eL-Hgc" customClass="CurrentPageController" customModule="Wind_Times_Extension">
                     <items>
-                        <imageView alignment="left" image="Icon" id="UK1-nX-fKw"/>
+                        <imageView width="1" height="1" alignment="left" id="bzG-MF-qC7"/>
                     </items>
+                    <connections>
+                        <outlet property="chartImage" destination="bzG-MF-qC7" id="dFy-Hi-Mth"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>

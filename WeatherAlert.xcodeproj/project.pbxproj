@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14CCD38EACDE9BE8EB744B24 /* Pods_Wind_Times_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30EFEC5EA8CC0624CD1D530C /* Pods_Wind_Times_Extension.framework */; };
 		231DBD9F85EC442927C50492 /* Pods_WeatherAlert.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A48BC8A65B50C0391F38EED2 /* Pods_WeatherAlert.framework */; };
 		27D003060F067FB371C7FBB9 /* Pods_WeatherAlertTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4062DB4CCB1E9E41E8391F /* Pods_WeatherAlertTests.framework */; };
 		56EEB10EC5A5CD6A6356455B /* Pods_WeatherAlertUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE13E9B2AD1611236B17440 /* Pods_WeatherAlertUITests.framework */; };
@@ -35,7 +36,7 @@
 		77736B4D1CA5433E004BDC71 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77736B4B1CA5433E004BDC71 /* Interface.storyboard */; };
 		77736B4F1CA5433E004BDC71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77736B4E1CA5433E004BDC71 /* Assets.xcassets */; };
 		77736B561CA5433E004BDC71 /* Wind Times Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 77736B551CA5433E004BDC71 /* Wind Times Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		77736B5D1CA5433E004BDC71 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77736B5C1CA5433E004BDC71 /* InterfaceController.swift */; };
+		77736B5D1CA5433E004BDC71 /* CurrentPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77736B5C1CA5433E004BDC71 /* CurrentPageController.swift */; };
 		77736B5F1CA5433E004BDC71 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77736B5E1CA5433E004BDC71 /* ExtensionDelegate.swift */; };
 		77736B611CA5433E004BDC71 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77736B601CA5433E004BDC71 /* NotificationController.swift */; };
 		77736B631CA5433E004BDC71 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77736B621CA5433E004BDC71 /* ComplicationController.swift */; };
@@ -59,6 +60,7 @@
 		77B310CD1C865CC700DB3CAF /* testForecast01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 77B310CC1C865CC700DB3CAF /* testForecast01.xml */; };
 		77B3478F1C9AA32000B5B4B7 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B3478E1C9AA32000B5B4B7 /* Direction.swift */; };
 		77CFF5CC1C8B455F002D57A5 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77CFF5CB1C8B455F002D57A5 /* iAd.framework */; };
+		77D0F9521CA6CCBA00E2119F /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B3478E1C9AA32000B5B4B7 /* Direction.swift */; };
 		77DAC62B1C7737E9004A1C72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAC62A1C7737E9004A1C72 /* AppDelegate.swift */; };
 		77DAC6301C7737E9004A1C72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DAC62E1C7737E9004A1C72 /* Main.storyboard */; };
 		77DAC6321C7737E9004A1C72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77DAC6311C7737E9004A1C72 /* Assets.xcassets */; };
@@ -126,7 +128,9 @@
 
 /* Begin PBXFileReference section */
 		10B88FAFA75804927EC6567D /* Pods-WeatherAlertUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAlertUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAlertUITests/Pods-WeatherAlertUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		30EFEC5EA8CC0624CD1D530C /* Pods_Wind_Times_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wind_Times_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		321788CC81B65A0073EEF19B /* Pods-WeatherAlertUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAlertUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAlertUITests/Pods-WeatherAlertUITests.release.xcconfig"; sourceTree = "<group>"; };
+		335000DAA62849F4B5B97AEF /* Pods-Wind Times Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wind Times Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wind Times Extension/Pods-Wind Times Extension.release.xcconfig"; sourceTree = "<group>"; };
 		4CE13E9B2AD1611236B17440 /* Pods_WeatherAlertUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherAlertUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64427D1956FDF194CA70B052 /* Pods-WeatherAlertTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAlertTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAlertTests/Pods-WeatherAlertTests.release.xcconfig"; sourceTree = "<group>"; };
 		7700D7661C84ABAC00ADCE06 /* AppObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppObject.swift; sourceTree = "<group>"; };
@@ -157,7 +161,7 @@
 		77736B501CA5433E004BDC71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77736B551CA5433E004BDC71 /* Wind Times Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Wind Times Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77736B5B1CA5433E004BDC71 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		77736B5C1CA5433E004BDC71 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		77736B5C1CA5433E004BDC71 /* CurrentPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPageController.swift; sourceTree = "<group>"; };
 		77736B5E1CA5433E004BDC71 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		77736B601CA5433E004BDC71 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		77736B621CA5433E004BDC71 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 		77F282D91C85154B0018FAF8 /* Units.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
 		8A4062DB4CCB1E9E41E8391F /* Pods_WeatherAlertTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherAlertTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48BC8A65B50C0391F38EED2 /* Pods_WeatherAlert.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherAlert.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A50BE00BBF6D183964CD34E0 /* Pods-Wind Times Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wind Times Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wind Times Extension/Pods-Wind Times Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		BAF78B6E1F3952A07B0DA3B4 /* Pods-WeatherAlertTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAlertTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAlertTests/Pods-WeatherAlertTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D14725FC47CD75A6BA838F31 /* Pods-WeatherAlert.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAlert.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAlert/Pods-WeatherAlert.release.xcconfig"; sourceTree = "<group>"; };
 		FE148F6C992E6D53BBDF3F3F /* Pods-WeatherAlert.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAlert.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAlert/Pods-WeatherAlert.debug.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14CCD38EACDE9BE8EB744B24 /* Pods_Wind_Times_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +252,7 @@
 				A48BC8A65B50C0391F38EED2 /* Pods_WeatherAlert.framework */,
 				8A4062DB4CCB1E9E41E8391F /* Pods_WeatherAlertTests.framework */,
 				4CE13E9B2AD1611236B17440 /* Pods_WeatherAlertUITests.framework */,
+				30EFEC5EA8CC0624CD1D530C /* Pods_Wind_Times_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -321,7 +328,7 @@
 		77736B591CA5433E004BDC71 /* Wind Times Extension */ = {
 			isa = PBXGroup;
 			children = (
-				77736B5C1CA5433E004BDC71 /* InterfaceController.swift */,
+				77736B5C1CA5433E004BDC71 /* CurrentPageController.swift */,
 				77736B5E1CA5433E004BDC71 /* ExtensionDelegate.swift */,
 				77736B601CA5433E004BDC71 /* NotificationController.swift */,
 				77736B621CA5433E004BDC71 /* ComplicationController.swift */,
@@ -426,6 +433,8 @@
 				64427D1956FDF194CA70B052 /* Pods-WeatherAlertTests.release.xcconfig */,
 				10B88FAFA75804927EC6567D /* Pods-WeatherAlertUITests.debug.xcconfig */,
 				321788CC81B65A0073EEF19B /* Pods-WeatherAlertUITests.release.xcconfig */,
+				A50BE00BBF6D183964CD34E0 /* Pods-Wind Times Extension.debug.xcconfig */,
+				335000DAA62849F4B5B97AEF /* Pods-Wind Times Extension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -454,9 +463,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 77736B6E1CA5433E004BDC71 /* Build configuration list for PBXNativeTarget "Wind Times Extension" */;
 			buildPhases = (
+				3783AA804432D886D9DA7025 /* Check Pods Manifest.lock */,
 				77736B511CA5433E004BDC71 /* Sources */,
 				77736B521CA5433E004BDC71 /* Frameworks */,
 				77736B531CA5433E004BDC71 /* Resources */,
+				C87A14BFA6C2BE11508A4AB0 /* Embed Pods Frameworks */,
+				2F2A0FB7898FC623A5FE986E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -683,7 +695,37 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		2F2A0FB7898FC623A5FE986E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wind Times Extension/Pods-Wind Times Extension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		320E658E8EBADDAC75851811 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3783AA804432D886D9DA7025 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -758,6 +800,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeatherAlertUITests/Pods-WeatherAlertUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C87A14BFA6C2BE11508A4AB0 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wind Times Extension/Pods-Wind Times Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -768,7 +825,8 @@
 				77736B611CA5433E004BDC71 /* NotificationController.swift in Sources */,
 				77736B631CA5433E004BDC71 /* ComplicationController.swift in Sources */,
 				77736B5F1CA5433E004BDC71 /* ExtensionDelegate.swift in Sources */,
-				77736B5D1CA5433E004BDC71 /* InterfaceController.swift in Sources */,
+				77D0F9521CA6CCBA00E2119F /* Direction.swift in Sources */,
+				77736B5D1CA5433E004BDC71 /* CurrentPageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,6 +966,7 @@
 		};
 		77736B6C1CA5433E004BDC71 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A50BE00BBF6D183964CD34E0 /* Pods-Wind Times Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				INFOPLIST_FILE = "Wind Times Extension/Info.plist";
@@ -923,6 +982,7 @@
 		};
 		77736B6D1CA5433E004BDC71 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 335000DAA62849F4B5B97AEF /* Pods-Wind Times Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				INFOPLIST_FILE = "Wind Times Extension/Info.plist";
@@ -1111,6 +1171,7 @@
 				77736B6D1CA5433E004BDC71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		77736B701CA5433E004BDC71 /* Build configuration list for PBXNativeTarget "Wind Times" */ = {
 			isa = XCConfigurationList;
@@ -1119,6 +1180,7 @@
 				77736B6B1CA5433E004BDC71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		77DAC6221C7737E9004A1C72 /* Build configuration list for PBXProject "WeatherAlert" */ = {
 			isa = XCConfigurationList;
