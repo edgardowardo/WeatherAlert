@@ -15,6 +15,10 @@
 		77102DA31C793FEB00BDAEE7 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77102DA21C793FEB00BDAEE7 /* UIColor.swift */; };
 		772CC7561C77CE0A008ECCFC /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772CC7551C77CE0A008ECCFC /* UIStoryboard.swift */; };
 		7732B36F1C78E72B00B845F4 /* CurrentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732B36E1C78E72B00B845F4 /* CurrentDetailViewController.swift */; };
+		7733E1891CA8382B00D9E147 /* TetherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7733E1881CA8382B00D9E147 /* TetherManager.swift */; };
+		7733E18A1CA83AEC00D9E147 /* TetherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7733E1881CA8382B00D9E147 /* TetherManager.swift */; };
+		7733E18C1CA8490E00D9E147 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7733E18B1CA8490E00D9E147 /* WatchSessionManager.swift */; };
+		7733E18E1CA85D4B00D9E147 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7733E18D1CA85D4B00D9E147 /* WatchSessionManager.swift */; };
 		7737E0E21CA0036E00CB0C40 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7737E0E11CA0036E00CB0C40 /* NotificationsViewController.swift */; };
 		7737E0E61CA00AE000CB0C40 /* NotificationTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7737E0E51CA00AE000CB0C40 /* NotificationTabController.swift */; };
 		773E7CBB1C79FB3800047988 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E7CBA1C79FB3800047988 /* NSDate.swift */; };
@@ -137,6 +141,9 @@
 		77102DA21C793FEB00BDAEE7 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		772CC7551C77CE0A008ECCFC /* UIStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
 		7732B36E1C78E72B00B845F4 /* CurrentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentDetailViewController.swift; sourceTree = "<group>"; };
+		7733E1881CA8382B00D9E147 /* TetherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TetherManager.swift; sourceTree = "<group>"; };
+		7733E18B1CA8490E00D9E147 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
+		7733E18D1CA85D4B00D9E147 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		7737E0E11CA0036E00CB0C40 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		7737E0E51CA00AE000CB0C40 /* NotificationTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTabController.swift; sourceTree = "<group>"; };
 		773E7CBA1C79FB3800047988 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
@@ -257,6 +264,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7733E1871CA8382B00D9E147 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				7733E1881CA8382B00D9E147 /* TetherManager.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		776BDE801C7750870004D9A5 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +343,7 @@
 		77736B591CA5433E004BDC71 /* Wind Times Extension */ = {
 			isa = PBXGroup;
 			children = (
+				7733E18D1CA85D4B00D9E147 /* WatchSessionManager.swift */,
 				77736B5C1CA5433E004BDC71 /* CurrentPageController.swift */,
 				77736B5E1CA5433E004BDC71 /* ExtensionDelegate.swift */,
 				77736B601CA5433E004BDC71 /* NotificationController.swift */,
@@ -388,11 +404,13 @@
 		77DAC6291C7737E9004A1C72 /* WeatherAlert */ = {
 			isa = PBXGroup;
 			children = (
+				7733E1871CA8382B00D9E147 /* Shared */,
 				776BDF501C7764B30004D9A5 /* Supporting Files */,
 				776BDF4D1C775D8A0004D9A5 /* Model */,
 				776BDE831C77514A0004D9A5 /* ViewController */,
 				776BDE801C7750870004D9A5 /* Extension */,
 				77DAC62A1C7737E9004A1C72 /* AppDelegate.swift */,
+				7733E18B1CA8490E00D9E147 /* WatchSessionManager.swift */,
 				77DAC62E1C7737E9004A1C72 /* Main.storyboard */,
 				77DAC6311C7737E9004A1C72 /* Assets.xcassets */,
 				77AFC9FB1C860D61009F090B /* Pods-acknowledgements.plist */,
@@ -825,8 +843,10 @@
 				77736B611CA5433E004BDC71 /* NotificationController.swift in Sources */,
 				77736B631CA5433E004BDC71 /* ComplicationController.swift in Sources */,
 				77736B5F1CA5433E004BDC71 /* ExtensionDelegate.swift in Sources */,
+				7733E18A1CA83AEC00D9E147 /* TetherManager.swift in Sources */,
 				77D0F9521CA6CCBA00E2119F /* Direction.swift in Sources */,
 				77736B5D1CA5433E004BDC71 /* CurrentPageController.swift in Sources */,
+				7733E18E1CA85D4B00D9E147 /* WatchSessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,8 +857,10 @@
 				776BDF431C7751BB0004D9A5 /* MainViewController.swift in Sources */,
 				77102DA31C793FEB00BDAEE7 /* UIColor.swift in Sources */,
 				773FAF8A1C78BBAF00D9FE21 /* CurrentObject.swift in Sources */,
+				7733E1891CA8382B00D9E147 /* TetherManager.swift in Sources */,
 				7768A6511C7BF044007F1521 /* WAAcknowledgementsViewController.swift in Sources */,
 				776BDF451C7752340004D9A5 /* ContainerMenuViewController.swift in Sources */,
+				7733E18C1CA8490E00D9E147 /* WatchSessionManager.swift in Sources */,
 				776BDF491C77579E0004D9A5 /* UIViewController.swift in Sources */,
 				775C375B1C78DBB8007D0C80 /* Router.swift in Sources */,
 				773E7CBB1C79FB3800047988 /* NSDate.swift in Sources */,

@@ -125,6 +125,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // observer to reset forecast notifications
         tokenFavourites = realm.objects(CurrentObject).filter("isFavourite == 1").addNotificationBlock { objects, error in
+            let favourites = objects?.map({ obj in return [ "cityid" : obj.cityid, "name" : obj.name, "speedvalue" : obj.speedvalue, "directioncode" : obj.directioncode, "lastupdate" : obj.lastupdate! ] })
+            let context = ["favourites" : favourites!]
+            try! WatchSessionManager.sharedManager.updateApplicationContext(context)
+//            if let session = TetherManager.sharedInstance.session where session.paired && session.watchAppInstalled {
+//                try! session.updateApplicationContext(context)
+//            }
             NotificationObject.resetAlarm()
         }
 

@@ -9,19 +9,31 @@
 import WatchKit
 import Foundation
 import NKWatchChart
+import WatchConnectivity
 
-class CurrentPageController: WKInterfaceController {
+class CurrentPageController: WKInterfaceController, WCSessionDelegate {
 
     @IBOutlet var chartImage: WKInterfaceImage!
     static var first = true
+    private let session : WCSession? = WCSession.isSupported() ? WCSession.defaultSession() : nil
+
+    override init() {
+        super.init()
+        self.session?.delegate = self
+        self.session?.activateSession()
+    }
     
+    func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
+
+    }
+        
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        if CurrentPageController.first {
-            WKInterfaceController.reloadRootControllersWithNames(["CurrentPageController", "CurrentPageController", "CurrentPageController"], contexts: ["first", "second", "third"])
-            CurrentPageController.first = false
-        }
+//        if CurrentPageController.first {
+//            WKInterfaceController.reloadRootControllersWithNames(["CurrentPageController", "CurrentPageController", "CurrentPageController"], contexts: ["first", "second", "third"])
+//            CurrentPageController.first = false
+//        }
     }
 
     override func willActivate() {
