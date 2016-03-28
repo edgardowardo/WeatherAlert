@@ -13,6 +13,17 @@ import RealmSwift
 import iAd
 import TIPBadgeManager
 
+extension AppDelegate : WatchSessionManagerDelegate {
+    func buildApplicationContext() -> [String : AnyObject]? {
+        guard let realm = try? Realm() else { return nil }
+        let favourites = realm.objects(CurrentObject).filter("isFavourite == 1")
+        let context = favourites.map({ obj in return [ "cityid" : obj.cityid, "name" : obj.name, "speedvalue" : obj.speedvalue, "directioncode" : obj.directioncode, "lastupdate" : obj.lastupdate! ] })
+
+        guard let _ = context.first else { return nil }
+        return ["favourites" : context]
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -115,6 +126,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        WatchSessionManager.sharedManager.delegate = self
         
         self.createMenuView()
         UIViewController.prepareInterstitialAds()

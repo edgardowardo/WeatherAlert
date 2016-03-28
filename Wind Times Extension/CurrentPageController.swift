@@ -18,10 +18,14 @@ class CurrentPageController: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        if CurrentPageController.first {
-            WKInterfaceController.reloadRootControllersWithNames(["CurrentPageController", "CurrentPageController", "CurrentPageController"], contexts: ["first", "second", "third"])
-            CurrentPageController.first = false
-        }
+        WatchSessionManager.sharedManager.session?.sendMessage(["command" : "getFavourites"], replyHandler: { (data : [String : AnyObject]) -> Void in
+            NSLog("replyHandler \(data)")
+            }, errorHandler: nil)
+        
+//        if CurrentPageController.first {
+//            WKInterfaceController.reloadRootControllersWithNames(["CurrentPageController", "CurrentPageController", "CurrentPageController"], contexts: ["first", "second", "third"])
+//            CurrentPageController.first = false
+//        }
     }
 
     override func willActivate() {
