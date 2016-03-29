@@ -15,6 +15,7 @@ class WatchSessionManager : NSObject, WCSessionDelegate {
     
     let session: WCSession? = WCSession.isSupported() ? WCSession.defaultSession() : nil
     static let sharedManager = WatchSessionManager()
+    private var dataSourceChangedDelegates = [DataSourceChangedDelegate]()
     
     // MARK:- Functions -
     
@@ -24,12 +25,23 @@ class WatchSessionManager : NSObject, WCSessionDelegate {
         self.session?.activateSession()
     }
     
+    func addDataSourceChangedDelegate<T where T: DataSourceChangedDelegate, T: Equatable>(delegate: T) {
+        dataSourceChangedDelegates.append(delegate)
+    }
+    
+    func removeDataSourceChangedDelegate<T where T: DataSourceChangedDelegate, T: Equatable>(delegate: T) {
+        for (index, dataSourceDelegate) in dataSourceChangedDelegates.enumerate() {
+            if let dataSourceDelegate = dataSourceDelegate as? T where dataSourceDelegate == delegate {
+                dataSourceChangedDelegates.removeAtIndex(index)
+                break
+            }
+        }
+    }
+    
     func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
         NSLog("didReceiveApplicationContext \(applicationContext)")
-        
         dispatch_async(dispatch_get_main_queue()) { [weak self] in
-            
-//            self?.dataSourceChangedDelegates.forEach { $0.dataSourceDidUpdate(DataSource(data: applicationContext))}
+            self?.dataSourceChangedDelegates.forEach { $0.dataSourceDidUpdate(DataSource(data: applicationContext))}
         }
     }
 }

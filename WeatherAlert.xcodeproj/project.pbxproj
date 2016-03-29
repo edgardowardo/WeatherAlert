@@ -23,6 +23,7 @@
 		7748379B1C9F151200E37F90 /* NotificationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7748379A1C9F151200E37F90 /* NotificationObject.swift */; };
 		774E2EE21C902AE700CC83E4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774E2EE11C902AE700CC83E4 /* StoreKit.framework */; };
 		774E2EE41C902AF700CC83E4 /* DonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774E2EE31C902AF700CC83E4 /* DonationViewController.swift */; };
+		775605F11CA9B57600121A5B /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775605F01CA9B57600121A5B /* DataSource.swift */; };
 		775C375B1C78DBB8007D0C80 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775C375A1C78DBB8007D0C80 /* Router.swift */; };
 		7761C6571CA88146001E0A72 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7761C6561CA88146001E0A72 /* WatchSessionManager.swift */; };
 		7761C65A1CA88C69001E0A72 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7761C6591CA88C69001E0A72 /* WatchSessionManager.swift */; };
@@ -147,6 +148,7 @@
 		7748379A1C9F151200E37F90 /* NotificationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationObject.swift; sourceTree = "<group>"; };
 		774E2EE11C902AE700CC83E4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		774E2EE31C902AF700CC83E4 /* DonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationViewController.swift; sourceTree = "<group>"; };
+		775605F01CA9B57600121A5B /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		775C375A1C78DBB8007D0C80 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		7761C6561CA88146001E0A72 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		7761C6591CA88C69001E0A72 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
@@ -261,6 +263,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		775605EF1CA9B50700121A5B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				775605F01CA9B57600121A5B /* DataSource.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		776BDE801C7750870004D9A5 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +342,7 @@
 		77736B591CA5433E004BDC71 /* Wind Times Extension */ = {
 			isa = PBXGroup;
 			children = (
+				775605EF1CA9B50700121A5B /* Model */,
 				7761C6591CA88C69001E0A72 /* WatchSessionManager.swift */,
 				77736B5C1CA5433E004BDC71 /* CurrentPageController.swift */,
 				77736B5E1CA5433E004BDC71 /* ExtensionDelegate.swift */,
@@ -828,6 +839,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				775605F11CA9B57600121A5B /* DataSource.swift in Sources */,
 				7761C65A1CA88C69001E0A72 /* WatchSessionManager.swift in Sources */,
 				77736B611CA5433E004BDC71 /* NotificationController.swift in Sources */,
 				77736B631CA5433E004BDC71 /* ComplicationController.swift in Sources */,

@@ -10,36 +10,42 @@ import WatchKit
 import Foundation
 import NKWatchChart
 
-class CurrentPageController: WKInterfaceController {
+class CurrentPageController: WKInterfaceController, DataSourceChangedDelegate {
 
     @IBOutlet var chartImage: WKInterfaceImage!
-    static var first = true
+    
+    func dataSourceDidUpdate(dataSource: DataSource) {
+
+        guard let currents = dataSource.currentObjects else { return }
+        let names = Array(count: currents.count, repeatedValue: "CurrentPageController")
+        WKInterfaceController.reloadRootControllersWithNames(names, contexts: currents)
+        
+    }
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        WatchSessionManager.sharedManager.session?.sendMessage(["command" : "getFavourites"], replyHandler: { (data : [String : AnyObject]) -> Void in
-            NSLog("replyHandler \(data)")
-            }, errorHandler: nil)
+        WatchSessionManager.sharedManager.addDataSourceChangedDelegate(self)
         
-//        if CurrentPageController.first {
-//            WKInterfaceController.reloadRootControllersWithNames(["CurrentPageController", "CurrentPageController", "CurrentPageController"], contexts: ["first", "second", "third"])
-//            CurrentPageController.first = false
-//        }
+        guard let current = context as? CurrentObject else { return }
+        
+        let frame = CGRectMake(0, 0, self.contentFrame.size.width, self.contentFrame.size.height)
+        let items = Direction.directions.map({ element in NKRadarChartDataItem(value: CGFloat(current.speedvalue), description: element.rawValue)! })
+        let chart = NKRadarChart(frame: frame, items: items, valueDivider: 1)
+        chart.plotColor = UIColor.purpleColor().colorWithAlphaComponent(0.7)
+        chart.fontColor = UIColor.whiteColor()
+        chartImage.setImage(chart.drawImage())
+        
+        self.setTitle(current.name)
     }
 
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        let frame = CGRectMake(0, 0, self.contentFrame.size.width, self.contentFrame.size.height)
-        let items = Direction.directions.map({ element in NKRadarChartDataItem(value: 5.0, description: element.rawValue)! })
-        let chart = NKRadarChart(frame: frame, items: items, valueDivider: 1)
-        
-        chartImage.setImage(chart.drawImage())
     }
 
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
+        WatchSessionManager.sharedManager.removeDataSourceChangedDelegate(self)
         super.didDeactivate()
     }
     

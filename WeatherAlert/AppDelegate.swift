@@ -17,7 +17,7 @@ extension AppDelegate : WatchSessionManagerDelegate {
     func buildApplicationContext() -> [String : AnyObject]? {
         guard let realm = try? Realm() else { return nil }
         let favourites = realm.objects(CurrentObject).filter("isFavourite == 1")
-        let context = favourites.map({ obj in return [ "cityid" : obj.cityid, "name" : obj.name, "speedvalue" : obj.speedvalue, "directioncode" : obj.directioncode, "lastupdate" : obj.lastupdate! ] })
+        let context = favourites.map({ obj in return [ "cityid" : obj.cityid, "name" : obj.name, "speedvalue" : obj.speedvalue, "speedname" : obj.speedname, "directioncode" : obj.directioncode, "lastupdate" : obj.lastupdate! ] })
 
         guard let _ = context.first else { return nil }
         return ["favourites" : context]
