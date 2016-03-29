@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '8FD51D465E49489E48158746'
+               BlueprintIdentifier = 'FF2DB18B00D964DAF8BCD7C6'
                BlueprintName = 'NKWatchChart'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'NKWatchChart.framework'>

@@ -213,7 +213,7 @@
         
         NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
         [attributes setObject:font forKey:NSFontAttributeName];
-        [attributes setObject:NKGreen forKey:NSForegroundColorAttributeName];
+        [attributes setObject:_fontColor forKey:NSForegroundColorAttributeName];
         
         NSMutableParagraphStyle *paragraphStyle =NSMutableParagraphStyle.new;
         switch (_labelStyle) {

@@ -49,6 +49,10 @@
 		778AB11D1C7A3F2400EE974B /* LeftTitlesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778AB11C1C7A3F2400EE974B /* LeftTitlesCell.xib */; };
 		778AB11F1C7A3F8200EE974B /* RightTitlesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778AB11E1C7A3F8200EE974B /* RightTitlesCell.xib */; };
 		778C97C61C8B980C00668B0D /* CurrentInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 778C97C51C8B980C00668B0D /* CurrentInfoView.xib */; };
+		778DAA891CAAADC9009DD4B8 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778DAA881CAAADC9009DD4B8 /* UIColor.swift */; };
+		778DAA8B1CAAC366009DD4B8 /* UnitsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778DAA8A1CAAC365009DD4B8 /* UnitsExtension.swift */; };
+		778DAA8C1CAAC40B009DD4B8 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F282D91C85154B0018FAF8 /* Units.swift */; };
+		778DAA8F1CAAC5F7009DD4B8 /* UnitsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778DAA8E1CAAC5F7009DD4B8 /* UnitsExtension.swift */; };
 		7793C3F81CA3160400B657CC /* NotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793C3F71CA3160400B657CC /* NotificationSettingsViewController.swift */; };
 		779D3F121C79C00E00C89BBD /* ForecastObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779D3F111C79C00E00C89BBD /* ForecastObject.swift */; };
 		779D58D51C7A8D54007FEF5D /* ForecastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 779D58D41C7A8D54007FEF5D /* ForecastCell.xib */; };
@@ -177,6 +181,9 @@
 		778AB11C1C7A3F2400EE974B /* LeftTitlesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftTitlesCell.xib; sourceTree = "<group>"; };
 		778AB11E1C7A3F8200EE974B /* RightTitlesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightTitlesCell.xib; sourceTree = "<group>"; };
 		778C97C51C8B980C00668B0D /* CurrentInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrentInfoView.xib; sourceTree = "<group>"; };
+		778DAA881CAAADC9009DD4B8 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = ../UIColor.swift; sourceTree = "<group>"; };
+		778DAA8A1CAAC365009DD4B8 /* UnitsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsExtension.swift; sourceTree = "<group>"; };
+		778DAA8E1CAAC5F7009DD4B8 /* UnitsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsExtension.swift; sourceTree = "<group>"; };
 		7793C3F71CA3160400B657CC /* NotificationSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewController.swift; sourceTree = "<group>"; };
 		779D3F111C79C00E00C89BBD /* ForecastObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastObject.swift; sourceTree = "<group>"; };
 		779D58D41C7A8D54007FEF5D /* ForecastCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForecastCell.xib; sourceTree = "<group>"; };
@@ -281,6 +288,7 @@
 				775C375A1C78DBB8007D0C80 /* Router.swift */,
 				77102DA21C793FEB00BDAEE7 /* UIColor.swift */,
 				773E7CBA1C79FB3800047988 /* NSDate.swift */,
+				778DAA8A1CAAC365009DD4B8 /* UnitsExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -342,6 +350,7 @@
 		77736B591CA5433E004BDC71 /* Wind Times Extension */ = {
 			isa = PBXGroup;
 			children = (
+				778DAA8D1CAAC5C3009DD4B8 /* Extension */,
 				775605EF1CA9B50700121A5B /* Model */,
 				7761C6591CA88C69001E0A72 /* WatchSessionManager.swift */,
 				77736B5C1CA5433E004BDC71 /* CurrentPageController.swift */,
@@ -373,6 +382,15 @@
 				778C97C51C8B980C00668B0D /* CurrentInfoView.xib */,
 			);
 			path = Xib;
+			sourceTree = "<group>";
+		};
+		778DAA8D1CAAC5C3009DD4B8 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				778DAA881CAAADC9009DD4B8 /* UIColor.swift */,
+				778DAA8E1CAAC5F7009DD4B8 /* UnitsExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		77DAC61E1C7737E9004A1C72 = {
@@ -844,7 +862,10 @@
 				77736B611CA5433E004BDC71 /* NotificationController.swift in Sources */,
 				77736B631CA5433E004BDC71 /* ComplicationController.swift in Sources */,
 				77736B5F1CA5433E004BDC71 /* ExtensionDelegate.swift in Sources */,
+				778DAA891CAAADC9009DD4B8 /* UIColor.swift in Sources */,
 				77D0F9521CA6CCBA00E2119F /* Direction.swift in Sources */,
+				778DAA8F1CAAC5F7009DD4B8 /* UnitsExtension.swift in Sources */,
+				778DAA8C1CAAC40B009DD4B8 /* Units.swift in Sources */,
 				77736B5D1CA5433E004BDC71 /* CurrentPageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -870,6 +891,7 @@
 				77E1ECDC1C9779F400DA777D /* MapViewController.swift in Sources */,
 				773FAF881C78A17F00D9FE21 /* Alamofire.swift in Sources */,
 				7737E0E61CA00AE000CB0C40 /* NotificationTabController.swift in Sources */,
+				778DAA8B1CAAC366009DD4B8 /* UnitsExtension.swift in Sources */,
 				772CC7561C77CE0A008ECCFC /* UIStoryboard.swift in Sources */,
 				7700D7671C84ABAC00ADCE06 /* AppObject.swift in Sources */,
 				7748379B1C9F151200E37F90 /* NotificationObject.swift in Sources */,

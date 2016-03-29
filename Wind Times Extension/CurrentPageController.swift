@@ -30,10 +30,17 @@ class CurrentPageController: WKInterfaceController, DataSourceChangedDelegate {
         guard let current = context as? CurrentObject else { return }
         
         let frame = CGRectMake(0, 0, self.contentFrame.size.width, self.contentFrame.size.height)
-        let items = Direction.directions.map({ element in NKRadarChartDataItem(value: CGFloat(current.speedvalue), description: element.rawValue)! })
+        var items = Direction.directions.map({ element in NKRadarChartDataItem(value: 0.0, description: element.rawValue)! })
+        if let dir = current.direction {
+            for (index, element) in dir.directionsWithspeed(current.speedvalue).enumerate() {
+                items[index].value = CGFloat(element)
+            }
+        }
+        items.shiftRightInPlace(4)
         let chart = NKRadarChart(frame: frame, items: items, valueDivider: 1)
-        chart.plotColor = UIColor.purpleColor().colorWithAlphaComponent(0.7)
+        chart.plotColor = current.units.getColorOfSpeed(current.speedvalue).colorWithAlphaComponent(0.7)
         chart.fontColor = UIColor.whiteColor()
+        chart.maxValue = CGFloat(current.units.maxSpeed)
         chartImage.setImage(chart.drawImage())
         
         self.setTitle(current.name)

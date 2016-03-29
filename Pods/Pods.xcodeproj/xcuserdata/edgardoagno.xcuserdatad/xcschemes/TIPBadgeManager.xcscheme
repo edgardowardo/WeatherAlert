@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'EC90DF53755373745F1D3882'
+               BlueprintIdentifier = '02F0DE6F86B51B29213FF90D'
                BlueprintName = 'TIPBadgeManager'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'TIPBadgeManager.framework'>

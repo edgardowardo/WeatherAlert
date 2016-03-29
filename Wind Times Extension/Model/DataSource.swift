@@ -28,19 +28,21 @@ struct DataSource {
 
 class CurrentObject {
     var cityid: Int = 0
-    var directioncode = ""
+    var direction : Direction? = nil
     var lastupdate : NSDate? = nil
     var name  = ""
     var speedname = ""
     var speedvalue : Double = 0
+    var units : Units = .Metric
     
     init(data : [String : AnyObject]) {
-        if let cityid = data["cityid"] as? Int, name = data["name"] as? String {
+        if let cityid = data["cityid"] as? Int, name = data["name"] as? String, units = data["units"] as? String {
             self.cityid = cityid
             self.name = name
+            self.units = Units(rawValue: units)!
         }
         if let directioncode = data["directioncode"] as? String {
-            self.directioncode = directioncode
+            self.direction = Direction(rawValue: directioncode)
         }
         if let speedvalue = data["speedvalue"] as? Double, speedname = data["speedname"] as? String {
             self.speedvalue = speedvalue
@@ -49,5 +51,6 @@ class CurrentObject {
         if let lastupdate = data["lastupdate"] as? NSDate {
             self.lastupdate = lastupdate
         }
+        
     }
 }

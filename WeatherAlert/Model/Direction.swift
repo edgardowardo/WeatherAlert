@@ -95,6 +95,28 @@ enum Direction : String {
             }
         }
     }
-    
+        
+    func directionsWithspeed(speed : Double) -> [Double] {
+        var speeds = Array<Double>.init(count: 16, repeatedValue: 0.0)
+        let directions = Direction.directions
+        
+        if let index = directions.indexOf(self.inverse) {
+            
+            if index == 0 {
+                speeds[directions.count-1] = speed
+            } else {
+                speeds[index-1] = speed
+            }
+            
+            if index == directions.count-1 {
+                speeds[0] = speed
+            } else {
+                speeds[index + 1] = speed
+            }
+            
+            speeds[index] = speed
+        }
+        return speeds
+   }
     
 }

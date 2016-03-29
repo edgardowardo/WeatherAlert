@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'FFE0016C018137BEE261B19A'
+               BlueprintIdentifier = '79DD32EF3910742DACA4ACE6'
                BlueprintName = 'Pods-Wind Times Extension'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_Wind_Times_Extension.framework'>

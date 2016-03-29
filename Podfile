@@ -2,24 +2,23 @@ platform :ios, '9.0'
 use_frameworks!
 
 def shared_pods
-    pod 'RealmSwift'
-    pod 'UIColor+FlatColors'
 end
 
 target 'WeatherAlert' do
-pod 'TIPBadgeManager'
-pod "TTRangeSlider"
-pod "AKPickerView"
-pod 'ReactKit'
-pod 'Charts'
-pod 'Alamofire'
-pod 'Ono'
-pod 'Fuzi'
-pod 'SlideMenuControllerSwift'
-pod 'RealmSwift'
-pod 'MBProgressHUD'
-pod 'UIColor+FlatColors'
-pod 'VTAcknowledgementsViewController'
+    pod 'TIPBadgeManager'
+    pod "TTRangeSlider"
+    pod "AKPickerView"
+    pod 'ReactKit'
+    pod 'Charts'
+    pod 'Alamofire'
+    pod 'Ono'
+    pod 'Fuzi'
+    pod 'SlideMenuControllerSwift'
+    pod 'RealmSwift'
+    pod 'MBProgressHUD'
+    pod 'VTAcknowledgementsViewController'
+    pod 'UIColor+FlatColors'
+    shared_pods
 end
 
 target 'WeatherAlertTests' do
@@ -39,6 +38,7 @@ end
 target 'Wind Times Extension' do
     platform :watchos, '2.1'
     pod 'NKWatchChart'
+    shared_pods
 end
 
 post_install do | installer |

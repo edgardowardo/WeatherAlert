@@ -325,32 +325,9 @@ class CurrentDetailViewController: UIViewController {
     }
     
     func updateChart(withDirection direction: Direction?, andSpeed speed : Double, andSpeedName speedname : String, andSince since : String ) {
-        
-        var code = ""
-        if let d = direction {
-            code = d.inverse.rawValue
-        }
-        
         self.since = since
-        self.speeds = Array<Double>.init(count: 16, repeatedValue: 0.0)
-        
-        if let index = directions.indexOf(code) {
-            
-            if index == 0 {
-                speeds[directions.count-1] = speed
-            } else {
-                speeds[index-1] = speed
-            }
-            
-            if index == directions.count-1 {
-                speeds[0] = speed
-            } else {
-                speeds[index + 1] = speed
-            }
-            
-            speeds[index] = speed
-        }
-        setChart(directions, values: speeds, andDirection: direction, andSpeed: speed, andSpeedName: speedname, andSince: since)
+        let speeds = direction?.directionsWithspeed(speed)
+        setChart(directions, values: speeds!, andDirection: direction, andSpeed: speed, andSpeedName: speedname, andSince: since)
     }
     
     func setChart(dataPoints: [String], values: [Double], andDirection direction: Direction?, andSpeed speed : Double, andSpeedName speedname : String, andSince since : String) {
