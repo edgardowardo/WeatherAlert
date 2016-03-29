@@ -17,9 +17,11 @@ extension AppDelegate : WatchSessionManagerDelegate {
     func buildApplicationContext() -> [String : AnyObject]? {
         guard let realm = try? Realm() else { return nil }
         let favourites = realm.objects(CurrentObject).filter("isFavourite == 1")
-        let context = favourites.map({ obj in return [ "cityid" : obj.cityid, "name" : obj.name, "speedvalue" : obj.speedvalue, "speedname" : obj.speedname, "directioncode" : obj.directioncode, "lastupdate" : obj.lastupdate!, "units" : obj.units.rawValue ] })
-
-        guard let _ = context.first else { return nil }
+        func getForecasts(cityid : Int) -> [[String : AnyObject]] {
+            let forecasts = realm.objects(ForecastObject).filter("cityid == \(cityid)").sorted("timefrom", ascending: true)
+            return forecasts.map({ obj in return [ "timefrom" : obj.timefrom!, "directioncode" : obj.directioncode, "speedvalue" : obj.speedvalue, "speedname" : obj.speedname ] })
+        }
+        let context = favourites.map({ obj in return [ "cityid" : obj.cityid, "name" : obj.name, "speedvalue" : obj.speedvalue, "speedname" : obj.speedname, "directioncode" : obj.directioncode, "lastupdate" : obj.lastupdate!, "units" : obj.units.rawValue, "forecasts" : getForecasts(obj.cityid) ] })
         return ["favourites" : context]
     }
 }
@@ -137,7 +139,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // observer to reset forecast notifications
-        tokenFavourites = realm.objects(CurrentObject).filter("isFavourite == 1").addNotificationBlock { objects, error in
+        tokenFavourites = realm.objects(CurrentObject).addNotificationBlock { objects, error in
+            //WatchSessionManager.sharedManager.updateApplicationContext(self.buildApplicationContext()!)
             NotificationObject.resetAlarm()
         }
 

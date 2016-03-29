@@ -10,13 +10,27 @@ import WatchKit
 import Foundation
 import NKWatchChart
 
+class DayRow : NSObject {
+    @IBOutlet var dayLabel: WKInterfaceLabel!
+}
+
+class ForecastRow : NSObject {    
+    @IBOutlet var hour: WKInterfaceLabel!
+    @IBOutlet var directionImage: WKInterfaceImage!
+    @IBOutlet var directionGroup : WKInterfaceGroup!
+    @IBOutlet var speedValue: WKInterfaceLabel!
+    @IBOutlet var speedName: WKInterfaceLabel!
+}
+
 class CurrentPageController: WKInterfaceController, DataSourceChangedDelegate {
 
     @IBOutlet var chartImage: WKInterfaceImage!
+    @IBOutlet var currentLabel: WKInterfaceLabel!
+    @IBOutlet var table: WKInterfaceTable!
     
     func dataSourceDidUpdate(dataSource: DataSource) {
 
-        guard let currents = dataSource.currentObjects else { return }
+        guard let currents = dataSource.currentObjects where currents.count > 0 else { return }
         let names = Array(count: currents.count, repeatedValue: "CurrentPageController")
         WKInterfaceController.reloadRootControllersWithNames(names, contexts: currents)
         
@@ -28,6 +42,10 @@ class CurrentPageController: WKInterfaceController, DataSourceChangedDelegate {
         WatchSessionManager.sharedManager.addDataSourceChangedDelegate(self)
         
         guard let current = context as? CurrentObject else { return }
+        
+        // Build the chart image
+
+        currentLabel.setText("\(current.speedname) \(current.lastupdate!.remainingTime)")
         
         let frame = CGRectMake(0, 0, self.contentFrame.size.width, self.contentFrame.size.height)
         var items = Direction.directions.map({ element in NKRadarChartDataItem(value: 0.0, description: element.rawValue)! })
@@ -44,6 +62,37 @@ class CurrentPageController: WKInterfaceController, DataSourceChangedDelegate {
         chartImage.setImage(chart.drawImage())
         
         self.setTitle(current.name)
+
+        // Build the forecast row types
+        
+        var rowTypeWithForecasts = [(String, ForecastObject)]()
+        var currentday = ""
+        for f in current.forecasts {
+            if currentday != f.day {
+                currentday = f.day
+                rowTypeWithForecasts.append(("DayRow", f))
+            }
+            rowTypeWithForecasts.append(("ForecastRow", f))
+        }
+        let rowTypes = rowTypeWithForecasts.map({ (rowType, forecast) in return rowType })
+        table.setRowTypes(rowTypes)
+        
+        // Bind the row data
+        
+        for (index, element) in rowTypeWithForecasts.enumerate() {
+            let forecast = element.1
+            if let forecastRow = table.rowControllerAtIndex(index) as? ForecastRow {
+                if let invertedDirectionCode = forecast.direction?.inverse.rawValue {
+                    forecastRow.directionImage.setImageNamed("\(invertedDirectionCode)-white")
+                    forecastRow.directionGroup.setBackgroundColor(current.units.getColorOfSpeed(forecast.speedvalue))
+                }
+                forecastRow.hour.setText(forecast.hour)
+                forecastRow.speedValue.setText("\(forecast.speedvalue)")
+                forecastRow.speedName.setText(forecast.speedname)
+            } else if let dayRow = table.rowControllerAtIndex(index) as? DayRow {
+                dayRow.dayLabel.setText(forecast.day)
+            }
+        }
     }
 
     override func willActivate() {

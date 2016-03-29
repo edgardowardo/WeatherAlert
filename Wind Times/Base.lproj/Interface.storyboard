@@ -10,14 +10,67 @@
             <objects>
                 <controller identifier="CurrentPageController" id="AgC-eL-Hgc" customClass="CurrentPageController" customModule="Wind_Times_Extension">
                     <items>
-                        <imageView width="1" height="1" alignment="left" id="bzG-MF-qC7"/>
+                        <imageView width="130" height="130" alignment="center" id="bzG-MF-qC7"/>
+                        <label width="1" alignment="left" text="Loading..." textAlignment="center" numberOfLines="2" id="CBo-oo-U6j">
+                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                        </label>
+                        <table alignment="left" id="9Uw-0v-bAu">
+                            <items>
+                                <tableRow identifier="DayRow" selectable="NO" id="dFA-Ve-4Ld" customClass="DayRow" customModule="Wind_Times_Extension">
+                                    <group key="rootItem" width="1" height="12.5" alignment="left" id="7gt-MJ-LPz">
+                                        <items>
+                                            <label width="1" alignment="left" text="TODAY" id="wIN-2A-uIN">
+                                                <fontDescription key="font" type="system" pointSize="10"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="dayLabel" destination="wIN-2A-uIN" id="cdl-oO-fha"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow identifier="ForecastRow" selectable="NO" id="Ev3-Qm-jVr" customClass="ForecastRow" customModule="Wind_Times_Extension">
+                                    <group key="rootItem" width="1" height="60.5" alignment="left" id="xOA-hL-1fX">
+                                        <items>
+                                            <group width="30" alignment="left" layout="vertical" id="IVn-xH-tVc">
+                                                <items>
+                                                    <label alignment="center" text="09" textAlignment="center" id="osm-B1-ymd">
+                                                        <fontDescription key="font" type="system" pointSize="10"/>
+                                                    </label>
+                                                    <group width="24" height="24" alignment="center" verticalAlignment="center" radius="12" id="Vgf-Uw-3yK">
+                                                        <items>
+                                                            <imageView width="24" height="24" alignment="center" verticalAlignment="center" image="E-white" id="Akh-H8-ndK"/>
+                                                        </items>
+                                                    </group>
+                                                    <label alignment="center" verticalAlignment="bottom" text="10.56" textAlignment="center" id="wtn-aV-Bhc">
+                                                        <fontDescription key="font" type="system" pointSize="10"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                            <label alignment="left" verticalAlignment="center" text="Moderate Breeze" textAlignment="left" numberOfLines="4" id="vFM-mA-Mec">
+                                                <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="directionGroup" destination="Vgf-Uw-3yK" id="hc5-Mr-VjR"/>
+                                        <outlet property="directionImage" destination="Akh-H8-ndK" id="Vdq-hB-91L"/>
+                                        <outlet property="hour" destination="osm-B1-ymd" id="ut4-09-QkX"/>
+                                        <outlet property="speedName" destination="vFM-mA-Mec" id="pPe-Ls-kGE"/>
+                                        <outlet property="speedValue" destination="wtn-aV-Bhc" id="JER-Y4-MPb"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
                     </items>
                     <connections>
                         <outlet property="chartImage" destination="bzG-MF-qC7" id="dFy-Hi-Mth"/>
+                        <outlet property="currentLabel" destination="CBo-oo-U6j" id="KdT-xh-Oqy"/>
+                        <outlet property="table" destination="9Uw-0v-bAu" id="8cQ-RM-kdo"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="23" y="662"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">

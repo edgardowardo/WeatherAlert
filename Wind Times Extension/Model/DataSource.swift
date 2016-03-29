@@ -13,6 +13,7 @@ protocol DataSourceChangedDelegate {
     func dataSourceDidUpdate(dataSource: DataSource)
 
 }
+
 struct DataSource {
     
     let currentObjects : [CurrentObject]?
@@ -26,7 +27,65 @@ struct DataSource {
     }
 }
 
+
+class ForecastObject {
+    
+    // MARK: - Properties -
+    
+    var timefrom : NSDate? = nil
+    var direction : Direction? = nil
+    var speedvalue : Double = 0
+    var speedname = ""
+    
+    init(data : [String : AnyObject]) {
+        if let timefrom = data["timefrom"] as? NSDate {
+            self.timefrom = timefrom
+        }
+        if let directioncode = data["directioncode"] as? String {
+            self.direction = Direction(rawValue: directioncode)
+        }
+        if let speedvalue = data["speedvalue"] as? Double, speedname = data["speedname"] as? String {
+            self.speedvalue = speedvalue
+            self.speedname = speedname
+        }
+    }
+    
+    var hour : String {
+        get {
+            if let t = timefrom {
+                let h = NSCalendar.currentCalendar().component(.Hour, fromDate: t)
+                let f = NSNumberFormatter()
+                f.minimumIntegerDigits = 2
+                return f.stringFromNumber(h)!
+            }
+            return "HH"
+        }
+    }
+    
+    var day : String {
+        get {
+            if let t = timefrom {
+                if t.isToday() {
+                    return "TODAY"
+                } else if t.isYesterday() {
+                    return ""
+                }
+                
+                let f = NSDateFormatter()
+                f.dateFormat = "EEE, dd MMM"
+                let s = f.stringFromDate(t)
+                return s.uppercaseString
+            }
+            return "TODAY"
+        }
+    }
+    
+}
+
 class CurrentObject {
+    
+    // MARK: - Properties -
+    
     var cityid: Int = 0
     var direction : Direction? = nil
     var lastupdate : NSDate? = nil
@@ -34,6 +93,7 @@ class CurrentObject {
     var speedname = ""
     var speedvalue : Double = 0
     var units : Units = .Metric
+    var forecasts = [ForecastObject]()
     
     init(data : [String : AnyObject]) {
         if let cityid = data["cityid"] as? Int, name = data["name"] as? String, units = data["units"] as? String {
@@ -51,6 +111,8 @@ class CurrentObject {
         if let lastupdate = data["lastupdate"] as? NSDate {
             self.lastupdate = lastupdate
         }
-        
+        if let forecasts = data["forecasts"] as? [[String : AnyObject]] {
+            self.forecasts = forecasts.map({ return ForecastObject(data: $0) })
+        }
     }
 }

@@ -406,11 +406,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wind Times Extension/CurrentPageController.swift"
-            timestampString = "480900422.624181"
+            timestampString = "480984102.604742"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "awakeWithContext(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -444,6 +444,22 @@
             startingLineNumber = "41"
             endingLineNumber = "41"
             landmarkName = "init()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAlert/AppDelegate.swift"
+            timestampString = "480975244.742724"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "buildApplicationContext()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

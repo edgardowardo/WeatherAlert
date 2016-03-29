@@ -53,6 +53,7 @@
 		778DAA8B1CAAC366009DD4B8 /* UnitsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778DAA8A1CAAC365009DD4B8 /* UnitsExtension.swift */; };
 		778DAA8C1CAAC40B009DD4B8 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F282D91C85154B0018FAF8 /* Units.swift */; };
 		778DAA8F1CAAC5F7009DD4B8 /* UnitsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778DAA8E1CAAC5F7009DD4B8 /* UnitsExtension.swift */; };
+		778DAA901CAB06E6009DD4B8 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E7CBA1C79FB3800047988 /* NSDate.swift */; };
 		7793C3F81CA3160400B657CC /* NotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7793C3F71CA3160400B657CC /* NotificationSettingsViewController.swift */; };
 		779D3F121C79C00E00C89BBD /* ForecastObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779D3F111C79C00E00C89BBD /* ForecastObject.swift */; };
 		779D58D51C7A8D54007FEF5D /* ForecastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 779D58D41C7A8D54007FEF5D /* ForecastCell.xib */; };
@@ -857,6 +858,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				778DAA901CAB06E6009DD4B8 /* NSDate.swift in Sources */,
 				775605F11CA9B57600121A5B /* DataSource.swift in Sources */,
 				7761C65A1CA88C69001E0A72 /* WatchSessionManager.swift in Sources */,
 				77736B611CA5433E004BDC71 /* NotificationController.swift in Sources */,
