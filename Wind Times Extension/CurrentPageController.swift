@@ -89,9 +89,6 @@ class CurrentPageController: WKInterfaceController, DataSourceChangedDelegate {
                 forecastRow.hour.setText("\(forecast.hour)h")
                 forecastRow.speedValue.setText("\(forecast.speedvalue)")
                 forecastRow.speedValue.setTextColor(current.units.getColorOfSpeed(forecast.speedvalue))
-                if let first = forecast.speedname.componentsSeparatedByString(" ").first {
-                    forecastRow.speedName.setText(first)
-                }
             } else if let dayRow = table.rowControllerAtIndex(index) as? DayRow {
                 dayRow.dayLabel.setText(forecast.day)
             }

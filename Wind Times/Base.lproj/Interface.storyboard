@@ -14,6 +14,14 @@
                         <label width="1" alignment="left" text="Loading..." textAlignment="center" numberOfLines="2" id="CBo-oo-U6j">
                             <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                         </label>
+                        <label width="1" alignment="left" text=" " textAlignment="center" numberOfLines="2" id="JS4-XJ-jF7">
+                            <color key="textColor" red="0.32549019610000002" green="0.59215686270000001" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" weight="light" pointSize="16"/>
+                        </label>
+                        <label width="1" alignment="left" text="FORECASTS" textAlignment="center" numberOfLines="2" id="G6I-mY-dXJ">
+                            <color key="textColor" red="0.32549019610000002" green="0.59215686270000001" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" weight="light" pointSize="16"/>
+                        </label>
                         <table alignment="left" id="9Uw-0v-bAu">
                             <items>
                                 <tableRow identifier="DayRow" selectable="NO" id="dFA-Ve-4Ld" customClass="DayRow" customModule="Wind_Times_Extension">
@@ -22,7 +30,9 @@
                                             <label width="1" alignment="left" text="TODAY" id="wIN-2A-uIN">
                                                 <fontDescription key="font" type="system" weight="thin" pointSize="14"/>
                                             </label>
-                                            <separator alignment="center" verticalAlignment="center" id="dOt-J4-dHw"/>
+                                            <separator alignment="center" verticalAlignment="center" id="dOt-J4-dHw">
+                                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            </separator>
                                         </items>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </group>
@@ -33,22 +43,19 @@
                                 <tableRow identifier="ForecastRow" selectable="NO" id="Ev3-Qm-jVr" customClass="ForecastRow" customModule="Wind_Times_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" id="xOA-hL-1fX">
                                         <items>
-                                            <label alignment="left" verticalAlignment="center" text="09h" textAlignment="center" id="osm-B1-ymd">
+                                            <label width="41.5" alignment="left" verticalAlignment="center" text="09h" textAlignment="center" id="osm-B1-ymd">
                                                 <fontDescription key="font" type="system" weight="thin" pointSize="16"/>
                                             </label>
-                                            <group width="30" alignment="left" verticalAlignment="center" layout="vertical" id="IVn-xH-tVc">
+                                            <group width="30" alignment="center" verticalAlignment="center" layout="vertical" id="IVn-xH-tVc">
                                                 <items>
                                                     <group width="24" height="24" alignment="center" verticalAlignment="center" radius="12" id="Vgf-Uw-3yK">
                                                         <items>
                                                             <imageView width="24" height="24" alignment="center" verticalAlignment="center" image="E-white" id="Akh-H8-ndK"/>
                                                         </items>
                                                     </group>
-                                                    <label alignment="center" verticalAlignment="bottom" text="10.56" textAlignment="center" id="wtn-aV-Bhc">
-                                                        <fontDescription key="font" type="system" pointSize="10"/>
-                                                    </label>
                                                 </items>
                                             </group>
-                                            <label alignment="left" verticalAlignment="center" text="Fresh" textAlignment="left" numberOfLines="2" id="vFM-mA-Mec">
+                                            <label width="42" alignment="right" verticalAlignment="center" text="10.56" textAlignment="center" id="wtn-aV-Bhc">
                                                 <fontDescription key="font" type="system" weight="thin" pointSize="16"/>
                                             </label>
                                         </items>
@@ -58,7 +65,6 @@
                                         <outlet property="directionGroup" destination="Vgf-Uw-3yK" id="hc5-Mr-VjR"/>
                                         <outlet property="directionImage" destination="Akh-H8-ndK" id="Vdq-hB-91L"/>
                                         <outlet property="hour" destination="osm-B1-ymd" id="ut4-09-QkX"/>
-                                        <outlet property="speedName" destination="vFM-mA-Mec" id="pPe-Ls-kGE"/>
                                         <outlet property="speedValue" destination="wtn-aV-Bhc" id="JER-Y4-MPb"/>
                                     </connections>
                                 </tableRow>
