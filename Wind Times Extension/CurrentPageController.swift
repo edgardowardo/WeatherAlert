@@ -86,9 +86,12 @@ class CurrentPageController: WKInterfaceController, DataSourceChangedDelegate {
                     forecastRow.directionImage.setImageNamed("\(invertedDirectionCode)-white")
                     forecastRow.directionGroup.setBackgroundColor(current.units.getColorOfSpeed(forecast.speedvalue))
                 }
-                forecastRow.hour.setText(forecast.hour)
+                forecastRow.hour.setText("\(forecast.hour)h")
                 forecastRow.speedValue.setText("\(forecast.speedvalue)")
-                forecastRow.speedName.setText(forecast.speedname)
+                forecastRow.speedValue.setTextColor(current.units.getColorOfSpeed(forecast.speedvalue))
+                if let first = forecast.speedname.componentsSeparatedByString(" ").first {
+                    forecastRow.speedName.setText(first)
+                }
             } else if let dayRow = table.rowControllerAtIndex(index) as? DayRow {
                 dayRow.dayLabel.setText(forecast.day)
             }

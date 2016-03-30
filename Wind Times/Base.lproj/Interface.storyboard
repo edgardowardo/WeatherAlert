@@ -17,11 +17,12 @@
                         <table alignment="left" id="9Uw-0v-bAu">
                             <items>
                                 <tableRow identifier="DayRow" selectable="NO" id="dFA-Ve-4Ld" customClass="DayRow" customModule="Wind_Times_Extension">
-                                    <group key="rootItem" width="1" height="12.5" alignment="left" id="7gt-MJ-LPz">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="7gt-MJ-LPz">
                                         <items>
                                             <label width="1" alignment="left" text="TODAY" id="wIN-2A-uIN">
-                                                <fontDescription key="font" type="system" pointSize="10"/>
+                                                <fontDescription key="font" type="system" weight="thin" pointSize="14"/>
                                             </label>
+                                            <separator alignment="center" verticalAlignment="center" id="dOt-J4-dHw"/>
                                         </items>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </group>
@@ -30,13 +31,13 @@
                                     </connections>
                                 </tableRow>
                                 <tableRow identifier="ForecastRow" selectable="NO" id="Ev3-Qm-jVr" customClass="ForecastRow" customModule="Wind_Times_Extension">
-                                    <group key="rootItem" width="1" height="60.5" alignment="left" id="xOA-hL-1fX">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="xOA-hL-1fX">
                                         <items>
-                                            <group width="30" alignment="left" layout="vertical" id="IVn-xH-tVc">
+                                            <label alignment="left" verticalAlignment="center" text="09h" textAlignment="center" id="osm-B1-ymd">
+                                                <fontDescription key="font" type="system" weight="thin" pointSize="16"/>
+                                            </label>
+                                            <group width="30" alignment="left" verticalAlignment="center" layout="vertical" id="IVn-xH-tVc">
                                                 <items>
-                                                    <label alignment="center" text="09" textAlignment="center" id="osm-B1-ymd">
-                                                        <fontDescription key="font" type="system" pointSize="10"/>
-                                                    </label>
                                                     <group width="24" height="24" alignment="center" verticalAlignment="center" radius="12" id="Vgf-Uw-3yK">
                                                         <items>
                                                             <imageView width="24" height="24" alignment="center" verticalAlignment="center" image="E-white" id="Akh-H8-ndK"/>
@@ -47,10 +48,11 @@
                                                     </label>
                                                 </items>
                                             </group>
-                                            <label alignment="left" verticalAlignment="center" text="Moderate Breeze" textAlignment="left" numberOfLines="4" id="vFM-mA-Mec">
-                                                <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                            <label alignment="left" verticalAlignment="center" text="Fresh" textAlignment="left" numberOfLines="2" id="vFM-mA-Mec">
+                                                <fontDescription key="font" type="system" weight="thin" pointSize="16"/>
                                             </label>
                                         </items>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </group>
                                     <connections>
                                         <outlet property="directionGroup" destination="Vgf-Uw-3yK" id="hc5-Mr-VjR"/>
