@@ -12,10 +12,18 @@ import WatchConnectivity
 class WatchSessionManager : NSObject, WCSessionDelegate {
     
     // MARK:- Properties -
-    
+
+    var data : DataSource? = nil
     let session: WCSession? = WCSession.isSupported() ? WCSession.defaultSession() : nil
     static let sharedManager = WatchSessionManager()
     private var dataSourceChangedDelegates = [DataSourceChangedDelegate]()
+    
+    var isStale : Bool {
+        if let d = data {
+            return d.isStale
+        }
+        return true
+    }
     
     // MARK:- Functions -
     
@@ -39,9 +47,11 @@ class WatchSessionManager : NSObject, WCSessionDelegate {
     }
     
     func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
-        NSLog("didReceiveApplicationContext \(applicationContext)")
+        NSLog("log-didReceiveApplicationContext \(applicationContext)")
         dispatch_async(dispatch_get_main_queue()) { [weak self] in
-            self?.dataSourceChangedDelegates.forEach { $0.dataSourceDidUpdate(DataSource(data: applicationContext))}
+            self?.data = DataSource(data: applicationContext)
+            guard let data = self?.data else { return }
+            self?.dataSourceChangedDelegates.forEach { $0.dataSourceDidUpdate(data)}
         }
     }
 }

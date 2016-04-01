@@ -254,7 +254,7 @@ extension MainViewController : MapDelegate {
         }
         
         // Current data is not stale. That is  it's less than 3 hours, show this data.
-        if let lastupdate = current.lastupdate where NSDate().timeIntervalSinceDate(lastupdate) / 3600 < 3 {
+        if let lastupdate = current.lastupdate where NSDate().timeIntervalSinceDate(lastupdate) / 3600 < NSDate().hoursIntervalForSearch {
             
             controller.title = "\(current.country), \(current.name)"
             controller.current = current

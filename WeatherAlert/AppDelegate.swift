@@ -12,17 +12,47 @@ import Realm
 import RealmSwift
 import iAd
 import TIPBadgeManager
+import Alamofire
 
 extension AppDelegate : WatchSessionManagerDelegate {
     func buildApplicationContext() -> [String : AnyObject]? {
         guard let realm = try? Realm() else { return nil }
         let favourites = realm.objects(CurrentObject).filter("isFavourite == 1")
+        
+        // Refresh stale data and return nil. application context will be reconstructed inside tokenFavourites observer
+        if let _ = Array(favourites).filter({ NSDate().timeIntervalSinceDate($0.lastupdate!) / 3600 > NSDate().hoursIntervalForSearch }).first {
+            for f in favourites {
+                let past = NSDate().timeIntervalSinceDate(f.lastupdate!) / 3600
+                NSLog("log-past(\(past)), lastupdate=\(f.lastupdate)")
+                if past > NSDate().hoursIntervalForSearch {
+                    refreshCurrent(f.cityid)
+                }
+            }
+            return nil
+        }
+        
+        // Return valid data
         func getForecasts(cityid : Int) -> [[String : AnyObject]] {
             let forecasts = realm.objects(ForecastObject).filter("cityid == \(cityid)").sorted("timefrom", ascending: true)
             return forecasts.map({ obj in return [ "timefrom" : obj.timefrom!, "directioncode" : obj.directioncode, "speedvalue" : obj.speedvalue, "speedname" : obj.speedname ] })
         }
         let context = favourites.map({ obj in return [ "cityid" : obj.cityid, "name" : obj.name, "speedvalue" : obj.speedvalue, "speedname" : obj.speedname, "directioncode" : obj.directioncode, "lastupdate" : obj.lastupdate!, "units" : obj.units.rawValue, "forecasts" : getForecasts(obj.cityid) ] })
         return ["favourites" : context]
+    }
+    
+    func refreshCurrent(cityid : Int) {
+        Alamofire.request(Router.Search(id: cityid)).responseXMLDocument({ response -> Void in
+            if let xml = response.result.value {
+                let xmlString = "\(xml)"
+                CurrentObject.saveXML(xmlString, realm: self.realm)
+                Alamofire.request(Router.Forecast(id: cityid)).responseXMLDocument({ response -> Void in
+                    if let xml = response.result.value {
+                        let xmlString = "\(xml)"
+                        ForecastObject.saveXML(xmlString, realm: self.realm)
+                    }
+                })
+            }
+        })
     }
 }
 
@@ -140,7 +170,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // observer to reset forecast notifications
         tokenFavourites = realm.objects(CurrentObject).addNotificationBlock { objects, error in
-            //WatchSessionManager.sharedManager.updateApplicationContext(self.buildApplicationContext()!)
+            if let context = self.buildApplicationContext() {
+                WatchSessionManager.sharedManager.updateApplicationContext(context)
+            }
             NotificationObject.resetAlarm()
         }
 

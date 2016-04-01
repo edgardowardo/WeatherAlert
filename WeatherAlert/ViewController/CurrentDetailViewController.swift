@@ -202,9 +202,9 @@ class CurrentDetailViewController: UIViewController {
         forecastsView.registerNib(UINib(nibName: "DayCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "DayCellIdentifier")
         forecastsView.contentInset = UIEdgeInsets(top: 0, left: -TitlesCell.size.width, bottom: 0, right: -TitlesCell.size.width)
         
-        if let c = self.current, realm = try? Realm() {
+        if let c = self.current, realm = try? Realm(), lastupdate = c.lastupdate {
             let id = "\(c.cityid)"
-            self.updateChart(withDirection: c.direction, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(c.hourAndMin)" )
+            self.updateChart(withDirection: c.direction, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(lastupdate.hourAndMin)" )
             self.resetRightBarButtonItem()
             self.realmForecasts = realm.objects(ForecastObject).filter("cityid == \(id)").sorted("timefrom", ascending: true)
             self.forecastsView.reloadData()
@@ -242,8 +242,8 @@ class CurrentDetailViewController: UIViewController {
     }
     
     func clickChart(sender:UITapGestureRecognizer){
-        if let c = self.current where since.characters.count == 0 {
-            self.updateChart(withDirection: c.direction, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(c.hourAndMin)" )
+        if let c = self.current, lastupdate = c.lastupdate where since.characters.count == 0 {
+            self.updateChart(withDirection: c.direction, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(lastupdate.hourAndMin)" )
         }
     }
     
@@ -317,16 +317,19 @@ class CurrentDetailViewController: UIViewController {
     }
     
     @objc private func methodOfReceivedNotification_didSaveCurrentObject(notification : NSNotification) {
-        if let c = notification.object as? CurrentObject {
+        if let c = notification.object as? CurrentObject, lastupdate = c.lastupdate {
             self.current = c
-            self.updateChart(withDirection: c.direction, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(c.hourAndMin)" )
+            self.updateChart(withDirection: c.direction, andSpeed: c.speedvalue, andSpeedName: c.speedname, andSince: "since \(lastupdate.hourAndMin)" )
             self.resetRightBarButtonItem()
         }
     }
     
     func updateChart(withDirection direction: Direction?, andSpeed speed : Double, andSpeedName speedname : String, andSince since : String ) {
         self.since = since
-        let speeds = direction?.directionsWithspeed(speed)
+        var speeds = direction?.directionsWithspeed(speed)
+        if speeds == nil {
+            speeds = Array<Double>.init(count: 16, repeatedValue: 0.0)
+        }
         setChart(directions, values: speeds!, andDirection: direction, andSpeed: speed, andSpeedName: speedname, andSince: since)
     }
     

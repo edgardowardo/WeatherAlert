@@ -24,14 +24,19 @@ class WatchSessionManager : NSObject, WCSessionDelegate {
     // MARK:- Functions -
     
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
-        if let key = message["command"] as? String, context = delegate?.buildApplicationContext()  where key == "getFavourites" {
-            replyHandler(["reply" : "willSendApplicationContext"])
-            updateApplicationContext(context)
+        NSLog("log-didReceiveMessage - \(message)")
+        if let key = message["command"] as? String  where key == "getFavourites" {
+            if let context = delegate?.buildApplicationContext() {
+                replyHandler(["reply" : "willSendApplicationContext"])
+                updateApplicationContext(context)
+            } else {
+                replyHandler(["reply" : "willSendApplicationContextSoon"])
+            }
         }
     }
     
     func updateApplicationContext(context : [String : AnyObject]) {
-        NSLog("updateApplicationContext - \(context)")
+        NSLog("log-updateApplicationContext - \(context)")
         guard let session = self.session where session.paired && session.watchAppInstalled else { return }
         try! session.updateApplicationContext(context)
     }

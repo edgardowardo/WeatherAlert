@@ -24,13 +24,18 @@ class ForecastRow : NSObject {
 
 class CurrentPageController: WKInterfaceController, DataSourceChangedDelegate {
 
+    var current : CurrentObject? = nil
     @IBOutlet var chartImage: WKInterfaceImage!
     @IBOutlet var currentLabel: WKInterfaceLabel!
+    @IBOutlet var forecastsLabel: WKInterfaceLabel!    
     @IBOutlet var table: WKInterfaceTable!
     
     func dataSourceDidUpdate(dataSource: DataSource) {
 
-        guard let currents = dataSource.currentObjects where currents.count > 0 else { return }
+        guard let currents = dataSource.currentObjects where currents.count > 0 else {
+            WKInterfaceController.reloadRootControllersWithNames(["CurrentPageController"], contexts: [])
+            return
+        }
         let names = Array(count: currents.count, repeatedValue: "CurrentPageController")
         WKInterfaceController.reloadRootControllersWithNames(names, contexts: currents)
         
@@ -39,13 +44,13 @@ class CurrentPageController: WKInterfaceController, DataSourceChangedDelegate {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        WatchSessionManager.sharedManager.addDataSourceChangedDelegate(self)
+        NSLog("log-awakeWithContext")
         
         guard let current = context as? CurrentObject else { return }
         
+        self.current = current
+        
         // Build the chart image
-
-        currentLabel.setText("\(current.speedname) \(current.lastupdate!.remainingTime)")
         
         let frame = CGRectMake(0, 0, self.contentFrame.size.width, self.contentFrame.size.height)
         var items = Direction.directions.map({ element in NKRadarChartDataItem(value: 0.0, description: element.rawValue)! })
@@ -97,10 +102,25 @@ class CurrentPageController: WKInterfaceController, DataSourceChangedDelegate {
 
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
+
+        WatchSessionManager.sharedManager.addDataSourceChangedDelegate(self)
         super.willActivate()
+        NSLog("log-willActivate")
+        
+        guard let current = self.current, lastupdate = current.lastupdate else {
+            chartImage.setHidden(true)
+            currentLabel.setText("Please add favourites from the main app.")
+            forecastsLabel.setText("")
+            return
+        }
+        chartImage.setHidden(false)
+        currentLabel.setText("\(current.speedname) \(lastupdate.hourAndMin)")
+        forecastsLabel.setText("FORECASTS")
     }
 
     override func didDeactivate() {
+        // This method is called when watch view controller is no longer visible
+        
         WatchSessionManager.sharedManager.removeDataSourceChangedDelegate(self)
         super.didDeactivate()
     }

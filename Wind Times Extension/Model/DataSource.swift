@@ -25,6 +25,22 @@ struct DataSource {
             currentObjects = nil
         }
     }
+    
+    var isStale : Bool {
+        get {
+            if let currents = currentObjects {
+                if let _ = currents.filter({
+                    let past = NSDate().timeIntervalSinceDate($0.lastupdate!) / 3600
+                    NSLog("log-past(\(past)), lastupdate=\($0.lastupdate)")
+                    return past > NSDate().hoursIntervalForSearch
+                }).first {
+                    return true
+                }
+                return false
+            }
+            return true
+        }
+    }
 }
 
 

@@ -46,7 +46,19 @@ extension NSDate {
         formatter.dateFormat = "dd-MMM-yyyy HH:mm"
         return formatter.stringFromDate(self)
     }
-        
+    
+    var hoursIntervalForSearch : Double {
+        return 2.0
+    }
+    
+    var hourAndMin : String {
+        let t = self
+        let f = NSDateFormatter()
+        f.dateFormat = "HH:mm"
+        let s = f.stringFromDate(t)
+        return s
+    }
+    
     var remainingTime : String {
         let unitFlags: NSCalendarUnit = [.Minute, .Hour, .Day, .Month, .Year]
         let c = NSCalendar.currentCalendar().components(unitFlags, fromDate: self, toDate: NSDate(), options: [])

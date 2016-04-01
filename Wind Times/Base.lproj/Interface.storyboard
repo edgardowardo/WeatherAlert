@@ -70,15 +70,17 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <imageView alignment="center" image="owm" id="FUa-k1-DcH"/>
                     </items>
                     <connections>
                         <outlet property="chartImage" destination="bzG-MF-qC7" id="dFy-Hi-Mth"/>
                         <outlet property="currentLabel" destination="CBo-oo-U6j" id="KdT-xh-Oqy"/>
+                        <outlet property="forecastsLabel" destination="G6I-mY-dXJ" id="DSe-sZ-r0c"/>
                         <outlet property="table" destination="9Uw-0v-bAu" id="8cQ-RM-kdo"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="23" y="662"/>
+            <point key="canvasLocation" x="49" y="693.5"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">

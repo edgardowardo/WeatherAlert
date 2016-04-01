@@ -77,19 +77,7 @@ class CurrentObject: Object {
             _units = newValue.rawValue
         }
     }
-    
-    var hourAndMin : String {
-        get {
-            if let t = lastupdate {
-                let f = NSDateFormatter()
-                f.dateFormat = "HH:ss"
-                let s = f.stringFromDate(t)
-                return s
-            }
-            return "sometime"
-        }
-    }
-    
+
     var distanceKm : Double {
         get {
             if let d = self.currentLocation?.distanceFromLocation(location) {
@@ -177,7 +165,7 @@ class CurrentObject: Object {
 
                     try! realm.commitWrite()
                     
-                    //print("\(NSDate()) savedXML(\(current))")
+                    NSLog("savedXML(\(current))")
                     //print("Realm located at \(realm.path)")
                     
                     NSNotificationCenter.defaultCenter().postNotificationName(Notification.Identifier.didSaveCurrentObject, object: current)
