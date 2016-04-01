@@ -31,13 +31,19 @@ struct DataSource {
             if let currents = currentObjects {
                 if let _ = currents.filter({
                     let past = NSDate().timeIntervalSinceDate($0.lastupdate!) / 3600
-                    NSLog("log-past(\(past)), lastupdate=\($0.lastupdate)")
+                    NSLog("log-WatchSessionManager-past(\(past)), lastupdate=\($0.lastupdate)")
                     return past > NSDate().hoursIntervalForSearch
                 }).first {
+                    NSLog("log-WatchSessionManager.isStale(true): past limit")
                     return true
                 }
+                
+                NSLog("log-WatchSessionManager.isStale(false): currentObjects are up-to-date")
+                
                 return false
             }
+            NSLog("log-WatchSessionManager.isStale(true): currentObjects is nil therefore stale")
+            
             return true
         }
     }

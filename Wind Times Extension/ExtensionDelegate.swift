@@ -26,11 +26,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         if WatchSessionManager.sharedManager.isStale {
             NSLog("log-applicationDidBecomeActive.isStale(true)")
             
-            if let session = WatchSessionManager.sharedManager.session {
-                NSLog("log-applicationDidBecomeActive.session exists")
-                session.sendMessage(["command" : "getFavourites"], replyHandler: { (data : [String : AnyObject]) -> Void in
-                    NSLog("log-replyHandler \(data)") }, errorHandler: nil)
-            }
+            WatchSessionManager.sharedManager.session?.sendMessage(["command" : "getFavourites"], replyHandler: { (data : [String : AnyObject]) -> Void in
+                NSLog("log-replyHandler \(data)") }, errorHandler: nil)
         }
     }
 

@@ -22,6 +22,8 @@ class WatchSessionManager : NSObject, WCSessionDelegate {
         if let d = data {
             return d.isStale
         }
+        NSLog("log-WatchSessionManager.isStale(true): data is nil")
+        
         return true
     }
     

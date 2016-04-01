@@ -24,13 +24,15 @@ class WatchSessionManager : NSObject, WCSessionDelegate {
     // MARK:- Functions -
     
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
-        NSLog("log-didReceiveMessage - \(message)")
-        if let key = message["command"] as? String  where key == "getFavourites" {
-            if let context = delegate?.buildApplicationContext() {
-                replyHandler(["reply" : "willSendApplicationContext"])
-                updateApplicationContext(context)
-            } else {
-                replyHandler(["reply" : "willSendApplicationContextSoon"])
+        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+            NSLog("log-didReceiveMessage - \(message)")
+            if let key = message["command"] as? String  where key == "getFavourites" {
+                if let context = self?.delegate?.buildApplicationContext() {
+                    replyHandler(["reply" : "willSendApplicationContext"])
+                    self?.updateApplicationContext(context)
+                } else {
+                    replyHandler(["reply" : "willSendApplicationContextSoon"])
+                }
             }
         }
     }

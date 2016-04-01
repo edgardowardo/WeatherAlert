@@ -50,7 +50,7 @@
                                                 <items>
                                                     <group width="24" height="24" alignment="center" verticalAlignment="center" radius="12" id="Vgf-Uw-3yK">
                                                         <items>
-                                                            <imageView width="24" height="24" alignment="center" verticalAlignment="center" image="E-white" id="Akh-H8-ndK"/>
+                                                            <imageView width="24" height="24" alignment="center" verticalAlignment="center" id="Akh-H8-ndK"/>
                                                         </items>
                                                     </group>
                                                 </items>
