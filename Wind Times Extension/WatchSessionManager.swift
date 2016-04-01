@@ -22,7 +22,7 @@ class WatchSessionManager : NSObject, WCSessionDelegate {
         if let d = data {
             return d.isStale
         }
-        NSLog("log-WatchSessionManager.isStale(true): data is nil")
+        //NSLog("log-WatchSessionManager.isStale(true): data is nil")
         
         return true
     }
@@ -49,7 +49,7 @@ class WatchSessionManager : NSObject, WCSessionDelegate {
     }
     
     func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
-        NSLog("log-didReceiveApplicationContext \(applicationContext)")
+        //NSLog("log-didReceiveApplicationContext \(applicationContext)")
         dispatch_async(dispatch_get_main_queue()) { [weak self] in
             self?.data = DataSource(data: applicationContext)
             guard let data = self?.data else { return }

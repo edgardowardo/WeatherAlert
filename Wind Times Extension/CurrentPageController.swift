@@ -44,7 +44,7 @@ class CurrentPageController: WKInterfaceController, DataSourceChangedDelegate {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        NSLog("log-awakeWithContext")
+        //NSLog("log-awakeWithContext")
         
         guard let current = context as? CurrentObject else { return }
         
@@ -105,7 +105,7 @@ class CurrentPageController: WKInterfaceController, DataSourceChangedDelegate {
 
         WatchSessionManager.sharedManager.addDataSourceChangedDelegate(self)
         super.willActivate()
-        NSLog("log-willActivate")
+        //NSLog("log-willActivate")
         
         guard let current = self.current, lastupdate = current.lastupdate else {
             chartImage.setHidden(true)

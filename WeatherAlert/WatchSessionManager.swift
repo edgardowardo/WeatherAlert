@@ -25,7 +25,7 @@ class WatchSessionManager : NSObject, WCSessionDelegate {
     
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
         dispatch_async(dispatch_get_main_queue()) { [weak self] in
-            NSLog("log-didReceiveMessage - \(message)")
+            //NSLog("log-didReceiveMessage - \(message)")
             if let key = message["command"] as? String  where key == "getFavourites" {
                 if let context = self?.delegate?.buildApplicationContext() {
                     replyHandler(["reply" : "willSendApplicationContext"])
@@ -38,7 +38,7 @@ class WatchSessionManager : NSObject, WCSessionDelegate {
     }
     
     func updateApplicationContext(context : [String : AnyObject]) {
-        NSLog("log-updateApplicationContext - \(context)")
+        //NSLog("log-updateApplicationContext - \(context)")
         guard let session = self.session where session.paired && session.watchAppInstalled else { return }
         try! session.updateApplicationContext(context)
     }

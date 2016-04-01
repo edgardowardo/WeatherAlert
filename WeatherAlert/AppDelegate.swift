@@ -23,7 +23,7 @@ extension AppDelegate : WatchSessionManagerDelegate {
         if let _ = Array(favourites).filter({ NSDate().timeIntervalSinceDate($0.lastupdate!) / 3600 > NSDate().hoursIntervalForSearch }).first {
             for f in favourites {
                 let past = NSDate().timeIntervalSinceDate(f.lastupdate!) / 3600
-                NSLog("log-buildApplicationContext-past(\(past)), lastupdate=\(f.lastupdate)")
+                //NSLog("log-buildApplicationContext-past(\(past)), lastupdate=\(f.lastupdate)")
                 if past > NSDate().hoursIntervalForSearch {
                     refreshCurrent(f.cityid)
                 }
@@ -41,15 +41,15 @@ extension AppDelegate : WatchSessionManagerDelegate {
     }
     
     func refreshCurrent(cityid : Int) {
-        NSLog("log-will-refreshCurrent(\(cityid))")
+        //NSLog("log-will-refreshCurrent(\(cityid))")
         Alamofire.request(Router.Search(id: cityid)).responseXMLDocument({ response -> Void in
             if let xml = response.result.value {
                 let xmlString = "\(xml)"
-                NSLog("log-will-refreshCurrent(willSaveCurrent)")
+                //NSLog("log-will-refreshCurrent(willSaveCurrent)")
                 CurrentObject.saveXML(xmlString, realm: self.realm)
                 Alamofire.request(Router.Forecast(id: cityid)).responseXMLDocument({ response -> Void in
                     if let xml = response.result.value {
-                        NSLog("log-will-refreshCurrent(willSaveForecasts)")
+                        //NSLog("log-will-refreshCurrent(willSaveForecasts)")
                         let xmlString = "\(xml)"
                         ForecastObject.saveXML(xmlString, realm: self.realm)
                     }
@@ -143,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func handleNotification(notification : UILocalNotification, forApplication application : UIApplication) {
-        NSLog("handleNotification: \(notification.alertBody!)")
+        //NSLog("handleNotification: \(notification.alertBody!)")
         
         let a = UIAlertController(title: notification.alertTitle!, message: notification.alertBody!, preferredStyle: UIAlertControllerStyle.Alert)
         a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))

@@ -15,16 +15,16 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         
         WatchSessionManager.sharedManager
         
-        NSLog("log-applicationDidFinishLaunching")
+        //NSLog("log-applicationDidFinishLaunching")
     }
 
     func applicationDidBecomeActive() {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
-        NSLog("log-applicationDidBecomeActive")
+        //NSLog("log-applicationDidBecomeActive")
         
         if WatchSessionManager.sharedManager.isStale {
-            NSLog("log-applicationDidBecomeActive.isStale(true)")
+            //NSLog("log-applicationDidBecomeActive.isStale(true)")
             
             WatchSessionManager.sharedManager.session?.sendMessage(["command" : "getFavourites"], replyHandler: { (data : [String : AnyObject]) -> Void in
                 NSLog("log-replyHandler \(data)") }, errorHandler: nil)

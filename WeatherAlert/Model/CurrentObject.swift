@@ -165,7 +165,7 @@ class CurrentObject: Object {
 
                     try! realm.commitWrite()
                     
-                    NSLog("savedXML(\(current))")
+                    //NSLog("savedXML(\(current))")
                     //print("Realm located at \(realm.path)")
                     
                     NSNotificationCenter.defaultCenter().postNotificationName(Notification.Identifier.didSaveCurrentObject, object: current)
