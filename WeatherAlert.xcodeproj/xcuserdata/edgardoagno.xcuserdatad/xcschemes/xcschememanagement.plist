@@ -7,12 +7,19 @@
 		<key>Complication - Wind Times.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>6</integer>
 		</dict>
 		<key>Notification - Wind Times.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>5</integer>
+		</dict>
+		<key>Notifications - Wind Times.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>WeatherAlert.xcscheme</key>
 		<dict>
@@ -36,7 +43,7 @@
 		<key>Wind Times.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>23</integer>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

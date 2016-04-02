@@ -80,14 +80,14 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="49" y="693.5"/>
+            <point key="canvasLocation" x="18" y="876.5"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
             <objects>
                 <notificationController id="YCC-NB-fut">
                     <items>
-                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                        <label alignment="left" text="Alert Label" numberOfLines="5" id="IdU-wH-bcW"/>
                     </items>
                     <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
                     <connections>
@@ -101,7 +101,25 @@
         <!--Notification Controller-->
         <scene sceneID="ZPc-GJ-vnh">
             <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="Wind_Times" customModuleProvider="target"/>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="Wind_Times" customModuleProvider="target">
+                    <items>
+                        <group width="1" alignment="left" layout="vertical" id="fHr-Jp-FOi">
+                            <items>
+                                <group alignment="center" radius="12" id="sch-dN-prR">
+                                    <items>
+                                        <imageView width="24" height="24" alignment="left" image="E-white" id="MIV-ve-yNd"/>
+                                    </items>
+                                </group>
+                                <label alignment="left" text="Alert Label" numberOfLines="5" id="3GG-2E-FJs"/>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="groupDirection" destination="sch-dN-prR" id="gSh-nb-Lv8"/>
+                        <outlet property="imageDirection" destination="MIV-ve-yNd" id="tBy-a8-ZTd"/>
+                        <outlet property="labelBody" destination="3GG-2E-FJs" id="gsp-l1-sTr"/>
+                    </connections>
+                </controller>
             </objects>
             <point key="canvasLocation" x="468" y="643"/>
         </scene>

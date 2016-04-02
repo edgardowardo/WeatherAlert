@@ -12,6 +12,10 @@ import Foundation
 
 class NotificationController: WKUserNotificationInterfaceController {
 
+    @IBOutlet var groupDirection: WKInterfaceGroup!
+    @IBOutlet var imageDirection: WKInterfaceImage!
+    @IBOutlet var labelBody: WKInterfaceLabel!
+    
     override init() {
         // Initialize variables here.
         super.init()
@@ -29,16 +33,28 @@ class NotificationController: WKUserNotificationInterfaceController {
         super.didDeactivate()
     }
 
-    /*
+    
     override func didReceiveLocalNotification(localNotification: UILocalNotification, withCompletion completionHandler: ((WKUserNotificationInterfaceType) -> Void)) {
         // This method is called when a local notification needs to be presented.
         // Implement it if you use a dynamic notification interface.
         // Populate your dynamic notification interface as quickly as possible.
         //
         // After populating your dynamic notification interface call the completion block.
+        
+        labelBody.setText(localNotification.alertBody)
+        
+        if let userInfo = localNotification.userInfo {
+            if let speedvalue = userInfo["speedvalue"] as? Double, units = userInfo["units"] as? String, unit = Units(rawValue: units) {
+                groupDirection.setBackgroundColor(unit.getColorOfSpeed(speedvalue))
+            }
+            if let directioncode = userInfo["directioncode"] as? String, d = Direction(rawValue: directioncode) {
+                imageDirection.setImageNamed("\(d.inverse.rawValue)-white")
+            }
+        }
+        
         completionHandler(.Custom)
     }
-    */
+    
     
     /*
     override func didReceiveRemoteNotification(remoteNotification: [NSObject : AnyObject], withCompletion completionHandler: ((WKUserNotificationInterfaceType) -> Void)) {

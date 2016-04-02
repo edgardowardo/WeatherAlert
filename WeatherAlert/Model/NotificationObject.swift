@@ -102,15 +102,15 @@ class NotificationObject: Object {
             if let _ = f.direction, _ = directions.filter({ $0 == f.directioncode }).first, timefrom = f.timefrom, c = realm.objects(CurrentObject).filter("cityid == \(f.cityid)").first, count = notificationCounter[f.cityid] where NSDate().compare(timefrom) == .OrderedAscending && app.speedMin ... app.speedMax ~= f.speedvalue && count <  maxNotifications {
                 
                 let speedname : String = ( f.speedname.characters.count == 0 ) ? "Windless" : f.speedname
-                let body = "\(speedname) (\(f.speedvalue) \(c.units.speed)) at \(c.name) coming from \(f.directionname.lowercaseString)."
+                let body = "\(speedname) (\(f.speedvalue) \(c.units.speed)) at \(c.name) coming from the \(f.directionname.lowercaseString)."
 //                interv = interv + 60
-                let fireDate = f.timefrom //NSDate(timeIntervalSinceNow: interv) //f.timefrom
+                let fireDate = f.timefrom! //NSDate(timeIntervalSinceNow: interv) //f.timefrom
                 notificationCounter[f.cityid] = count + 1
                 
                 // create the persistent notification object
                 
                 var n : NotificationObject
-                if let notification = realm.objects(NotificationObject).filter("cityid == \(f.cityid)").filter(NSPredicate(format: "fireDate == %@", fireDate!)).first {
+                if let notification = realm.objects(NotificationObject).filter("cityid == \(f.cityid)").filter(NSPredicate(format: "fireDate == %@", fireDate)).first {
                     n = notification
                     f.notification = n
                 } else {
@@ -126,11 +126,13 @@ class NotificationObject: Object {
                 notification.timeZone = NSTimeZone.defaultTimeZone()
                 notification.fireDate = fireDate
                 notification.alertAction = "Show details"
-                notification.alertTitle = "Wind Times"
+                notification.alertTitle = speedname
                 notification.alertBody = body
                 notification.soundName = UILocalNotificationDefaultSoundName
                 notification.applicationIconBadgeNumber = application.scheduledLocalNotifications!.count + 1
-                notification.userInfo = ["cityid" : c.cityid, "timefrom" : f.timefrom!, "notificationId" : n.id]
+                notification.userInfo = ["cityid" : c.cityid, "timefrom" : f.timefrom!, "notificationId" : n.id, "units" : c.units.rawValue, "speedvalue" : f.speedvalue, "directioncode" : f.directioncode]
+                notification.category = "myCategory"
+                
                 application.scheduleLocalNotification(notification)
 
                 print("resetAlarm: \(notification.alertBody!) \(fireDate)")

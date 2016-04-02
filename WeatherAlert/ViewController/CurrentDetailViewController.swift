@@ -281,9 +281,13 @@ class CurrentDetailViewController: UIViewController {
     }    
     
     func starred() {
-        guard let c = self.current else { return }
+        guard let realm = try? Realm() else { return }
+        guard let c = self.current where realm.objects(CurrentObject).filter("isFavourite == 1").count < 10 else {
+            let a = UIAlertController(title: "Favourites", message: "Ten favourites is the limit", preferredStyle: UIAlertControllerStyle.Alert)
+            a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(a, animated: true, completion: nil)
+            return }
         
-        let realm = try! Realm()
         try! realm.write {
             let f = realm.objects(CurrentObject).filter("cityid == \(c.cityid)").first!
             f.isFavourite = !f.isFavourite
