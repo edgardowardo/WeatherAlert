@@ -19,7 +19,6 @@ class ForecastRow : NSObject {
     @IBOutlet var directionImage: WKInterfaceImage!
     @IBOutlet var directionGroup : WKInterfaceGroup!
     @IBOutlet var speedValue: WKInterfaceLabel!
-    @IBOutlet var speedName: WKInterfaceLabel!
 }
 
 class CurrentPageController: WKInterfaceController, DataSourceChangedDelegate {
@@ -114,7 +113,7 @@ class CurrentPageController: WKInterfaceController, DataSourceChangedDelegate {
             return
         }
         chartImage.setHidden(false)
-        currentLabel.setText("\(current.speedname) \(lastupdate.hourAndMin)")
+        currentLabel.setText("\(current.speedname) \(current.speedvalue)\(current.units.speed) at \(lastupdate.hourAndMin)")
         forecastsLabel.setText("FORECASTS")
     }
 

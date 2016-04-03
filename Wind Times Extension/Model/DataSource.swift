@@ -57,7 +57,6 @@ class ForecastObject {
     var timefrom : NSDate? = nil
     var direction : Direction? = nil
     var speedvalue : Double = 0
-    var speedname = ""
     
     init(data : [String : AnyObject]) {
         if let timefrom = data["timefrom"] as? NSDate {
@@ -66,9 +65,8 @@ class ForecastObject {
         if let directioncode = data["directioncode"] as? String {
             self.direction = Direction(rawValue: directioncode)
         }
-        if let speedvalue = data["speedvalue"] as? Double, speedname = data["speedname"] as? String {
+        if let speedvalue = data["speedvalue"] as? Double {
             self.speedvalue = speedvalue
-            self.speedname = speedname
         }
     }
     

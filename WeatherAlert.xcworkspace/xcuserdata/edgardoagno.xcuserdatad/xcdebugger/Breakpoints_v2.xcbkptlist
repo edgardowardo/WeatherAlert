@@ -406,11 +406,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wind Times Extension/CurrentPageController.swift"
-            timestampString = "480984102.604742"
+            timestampString = "481366422.904298"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "dataSourceDidUpdate(_:)"
             landmarkType = "5">
          </BreakpointContent>

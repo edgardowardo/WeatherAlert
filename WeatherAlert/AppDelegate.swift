@@ -34,7 +34,7 @@ extension AppDelegate : WatchSessionManagerDelegate {
         // Return valid data
         func getForecasts(cityid : Int) -> [[String : AnyObject]] {
             let forecasts = realm.objects(ForecastObject).filter("cityid == \(cityid)").sorted("timefrom", ascending: true)
-            return forecasts.map({ obj in return [ "timefrom" : obj.timefrom!, "directioncode" : obj.directioncode, "speedvalue" : obj.speedvalue, "speedname" : obj.speedname ] })
+            return forecasts.map({ obj in return [ "timefrom" : obj.timefrom!, "directioncode" : obj.directioncode, "speedvalue" : obj.speedvalue ] })
         }
         let context = favourites.map({ obj in return [ "cityid" : obj.cityid, "name" : obj.name, "speedvalue" : obj.speedvalue, "speedname" : obj.speedname, "directioncode" : obj.directioncode, "lastupdate" : obj.lastupdate!, "units" : obj.units.rawValue, "forecasts" : getForecasts(obj.cityid) ] })
         return ["favourites" : context]
