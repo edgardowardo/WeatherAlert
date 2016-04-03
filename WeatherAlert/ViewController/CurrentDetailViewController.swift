@@ -282,15 +282,19 @@ class CurrentDetailViewController: UIViewController {
     
     func starred() {
         guard let realm = try? Realm() else { return }
-        guard let c = self.current where realm.objects(CurrentObject).filter("isFavourite == 1").count < 10 else {
+        guard let c = self.current else { return }
+        
+        // logic to transition from un to favourite and reached the limit already and back
+        if !c.isFavourite && realm.objects(CurrentObject).filter("isFavourite == 1").count == 10 {
             let a = UIAlertController(title: "Favourites", message: "Ten favourites is the limit", preferredStyle: UIAlertControllerStyle.Alert)
             a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(a, animated: true, completion: nil)
-            return }
+            
+            return
+        }
         
         try! realm.write {
-            let f = realm.objects(CurrentObject).filter("cityid == \(c.cityid)").first!
-            f.isFavourite = !f.isFavourite
+            c.isFavourite = !c.isFavourite
             NSNotificationCenter.defaultCenter().postNotificationName(CurrentObject.Notification.Identifier.didSaveCurrentObject, object: c)
         }
         resetRightBarButtonItem()
