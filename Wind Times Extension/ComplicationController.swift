@@ -57,6 +57,14 @@ class ComplicationController: NSObject, CLKComplicationDataSource, DataSourceCha
         var entries = [CLKComplicationTimelineEntry]()
         var forecast = current?.forecasts.first
         
+        guard let _ = forecast else {
+            let tmpl = templateForForecast(nil)
+            let entry = CLKComplicationTimelineEntry(date: NSDate(), complicationTemplate: tmpl)
+            entries.append(entry)
+            handler(entries)
+            return
+        }
+        
         while let thisForecast = forecast {
             if let thisEntryDate = thisForecast.timefrom where date.compare(thisEntryDate) == .OrderedAscending {
                 let tmpl = templateForForecast(thisForecast)
@@ -106,7 +114,20 @@ class ComplicationController: NSObject, CLKComplicationDataSource, DataSourceCha
     
     // MARK: - Data Source
 
-    private func templateForForecast(forecast : ForecastObject) -> CLKComplicationTemplate {
+    private func templateForForecast(forecast : ForecastObject?) -> CLKComplicationTemplate {
+        guard let forecast = forecast else {
+            let tmpl = CLKComplicationTemplateModularLargeColumns()
+            tmpl.row1ImageProvider = CLKImageProvider(onePieceImage: UIImage(named: "N-white")!)
+            tmpl.row1Column1TextProvider = CLKSimpleTextProvider(text: "Wind speed")
+            tmpl.row1Column2TextProvider = CLKSimpleTextProvider(text: "00h")
+            tmpl.row2ImageProvider = CLKImageProvider(onePieceImage: UIImage(named: "N-white")!)
+            tmpl.row2Column1TextProvider = CLKSimpleTextProvider(text: "Wind speed")
+            tmpl.row2Column2TextProvider = CLKSimpleTextProvider(text: "03h")
+            tmpl.row3ImageProvider = CLKImageProvider(onePieceImage: UIImage(named: "N-white")!)
+            tmpl.row3Column1TextProvider = CLKSimpleTextProvider(text: "Wind speed")
+            tmpl.row3Column2TextProvider = CLKSimpleTextProvider(text: "06h")
+            return tmpl
+        }
         
         var speed = ""
         if let c = current {
