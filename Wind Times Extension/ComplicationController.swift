@@ -147,38 +147,43 @@ class ComplicationController: NSObject, CLKComplicationDataSource, DataSourceCha
     private func templateForForecast(forecast : ForecastObject?, andComplication complication : CLKComplication) -> CLKComplicationTemplate {
         //NSLog("log-templateForForecast \(forecast)")
         
-        guard let forecast = forecast else {
+        guard let forecast = forecast, current = current else {
             return emptyTemplateForComplication(complication)
         }
         
-        var speed = ""
-        if let c = current {
-            speed = c.units.speed
-        }
         var imageProvider : CLKImageProvider = CLKImageProvider(onePieceImage: UIImage(named: "N-white")!)
         if let d = forecast.direction {
             imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "\(d.inverse.rawValue)-white")!)
+            imageProvider.tintColor = current.units.getColorOfSpeed(forecast.speedvalue)
         }
+        let speed = current.units.speed
+        let speedProvider = CLKSimpleTextProvider(text: "\(forecast.speedvalue)")
+        speedProvider.tintColor = current.units.getColorOfSpeed(forecast.speedvalue)
         
         switch complication.family {
         case .ModularLarge :
             let tmpl = CLKComplicationTemplateModularLargeColumns()
             tmpl.row1ImageProvider = imageProvider
             tmpl.row1Column1TextProvider = CLKSimpleTextProvider(text: "\(forecast.speedvalue) \(speed)")
+            tmpl.row1Column1TextProvider.tintColor = current.units.getColorOfSpeed(forecast.speedvalue)
             tmpl.row1Column2TextProvider = CLKSimpleTextProvider(text: "\(forecast.hour)h")
             
             if let next = forecast.next {
                 if let d = next.direction {
                     tmpl.row2ImageProvider = CLKImageProvider(onePieceImage: UIImage(named: "\(d.inverse.rawValue)-white")!)
+                    tmpl.row2ImageProvider?.tintColor = current.units.getColorOfSpeed(next.speedvalue)
                 }
                 tmpl.row2Column1TextProvider = CLKSimpleTextProvider(text: "\(next.speedvalue) \(speed)")
+                tmpl.row2Column1TextProvider.tintColor = current.units.getColorOfSpeed(next.speedvalue)
                 tmpl.row2Column2TextProvider = CLKSimpleTextProvider(text: "\(next.hour)h")
                 
                 if let nextOfNext = next.next {
                     if let d = nextOfNext.direction {
                         tmpl.row3ImageProvider = CLKImageProvider(onePieceImage: UIImage(named: "\(d.inverse.rawValue)-white")!)
+                        tmpl.row3ImageProvider?.tintColor = current.units.getColorOfSpeed(nextOfNext.speedvalue)
                     }
                     tmpl.row3Column1TextProvider = CLKSimpleTextProvider(text: "\(nextOfNext.speedvalue) \(speed)")
+                    tmpl.row3Column1TextProvider.tintColor = current.units.getColorOfSpeed(nextOfNext.speedvalue)
                     tmpl.row3Column2TextProvider = CLKSimpleTextProvider(text: "\(nextOfNext.hour)h")
                 }
             }
@@ -186,22 +191,24 @@ class ComplicationController: NSObject, CLKComplicationDataSource, DataSourceCha
         case .ModularSmall :
             let tmpl = CLKComplicationTemplateModularSmallStackImage()
             tmpl.line1ImageProvider = imageProvider
-            tmpl.line2TextProvider = CLKSimpleTextProvider(text: "\(forecast.speedvalue)")
+            tmpl.line2TextProvider = speedProvider
+            tmpl.line2TextProvider.tintColor = current.units.getColorOfSpeed(forecast.speedvalue)
             return tmpl
         case .CircularSmall :
             let tmpl = CLKComplicationTemplateCircularSmallStackImage()
             tmpl.line1ImageProvider = imageProvider
-            tmpl.line2TextProvider = CLKSimpleTextProvider(text: "\(forecast.speedvalue)")
+            tmpl.line2TextProvider = speedProvider
             return tmpl
         case .UtilitarianSmall :
             let tmpl = CLKComplicationTemplateUtilitarianSmallFlat()
             tmpl.imageProvider = imageProvider
-            tmpl.textProvider = CLKSimpleTextProvider(text: "\(forecast.speedvalue)")
+            tmpl.textProvider = speedProvider
             return tmpl
         case .UtilitarianLarge :
             let tmpl = CLKComplicationTemplateUtilitarianLargeFlat()
             tmpl.imageProvider = imageProvider
             tmpl.textProvider = CLKSimpleTextProvider(text: "\(forecast.speedvalue) \(speed)")
+            tmpl.textProvider.tintColor = current.units.getColorOfSpeed(forecast.speedvalue)
             return tmpl
         }
     }
