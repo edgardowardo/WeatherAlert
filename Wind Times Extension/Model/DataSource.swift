@@ -20,7 +20,10 @@ struct DataSource {
     
     init(data: [String : AnyObject]) {
         if let favouritesData = data["favourites"] as? [[String : AnyObject]] {
-             currentObjects = favouritesData.map({ return CurrentObject(data: $0)  })
+            currentObjects = favouritesData.map({ return CurrentObject(data: $0)  })
+            currentObjects?.sortInPlace({ (first, second) -> Bool in
+                first.isComplicated.hashValue > second.isComplicated.hashValue
+            })
         } else {
             currentObjects = nil
         }
@@ -115,13 +118,15 @@ class CurrentObject {
     var speedname = ""
     var speedvalue : Double = 0
     var units : Units = .Metric
+    var isComplicated = false
     var forecasts = [ForecastObject]()
     
     init(data : [String : AnyObject]) {
-        if let cityid = data["cityid"] as? Int, name = data["name"] as? String, units = data["units"] as? String {
+        if let cityid = data["cityid"] as? Int, name = data["name"] as? String, units = data["units"] as? String, isComplicated = data["isComplicated"] as? Bool {
             self.cityid = cityid
             self.name = name
             self.units = Units(rawValue: units)!
+            self.isComplicated = isComplicated
         }
         if let directioncode = data["directioncode"] as? String {
             self.direction = Direction(rawValue: directioncode)

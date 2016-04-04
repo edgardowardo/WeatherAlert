@@ -13,8 +13,18 @@ import RealmSwift
 import iAd
 import TIPBadgeManager
 import Alamofire
+import WatchConnectivity
 
 extension AppDelegate : WatchSessionManagerDelegate {
+    
+    func sessionWatchStateDidChange(session: WCSession) {
+        // uninstalled app therefore reset current complicated
+        guard let complicated = realm.objects(CurrentObject).filter("isFavourite == 1 && isComplicated == 1").first where session.watchAppInstalled == false else { return }
+        try! realm.write {
+            complicated.isComplicated = false
+        }
+    }
+    
     func buildApplicationContext() -> [String : AnyObject]? {
         guard let realm = try? Realm() else { return nil }
         let favourites = realm.objects(CurrentObject).filter("isFavourite == 1")
@@ -36,7 +46,7 @@ extension AppDelegate : WatchSessionManagerDelegate {
             let forecasts = realm.objects(ForecastObject).filter("cityid == \(cityid)").sorted("timefrom", ascending: true)
             return forecasts.map({ obj in return [ "timefrom" : obj.timefrom!, "directioncode" : obj.directioncode, "speedvalue" : obj.speedvalue ] })
         }
-        let context = favourites.map({ obj in return [ "cityid" : obj.cityid, "name" : obj.name, "speedvalue" : obj.speedvalue, "speedname" : obj.speedname, "directioncode" : obj.directioncode, "lastupdate" : obj.lastupdate!, "units" : obj.units.rawValue, "forecasts" : getForecasts(obj.cityid) ] })
+        let context = favourites.map({ obj in return [ "cityid" : obj.cityid, "name" : obj.name, "speedvalue" : obj.speedvalue, "speedname" : obj.speedname, "directioncode" : obj.directioncode, "lastupdate" : obj.lastupdate!, "units" : obj.units.rawValue, "isComplicated" : obj.isComplicated, "forecasts" : getForecasts(obj.cityid) ] })
         return ["favourites" : context]
     }
     

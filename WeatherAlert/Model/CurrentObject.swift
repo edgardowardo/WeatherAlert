@@ -27,6 +27,7 @@ class CurrentObject: Object {
     dynamic var directionvalue : Double = 0
     dynamic var lastupdate : NSDate? = nil
     dynamic var isFavourite = false
+    dynamic var isComplicated = false
     dynamic var _units = ""
     
     // MARK: - Notifications -

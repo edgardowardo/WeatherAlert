@@ -265,7 +265,50 @@ class CurrentDetailViewController: UIViewController {
         map.setImage(mapImage, forState: .Normal)
         map.addTarget(self, action: Selector("showMap"), forControlEvents: .TouchUpInside)
         
-        navigationItem.setRightBarButtonItems([UIBarButtonItem(customView: star), UIBarButtonItem(customView: map)], animated: true)
+        var buttons = [UIBarButtonItem(customView: star), UIBarButtonItem(customView: map)]
+        
+        if let session = WatchSessionManager.sharedManager.session where session.paired && session.watchAppInstalled  {
+            // Complication
+            var watchImage = UIImage(named: "icon-watch-grey")!
+            if let isComplicated = self.current?.isComplicated where isComplicated == true {
+                watchImage = UIImage(named: "icon-watch-yellow")!
+            }
+            let watch = UIButton(type: .Custom)
+            watch.bounds = CGRectMake(0, 0, watchImage.size.width, watchImage.size.height)
+            watch.setImage(watchImage, forState: .Normal)
+            watch.addTarget(self, action: Selector("toggleWatch"), forControlEvents: .TouchUpInside)
+            
+            buttons.insert(UIBarButtonItem(customView: watch), atIndex: 0)
+        }
+        
+        navigationItem.setRightBarButtonItems(buttons, animated: true)
+    }
+    
+    func toggleWatch() {
+        guard let realm = try? Realm() else { return }
+        guard let current = self.current where current.isFavourite else {
+            let a = UIAlertController(title: "Complications", message: "Please mark as favourite before continuing.", preferredStyle: UIAlertControllerStyle.Alert)
+            a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(a, animated: true, completion: nil)
+            return
+        }
+        
+        // resetting
+        if current.isComplicated {
+            let a = UIAlertController(title: "Complications", message: "There must be at leaset one marked for complications.", preferredStyle: UIAlertControllerStyle.Alert)
+            a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(a, animated: true, completion: nil)
+            return
+        }
+        
+        let complicated = realm.objects(CurrentObject).filter("isFavourite == 1 && isComplicated == 1").first
+        try! realm.write {
+            if let otherComplicated = complicated where otherComplicated.cityid != current.cityid {
+                otherComplicated.isComplicated = false
+            }
+            current.isComplicated = !current.isComplicated
+        }
+        resetRightBarButtonItem()
     }
     
     func showMap() {
@@ -282,20 +325,27 @@ class CurrentDetailViewController: UIViewController {
     
     func starred() {
         guard let realm = try? Realm() else { return }
-        guard let c = self.current else { return }
+        guard let current = self.current else { return }
+        
+        // resetting
+        if current.isFavourite && current.isComplicated {
+            let a = UIAlertController(title: "Favourites", message: "There must be at leaset one marked for complications.", preferredStyle: UIAlertControllerStyle.Alert)
+            a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(a, animated: true, completion: nil)
+            return
+        }
         
         // logic to transition from un to favourite and reached the limit already and back
-        if !c.isFavourite && realm.objects(CurrentObject).filter("isFavourite == 1").count == 10 {
+        if !current.isFavourite && realm.objects(CurrentObject).filter("isFavourite == 1").count == 10 {
             let a = UIAlertController(title: "Favourites", message: "Ten favourites is the limit", preferredStyle: UIAlertControllerStyle.Alert)
             a.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(a, animated: true, completion: nil)
-            
             return
         }
         
         try! realm.write {
-            c.isFavourite = !c.isFavourite
-            NSNotificationCenter.defaultCenter().postNotificationName(CurrentObject.Notification.Identifier.didSaveCurrentObject, object: c)
+            current.isFavourite = !current.isFavourite
+            NSNotificationCenter.defaultCenter().postNotificationName(CurrentObject.Notification.Identifier.didSaveCurrentObject, object: current)
         }
         resetRightBarButtonItem()
         forecastsView.reloadData()

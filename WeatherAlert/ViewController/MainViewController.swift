@@ -27,6 +27,7 @@ class MainViewController: UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
     var delegate : ContainerMenuViewDelegate?
     var token : RLMNotificationToken!
+    var tokenCurrents : RLMNotificationToken!
     
     // MARK: - View lifecycle -
     
@@ -56,6 +57,9 @@ class MainViewController: UITableViewController {
             realm = try! Realm()
         }
         token = self.getToken()
+        tokenCurrents = realm.objects(CurrentObject).addNotificationBlock { notification, realm in
+            self.tableView.reloadData()
+        }
         
         if CLLocationManager.authorizationStatus() == .NotDetermined || CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -195,7 +199,11 @@ class MainViewController: UITableViewController {
         cell.detailTextLabel!.text = "\(c.country)\(c.distanceText)"
         cell.accessoryType = .DisclosureIndicator
         if c.isFavourite {
-            cell.imageView?.image = UIImage(named: "icon-superstar")
+            if c.isComplicated {
+                cell.imageView?.image = UIImage(named: "icon-watch-yellow")
+            } else {
+                cell.imageView?.image = UIImage(named: "icon-superstar")
+            }
         } else {
             cell.imageView?.image = UIImage(named: "icon-dot-fill")
         }

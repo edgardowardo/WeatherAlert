@@ -10,6 +10,7 @@ import WatchConnectivity
 
 protocol WatchSessionManagerDelegate {
     func buildApplicationContext() -> [String : AnyObject]?
+    func sessionWatchStateDidChange(session: WCSession)
 }
 
 @available(iOS 9.0, *)
@@ -34,6 +35,12 @@ class WatchSessionManager : NSObject, WCSessionDelegate {
                     replyHandler(["reply" : "willSendApplicationContextSoon"])
                 }
             }
+        }
+    }
+    
+    func sessionWatchStateDidChange(session: WCSession) {
+        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+            self?.delegate?.sessionWatchStateDidChange(session)
         }
     }
     
