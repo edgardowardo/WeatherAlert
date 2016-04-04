@@ -82,7 +82,10 @@ class ComplicationController: NSObject, CLKComplicationDataSource, DataSourceCha
     
     func getNextRequestedUpdateDateWithHandler(handler: (NSDate?) -> Void) {
         // Call the handler with the date when you would next like to be given the opportunity to update your complication content
-        handler(nil);
+        let next = current?.forecasts.last?.timefrom
+        //let next = NSDate().dateByAddingTimeInterval(NSTimeInterval(60))
+        //NSLog("log-getNextRequestedUpdateDateWithHandler(\(next))")
+        handler(next)
     }
     
     // MARK: - Placeholder Templates
@@ -112,9 +115,19 @@ class ComplicationController: NSObject, CLKComplicationDataSource, DataSourceCha
         handler(template)
     }
     
+    func requestedUpdateDidBegin() {
+        //NSLog("log-requestedUpdateDidBegin")
+        if WatchSessionManager.sharedManager.isStale {
+            WatchSessionManager.sharedManager.session?.sendMessage(["command" : "getFavourites"], replyHandler: { (data : [String : AnyObject]) -> Void in
+                NSLog("log-replyHandler \(data)") }, errorHandler: nil)
+        }
+    }
+    
     // MARK: - Data Source
 
     private func templateForForecast(forecast : ForecastObject?) -> CLKComplicationTemplate {
+        //NSLog("log-templateForForecast \(forecast)")
+        
         guard let forecast = forecast else {
             let tmpl = CLKComplicationTemplateModularLargeColumns()
             tmpl.row1ImageProvider = CLKImageProvider(onePieceImage: UIImage(named: "N-white")!)
