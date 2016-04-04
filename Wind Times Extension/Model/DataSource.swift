@@ -57,6 +57,8 @@ class ForecastObject {
     var timefrom : NSDate? = nil
     var direction : Direction? = nil
     var speedvalue : Double = 0
+    var previous : ForecastObject? = nil
+    var next : ForecastObject? = nil
     
     init(data : [String : AnyObject]) {
         if let timefrom = data["timefrom"] as? NSDate {
@@ -133,6 +135,17 @@ class CurrentObject {
         }
         if let forecasts = data["forecasts"] as? [[String : AnyObject]] {
             self.forecasts = forecasts.map({ return ForecastObject(data: $0) })
+            
+            // Annotate each forecasts with previous and next properties for complications timeline building            
+            var generator = self.forecasts.generate()
+            var previous : ForecastObject? = nil
+            while let next = generator.next() {
+                if let p = previous {
+                    p.next = next
+                }
+                next.previous = previous
+                previous = next
+            }
         }
     }
 }
