@@ -56,14 +56,15 @@ extension AppDelegate : WatchSessionManagerDelegate {
             if let xml = response.result.value {
                 let xmlString = "\(xml)"
                 //NSLog("log-will-refreshCurrent(willSaveCurrent)")
-                CurrentObject.saveXML(xmlString, realm: self.realm)
-                Alamofire.request(Router.Forecast(id: cityid)).responseXMLDocument({ response -> Void in
-                    if let xml = response.result.value {
-                        //NSLog("log-will-refreshCurrent(willSaveForecasts)")
-                        let xmlString = "\(xml)"
-                        ForecastObject.saveXML(xmlString, realm: self.realm)
-                    }
-                })
+                if let cityid = CurrentObject.saveXML(xmlString, realm: self.realm) {
+                    Alamofire.request(Router.Forecast(id: cityid)).responseXMLDocument({ response -> Void in
+                        if let xml = response.result.value {
+                            //NSLog("log-will-refreshCurrent(willSaveForecasts)")
+                            let xmlString = "\(xml)"
+                            ForecastObject.saveXML(xmlString, realm: self.realm)
+                        }
+                    })
+                }
             }
         })
     }

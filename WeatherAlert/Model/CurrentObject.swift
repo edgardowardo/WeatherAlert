@@ -126,6 +126,12 @@ class CurrentObject: Object {
                 let document = try XMLDocument(string: xml)
                 if let root = document.root {
                     
+                    // if existing and same last update, don't do the rest as it's the same! It will only re-cycle in the realm notification block
+                    guard let city = root.firstChild(tag:"city"), id = city["id"], lastupdateNode = root.firstChild(tag : "lastupdate"), lastupdatevalue = lastupdateNode["value"], lastupdate = NSDateFormatter.nsdateFromString(lastupdatevalue) where nil == realm.objects(CurrentObject).filter("cityid == \(id)").filter(NSPredicate(format: "lastupdate == %@", lastupdate)).first else  {
+                        NSLog("log-CurrentObject.saveXML server returning stale hence aborting")
+                        return
+                    }
+                    
                     realm.beginWrite()
                     //print("\(NSDate()) saveXML")
 
