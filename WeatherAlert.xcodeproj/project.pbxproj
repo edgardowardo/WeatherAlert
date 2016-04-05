@@ -59,7 +59,6 @@
 		779D58D51C7A8D54007FEF5D /* ForecastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 779D58D41C7A8D54007FEF5D /* ForecastCell.xib */; };
 		779D58D71C7A9825007FEF5D /* CurrentDetailLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779D58D61C7A9825007FEF5D /* CurrentDetailLayout.swift */; };
 		77A2669C1C7A5D3C0082E22D /* DayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A2669B1C7A5D3C0082E22D /* DayCell.xib */; };
-		77AFC9FC1C860D61009F090B /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77AFC9FB1C860D61009F090B /* Pods-acknowledgements.plist */; };
 		77B310BF1C8635E600DB3CAF /* Test_10CityObjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B310BE1C8635E600DB3CAF /* Test_10CityObjectSpec.swift */; };
 		77B310C11C864B5100DB3CAF /* Test_01AppObjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B310C01C864B5100DB3CAF /* Test_01AppObjectSpec.swift */; };
 		77B310C31C864DD700DB3CAF /* Test_02CurrentObjectSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B310C21C864DD700DB3CAF /* Test_02CurrentObjectSpec.swift */; };
@@ -75,6 +74,7 @@
 		77DAC64B1C7737EA004A1C72 /* WeatherAlertUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DAC64A1C7737EA004A1C72 /* WeatherAlertUITests.swift */; };
 		77DEB4501C90E6B3002B84D7 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DEB44F1C90E6B3002B84D7 /* Launch.storyboard */; };
 		77E1ECDC1C9779F400DA777D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1ECDB1C9779F400DA777D /* MapViewController.swift */; };
+		77EE24EF1CB402F20027DD72 /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77EE24EE1CB402F20027DD72 /* Pods-acknowledgements.plist */; };
 		77F282DA1C85154B0018FAF8 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F282D91C85154B0018FAF8 /* Units.swift */; };
 /* End PBXBuildFile section */
 
@@ -190,7 +190,6 @@
 		779D58D41C7A8D54007FEF5D /* ForecastCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForecastCell.xib; sourceTree = "<group>"; };
 		779D58D61C7A9825007FEF5D /* CurrentDetailLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentDetailLayout.swift; sourceTree = "<group>"; };
 		77A2669B1C7A5D3C0082E22D /* DayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayCell.xib; sourceTree = "<group>"; };
-		77AFC9FB1C860D61009F090B /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
 		77B310BE1C8635E600DB3CAF /* Test_10CityObjectSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test_10CityObjectSpec.swift; sourceTree = "<group>"; };
 		77B310C01C864B5100DB3CAF /* Test_01AppObjectSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test_01AppObjectSpec.swift; sourceTree = "<group>"; };
 		77B310C21C864DD700DB3CAF /* Test_02CurrentObjectSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test_02CurrentObjectSpec.swift; sourceTree = "<group>"; };
@@ -211,6 +210,7 @@
 		77DAC64C1C7737EA004A1C72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77DEB44F1C90E6B3002B84D7 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		77E1ECDB1C9779F400DA777D /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		77EE24EE1CB402F20027DD72 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
 		77F282D91C85154B0018FAF8 /* Units.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
 		8A4062DB4CCB1E9E41E8391F /* Pods_WeatherAlertTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherAlertTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48BC8A65B50C0391F38EED2 /* Pods_WeatherAlert.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherAlert.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -431,7 +431,7 @@
 				7761C6561CA88146001E0A72 /* WatchSessionManager.swift */,
 				77DAC62E1C7737E9004A1C72 /* Main.storyboard */,
 				77DAC6311C7737E9004A1C72 /* Assets.xcassets */,
-				77AFC9FB1C860D61009F090B /* Pods-acknowledgements.plist */,
+				77EE24EE1CB402F20027DD72 /* Pods-acknowledgements.plist */,
 				77DAC6361C7737E9004A1C72 /* Info.plist */,
 				77DEB44F1C90E6B3002B84D7 /* Launch.storyboard */,
 			);
@@ -660,7 +660,7 @@
 				778AB11F1C7A3F8200EE974B /* RightTitlesCell.xib in Resources */,
 				779D58D51C7A8D54007FEF5D /* ForecastCell.xib in Resources */,
 				776BDF521C7764C60004D9A5 /* city.list.json in Resources */,
-				77AFC9FC1C860D61009F090B /* Pods-acknowledgements.plist in Resources */,
+				77EE24EF1CB402F20027DD72 /* Pods-acknowledgements.plist in Resources */,
 				77DAC6321C7737E9004A1C72 /* Assets.xcassets in Resources */,
 				77B310CD1C865CC700DB3CAF /* testForecast01.xml in Resources */,
 				778C97C61C8B980C00668B0D /* CurrentInfoView.xib in Resources */,
