@@ -20,7 +20,6 @@ class MainViewController: UITableViewController {
     var realm : Realm! = nil
     let locationManager = CLLocationManager()
     var location : CLLocation?
-    lazy var mapNavigationViewController : UINavigationController? = self.getMapNavigationViewController()
     lazy var detailViewController: CurrentDetailViewController? = UIStoryboard.currentDetailViewController()
     lazy var currentObjects : [(String, [CurrentObject])] = self.getCurrentObjects()
     var filteredObjects : [(String, [CurrentObject])]!
@@ -28,6 +27,11 @@ class MainViewController: UITableViewController {
     var delegate : ContainerMenuViewDelegate?
     var token : RLMNotificationToken!
     var tokenCurrents : RLMNotificationToken!
+    var mapNavigationViewController : UINavigationController? {
+        get {
+            return getMapNavigationViewController()
+        }
+    }
     
     // MARK: - View lifecycle -
     
