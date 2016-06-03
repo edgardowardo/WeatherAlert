@@ -48,7 +48,7 @@ extension NSDate {
     }
     
     var hoursIntervalForSearch : Double {
-        return 2.0
+        return 3.0
     }
     
     var hourAndMin : String {
